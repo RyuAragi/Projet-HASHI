@@ -26,3 +26,10 @@
     -fx-background-position: center;
     -fx-background-size: cover;
 }
+
+.StackPane {
+    -fx-background-image: url('board.png');
+    -fx-background-size: 850px 750px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
