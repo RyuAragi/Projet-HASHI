@@ -33,3 +33,11 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
+
+.logo {
+    -fx-background-image: url('jacobhashi.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+    -fx-padding: 0;
+}
