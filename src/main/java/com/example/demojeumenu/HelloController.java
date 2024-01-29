@@ -1,9 +1,13 @@
 package com.example.demojeumenu;
 
 import javafx.fxml.FXML;
+import javafx.scene.AmbientLight;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.fxml.FXML;
+import javafx.scene.AmbientLight;
+import javafx.scene.paint.Color;
 
 public class HelloController {
     public Button bouton;
@@ -22,5 +26,12 @@ public class HelloController {
     protected void onButton3Click() {
         System.out.println("Bouton 3 a été cliqué");
         System.exit(0);
+    }
+
+    @FXML
+    private AmbientLight ambientLight;
+
+    @FXML
+    protected void initialize() {
     }
 }
