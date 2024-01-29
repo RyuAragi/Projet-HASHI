@@ -24,8 +24,8 @@ public class HelloApplication extends Application {
         double screenHeight = screenBounds.getHeight();
         Scene scene = new Scene(fxmlLoader.load(), screenWidth, screenHeight);
 
-        URL boutonUrl = getClass().getResource("bouton.png");
-        URL fondUrl = getClass().getResource("fond.png");
+        URL boutonUrl = getClass().getResource("images/bouton.png");
+        URL fondUrl = getClass().getResource("images/fond.png");
 
         if (boutonUrl == null || fondUrl == null) {
             System.out.println("Images not found");
@@ -40,7 +40,7 @@ public class HelloApplication extends Application {
             }
         }
 
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
         stage.setTitle("Hello!");
         stage.setWidth(screenWidth-10);
         stage.setHeight(screenHeight-50);
