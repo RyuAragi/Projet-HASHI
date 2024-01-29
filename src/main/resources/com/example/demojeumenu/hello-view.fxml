@@ -3,17 +3,21 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="743.0" prefWidth="1022.0" spacing="20.0" styleClass="VBox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.HelloController">
+<VBox alignment="CENTER" prefHeight="1007.0" prefWidth="1439.0" spacing="20.0" styleClass="VBox" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.controller.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
     <StackPane minHeight="750" minWidth="750" styleClass="StackPane">
-        <VBox alignment="CENTER" prefHeight="599.0" prefWidth="787.0" spacing="10">
-            <Button fx:id="bouton" onAction="#onButton1Click" prefHeight="100" prefWidth="500" styleClass="custom-button" text="Button 1" />
-            <Button onAction="#onButton2Click" prefHeight="100" prefWidth="500" styleClass="custom-button" text="Button 2" />
-            <Button onAction="#onButton3Click" prefHeight="100" prefWidth="500" styleClass="custom-button" text="Quitter" />
+        <VBox alignment="CENTER" prefHeight="597.0" prefWidth="1285.0" spacing="10">
+            <Button fx:id="bouton" alignment="CENTER" contentDisplay="CENTER" onAction="#onButton1Click" prefHeight="100" prefWidth="500" styleClass="custom-button" text="JOUER">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font></Button>
+            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onButton2Click" prefHeight="100" prefWidth="500" styleClass="custom-button" text="Button 2" />
+            <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onButton3Click" prefHeight="100" prefWidth="500" styleClass="custom-button" text="Quitter" />
         </VBox>
     </StackPane>
 </VBox>

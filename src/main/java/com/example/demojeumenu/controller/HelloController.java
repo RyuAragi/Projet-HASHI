@@ -1,4 +1,4 @@
-package com.example.demojeumenu;
+package com.example.demojeumenu.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.AmbientLight;

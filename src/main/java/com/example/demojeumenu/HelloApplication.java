@@ -8,8 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.StageStyle;
-import javafx.scene.AmbientLight;
-import javafx.scene.paint.Color;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -23,7 +22,6 @@ public class HelloApplication extends Application {
         double screenWidth = screenBounds.getWidth();
         double screenHeight = screenBounds.getHeight();
         Scene scene = new Scene(fxmlLoader.load(), screenWidth, screenHeight);
-        //test github test
         URL boutonUrl = getClass().getResource("images/bouton.png");
         URL fondUrl = getClass().getResource("images/fond.png");
 
@@ -41,7 +39,7 @@ public class HelloApplication extends Application {
         }
 
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
-        stage.setTitle("Hello!");
+        stage.setTitle("Jacobhashi!");
         stage.setWidth(screenWidth-10);
         stage.setHeight(screenHeight-50);
         stage.setScene(scene);
