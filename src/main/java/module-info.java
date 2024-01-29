@@ -4,8 +4,8 @@ module com.example.demojeumenu {
 
     requires org.controlsfx.controls;
     requires com.almasb.fxgl.all;
+    requires org.fxmisc.richtext;
 
-    opens com.example.demojeumenu.controller to javafx.fxml;
     exports com.example.demojeumenu;
-    exports com.example.demojeumenu.controller;
+    opens com.example.demojeumenu to javafx.fxml;
 }

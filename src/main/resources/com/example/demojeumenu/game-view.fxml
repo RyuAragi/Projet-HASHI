@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+
+<GridPane fx:id="grid" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.example.demojeumenu.appController">
+    <!-- Les éléments du jeu seront ajoutés ici en code Java -->
+    <Button fx:id="backButton" text="Back" />
+</GridPane>
