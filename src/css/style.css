@@ -1,0 +1,46 @@
+.root{
+    -fx-font-family: Verdana, Geneva, Tahoma, sans-serif;
+    -fx-background-image: url("../img/back-ground.png");
+    -fx-background-repeat: none;
+    -fx-background-size: cover;
+    -fx-background-color: none;
+    -fx-color: white;
+}
+
+.button-1{
+    -fx-background-image: url("../img/button-4.png");
+    -fx-background-repeat: none;
+    -fx-background-size: cover;
+    -fx-background-color: none;
+    -fx-border-color: transparent;
+}
+
+.title{
+    -fx-background-image: url("../img/button-2.png");
+    -fx-background-repeat: none;
+    -fx-background-size: cover;
+    -fx-background-color: black;
+}
+
+.button-2{
+    -fx-background-image: url("../img/button-back-0.png");
+    -fx-background-repeat: none;
+    -fx-background-size: cover;
+    -fx-background-color: none;
+    -fx-border-color: transparent;
+    -fx-color: transparent;
+}
+
+.board{
+    -fx-background-image: url("../img/board.png");
+    -fx-background-repeat: none;
+    -fx-background-size: cover;
+    -fx-background-color: none;
+}
+
+.logo{
+    -fx-background-image: url("../img/jacobhashi.png");
+    -fx-background-repeat: none;
+    -fx-background-size: cover;
+    -fx-background-color: none;
+}
