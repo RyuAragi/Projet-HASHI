@@ -1,3 +1,56 @@
-.root{
-    -fx-background-image:url('reglage.png');
+.panel{
+    -fx-background-image: url('Assets/Menu/Background.png');
+    -fx-background-color: none;
+    -fx-background-repeat: none;
+    -fx-background-size: contain;
+}
+
+.back{
+    -fx-background-image: url('Assets/bouton/Bouton_retour_V1.png');
+    -fx-background-size: contain;
+    -fx-background-color: none;
+    -fx-background-repeat: none;
+}
+
+.mute{
+    -fx-background-image: url('Assets/bouton/Bouton_mute_V2.png');
+    -fx-background-size: contain;
+    -fx-background-color: none;
+    -fx-background-repeat: none;
+}
+
+.info{
+    -fx-background-image: url('Assets/bouton/Bouton_information_V1.png');
+    -fx-background-size: contain;
+    -fx-background-color: none;
+    -fx-background-repeat: none;
+}
+
+.sound_less{
+    -fx-background-image: url('Assets/bouton/Bouton_flèche_gauche.png');
+    -fx-background-size: contain;
+    -fx-background-color: none;
+    -fx-background-repeat: none;
+}
+
+.sound_more{
+    -fx-background-image: url('Assets/bouton/Bouton_flèche_droite.png');
+    -fx-background-size: contain;
+    -fx-background-color: none;
+    -fx-background-repeat: none;
+}
+
+.sound_bar{
+    -fx-background-image: url('Assets/bouton/Barre_volume_0.png');
+    -fx-background-size: contain;
+    -fx-background-color: none;
+    -fx-background-repeat: none;
+}
+
+.txt_nom_joueur{
+    -fx-prompt-text-fill: #505050;
+    -fx-background-image: url('Assets/Menu/Bouton_3.png');
+    -fx-background-size: contain;
+    -fx-background-color: none;
+    -fx-background-repeat: none;
 }
