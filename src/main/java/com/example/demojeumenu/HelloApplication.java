@@ -45,7 +45,10 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
 
         // Personnaliser la fenêtre pour qu'elle occupe tout l'écran
-        stage.setFullScreen(false);
+        stage.setFullScreen(true);
+
+        // Désactiver les astuces en plein écran
+        stage.setFullScreenExitHint("");
 
         // activer les boutons de la fenêtre (réduire, agrandir, fermer)
         stage.initStyle(StageStyle.UNIFIED);
