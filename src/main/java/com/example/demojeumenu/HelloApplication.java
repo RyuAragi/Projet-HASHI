@@ -23,7 +23,7 @@ public class HelloApplication extends Application {
         double screenWidth = screenBounds.getWidth();
         double screenHeight = screenBounds.getHeight();
         Scene scene = new Scene(fxmlLoader.load(), screenWidth, screenHeight);
-        //test github
+        //test github test
         URL boutonUrl = getClass().getResource("images/bouton.png");
         URL fondUrl = getClass().getResource("images/fond.png");
 
