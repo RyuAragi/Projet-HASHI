@@ -26,6 +26,8 @@ public class Jeu{
     long temps_f;
     /**Le temps total pour finir le puzzle */
     long temps;
+
+
     /**Constructeur @param o */
     Jeu(){
 
@@ -42,8 +44,7 @@ public class Jeu{
         }if(n1.x > n2.x){
             if(n1.ponts.get("O")<= mat_res[n1.x][n1.y].ponts.get("O") ) return true;
         }if(n1.y > n2.y){
-            if(n1.ponts.get("S")<= mat_res[n1.x][n1.y].ponts.get("S") ) return true;
-        }if(n1.y < n2.y){
+            if(n1.pontemps_init
             if(n1.ponts.get("N")<= mat_res[n1.x][n1.y].ponts.get("N") ) return true;
         }
         mat_err = mat;
@@ -86,4 +87,29 @@ public class Jeu{
     double calculScore(){
         return 500 + Math.abs(Math.pow(nbAide,2)/Math.pow(nbPont,0.5) - temps);
     }
+
+    /**
+     * Fonction qui remet à zero le jeu 
+     */
+    void remiseAZero(){
+        mat_err = null;
+        int i = 0;
+        int j = 0;
+        for (i = 0; i < taille_li; i++) {
+            for (j = 0; j < taille_col; j++){
+                Noeud ile = mat[i][j];
+                if (ile != 0){
+                    ile.ponts.replace("E",0);
+                    ile.ponts.replace("N",0);
+                    ile.ponts.replace("O",0);
+                    ile.ponts.replace("S",0);
+                }
+            }
+        }
+        temps_init = System.nanoTime();
+        nbPont = 0; 
+        nbAide = 0;
+    }
+
+
 }   
