@@ -14,6 +14,8 @@ public class Jeu{
     int taille_li ;
     /** Le nombre de colonnes que la grille possède */
     int taille_col ;
+    /** Le score du joueur */
+    int score ;
     /**Constructeur @param o */
     Jeu(){
 
@@ -55,6 +57,11 @@ public class Jeu{
         }if(n1.y < n2.y){
             n1.ponts.replace("N",n1.ponts.get("N")%3);
             n2.ponts.replace("S",n2.ponts.get("S")%3);
+        }
+    }
+    void verifMatrice(){
+        if (mat != mat_err){
+            
         }
     }
 }
