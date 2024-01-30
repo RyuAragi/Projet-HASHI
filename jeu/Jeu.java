@@ -20,6 +20,10 @@ public class Jeu{
     double nbPont;
     /**le nombre total d'aide utilisé */
     double nbAide;
+    /**Le temps initial au moment ou le jeu a commencé */
+    long temps_init;
+    /**Le temps final a la fin du jeu */
+    long temps_f;
     /**Le temps total pour finir le puzzle */
     long temps;
     /**Constructeur @param o */
