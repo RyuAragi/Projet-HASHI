@@ -44,7 +44,7 @@ public class Jeu{
         }if(n1.x > n2.x){
             if(n1.ponts.get("O")<= mat_res[n1.x][n1.y].ponts.get("O") ) return true;
         }if(n1.y > n2.y){
-            if(n1.pontemps_init
+            if(n1.ponts.get("S")<= mat_res[n1.x][n1.y].ponts.get("S") ) return true;
             if(n1.ponts.get("N")<= mat_res[n1.x][n1.y].ponts.get("N") ) return true;
         }
         mat_err = mat;
@@ -98,7 +98,7 @@ public class Jeu{
         for (i = 0; i < taille_li; i++) {
             for (j = 0; j < taille_col; j++){
                 Noeud ile = mat[i][j];
-                if (ile != 0){
+                if (ile.etiquette != 0){
                     ile.ponts.replace("E",0);
                     ile.ponts.replace("N",0);
                     ile.ponts.replace("O",0);
@@ -110,6 +110,15 @@ public class Jeu{
         nbPont = 0; 
         nbAide = 0;
     }
-
+    /**Méthode commencer qui permet d'initialiser le temps */
+    void commencer(){
+        temps_init=System.nanoTime();
+    }
+    /**Méthode fin qui permet de mettre fin au jeu */
+    void fin(){
+        temps_f=System.nanoTime();
+        temps=temps_f-temps_init;
+        score=calculScore();
+    }
 
 }   
