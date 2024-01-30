@@ -19,7 +19,8 @@
     -fx-background-image: url("../img/button-2.png");
     -fx-background-repeat: none;
     -fx-background-size: cover;
-    -fx-background-color: black;
+    -fx-background-color: none;
+    -fx-border-color: transparent;
 }
 
 .button-2{
@@ -35,11 +36,11 @@
     -fx-background-image: url("../img/board.png");
     -fx-background-repeat: none;
     -fx-background-size: cover;
-    -fx-background-color: none;
+    -fx-background-color: transparent;
 }
 
 .logo{
-    -fx-background-image: url("../img/jacobhashi.png");
+    -fx-background-image: url("../img/logo.png");
     -fx-background-repeat: none;
     -fx-background-size: cover;
     -fx-background-color: none;
