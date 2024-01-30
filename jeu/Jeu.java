@@ -37,4 +37,24 @@ public class Jeu{
         mat_err = mat;
         return false;
     }
+    /**
+     * Fonction permettant de poser un pont entre 2 noeuds en incremetant dans la bonne direction chacun des noeuds puis en utilisant %3, comme ça dès qu'on a dépasser deux on retourne a 0
+     * @param n1 correspond au noeud 1
+     * @param n2 correspond au noeud 2
+     */
+    void poserPont(Noeud n1, Noeud n2){
+        if (n1.x < n2.x){
+            n1.ponts.replace("E",n1.ponts.get("E")%3);
+            n2.ponts.replace("O",n2.ponts.get("O")%3);
+        }if(n1.x > n2.x){
+            n1.ponts.replace("O",n1.ponts.get("O")%3);
+            n2.ponts.replace("E",n2.ponts.get("E")%3);
+        }if(n1.y > n2.y){
+            n1.ponts.replace("S",n1.ponts.get("S")%3);
+            n2.ponts.replace("N",n2.ponts.get("N")%3);
+        }if(n1.y < n2.y){
+            n1.ponts.replace("N",n1.ponts.get("N")%3);
+            n2.ponts.replace("S",n2.ponts.get("S")%3);
+        }
+    }
 }
