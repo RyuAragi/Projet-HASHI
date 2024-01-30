@@ -15,7 +15,13 @@ public class Jeu{
     /** Le nombre de colonnes que la grille possède */
     int taille_col ;
     /** Le score du joueur */
-    int score ;
+    double score ;
+    /** le nombre de pont total de posés */
+    double nbPont;
+    /**le nombre total d'aide utilisé */
+    double nbAide;
+    /**Le temps total pour finir le puzzle */
+    long temps;
     /**Constructeur @param o */
     Jeu(){
 
@@ -59,9 +65,21 @@ public class Jeu{
             n2.ponts.replace("S",n2.ponts.get("S")%3);
         }
     }
-    void verifMatrice(){
-        if (mat != mat_err){
-            
+    /**Fonction permettant de verifier si la matrice est bonne en vérifiant que la matrice erreur est rester nulle , si ce n'est pas le cas on recharge au moment de l'erreur*/
+    boolean verifMatrice(){
+        if (null != mat_err){
+            System.out.println("La matrice n'est pas valide, retour au moment de l'erreur");
+            mat=mat_err;
+            mat_err=null;
+            return false;
         }
+        return true;
     }
-}
+    /**
+     * Fonction permettant le calcul du score a la fin de la partie
+     * @return le score finale
+     */
+    double calculScore(){
+        return 500 + Math.abs(Math.pow(nbAide,2)/Math.pow(nbPont,0.5) - temps);
+    }
+}   
