@@ -10,19 +10,19 @@
     </padding>
 
     <StackPane minHeight="750" minWidth="750" styleClass="StackPane">
-        <VBox alignment="CENTER" prefHeight="597.0" prefWidth="1285.0" spacing="10">
-            <HBox alignment="CENTER" spacing="10">
+        <VBox alignment="CENTER" prefHeight="597.0" prefWidth="1285.0">
+            <HBox alignment="CENTER" >
                 <Label styleClass="color" />
                 <TextField fx:id="zoneTexte" prefHeight="100" prefWidth="550" styleClass="custom-button"  />
             </HBox>
             <Button fx:id="bouton" onAction="#onButton2Click" prefHeight="100" prefWidth="550" styleClass="custom-button">
                 <graphic>
-                    <Label styleClass="color" text="JOUER"  translateY="-8" />
+                    <Label styleClass="color" text="JOUER"/>
                 </graphic>
             </Button>
             <Button onAction="#onButton3Click" prefHeight="100" prefWidth="550" styleClass="custom-button">
                 <graphic>
-                    <Label styleClass="color" text="Quitter"  translateY="-8" />
+                    <Label styleClass="color" text="Quitter"/>
                 </graphic>
             </Button>
         </VBox>

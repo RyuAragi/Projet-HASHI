@@ -4,12 +4,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 
 import java.io.IOException;
+//import javafx.scene.control.Button;
 
 /**
  * Contrôleur de la vue principale.
@@ -34,6 +38,9 @@ public class appController {
     @FXML
     public TextField zoneTexte;
 
+    /**
+     * Le label pour le texte.
+     */
 
     @FXML
     protected void onButton1Click() {
@@ -42,6 +49,7 @@ public class appController {
 
     /**
      * Charge la vue du jeu dans la fenêtre principale.
+     * 
      * @throws IOException si le fichier FXML n'a pas pu être chargé
      */
 
@@ -64,6 +72,7 @@ public class appController {
 
     /**
      * Charge la vue principale dans la fenêtre principale.
+     * 
      * @throws IOException si le fichier FXML n'a pas pu être chargé
      */
 
@@ -74,6 +83,7 @@ public class appController {
 
     /**
      * Charge la vue du jeu dans la fenêtre principale.
+     * 
      * @throws IOException si le fichier FXML n'a pas pu être chargé
      */
     private void loadGameView() throws IOException {
@@ -82,6 +92,7 @@ public class appController {
 
     /**
      * Charge une scène FXML dans la fenêtre principale.
+     * 
      * @param fxmlFile le fichier FXML à charger
      * @throws IOException si le fichier FXML n'a pas pu être chargé
      */
@@ -101,8 +112,29 @@ public class appController {
      */
     @FXML
     protected void initialize() {
-        zoneTexte.setPromptText("Entrez votre nom");
-        zoneTexte.setTextFormatter(new TextFormatter<String>(change ->
-                change.getControlNewText().length() > MAX_CHARS ? null : change));
+        Platform.runLater(() -> {
+            bouton.requestFocus();
+        });
+        zoneTexte.setText("Entrez votre nom");
+        zoneTexte.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if ("Entrez votre nom".equals(zoneTexte.getText())) {
+                    zoneTexte.setText("");
+                }
+                int middle = zoneTexte.getText().length() / 2;
+                zoneTexte.positionCaret(middle);
+            }
+        });
+
+        zoneTexte.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue && zoneTexte.getText().isEmpty()) {
+                zoneTexte.setText("Entrez votre nom");
+            }
+        });
+
+        zoneTexte.setTextFormatter(
+                new TextFormatter<String>(change -> change.getControlNewText().length() > MAX_CHARS ? null : change));
+
     }
 }
