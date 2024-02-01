@@ -19,7 +19,7 @@ import java.io.IOException;
  * Contrôleur de la vue principale.
  */
 
-public class appController {
+public class MenuPrincipalController {
     /**
      * Le nombre maximum de caractères dans la zone de texte.
      */
@@ -29,8 +29,7 @@ public class appController {
      * Le bouton pour quitter l'application.
      * Il est lié à la méthode {@link #onButton3Click()}.
      */
-    @FXML
-    public Button backButton, bouton;
+
 
     /**
      * La zone de texte pour le nom du joueur.
@@ -38,9 +37,9 @@ public class appController {
     @FXML
     public TextField zoneTexte;
 
-    /**
-     * Le label pour le texte.
-     */
+    @FXML
+    private Button bouton;
+
 
     @FXML
     protected void onButton1Click() {
@@ -55,8 +54,9 @@ public class appController {
 
     @FXML
     protected void onButton2Click() throws IOException {
-        loadGameView();
-        onBackButtonClick();
+        Stage currentStage = (Stage) bouton.getScene().getWindow();
+        WindowManager windowManager = new WindowManager();
+        windowManager.showView(currentStage, "game-view");
         System.out.println("Bouton 2 a été cliqué");
     }
 
@@ -70,41 +70,6 @@ public class appController {
         System.exit(0);
     }
 
-    /**
-     * Charge la vue principale dans la fenêtre principale.
-     * 
-     * @throws IOException si le fichier FXML n'a pas pu être chargé
-     */
-
-    @FXML
-    protected void onBackButtonClick() throws IOException {
-        loadScene("hello-view.fxml");
-    }
-
-    /**
-     * Charge la vue du jeu dans la fenêtre principale.
-     * 
-     * @throws IOException si le fichier FXML n'a pas pu être chargé
-     */
-    private void loadGameView() throws IOException {
-        loadScene("game-view.fxml");
-    }
-
-    /**
-     * Charge une scène FXML dans la fenêtre principale.
-     * 
-     * @param fxmlFile le fichier FXML à charger
-     * @throws IOException si le fichier FXML n'a pas pu être chargé
-     */
-
-    private void loadScene(String fxmlFile) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) bouton.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
 
     /**
      * Méthode appelée après que le fichier FXML ait été chargé.

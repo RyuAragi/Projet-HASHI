@@ -1,34 +1,45 @@
 package com.example.demojeumenu;
 
-//import javafx.stage.Screen;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
-//import javafx.stage.StageStyle;
-//import javafx.geometry.Rectangle2D;
-//import javafx.scene.control.TextFormatter.Change;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class WindowManager {
-    private final Stage stage;
+    private final Map<String, Parent> views = new HashMap<>();
 
-    public WindowManager(Stage stage) {
-        this.stage = stage;
+    public WindowManager() {
+        // Pré-charger toutes les vues
+        views.put("hello-view", loadView("hello-view.fxml"));
+        views.put("game-view", loadView("game-view.fxml"));
+        // Ajoutez d'autres vues ici
     }
 
-    public void configureWindow() {
-        // Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-        // double screenWidth = screenBounds.getWidth();
-        // double screenHeight = screenBounds.getHeight();
+    private Parent loadView(String fxmlFile) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/demojeumenu/" + fxmlFile));
+            return loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException("echec du chargement du fichier " + fxmlFile, e);
+        }
+    }
 
-        stage.setTitle("Jacobhashi!");
-        // stage.setWidth(screenWidth-10);
-        // stage.setHeight(screenHeight-50);
+    public void showView(Stage stage, String viewName) {
+        Parent view = views.get(viewName);
+        if (view == null) {
+            throw new IllegalArgumentException("No view with name: " + viewName);
+        }
+        Scene scene = new Scene(view);
+        stage.setScene(scene);
 
-        // Personnaliser la fenêtre pour qu'elle occupe tout l'écran
-        stage.setFullScreen(true);
-
-        // Désactiver les astuces en plein écran
+        //desactive les astuces de plein écran
         stage.setFullScreenExitHint("");
 
-        // activer les boutons de la fenêtre (réduire, agrandir, fermer)
-        // stage.initStyle(StageStyle.UNIFIED);
+        //stage.setFullScreen(true); //active le mode plein écran
+        stage.show();
     }
 }
