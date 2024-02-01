@@ -1,85 +1,60 @@
 package com.example.demojeumenu;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
-import javafx.stage.Stage;
-import javafx.application.Platform;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-//import javafx.scene.control.Button;
-
-/**
- * Contrôleur de la vue principale.
- */
+import java.util.Objects;
 
 public class MenuPrincipalController {
-    /**
-     * Le nombre maximum de caractères dans la zone de texte.
-     */
+
     private static final int MAX_CHARS = 20;
-
-    /**
-     * Le bouton pour quitter l'application.
-     * Il est lié à la méthode {@link #onButton3Click()}.
-     */
-
-
-    /**
-     * La zone de texte pour le nom du joueur.
-     */
-    @FXML
-    public TextField zoneTexte;
-
     @FXML
     private Button bouton;
 
-
     @FXML
-    protected void onButton1Click() {
-        System.out.println("Bouton 1 a été cliqué");
+    public TextField zoneTexte;
+
+    private Scene scene;
+    private String userInput; // Variable pour stocker la saisie de l'utilisateur
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
     }
 
-    /**
-     * Charge la vue du jeu dans la fenêtre principale.
-     * 
-     * @throws IOException si le fichier FXML n'a pas pu être chargé
-     */
-
     @FXML
-    protected void onButton2Click() throws IOException {
-        Stage currentStage = (Stage) bouton.getScene().getWindow();
-        WindowManager windowManager = new WindowManager();
-        windowManager.showView(currentStage, "game-view");
-        System.out.println("Bouton 2 a été cliqué");
+    private void afficherAutreMenu() {
+        userInput = zoneTexte.getText();
+        try {
+            FXMLLoader autreMenuLoader = new FXMLLoader(getClass().getResource("AutreMenu.fxml"));
+            Parent autreMenuRoot = autreMenuLoader.load();
+            AutreMenuController autreMenuController = autreMenuLoader.getController();
+            autreMenuController.setScene(scene);
+            scene.setRoot(autreMenuRoot);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    /**
-     * Quitte l'application.
-     */
-
     @FXML
-    protected void onButton3Click() {
-        System.out.println("Bouton 3 a été cliqué");
+    private void quitter() {
+        System.out.println("Bouton QUITTER a été cliqué");
         System.exit(0);
     }
-
-
-    /**
-     * Méthode appelée après que le fichier FXML ait été chargé.
-     * Elle permet de limiter le nombre de caractères dans la zone de texte.
-     */
     @FXML
     protected void initialize() {
         Platform.runLater(() -> {
             bouton.requestFocus();
         });
+
         zoneTexte.setText("Entrez votre nom");
         zoneTexte.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
