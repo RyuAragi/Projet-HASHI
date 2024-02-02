@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class App extends Application {
 
     public static void main(String[] args) {
@@ -19,16 +21,14 @@ public class App extends Application {
         MenuPrincipalController menuPrincipalController = menuPrincipalLoader.getController();
 
         Scene scene = new Scene(menuPrincipalRoot, 800, 600);
-        scene.getStylesheets().add(getClass().getResource("css/styles.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
 
         primaryStage.setFullScreenExitHint("");
         primaryStage.setFullScreen(true);
 
-        //desactive les astuces de plein écran
-
-
         menuPrincipalController.setScene(scene);
+
     }
 }

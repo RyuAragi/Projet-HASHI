@@ -5,6 +5,7 @@ module com.example.demojeumenu {
     requires org.controlsfx.controls;
     requires com.almasb.fxgl.all;
     requires org.fxmisc.richtext;
+    requires org.slf4j;
 
     opens com.example.demojeumenu to javafx.fxml;
     exports com.example.demojeumenu;
