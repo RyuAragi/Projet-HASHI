@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
-public class MenuPrincipalController {
+public class MenuPrincipalController extends BaseController{
 
     private static final int MAX_CHARS = 20;
     @FXML
@@ -23,6 +23,7 @@ public class MenuPrincipalController {
 
     private Scene scene;
 
+    @Override
     public void setScene(Scene scene) {
         this.scene = scene;
     }
