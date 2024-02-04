@@ -19,16 +19,7 @@ public class AutreMenuController extends BaseController {
 
     @FXML
     private void btn1() {
-        try {
-            FXMLLoader menuPrincipalLoader = new FXMLLoader(getClass().getResource("AutreMenu2.fxml"));
-            Parent menuPrincipal = menuPrincipalLoader.load();
-            AutreMenuController2 autreMenuController2 = menuPrincipalLoader.getController();
-            autreMenuController2.setScene(scene);
-            scene.setRoot(menuPrincipal);
-        } catch (IOException e) {
-            Logger logger = LoggerFactory.getLogger(getClass());
-            logger.error("Une erreur est survenue lors du chargement du fichier FXML", e);
-        }
+        FXMLUtils.loadFXML("AutreMenu2.fxml", scene);
     }
 
 

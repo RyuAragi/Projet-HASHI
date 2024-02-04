@@ -30,18 +30,7 @@ public class MenuPrincipalController extends BaseController{
 
     @FXML
     private void afficherAutreMenu() {
-        // Variable pour stocker la saisie de l'utilisateur
-        zoneTexte.getText();
-        try {
-            FXMLLoader autreMenuLoader = new FXMLLoader(getClass().getResource("AutreMenu.fxml"));
-            Parent autreMenuRoot = autreMenuLoader.load();
-            AutreMenuController autreMenuController = autreMenuLoader.getController();
-            autreMenuController.setScene(scene);
-            scene.setRoot(autreMenuRoot);
-        } catch (IOException e) {
-            Logger logger = LoggerFactory.getLogger(getClass());
-            logger.error("Une erreur est survenue lors du chargement du fichier FXML", e);
-        }
+        FXMLUtils.loadFXML("AutreMenu.fxml", scene);
     }
 
     @FXML
