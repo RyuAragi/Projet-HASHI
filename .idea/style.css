@@ -1,3 +1,28 @@
+@font-face {
+    font-family: 'Noteworthy';
+    src: url('Assets/font/Noteworthy-Bold.ttf') format('ttf'),
+}
+
+.custom-text {
+    -fx-font-size: 25px;
+    -fx-font-family: 'Noteworthy';
+    -fx-font-style: Bold;
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('Assets/Menu/Bouton_1.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+    -fx-background-size: 100% 100%;
+    -fx-background-size: contain;
+    -fx-background-color: none;
+    -fx-background-repeat: none;
+}
+
+.button{
+    -fx-background-color: none;
+    -fx-background-repeat: none;
+    -fx-background-size: contain;
+}
+
 .panel{
     -fx-background-image: url('Assets/Menu/Background.png');
     -fx-background-color: none;
@@ -5,52 +30,43 @@
     -fx-background-size: contain;
 }
 
-.back{
+#back{
     -fx-background-image: url('Assets/bouton/Bouton_retour_V1.png');
-    -fx-background-size: contain;
-    -fx-background-color: none;
-    -fx-background-repeat: none;
 }
 
-.mute{
+#mute {
     -fx-background-image: url('Assets/bouton/Bouton_mute_V2.png');
-    -fx-background-size: contain;
-    -fx-background-color: none;
-    -fx-background-repeat: none;
 }
 
-.info{
+#info{
     -fx-background-image: url('Assets/bouton/Bouton_information_V1.png');
-    -fx-background-size: contain;
-    -fx-background-color: none;
-    -fx-background-repeat: none;
 }
 
-.sound_less{
+#sound_less{
     -fx-background-image: url('Assets/bouton/Bouton_flèche_gauche.png');
-    -fx-background-size: contain;
-    -fx-background-color: none;
-    -fx-background-repeat: none;
 }
 
-.sound_more{
+#sound_more{
     -fx-background-image: url('Assets/bouton/Bouton_flèche_droite.png');
-    -fx-background-size: contain;
-    -fx-background-color: none;
-    -fx-background-repeat: none;
 }
 
-.sound_bar{
+#sound_bar{
     -fx-background-image: url('Assets/bouton/Barre_volume_0.png');
+}
+
+#txt_nom_joueur{
+    -fx-prompt-text-fill: #505050;
+    -fx-background-image: url('Assets/menu-de-didacticiel/Bouton_4.png ');
     -fx-background-size: contain;
     -fx-background-color: none;
     -fx-background-repeat: none;
 }
 
-.txt_nom_joueur{
-    -fx-prompt-text-fill: #505050;
-    -fx-background-image: url('Assets/Menu/Bouton_3.png');
+#txt_sound_bar{
+    -fx-background-image: url('Assets/bouton/Bouton_3.png');
     -fx-background-size: contain;
     -fx-background-color: none;
     -fx-background-repeat: none;
 }
+
+
