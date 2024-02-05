@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.AutreMenuController">
+    <fx:include source="Logo.fxml" />
     <VBox alignment="CENTER">
         <Button onAction="#btn1" styleClass="custom-button" text="Bouton 1" />
         <Button styleClass="custom-button" text="Bouton 2" />
