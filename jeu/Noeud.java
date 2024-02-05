@@ -25,4 +25,9 @@ public class Noeud {
         ponts.put("E",0);
         ponts.put("O",0);
     }
+
+    int getX(){return x;}
+    int getY(){return y;}
+    int getEtiquette(){return etiquette;}
+    
 }
