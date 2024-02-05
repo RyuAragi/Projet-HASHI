@@ -9,8 +9,5 @@
         <module name="demo-jeu-menu" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="demo-jeu-menu" target="21" />
-    </bytecodeTargetLevel>
   </component>
 </project>
