@@ -17,6 +17,7 @@ public class AutreMenuController2 extends BaseController{
     @FXML
     private void btn1() {
         GlobalVariables.getUser();
+        FXMLUtils.loadFXML("Parametres.fxml", scene);
     }
 
     @FXML
