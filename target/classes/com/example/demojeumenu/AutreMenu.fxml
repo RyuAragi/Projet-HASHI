@@ -7,7 +7,7 @@
     <fx:include source="Logo.fxml" />
     <VBox alignment="CENTER">
         <Button onAction="#btn1" styleClass="custom-button" text="Bouton 1" />
-        <Button styleClass="custom-button" text="Bouton 2" />
+        <Button onAction="#btn2" styleClass="custom-button" text="Bouton 2" />
         <Button styleClass="custom-button" text="Bouton 3" />
         <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
     </VBox>
