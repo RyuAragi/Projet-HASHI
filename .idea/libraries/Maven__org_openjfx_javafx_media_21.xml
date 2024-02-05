@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: org.openjfx:javafx-media:21" type="java-imported" external-system-id="Maven">
+    <properties groupId="org.openjfx" artifactId="javafx-media" version="21" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-media/21/javafx-media-21.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-media/21/javafx-media-21-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-media/21/javafx-media-21-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

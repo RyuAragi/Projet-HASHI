@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: org.fxmisc.richtext:richtextfx:0.10.6" type="java-imported" external-system-id="Maven">
+    <properties groupId="org.fxmisc.richtext" artifactId="richtextfx" version="0.10.6" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/fxmisc/richtext/richtextfx/0.10.6/richtextfx-0.10.6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/fxmisc/richtext/richtextfx/0.10.6/richtextfx-0.10.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/fxmisc/richtext/richtextfx/0.10.6/richtextfx-0.10.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

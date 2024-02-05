@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: org.fxmisc.flowless:flowless:0.6.3" type="java-imported" external-system-id="Maven">
+    <properties groupId="org.fxmisc.flowless" artifactId="flowless" version="0.6.3" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/fxmisc/flowless/flowless/0.6.3/flowless-0.6.3.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/fxmisc/flowless/flowless/0.6.3/flowless-0.6.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/fxmisc/flowless/flowless/0.6.3/flowless-0.6.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

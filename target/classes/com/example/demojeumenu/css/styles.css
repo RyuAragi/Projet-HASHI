@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'Noteworthy';
+    src: url('../fonts/Noteworthy-Bold.ttf');
+
+}
+
+.background {
+    -fx-background-image: url('../images/background.png'), url('../images/board.png');
+    -fx-background-size: cover, 70% 80%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.custom-button {
+    -fx-font-family: 'Noteworthy';
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('../images/bouton.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+    -fx-padding: 0;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-pref-height: 100;
+    -fx-pref-width: 550;
+    -fx-prompt-text-fill: white;
+}
+
+.button:hover {
+    -fx-background-image: url('../images/hover_bouton.png');
+}
+
+.text-field:hover {
+    -fx-background-image: url('../images/hover_bouton.png');
+}
+
+
+
+VBox {
+    -fx-spacing: 20.0;
+}
+/* ajouter une iamge de leader board */
+
+#leaderboard {
+    -fx-background-color: red; // couleur temporaire pour le test
+    -fx-background-image: url('../images/leaderboard.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+    -fx-alignment: center;
+}
