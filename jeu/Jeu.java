@@ -2,6 +2,8 @@
 //* @author COUPE Xavier FOUQUERAY Victor*/
 //* @version 0.0 */
 
+import java.io.*;
+import java.util.*;
 
 public class Jeu{
     /**La matrice sur laquelle nous sommes actuellement entrain de corriger */
@@ -28,8 +30,43 @@ public class Jeu{
     long temps;
 
 
-    /**Constructeur @param o */
-    Jeu(){
+    /**Constructeur 
+     * @param path le chemin menant au niveau qui doit etre cree 
+     */
+    Jeu(String path){
+
+        try{
+            File file = new File(path);
+            FileReader fr;
+            BufferedReader read;
+            fr = new FileReader(file);
+            read = new BufferedReader(fr);
+            
+
+            String ligne;
+
+            int i = 0;
+            int valeurNoeud;
+            while((ligne = read.readLine())!= null){
+                String[] data;
+                data = ligne.split(" ");
+                if (i == 0){
+                  mat = new Noeud[Integer.valueOf(data[0])][Integer.valueOf(data[1])];
+                }else{
+                    valeurNoeud = Integer.valueOf(data[2])+Integer.valueOf(data[3])+Integer.valueOf(data[4])+ Integer.valueOf(data[5]);
+                    mat[Integer.valueOf(data[0])][Integer.valueOf(data[1])] = new Noeud(Integer.valueOf(data[0]),Integer.valueOf(data[1]),valeurNoeud,Integer.valueOf(data[2]),Integer.valueOf(data[3]),Integer.valueOf(data[4]), Integer.valueOf(data[5]));
+                }
+                i +=1;
+            }
+            fr.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+
+        
+
+
 
     }
     /**
