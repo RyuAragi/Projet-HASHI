@@ -34,8 +34,16 @@ public class Jeu{
      * @param path le chemin menant au niveau qui doit etre cree 
      */
     Jeu(String path){
-
-        try{
+        chargeRes(path);
+    }
+    
+    /**
+     * Fonction qui charge un fichier dans un tableau de noeuds
+     * @param path le chemin menant au fichier 
+     */
+    private void charge(String path){
+    		try{
+        		chargeRes(path);
             File file = new File(path);
             FileReader fr;
             BufferedReader read;
@@ -51,10 +59,17 @@ public class Jeu{
                 String[] data;
                 data = ligne.split(" ");
                 if (i == 0){
-                  mat = new Noeud[Integer.valueOf(data[0])][Integer.valueOf(data[1])];
+                	taille_li = Integer.valueOf(data[0]);
+                	taille_col = Integer.valueOf(data[1]);
+                	
+                	
+                  mat_res = new Noeud[taille_li][taille_col];
+                  
+                  //Initialisation de la matrice erreur
+                  mat_err = new Noeud[taille_li][taille_col];
                 }else{
                     valeurNoeud = Integer.valueOf(data[2])+Integer.valueOf(data[3])+Integer.valueOf(data[4])+ Integer.valueOf(data[5]);
-                    mat[Integer.valueOf(data[0])][Integer.valueOf(data[1])] = new Noeud(Integer.valueOf(data[0]),Integer.valueOf(data[1]),valeurNoeud,Integer.valueOf(data[2]),Integer.valueOf(data[3]),Integer.valueOf(data[4]), Integer.valueOf(data[5]));
+                    mat_res[Integer.valueOf(data[0])][Integer.valueOf(data[1])] = new Noeud(Integer.valueOf(data[0]),Integer.valueOf(data[1]),valeurNoeud,Integer.valueOf(data[2]),Integer.valueOf(data[3]),Integer.valueOf(data[4]), Integer.valueOf(data[5]));
                 }
                 i +=1;
             }
@@ -62,13 +77,10 @@ public class Jeu{
         }catch(IOException e){
             e.printStackTrace();
         }
-
-
-        
-
-
-
+    
     }
+     
+     
     /**
      * Fonction permettant dans un premier temps de detecter dans quel sens se situe le noeud n2 par rapport au n1 et de vérifier si le pont poser est bon ou non
      * @param n1 le premier noeud
@@ -107,6 +119,7 @@ public class Jeu{
             n1.ponts.replace("N",n1.ponts.get("N")%3);
             n2.ponts.replace("S",n2.ponts.get("S")%3);
         }
+        nbPont += 1;
     }
     /**Fonction permettant de verifier si la matrice est bonne en vérifiant que la matrice erreur est rester nulle , si ce n'est pas le cas on recharge au moment de l'erreur*/
     boolean verifMatrice(){
@@ -123,6 +136,7 @@ public class Jeu{
      * @return le score finale
      */
     double calculScore(){
+        //A refaire
         return 500 + Math.abs(Math.pow(nbAide,2)/Math.pow(nbPont,0.5) - temps);
     }
 
@@ -151,6 +165,9 @@ public class Jeu{
     /**Méthode commencer qui permet d'initialiser le temps */
     void commencer(){
         temps_init=System.nanoTime();
+        nbPont = 0;
+        nbAide = 0;
+        
     }
     /**Méthode fin qui permet de mettre fin au jeu */
     void fin(){
@@ -160,3 +177,4 @@ public class Jeu{
     }
 
 }   
+
