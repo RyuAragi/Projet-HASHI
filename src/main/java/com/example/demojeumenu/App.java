@@ -27,12 +27,11 @@ public class App extends Application {
         // Définir la scène et le plein écran avant d'afficher la fenêtre principale
         primaryStage.setScene(scene);
         primaryStage.setFullScreenExitHint("");
-        primaryStage.setResizable(false);
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.valueOf("alt+F4"));
         primaryStage.show();
 
         menuPrincipalController.setScene(scene);
     }
-  }
 }
+

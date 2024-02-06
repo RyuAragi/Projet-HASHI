@@ -14,8 +14,8 @@
 
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="custom-barre" text="Compléter la grille avec les régles traditionelle " />
-
     </VBox>
+
     <VBox alignment="CENTER">
         <Button onAction="#btn2" styleClass="custom-button" text="Facile" />
         <Button styleClass="custom-button" text="Moyen" />

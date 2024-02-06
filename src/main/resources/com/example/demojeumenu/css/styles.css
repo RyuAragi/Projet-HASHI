@@ -41,8 +41,8 @@
     -fx-padding: 25;
     -fx-alignment: center;
     -fx-text-alignment: center;
-    -fx-pref-height: 110;
-    -fx-pref-width: 550;
+    -fx-pref-height: 150;
+    -fx-pref-width: 800;
     -fx-prompt-text-fill: white;
 }
 .custom-barre {
@@ -65,12 +65,6 @@
 .button:hover {
     -fx-background-image: url('../images/hover_bouton.png');
 }
-
-/*
-.text-field:hover {
-    -fx-background-image: url('../images/hover_bouton.png');
-}
-*/
 
 VBox {
     -fx-spacing: 20.0;
