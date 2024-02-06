@@ -10,9 +10,9 @@
 
 <StackPane styleClass="background" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.Parametres">
     <fx:include source="Logo.fxml" />
-   <VBox alignment="BASELINE_CENTER">
-      <Button styleClass="custom-button-titre" text="Mode Classique" />
-   </VBox>
+   <HBox alignment="BASELINE_CENTER">
+      <Label styleClass="custom-button-titre" text="Réglages"/>
+   </HBox>
 
    <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
@@ -24,7 +24,7 @@
                </HBox>
             </children>
          </VBox>
-         <VBox prefHeight="200.0" prefWidth="100.0" alignment="CENTER">
+         <VBox prefHeight="220.0" prefWidth="100.0" alignment="CENTER">
             <children>
                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="textZone" text="Réglages du son" />
                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -35,10 +35,11 @@
                   </children>
                </HBox>
             </children>
+            <Button fx:id="mute_button" mnemonicParsing="false" />
          </VBox>
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <children>
-               <Button fx:id="mute_button" mnemonicParsing="false" />
+               <Button fx:id="back_button" mnemonicParsing="false" />
                <Button fx:id="info_button" mnemonicParsing="false" />
             </children>
          </HBox>
