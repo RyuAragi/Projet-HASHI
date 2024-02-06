@@ -14,7 +14,6 @@ public class AutreMenuController extends BaseController {
 
 
 
-
     @FXML
     private void retour() {
         FXMLUtils.loadFXML("MenuPrincipal.fxml", scene);

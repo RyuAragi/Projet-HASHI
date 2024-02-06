@@ -6,20 +6,18 @@
 
 <StackPane styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.MenuPrincipalController">
     <fx:include source="Logo.fxml" />
+
     <VBox alignment="BASELINE_CENTER">
-        <Button styleClass="titre" text="MENU" />
-    <!--<VBox alignment="BASELINE_CENTER">
         <Button styleClass="custom-button-titre" text="Jacobhashi">
          <VBox.margin>
             <Insets />
-         </VBox.margin></Button>-->
+         </VBox.margin></Button>
     </VBox>
     <VBox alignment="CENTER">
         <HBox alignment="CENTER">
             <TextField fx:id="zoneTexte" styleClass="custom-button" />
         </HBox>
-        <Button onAction="#btn1" styleClass="custom-button" text="DITACTICIEL" />
-        <Button fx:id="bouton" text="JOUER" onAction="#afficherAutreMenu" styleClass="custom-button"/>
-        <Button text="QUITTER" onAction="#quitter" styleClass="custom-button"/>
+        <Button fx:id="bouton" onAction="#afficherAutreMenu" styleClass="custom-button" text="JOUER" />
+        <Button onAction="#quitter" styleClass="custom-button" text="QUITTER" />
     </VBox>
 </StackPane>
