@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <StackPane styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.AutreMenuController2">
@@ -14,12 +13,18 @@
 
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="custom-barre" text="Compléter la grille avec les régles traditionelle " />
-
+        <StackPane.margin>
+            <Insets top="30.0" />
+        </StackPane.margin>
     </VBox>
     <VBox alignment="CENTER">
-        <Button onAction="#btn2" styleClass="custom-button" text="Facile" />
-        <Button styleClass="custom-button" text="Moyen" />
-        <Button styleClass="custom-button" text="Difficile" />
-        <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
+           <Button onAction="#btn2" styleClass="custom-button" text="Facile" />
+           <Button styleClass="custom-button" text="Moyen" />
+           <Button styleClass="custom-button" text="Difficile" />
+           <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
+      <StackPane.margin>
+         <Insets top="60.0" />
+      </StackPane.margin>
+
     </VBox>
 </StackPane>
