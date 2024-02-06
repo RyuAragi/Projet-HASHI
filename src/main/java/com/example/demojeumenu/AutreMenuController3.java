@@ -4,30 +4,32 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 
-public class AutreMenuController extends BaseController {
+
+public class AutreMenuController3 extends BaseController{
 
     private Scene scene;
+    @FXML
 
-    @Override
+
     public void setScene(Scene scene) {
         this.scene = scene;
     }
 
     @FXML
     private void btn1() {
-        FXMLUtils.loadFXML("AutreMenu2.fxml", scene);
+        GlobalVariables.getUser();
     }
 
     @FXML
     private void btn2() {
-        FXMLUtils.loadFXML("AutreMenu3.fxml", scene);
+        GlobalVariables.getUser();
     }
 
 
     @FXML
     private void retour() {
-        FXMLUtils.loadFXML("MenuPrincipal.fxml", scene);
-
-
+        FXMLUtils.loadFXML("AutreMenu2.fxml", scene);
     }
+
+
 }
