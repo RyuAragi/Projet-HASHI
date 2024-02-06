@@ -39,7 +39,7 @@
          </VBox>
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <children>
-               <Button fx:id="back_button" mnemonicParsing="false" />
+               <Button fx:id="back_button" onAction="#back_button" mnemonicParsing="false" />
                <Button fx:id="info_button" mnemonicParsing="false" />
             </children>
          </HBox>

@@ -1,6 +1,8 @@
 package com.example.demojeumenu;
 
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 
 public class Parametres extends BaseController {
     private Scene scene;
@@ -10,5 +12,9 @@ public class Parametres extends BaseController {
         this.scene = scene;
     }
 
+    @FXML
+    private void back_button() {
+        FXMLUtils.loadFXML("MenuPrincipal.fxml", scene);
+    }
 
 }

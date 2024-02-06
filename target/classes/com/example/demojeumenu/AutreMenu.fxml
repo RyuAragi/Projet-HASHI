@@ -5,6 +5,9 @@
 
 <StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.AutreMenuController">
     <fx:include source="Logo.fxml" />
+    <VBox alignment="BASELINE_CENTER">
+        <Button styleClass="titre" text="MODES DE JEU"  />
+    </VBox>
     <VBox alignment="CENTER">
         <Button onAction="#btn1" styleClass="custom-button" text="Ditacticiel" />
         <Button onAction="#btn2" styleClass="custom-button" text="Classique" />
@@ -13,3 +16,4 @@
         <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
     </VBox>
 </StackPane>
+

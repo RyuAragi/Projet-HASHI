@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/images/JacoBashi.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/AutreMenu3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/AutreMenu3.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/MenuPrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/MenuPrincipal.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/AutreMenuController2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/AutreMenuController2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/MenuPrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/MenuPrincipal.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/css/styles.css" afterDir="false" />
-    </list>
+    <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,10 +21,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Thibault" />
+        <entry key="$PROJECT_DIR$" value="ee51cacf0c8897459539b37dc7c1600c24ac813e" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -52,7 +42,7 @@
     </option>
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="fb26727a-7368-4613-9578-09d383ae9d16" />
+        <option name="accountId" value="70739f57-cbde-4fb9-816e-2df6a569f305" />
         <option name="url" value="https://github.com/RyuAragi/Projet-HASHI.git" />
       </UrlAndAccount>
     </option>
@@ -76,23 +66,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Thibault&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sedra/IdeaProjects/Projet-HASHI/src/main/resources/com/example/demojeumenu/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "9c0ed1e3",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/sedra/IdeaProjects/Projet-HASHI/src/main/resources/com/example/demojeumenu/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\sedra\IdeaProjects\Projet-HASHI\src\main\resources\com\example\demojeumenu\images" />
@@ -137,7 +127,7 @@
       <workItem from="1707128187158" duration="842000" />
       <workItem from="1707129049995" duration="9494000" />
       <workItem from="1707216135646" duration="27000" />
-      <workItem from="1707216173191" duration="827000" />
+      <workItem from="1707216173191" duration="4174000" />
     </task>
     <task id="LOCAL-00001" summary="UPDATE">
       <option name="closed" value="true" />
@@ -179,7 +169,31 @@
       <option name="project" value="LOCAL" />
       <updated>1707211316170</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update">
+      <option name="closed" value="true" />
+      <created>1707218127512</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707218127512</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update">
+      <option name="closed" value="true" />
+      <created>1707240416039</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707240416039</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update">
+      <option name="closed" value="true" />
+      <created>1707240432997</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1707240432997</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +212,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="UPDATE" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>
