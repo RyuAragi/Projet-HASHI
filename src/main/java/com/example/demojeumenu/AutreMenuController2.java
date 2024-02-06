@@ -7,9 +7,6 @@ import javafx.scene.Scene;
 public class AutreMenuController2 extends BaseController{
 
     private Scene scene;
-    @FXML
-
-
     public void setScene(Scene scene) {
         this.scene = scene;
     }
