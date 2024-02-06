@@ -26,7 +26,33 @@ public class Noeud {
         ponts.put("O",nbVoisinsO);
     }
 
+    /* Méthode qui permet de récupérer la coordonnee x du noeud
+     * @return la coordonnee x
+    */
     int getX(){return x;}
+
+    /* Méthode qui permet de récupérer la coordonnee y du noeud
+     * @return la coordonnee y
+    */
     int getY(){return y;}
+
+    /* Méthode qui permet de récupérer l'etiquette du noeud
+     * @return la valeur du noeud
+    */
     int getEtiquette(){return etiquette;}
+
+    /*
+     * Méthode qui compte le nombre de voisins d'un noeud
+     * @return le nombre de voisin d'un noeud
+     */
+    int getNbVoisins(){
+        int cpt = 0;
+
+        for(Map.Entry entree : ponts.entrySet()){
+            if (entree.getValue() != 0){
+                cpt++;
+            }
+        }
+        return cpt;
+    }
 }
