@@ -62,6 +62,12 @@ public class Jeu{
         }catch(IOException e){
             e.printStackTrace();
         }
+
+
+        
+
+
+
     }
     /**
      * Fonction permettant dans un premier temps de detecter dans quel sens se situe le noeud n2 par rapport au n1 et de vérifier si le pont poser est bon ou non
@@ -146,7 +152,6 @@ public class Jeu{
     void commencer(){
         temps_init=System.nanoTime();
     }
-
     /**Méthode fin qui permet de mettre fin au jeu */
     void fin(){
         temps_f=System.nanoTime();
@@ -154,20 +159,4 @@ public class Jeu{
         score=calculScore();
     }
 
-    /**
-     * Methode afficher_mat qui permet d'afficher la matrice des etiquettes
-     */
-    private void afficher_mat() {
-        for(int i = 0; i < this.taille_li; i++) {
-            for(int j = 0; i < this.taille_col; j++) {
-                System.out.print(mat[i][j]);
-                System.out.print("\n");
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        Jeu testJeu = new Jeu("./Facile-1.txt");
-        testJeu.afficher_mat();
-    }
 }   
