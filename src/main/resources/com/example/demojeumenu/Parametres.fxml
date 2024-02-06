@@ -15,7 +15,7 @@
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <children>
                <Button fx:id="soundless_button" alignment="CENTER" mnemonicParsing="false" />
-               <ImageView fx:id="soundBar" fitHeight="15.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fx:id="soundBar" fitHeight="100.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
                <Button fx:id="soundmore_button" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" />
             </children>
          </HBox>

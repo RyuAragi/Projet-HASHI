@@ -81,8 +81,8 @@ HBox{
     -fx-padding: 20;
     -fx-alignment: center;
     -fx-text-alignment: center;
-    -fx-pref-height: 50;
-    -fx-pref-width: 50;
+    -fx-pref-height: 75;
+    -fx-pref-width: 75;
 }
 
 #soundmore_button{
@@ -95,8 +95,8 @@ HBox{
     -fx-padding: 20;
     -fx-alignment: center;
     -fx-text-alignment: center;
-    -fx-pref-height: 50;
-    -fx-pref-width: 50;
+    -fx-pref-height: 75;
+    -fx-pref-width: 75;
 }
 
 #soundBar{
@@ -106,5 +106,5 @@ HBox{
     -fx-alignment: center;
     -fx-text-alignment: center;
     -fx-pref-height: 100;
-    -fx-pref-width: 800;
+    -fx-pref-width: 600;
 }
