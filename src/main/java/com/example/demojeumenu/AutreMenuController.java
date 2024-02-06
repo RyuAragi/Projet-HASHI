@@ -1,6 +1,5 @@
 package com.example.demojeumenu;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 
@@ -19,15 +18,8 @@ public class AutreMenuController extends BaseController {
     }
 
     @FXML
-    private void btn2() {
-        FXMLUtils.loadFXML("AutreMenu3.fxml", scene);
-    }
-
-
-    @FXML
     private void retour() {
         FXMLUtils.loadFXML("MenuPrincipal.fxml", scene);
-
-
     }
+
 }
