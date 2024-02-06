@@ -10,21 +10,36 @@
 
 <StackPane styleClass="background" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.Parametres">
     <fx:include source="Logo.fxml" />
-   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+   <VBox alignment="BASELINE_CENTER">
+      <Button styleClass="custom-button-titre" text="Mode Classique" />
+   </VBox>
+
+   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
-         <Label id="reglSon" alignment="CENTER" contentDisplay="CENTER" text="Réglages du son" textOverrun="CENTER_ELLIPSIS" />
-         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <VBox prefHeight="200.0" prefWidth="100.0" alignment="CENTER">
             <children>
-               <Button fx:id="soundless_button" alignment="CENTER" mnemonicParsing="false" />
-               <ImageView fx:id="soundBar" fitHeight="100.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
-               <Button fx:id="soundmore_button" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" />
+               <Label alignment="CENTER" contentDisplay="CENTER" styleClass="textZone" text="Changer votre nom" />
+               <HBox alignment="CENTER">
+                  <TextField fx:id="usernameZone" />
+               </HBox>
             </children>
-         </HBox>
-         <TextField alignment="CENTER" promptText="Nom du joueur" />
+         </VBox>
+         <VBox prefHeight="200.0" prefWidth="100.0" alignment="CENTER">
+            <children>
+               <Label alignment="CENTER" contentDisplay="CENTER" styleClass="textZone" text="Réglages du son" />
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <children>
+                     <Button fx:id="soundless_button" alignment="CENTER" mnemonicParsing="false" />
+                     <ImageView fx:id="soundBar" fitHeight="100.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+                     <Button fx:id="soundmore_button" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" />
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <children>
-               <Button mnemonicParsing="false" />
-               <Button mnemonicParsing="false" />
+               <Button fx:id="mute_button" mnemonicParsing="false" />
+               <Button fx:id="info_button" mnemonicParsing="false" />
             </children>
          </HBox>
       </children>
