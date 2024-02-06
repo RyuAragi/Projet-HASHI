@@ -5,10 +5,14 @@
 
 <StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.MenuPrincipalController">
     <fx:include source="Logo.fxml" />
+    <VBox alignment="BASELINE_CENTER">
+        <Button styleClass="titre" text="MENU" />
+    </VBox>
     <VBox alignment="CENTER">
         <HBox alignment="CENTER" >
             <TextField fx:id="zoneTexte" styleClass="custom-button"  />
         </HBox>
+        <Button onAction="#btn1" styleClass="custom-button" text="DITACTICIEL" />
         <Button fx:id="bouton" text="JOUER" onAction="#afficherAutreMenu" styleClass="custom-button"/>
         <Button text="QUITTER" onAction="#quitter" styleClass="custom-button"/>
     </VBox>
