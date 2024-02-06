@@ -10,7 +10,6 @@
 
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="custom-button-titre" text="Mode Classique" />
-
     </VBox>
 
     <VBox alignment="BASELINE_CENTER">
