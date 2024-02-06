@@ -76,7 +76,7 @@ VBox {
     -fx-spacing: 20.0;
 }
 /* ajouter une iamge de leader board */
-
+/*test*/
 #leaderboard {
     -fx-background-color: red; // couleur temporaire pour le test
     -fx-background-image: url('../images/leaderboard.png');
