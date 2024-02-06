@@ -29,12 +29,15 @@ public class Jeu{
     /**Le temps total pour finir le puzzle */
     long temps;
 
+    /*La precision de l'aide*/
+    int precisionAide;
+
 
     /**Constructeur 
      * @param path le chemin menant au niveau qui doit etre cree 
      */
     Jeu(String path){
-        chargeRes(path);
+        charge(path);
     }
     
     /**
@@ -43,7 +46,6 @@ public class Jeu{
      */
     private void charge(String path){
     		try{
-        		chargeRes(path);
             File file = new File(path);
             FileReader fr;
             BufferedReader read;
@@ -63,12 +65,17 @@ public class Jeu{
                 	taille_col = Integer.valueOf(data[1]);
                 	
                 	
-                  mat_res = new Noeud[taille_li][taille_col];
-                  
-                  //Initialisation de la matrice erreur
-                  mat_err = new Noeud[taille_li][taille_col];
+                    mat_res = new Noeud[taille_li][taille_col];
+                    
+                    //Initialisation de la matrice erreur
+                    mat_err = new Noeud[taille_li][taille_col];
+                    mat = new Noeud[taille_li][taille_col];
                 }else{
                     valeurNoeud = Integer.valueOf(data[2])+Integer.valueOf(data[3])+Integer.valueOf(data[4])+ Integer.valueOf(data[5]);
+                    //Grille du joueur initialise avec 0 voisins
+                    //mat[Integer.valueOf(data[0])][Integer.valueOf(data[1])] = new Noeud(Integer.valueOf(data[0]),Integer.valueOf(data[1]),0,0,0,0);
+
+                    //enregistre pour chaque noeud le resultat final
                     mat_res[Integer.valueOf(data[0])][Integer.valueOf(data[1])] = new Noeud(Integer.valueOf(data[0]),Integer.valueOf(data[1]),valeurNoeud,Integer.valueOf(data[2]),Integer.valueOf(data[3]),Integer.valueOf(data[4]), Integer.valueOf(data[5]));
                 }
                 i +=1;
@@ -179,15 +186,50 @@ public class Jeu{
     /* Méthode qui permet de récupérer la valeur de nbAide
      * @return la valeur de nbAide
     */
-    public int getNbAide(){
+    public double getNbAide(){
         return nbAide;
     }
 
     /* Méthode qui permet de modifier la valeur de nbAide
      * @param v la valeur a applique a nbAide
     */
-    public void setNbAide(){
+    public void setNbAide(int v){
         nbAide = v;
+    }
+
+    /*
+     * Méthode qui renvoi le nombre de ligne de la grille
+     * @return le nombre de ligne de la grille
+     */
+    public int getTailleLigne(){
+        return taille_li;
+    }
+
+    /*
+     * Méthode qui renvoi le nombre de ligne de la grille
+     * @return le nombre de ligne de la grille
+     */
+    public int getTailleColonne(){
+        return taille_col;
+    }
+
+    private void afficher_mat_out() {
+        for(int i = 0; i < this.taille_li; i++) {
+            for(int j = 0; j < this.taille_col; j++) {
+                if(this.mat_res[i][j] == null) {
+                    System.out.print("*");
+                }
+                else {
+                    System.out.print(this.mat_res[i][j].etiquette);
+                }
+            }
+            System.out.print("\n");
+        }
+    }
+
+    public static void main(String[] args) {
+        Jeu testJeu = new Jeu("../niveaux/moyen/Moyen-5.txt");
+        testJeu.afficher_mat_out();
     }
 
 }   

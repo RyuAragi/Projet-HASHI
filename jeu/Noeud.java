@@ -1,5 +1,5 @@
 import java.util.HashMap;
-
+import java.util.*;
 /**Classe noeud utilisé pour symboliser les iles du jeu Hashi, elle est capable de se créer */
 //* @author COUPE Xavier FOUQUERAY Victor*/
 //*@version 0.0 */
@@ -49,7 +49,7 @@ public class Noeud {
         int cpt = 0;
 
         for(Map.Entry entree : ponts.entrySet()){
-            if (entree.getValue() != 0){
+            if (!entree.getValue().equals(0)){
                 cpt++;
             }
         }
