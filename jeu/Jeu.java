@@ -38,7 +38,7 @@ public class Jeu{
     }
     
     /**
-     * Fonction qui charge un fichier dans un tableau de noeuds
+     * Méthode qui charge un fichier dans un tableau de noeuds
      * @param path le chemin menant au fichier 
      */
     private void charge(String path){
@@ -82,7 +82,7 @@ public class Jeu{
      
      
     /**
-     * Fonction permettant dans un premier temps de detecter dans quel sens se situe le noeud n2 par rapport au n1 et de vérifier si le pont poser est bon ou non
+     * Méthode permettant dans un premier temps de detecter dans quel sens se situe le noeud n2 par rapport au n1 et de vérifier si le pont poser est bon ou non
      * @param n1 le premier noeud
      * @param n2 le deuxieme noeud
      * @return true ou false en fonction de si le pont est valide ou pas
@@ -101,7 +101,7 @@ public class Jeu{
         return false;
     }
     /**
-     * Fonction permettant de poser un pont entre 2 noeuds en incremetant dans la bonne direction chacun des noeuds puis en utilisant %3, comme ça dès qu'on a dépasser deux on retourne a 0
+     * Méthode permettant de poser un pont entre 2 noeuds en incremetant dans la bonne direction chacun des noeuds puis en utilisant %3, comme ça dès qu'on a dépasser deux on retourne a 0
      * @param n1 correspond au noeud 1
      * @param n2 correspond au noeud 2
      */
@@ -121,7 +121,7 @@ public class Jeu{
         }
         nbPont += 1;
     }
-    /**Fonction permettant de verifier si la matrice est bonne en vérifiant que la matrice erreur est rester nulle , si ce n'est pas le cas on recharge au moment de l'erreur*/
+    /**Méthode permettant de verifier si la matrice est bonne en vérifiant que la matrice erreur est rester nulle , si ce n'est pas le cas on recharge au moment de l'erreur*/
     boolean verifMatrice(){
         if (null != mat_err){
             System.out.println("La matrice n'est pas valide, retour au moment de l'erreur");
@@ -132,7 +132,7 @@ public class Jeu{
         return true;
     }
     /**
-     * Fonction permettant le calcul du score a la fin de la partie
+     * Méthode permettant le calcul du score a la fin de la partie
      * @return le score finale
      */
     double calculScore(){
@@ -141,7 +141,7 @@ public class Jeu{
     }
 
     /**
-     * Fonction qui remet à zero le jeu 
+     * Méthode qui remet à zero le jeu 
      */
     void remiseAZero(){
         mat_err = null;
@@ -174,6 +174,20 @@ public class Jeu{
         temps_f=System.nanoTime();
         temps=temps_f-temps_init;
         score=calculScore();
+    }
+
+    /* Méthode qui permet de récupérer la valeur de nbAide
+     * @return la valeur de nbAide
+    */
+    public int getNbAide(){
+        return nbAide;
+    }
+
+    /* Méthode qui permet de modifier la valeur de nbAide
+     * @param v la valeur a applique a nbAide
+    */
+    public void setNbAide(){
+        nbAide = v;
     }
 
 }   
