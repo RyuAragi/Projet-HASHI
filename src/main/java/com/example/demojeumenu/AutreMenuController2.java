@@ -8,9 +8,6 @@ import javafx.scene.Scene;
 public class AutreMenuController2 extends BaseController{
 
     private Scene scene;
-    @FXML
-
-
     public void setScene(Scene scene) {
         this.scene = scene;
     }
@@ -18,6 +15,7 @@ public class AutreMenuController2 extends BaseController{
     @FXML
     private void btn1() {
         GlobalVariables.getUser();
+        FXMLUtils.loadFXML("Parametres.fxml", scene);
     }
     @FXML
     private void btn2() {

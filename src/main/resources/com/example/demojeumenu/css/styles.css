@@ -41,7 +41,7 @@
     -fx-padding: 25;
     -fx-alignment: center;
     -fx-text-alignment: center;
-    -fx-pref-height: 140;
+    -fx-pref-height: 110;
     -fx-pref-width: 550;
     -fx-prompt-text-fill: white;
 }
@@ -58,7 +58,7 @@
     -fx-padding: 2;
     -fx-alignment: center;
     -fx-text-alignment:center;
-    -fx-pref-height: 185;
+    -fx-pref-height: 183;
     -fx-pref-width: 600;
     -fx-prompt-text-fill: white;
 }
@@ -76,7 +76,7 @@ VBox {
     -fx-spacing: 20.0;
 }
 /* ajouter une iamge de leader board */
-/*test*/
+
 #leaderboard {
     -fx-background-color: red; // couleur temporaire pour le test
     -fx-background-image: url('../images/leaderboard.png');
