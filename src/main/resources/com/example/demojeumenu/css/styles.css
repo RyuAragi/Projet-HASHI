@@ -47,7 +47,7 @@
 .custom-button-titre {
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: white;
-    -fx-font-size: 25px;
+    -fx-font-size: 35px;
     -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
     -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
     -fx-background-image: url('../images/buttonFrame.png');
@@ -64,7 +64,7 @@
 .custom-barre {
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: white;
-    -fx-font-size: 25px;
+    -fx-font-size: 30px;
     -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
     -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
     -fx-background-image: url('../images/barre.png');

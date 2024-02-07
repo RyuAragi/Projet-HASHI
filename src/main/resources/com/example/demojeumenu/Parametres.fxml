@@ -10,9 +10,9 @@
 
 <StackPane styleClass="background" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.Parametres">
     <fx:include source="Logo.fxml" />
-   <HBox alignment="BASELINE_CENTER">
-      <Label styleClass="custom-button-titre" text="Réglages"/>
-   </HBox>
+   <VBox alignment="BASELINE_CENTER">
+      <Button styleClass="titre" text="Réglages" />
+   </VBox>
 
    <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
       <children>
