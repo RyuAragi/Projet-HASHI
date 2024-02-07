@@ -14,9 +14,27 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Classe utilitaire pour charger les fichiers FXML
+ */
+
 public class FXMLUtils {
+    /**
+     * Cache des fichiers FXML
+     */
     private static final Map<String, Parent> sceneCache = new HashMap<>();
+
+    /**
+     * Historique des fichiers FXML
+     */
     private static final Deque<String> fxmlHistory = new ArrayDeque<>();
+
+    /**
+     * Charge le fichier FXML
+     * @param fxmlFileName
+     * @param scene
+     * @return
+     */
 
     public static Parent loadFXML(String fxmlFileName, Scene scene) {
         Parent root = null;
@@ -44,20 +62,34 @@ public class FXMLUtils {
         return root;
     }
 
+    /**
+     * Ajoute le fichier FXML à l'historique
+     * @param fxmlFileName
+     */
     public static void addHistory(String fxmlFileName) {
         if (fxmlHistory.isEmpty() || !fxmlHistory.peek().equals(fxmlFileName)) {
-            fxmlHistory.push(fxmlFileName);
+            fxmlHistory.push(fxmlFileName); // Ajoute le fichier FXML à l'historique
         }
     }
 
+    /**
+     * Retourne à la page précédente
+     * @param scene
+     */
+
     public static void goBack(Scene scene) {
         System.out.println("fxmlHistory.size() : "+fxmlHistory.size());
-        if (fxmlHistory.size() > 1) { // Ensure there is a previous FXML to go back to
-            fxmlHistory.pop(); // Remove the current FXML from the history
-            loadFXML(fxmlHistory.peek(), scene); // Load the previous FXML
-            System.out.println("fxmlHistory.peek() : "+fxmlHistory.peek());
+        if (fxmlHistory.size() > 1) { // On ne peut pas revenir en arrière si on est sur la première page
+            fxmlHistory.pop(); // Supprime la page actuelle de l'historique
+            loadFXML(fxmlHistory.peek(), scene); // Charge la page précédente
+            System.out.println("fxmlHistory.peek() : "+fxmlHistory.peek()); // Affiche la page précédente dans le terminal
         }
     }
+
+    /**
+     * Applique les styles à la scène
+     * @param scene
+     */
 
     public static void applySceneStyles(Scene scene) {
 
@@ -65,9 +97,9 @@ public class FXMLUtils {
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         double screenHeight = screenBounds.getHeight();
 
-        System.out.println("screenHeight : "+screenHeight);
+        System.out.println("screenHeight : "+screenHeight); // Affiche la hauteur de l'écran dans le terminal
 
-        Node titreNode = scene.lookup(".titre");
+        Node titreNode = scene.lookup(".titre"); // Récupère le noeud avec le style .titre
 
         // calcule -fx-pref-height par rapport à la hauteur de l'écran
         double prefHeight;
@@ -86,6 +118,6 @@ public class FXMLUtils {
         }
 
         // Apply the calculated style
-        titreNode.setStyle("-fx-pref-height: " + prefHeight + "; -fx-text-fill: white; -fx-pref-width: 600;");
+        titreNode.setStyle("-fx-pref-height: " + prefHeight + "; -fx-text-fill: white; -fx-pref-width: 600;"); // Applique le style calculé
     }
 }
