@@ -2,13 +2,14 @@ package com.example.demojeumenu;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import java.util.logging.Logger;
 
 
 public class MenuPrincipalController extends BaseController{
+    private static final Logger LOGGER = Logger.getLogger(MenuPrincipalController.class.getName());
 
     private static final int MAX_CHARS = 20;
     @FXML
@@ -16,13 +17,6 @@ public class MenuPrincipalController extends BaseController{
 
     @FXML
     public TextField zoneTexte;
-
-    private Scene scene;
-
-    @Override
-    public void setScene(Scene scene) {
-        this.scene = scene;
-    }
 
     @FXML
     private void afficherAutreMenu() {
@@ -36,7 +30,7 @@ public class MenuPrincipalController extends BaseController{
 
     @FXML
     private void quitter() {
-        System.out.println("Bouton QUITTER a été cliqué");
+        LOGGER.info("Bouton QUITTER a été cliqué");
         System.exit(0);
     }
     @FXML

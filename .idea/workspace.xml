@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="[update] Ajout de HashMap et ArrayDeque pour la gestion de l'historique des fichiers FXML et d cache des scènes" />
+    <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="[update] Ajout des commentaires dans FXMLUtils.java">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/FXMLUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/FXMLUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/MenuPrincipalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/MenuPrincipalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/Parametres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/Parametres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/AutreMenu3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/AutreMenu3.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" afterDir="false" />
+    </list>
     <list id="d66a4e05-119c-40ed-9853-f62098461e57" name="Changes by thiba" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +97,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -133,7 +147,9 @@
       <workItem from="1707216135646" duration="27000" />
       <workItem from="1707216173191" duration="4174000" />
       <workItem from="1707261730775" duration="7236000" />
-      <workItem from="1707321903897" duration="7072000" />
+      <workItem from="1707321903897" duration="7500000" />
+      <workItem from="1707330098094" duration="34000" />
+      <workItem from="1707330146730" duration="3500000" />
     </task>
     <task id="LOCAL-00001" summary="UPDATE">
       <option name="closed" value="true" />
@@ -239,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707328763515</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="[update] Ajout des commentaires dans FXMLUtils.java">
+      <option name="closed" value="true" />
+      <created>1707329393817</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1707329393817</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,6 +296,7 @@
     <MESSAGE value="UPDATE" />
     <MESSAGE value="update" />
     <MESSAGE value="[update] Ajout de HashMap et ArrayDeque pour la gestion de l'historique des fichiers FXML et d cache des scènes" />
-    <option name="LAST_COMMIT_MESSAGE" value="[update] Ajout de HashMap et ArrayDeque pour la gestion de l'historique des fichiers FXML et d cache des scènes" />
+    <MESSAGE value="[update] Ajout des commentaires dans FXMLUtils.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="[update] Ajout des commentaires dans FXMLUtils.java" />
   </component>
 </project>
