@@ -14,7 +14,7 @@ public class Parametres extends BaseController {
 
     @FXML
     private void back_button() {
-        FXMLUtils.loadFXML("MenuPrincipal.fxml", scene);
+        FXMLUtils.goBack(scene);
     }
 
 }

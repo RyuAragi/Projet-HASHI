@@ -40,7 +40,7 @@ public class MenuPrincipalController extends BaseController{
         System.exit(0);
     }
     @FXML
-    protected void initialize() {
+    public void initialize() {
         Platform.runLater(() -> bouton.requestFocus());
 
         if (GlobalVariables.userInput != null && !GlobalVariables.userInput.isEmpty()) {

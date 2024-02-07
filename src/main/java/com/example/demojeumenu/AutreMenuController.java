@@ -12,17 +12,12 @@ public class AutreMenuController extends BaseController {
     public void setScene(Scene scene) {
         this.scene = scene;
     }
-
-
-
     @FXML
     private void retour() {
-        FXMLUtils.loadFXML("MenuPrincipal.fxml", scene);
+        FXMLUtils.goBack(scene);
     }
-
     public void btn2(ActionEvent actionEvent) {
     }
-
     public void btn1(ActionEvent actionEvent) {
     }
 }
