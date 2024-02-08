@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.MenuPrincipalController">
+<StackPane onMouseClicked="#background" styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.MenuPrincipalController">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="MENU" />

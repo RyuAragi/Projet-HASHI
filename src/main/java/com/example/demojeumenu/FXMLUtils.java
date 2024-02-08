@@ -1,14 +1,16 @@
 package com.example.demojeumenu;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Screen;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -20,6 +22,7 @@ import java.util.Map;
  */
 
 public class FXMLUtils {
+    private static final int MAX_CHARS = 20;
     private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(FXMLUtils.class.getName());
     /**
      * Cache des fichiers FXML
@@ -79,11 +82,9 @@ public class FXMLUtils {
      */
 
     public static void goBack(Scene scene) {
-        LOGGER.info(() -> "fxmlHistory.size() : "+fxmlHistory.size());
         if (fxmlHistory.size() > 1) { // On ne peut pas revenir en arrière si on est sur la première page
             fxmlHistory.pop(); // Remove the current page from the history
             loadFXML(fxmlHistory.peek(), scene); // Load the previous page
-            LOGGER.info(() -> "fxmlHistory.peek() : "+fxmlHistory.peek()); // Display the previous page in the terminal
         }
     }
 
@@ -93,29 +94,30 @@ public class FXMLUtils {
      */
 
     public static void applySceneStyles(Scene scene) {
+        ObservableList<Screen> screens = Screen.getScreens();
+        for (Screen screen : screens) {
+            Rectangle2D bounds = screen.getBounds();
+            double screenHeight = bounds.getHeight();
 
-        // recupère la hauteur de l'écran
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        double screenHeight = screenBounds.getHeight();
+            // Affiche la hauteur de l'écran dans le terminal
+            //LOGGER.info(() -> "screenHeight : " + screenHeight);
 
-        LOGGER.info(()-> "screenHeight : " + screenHeight); // Affiche la hauteur de l'écran dans le terminal
+            Node titreNode = scene.lookup(".titre"); // Récupère le noeud avec le style .titre
 
-        Node titreNode = scene.lookup(".titre"); // Récupère le noeud avec le style .titre
+            // calcule -fx-pref-height par rapport à la hauteur de l'écran
+            double prefHeight = getHeight(screenHeight);
+            double prefWidth = getWidth(screenHeight);
 
-        // calcule -fx-pref-height par rapport à la hauteur de l'écran
-        double prefHeight = getPrefHeight(screenHeight);
-
-        if (titreNode != null) {
-            titreNode.setStyle("-fx-pref-height: " + prefHeight + "; -fx-text-fill: white; -fx-pref-width: 600;"); // Applique le style calculé
+            if (titreNode != null) {
+                titreNode.setStyle("-fx-pref-height: " + prefHeight + "; -fx-pref-width: " + prefWidth +";"); // Applique le style calculé
+            }
         }
     }
 
-    private static double getPrefHeight(double screenHeight) {
+    private static double getHeight(double screenHeight) {
         double prefHeight;
-        if (screenHeight <= 805.0) {
+        if (screenHeight <= 1032.0) {
             prefHeight = 145;
-        } else if (screenHeight <= 1032.0) {
-            prefHeight = 145 + ((screenHeight - 805.0) * (170 - 145)) / (1032.0 - 805.0);
         } else if (screenHeight <= 1097.0) {
             prefHeight = 170 + ((screenHeight - 1032.0) * (190 - 170)) / (1097.0 - 1032.0);
         } else if (screenHeight <= 1392.0) {
@@ -126,6 +128,56 @@ public class FXMLUtils {
             prefHeight = 240;
         }
         return prefHeight;
+    }
+
+    private static double getWidth(double screenHeight) {
+        double prefWidth;
+        if (screenHeight <= 1032.0) {
+            prefWidth = 600;
+        } else if (screenHeight <= 1097.0) {
+            prefWidth = 650;
+        } else if (screenHeight <= 1392.0) {
+            prefWidth = 700;
+        } else if (screenHeight <= 1497.0) {
+            prefWidth = 750;
+        } else {
+            prefWidth = 800;
+        }
+        return prefWidth;
+    }
+
+    public static void initializeTextField(TextField zoneTexte) {
+        // Liaison bidirectionnelle entre la propriété userInput de GlobalVariables et la propriété text de la zoneTexte
+        zoneTexte.textProperty().bindBidirectional(GlobalVariables.userInputProperty());
+
+        // Gestion du clic pour effacer le texte par défaut
+        zoneTexte.setOnMouseClicked(event -> {
+            if ("Entrez votre nom".equals(zoneTexte.getText())) {
+                zoneTexte.setText("");
+            }
+        });
+
+        // Mise à jour de la propriété userInput lorsque le texte de la zone de texte change
+        zoneTexte.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.equals("Entrez votre nom")) {
+                GlobalVariables.setUserInput(newValue);
+            }
+        });
+
+        // Gestion du focus pour afficher le texte par défaut si nécessaire
+        zoneTexte.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) { // Si la zone de texte reçoit le focus
+                if (zoneTexte.getText().equals("Entrez votre nom")) {
+                    zoneTexte.end(); // Place le curseur à la fin du texte
+                }
+            } else if (zoneTexte.getText().isEmpty()) {
+                zoneTexte.setText("Entrez votre nom");
+            }
+        });
+
+        // Limiter le nombre de caractères dans la zone de texte
+        zoneTexte.setTextFormatter(new TextFormatter<>(change ->
+                change.getControlNewText().length() > MAX_CHARS ? null : change));
     }
 
     private FXMLUtils() {

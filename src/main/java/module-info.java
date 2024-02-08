@@ -7,6 +7,7 @@ module com.example.demojeumenu {
     requires org.fxmisc.richtext;
     requires org.slf4j;
     requires java.logging;
+    requires java.desktop;
 
     opens com.example.demojeumenu to javafx.fxml;
     exports com.example.demojeumenu;

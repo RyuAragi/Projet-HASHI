@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-
 import java.util.Objects;
 
 public class App extends Application {
@@ -23,13 +22,13 @@ public class App extends Application {
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
-        FXMLUtils.applySceneStyles(scene);
 
         controller.setScene(scene);
         primaryStage.setScene(scene);
         primaryStage.setFullScreenExitHint("");
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.valueOf("alt+F4"));
+        FXMLUtils.applySceneStyles(scene);
         primaryStage.show();
 
         // Ajoutez manuellement le fichier FXML à l'historique

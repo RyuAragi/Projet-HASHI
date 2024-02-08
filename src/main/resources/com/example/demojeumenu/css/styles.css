@@ -23,8 +23,6 @@
     -fx-padding: 35;
     -fx-alignment: center;
     -fx-text-alignment: center;
-    -fx-pref-height: 160;
-    -fx-pref-width: 650;
 }
 
 .custom-button {
@@ -41,7 +39,7 @@
     -fx-alignment: center;
     -fx-text-alignment: center;
     -fx-pref-height: 100;
-    -fx-pref-width: 550;
+    -fx-pref-width: 450;
     -fx-prompt-text-fill: white;
 }
 .custom-button-titre {
