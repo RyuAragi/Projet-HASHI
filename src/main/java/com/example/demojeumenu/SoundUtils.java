@@ -11,7 +11,7 @@ public class SoundUtils {
     }
 
     private static void playHoverSound() {
-        Media sound = new Media(SoundUtils.class.getResource("/sounds/hover.mp3").toExternalForm());
+        Media sound = new Media(SoundUtils.class.getResource("sounds/hover.mp3").toExternalForm());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();
     }
