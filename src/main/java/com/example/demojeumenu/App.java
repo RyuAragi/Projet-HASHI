@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.util.Objects;
 
@@ -31,6 +32,12 @@ public class App extends Application {
             Cursor customCursor = new ImageCursor(image);
             scene.setCursor(customCursor);
         });
+
+        scene.addEventHandler(MouseEvent.MOUSE_MOVED, event -> javafx.application.Platform.runLater(() -> {
+            Image image = new Image(Objects.requireNonNull(getClass().getResource("images/cursor2.png")).toExternalForm());
+            Cursor customCursor = new ImageCursor(image);
+            scene.setCursor(customCursor);
+        }));
 
         controller.setScene(scene);
         primaryStage.setScene(scene);
