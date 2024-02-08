@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class FXMLUtils {
     private static final int MAX_CHARS = 20;
-    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(FXMLUtils.class.getName());
+    private static final String DEFAULT_TEXT = "Entrez votre nom";
     /**
      * Cache des fichiers FXML
      */
@@ -100,7 +100,6 @@ public class FXMLUtils {
             double screenHeight = bounds.getHeight();
 
             // Affiche la hauteur de l'écran dans le terminal
-            //LOGGER.info(() -> "screenHeight : " + screenHeight);
 
             Node titreNode = scene.lookup(".titre"); // Récupère le noeud avec le style .titre
 
@@ -152,26 +151,26 @@ public class FXMLUtils {
 
         // Gestion du clic pour effacer le texte par défaut
         zoneTexte.setOnMouseClicked(event -> {
-            if ("Entrez votre nom".equals(zoneTexte.getText())) {
+            if (DEFAULT_TEXT.equals(zoneTexte.getText())) {
                 zoneTexte.setText("");
             }
         });
 
         // Mise à jour de la propriété userInput lorsque le texte de la zone de texte change
         zoneTexte.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.equals("Entrez votre nom")) {
+            if (!newValue.equals(DEFAULT_TEXT)) {
                 GlobalVariables.setUserInput(newValue);
             }
         });
 
         // Gestion du focus pour afficher le texte par défaut si nécessaire
         zoneTexte.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) { // Si la zone de texte reçoit le focus
-                if (zoneTexte.getText().equals("Entrez votre nom")) {
+            if (Boolean.TRUE.equals(newValue)) { // Si la zone de texte reçoit le focus
+                if (zoneTexte.getText().equals(DEFAULT_TEXT)) {
                     zoneTexte.end(); // Place le curseur à la fin du texte
                 }
             } else if (zoneTexte.getText().isEmpty()) {
-                zoneTexte.setText("Entrez votre nom");
+                zoneTexte.setText(DEFAULT_TEXT);
             }
         });
 

@@ -15,9 +15,9 @@
                 <HBox alignment="CENTER">
                     <TextField fx:id="zoneTexte" styleClass="custom-button" />
                 </HBox>
-                <Button onAction="#btn1" styleClass="custom-button" text="DITACTICIEL" />
-                <Button fx:id="bouton" text="JOUER" onAction="#afficherAutreMenu" styleClass="custom-button"/>
-                <Button text="QUITTER" onAction="#quitter" styleClass="custom-button"/>
+                <Button fx:id="didacticiel" onAction="#btn1" styleClass="custom-button" text="DITACTICIEL" />
+                <Button fx:id="jouer" text="JOUER" onAction="#afficherAutreMenu" styleClass="custom-button"/>
+                <Button fx:id="quitter" text="QUITTER" onAction="#quitter" styleClass="custom-button"/>
             </VBox>
         </center>
     </BorderPane>

@@ -13,11 +13,18 @@ public class MenuPrincipalController extends BaseController{
     private static final Logger LOGGER = Logger.getLogger(MenuPrincipalController.class.getName());
 
     private static final int MAX_CHARS = 20;
+
     @FXML
-    private Button bouton;
+    private Button jouer;
+
+    @FXML
+    private Button didacticiel;
 
     @FXML
     public TextField zoneTexte;
+
+    @FXML
+    private Button quitter;
 
     @FXML
     private void afficherAutreMenu() {
@@ -30,9 +37,10 @@ public class MenuPrincipalController extends BaseController{
     }
 
     @FXML
-    private void quitter() {
+    private Button quitter() {
         LOGGER.info("Bouton QUITTER a été cliqué");
         System.exit(0);
+        return quitter;
     }
 
     @FXML
@@ -41,6 +49,9 @@ public class MenuPrincipalController extends BaseController{
         ((Node) event.getSource()).requestFocus();}
     @FXML
     public void initialize() {
+        SoundUtils.addHoverSound(jouer);
+        SoundUtils.addHoverSound(quitter);
+        SoundUtils.addHoverSound(didacticiel);
         FXMLUtils.initializeTextField(zoneTexte);
     }
 
