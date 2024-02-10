@@ -6,6 +6,9 @@ module com.example.demojeumenu {
     requires com.almasb.fxgl.all;
     requires org.fxmisc.richtext;
     requires org.slf4j;
+    requires java.logging;
+    requires java.desktop;
+    requires javafx.media;
 
     opens com.example.demojeumenu to javafx.fxml;
     exports com.example.demojeumenu;

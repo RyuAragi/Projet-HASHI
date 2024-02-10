@@ -3,6 +3,9 @@ package com.example.demojeumenu;
 import javafx.scene.Scene;
 
 public abstract class BaseController {
-    public abstract void setScene(Scene scene);
+    protected Scene scene;
 
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
 }
