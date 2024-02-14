@@ -102,4 +102,13 @@ public class Aide{
         }
         return false;
     }
+
+    private static boolean techniqueIleIsolee(List<Noeud> listJoueur,Jeu grille){
+        for(int i = 0 ; i< listJoueur.size(); i++){
+            if(grille.getNbVoisinReel(listJoueur.get(i)) == 1){
+                return true;
+            }
+        }
+        return false;
+    }
 }
