@@ -22,6 +22,7 @@ public class Aide{
         int i,j;
         //int niveauAide;
 
+        //Récupère toutes les îles non nuls de la grille de jeu
         for(i = 0; i < grille.getTailleLigne(); i++){
             for(j = 0; j < grille.getTailleColonne(); j++){
                 if (grille.mat[i][j] != null){
@@ -54,10 +55,14 @@ public class Aide{
         
     }
 
+    /**
+     * 
+     * @param list la liste des iles du joueur
+     * @return vrai si la technique est détectée, faux sinon
+     */
     private static boolean techniqueHuitAuMilieu(List<Noeud> list){
         for (Noeud n : list){
             if ((n.getEtiquette() == 8) && (n.getSommeVoisins() < 8)){
-                System.out.println(n.getEtiquette());
                 return true;
             }
         }
@@ -65,6 +70,13 @@ public class Aide{
         return false;
     }
 
+    /**
+     * 
+     * @param listJoueur la liste de noeud du joueur
+     * @param listResolu la liste de noeud de la grille résolu
+     * @param grille la grille résolu
+     * @return vrai si la technique est détectée, faux sinon
+     */
     private static boolean techniqueSixSurLeCote(List<Noeud> listJoueur, List<Noeud> listResolu, Jeu grille){
         
         for(int i = 0 ; i< listJoueur.size(); i++){
@@ -75,6 +87,13 @@ public class Aide{
         return false;
     }
 
+    /**
+     * 
+     * @param listJoueur la liste de noeud du joueur
+     * @param listResolu la liste de noeud de la grille résolu
+     * @param grille la grille résolu
+     * @return vrai si la technique est détectée, faux sinon
+     */
     private static boolean techniqueQuatreSurLeCote(List<Noeud> listJoueur, List<Noeud> listResolu,Jeu grille){
         for(int i = 0 ; i< listJoueur.size(); i++){
             if ((listResolu.get(i).getEtiquette() == 4)&&(grille.getNbVoisinReel(listResolu.get(i)) == 2) && (listJoueur.get(i).getSommeVoisins()<4)){
