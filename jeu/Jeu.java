@@ -289,10 +289,10 @@ public class Jeu{
     }
 
     public static void main(String[] args) {
-        Jeu testJeu = new Jeu("../niveaux/facile/Facile-1.txt");
+        Jeu testJeu = new Jeu("../niveaux/facile/Facile-5.txt");
         testJeu.afficher_mat_out();
 
-        System.out.println(Aide.techniqueDeDepart(testJeu));
+        Aide.techniqueDeDepart(testJeu);
     }
 
 

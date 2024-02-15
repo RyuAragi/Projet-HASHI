@@ -38,17 +38,22 @@ public class Aide{
 
         //niveauAide = grille.getPrecisionAide();
 
+
+
         if (Aide.techniqueHuitAuMilieu(listeNoeudsGrilleJoueur)){
+            System.out.println("Huit au milieu detecte");
             return true;
             
         }
         
         if(Aide.techniqueSixSurLeCote(listeNoeudsGrilleJoueur, listeNoeudsGrilleResolu, grille)){
+            System.out.println("Six sur le cote detecte");
             return true;
             
         }
 
         if (Aide.techniqueQuatreSurLeCote(listeNoeudsGrilleJoueur, listeNoeudsGrilleResolu, grille)){
+            System.out.println("Quatre dans un angle detecte");
             return true;
         }
         return false;
@@ -103,6 +108,12 @@ public class Aide{
         return false;
     }
 
+    /**
+     * 
+     * @param listJoueur la liste de noeud du joueur
+     * @param grille la grille résolu
+     * @return vrai si la technique est détectée, faux sinon
+     */
     private static boolean techniqueIleIsolee(List<Noeud> listJoueur,Jeu grille){
         for(int i = 0 ; i< listJoueur.size(); i++){
             if(grille.getNbVoisinReel(listJoueur.get(i)) == 1){
