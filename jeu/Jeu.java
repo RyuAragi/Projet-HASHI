@@ -3,7 +3,6 @@
 //* @version 0.0 */
 
 import java.io.*;
-import java.util.*;
 
 public class Jeu{
     /**La matrice sur laquelle nous sommes actuellement entrain de corriger */
@@ -73,7 +72,7 @@ public class Jeu{
                 }else{
                     valeurNoeud = Integer.valueOf(data[2])+Integer.valueOf(data[3])+Integer.valueOf(data[4])+ Integer.valueOf(data[5]);
                     //Grille du joueur initialise avec 0 voisins
-                    //mat[Integer.valueOf(data[0])][Integer.valueOf(data[1])] = new Noeud(Integer.valueOf(data[0]),Integer.valueOf(data[1]),0,0,0,0);
+                    mat[Integer.valueOf(data[0])][Integer.valueOf(data[1])] = new Noeud(Integer.valueOf(data[0]),Integer.valueOf(data[1]),valeurNoeud,0,0,0,0);
 
                     //enregistre pour chaque noeud le resultat final
                     mat_res[Integer.valueOf(data[0])][Integer.valueOf(data[1])] = new Noeud(Integer.valueOf(data[0]),Integer.valueOf(data[1]),valeurNoeud,Integer.valueOf(data[2]),Integer.valueOf(data[3]),Integer.valueOf(data[4]), Integer.valueOf(data[5]));
@@ -213,6 +212,68 @@ public class Jeu{
         return taille_col;
     }
 
+    /*
+     * Méthode qui renvoi la precision de l'aide
+     * @return la precision de l'aide
+     */
+    public int getPrecisionAide(){
+        return precisionAide;
+    }
+
+    /*
+    * Méthode qui compte le nombre de voisin "physique" d'un noeud
+    * @param noeud le noeud a verifier
+    * @param matNoeud la matrice a qui appartient le noeud
+    *
+    */
+    public int getNbVoisinReel(Noeud n){
+        int cpt = 0;
+        int x = n.getX();
+        int y = n.getY();
+
+        int i = x;
+        int j = y;
+
+        //Test si il y a un voisin au nord
+        boucle_nord:
+        for(i = x,j=y; j >= 0; j-- ){
+            if (mat_res[i][j] != null && (i!=x || j!= y)){
+                cpt++;
+                break boucle_nord;
+            }
+        }
+
+        //Test si il y a un voisin au sud
+        boucle_sud:
+        for(i = x,j=y; j < taille_col; j++ ){
+            if (mat_res[i][j] != null && (i!=x || j!= y)){
+                cpt++;
+                break boucle_sud;
+            }
+        }
+
+        //Test si il y a un voisin au ouest
+        boucle_ouest:
+        for(i = x,j=y; i >= 0; i-- ){
+            if (mat_res[i][j] != null && (i!=x || j!= y)){
+                cpt++;
+                break boucle_ouest;
+            }
+        }
+
+        //Test si il y a un voisin au est
+        boucle_est:
+        for(i = x,j=y; i < taille_li; i++ ){
+            if (mat_res[i][j] != null && (i!=x || j!= y)){
+                cpt++;
+                break boucle_est;
+            }
+        }
+
+        return cpt;
+    }
+
+    
     private void afficher_mat_out() {
         for(int i = 0; i < this.taille_li; i++) {
             for(int j = 0; j < this.taille_col; j++) {
@@ -220,7 +281,7 @@ public class Jeu{
                     System.out.print("*");
                 }
                 else {
-                    System.out.print(this.mat_res[i][j].etiquette);
+                    System.out.print(this.mat_res[i][j].getEtiquette());
                 }
             }
             System.out.print("\n");
@@ -228,9 +289,12 @@ public class Jeu{
     }
 
     public static void main(String[] args) {
-        Jeu testJeu = new Jeu("../niveaux/moyen/Moyen-5.txt");
+        Jeu testJeu = new Jeu("../niveaux/facile/Facile-5.txt");
         testJeu.afficher_mat_out();
+
+        Aide.techniqueDeDepart(testJeu);
     }
+
 
 }   
 

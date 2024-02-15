@@ -41,17 +41,34 @@ public class Noeud {
     */
     int getEtiquette(){return etiquette;}
 
+
     /*
-     * Méthode qui compte le nombre de voisins d'un noeud
+     * Cette méthode ne sert à rien / il faut la retirer
+     */
+    /*
+     * Méthode qui compte le nombre de voisins d'un noeud qui possède un pont au moins
      * @return le nombre de voisin d'un noeud
      */
     int getNbVoisins(){
         int cpt = 0;
 
-        for(Map.Entry entree : ponts.entrySet()){
+        for(Map.Entry<String,Integer> entree : ponts.entrySet()){
             if (!entree.getValue().equals(0)){
                 cpt++;
             }
+        }
+        return cpt;
+    }
+
+    /*
+     * Méthode qui compte la somme des voisins 
+     * @return la somme des voisins d'un noeud
+     */
+    int getSommeVoisins(){
+        int cpt = 0;
+
+        for(Map.Entry<String, Integer> entree : ponts.entrySet()){
+            cpt += (int)entree.getValue();
         }
         return cpt;
     }
