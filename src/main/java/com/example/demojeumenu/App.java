@@ -23,7 +23,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
         Parent root = loader.load();
         MenuPrincipalController controller = loader.getController();
-
+      
         Scene scene = new Scene(root);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
 
