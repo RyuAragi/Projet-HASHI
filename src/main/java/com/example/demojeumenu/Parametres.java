@@ -46,6 +46,7 @@ public class Parametres extends BaseController {
         if(SoundUtils.getSoundLevel()<5){
             SoundUtils.soundUp();
             //incrémenter l'image du son
+
         }
     }
 

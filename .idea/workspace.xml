@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="44e60573-2591-4ce4-9b7e-02ae1e2a2dd2" name="Changes" comment="suite dev">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="44e60573-2591-4ce4-9b7e-02ae1e2a2dd2" name="Changes" comment="suite dev paramètres">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/Parametres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/Parametres.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/SoundUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/SoundUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/Parametres.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/Parametres.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +156,7 @@
       <workItem from="1707215252977" duration="2122000" />
       <workItem from="1707221275718" duration="30000" />
       <workItem from="1707999942441" duration="1251000" />
+      <workItem from="1708009360692" duration="972000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -258,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707999999234</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="suite dev paramètres">
+      <option name="closed" value="true" />
+      <created>1708008084025</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1708008084025</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,8 +294,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="test" />
-    <MESSAGE value="suite dev paramètres" />
     <MESSAGE value="suite dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="suite dev" />
+    <MESSAGE value="suite dev paramètres" />
+    <option name="LAST_COMMIT_MESSAGE" value="suite dev paramètres" />
   </component>
 </project>
