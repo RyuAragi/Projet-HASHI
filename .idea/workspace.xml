@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/images/JacoBashi.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/AutreMenu3.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/AutreMenu3.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/MenuPrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/MenuPrincipal.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/AutreMenuController2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/AutreMenuController2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/MenuPrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/MenuPrincipal.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/css/styles.css" afterDir="false" />
-    </list>
+    <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="Merge remote-tracking branch 'origin/Sedra' into Sedra&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,7 +70,7 @@
     &quot;Application.App.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Thibault&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Sedra&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/sedra/IdeaProjects/Projet-HASHI/src/main/resources/com/example/demojeumenu/images&quot;,
@@ -121,8 +110,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-a81d5c7c" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -135,9 +123,7 @@
       <option name="presentableId" value="Default" />
       <updated>1707128184246</updated>
       <workItem from="1707128187158" duration="842000" />
-      <workItem from="1707129049995" duration="9494000" />
-      <workItem from="1707216135646" duration="27000" />
-      <workItem from="1707216173191" duration="827000" />
+      <workItem from="1707129049995" duration="11965000" />
     </task>
     <task id="LOCAL-00001" summary="UPDATE">
       <option name="closed" value="true" />
@@ -179,18 +165,93 @@
       <option name="project" value="LOCAL" />
       <updated>1707211316170</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="UPDATE">
+      <option name="closed" value="true" />
+      <created>1707214035996</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707214035996</updated>
+    </task>
+    <task id="LOCAL-00007" summary="UPDATE">
+      <option name="closed" value="true" />
+      <created>1707214447923</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707214447923</updated>
+    </task>
+    <task id="LOCAL-00008" summary="UPDATE">
+      <option name="closed" value="true" />
+      <created>1707216338475</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1707216338475</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Merge remote-tracking branch 'origin/Sedra' into Sedra&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <option name="closed" value="true" />
+      <created>1708001234636</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708001234636</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Merge remote-tracking branch 'origin/Sedra' into Sedra&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <option name="closed" value="true" />
+      <created>1708008477978</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708008477978</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Merge remote-tracking branch 'origin/Sedra' into Sedra&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <option name="closed" value="true" />
+      <created>1708008983720</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708008983720</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/Sedra" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Sedra" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -198,6 +259,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="UPDATE" />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/Sedra' into Sedra&#10;&#10;# Conflicts:&#10;#&#9;src/main/resources/com/example/demojeumenu/css/styles.css" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/Sedra' into Sedra&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/Sedra' into Sedra&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
   </component>
 </project>
