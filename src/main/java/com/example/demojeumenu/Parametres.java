@@ -73,7 +73,4 @@ public class Parametres extends BaseController {
             SoundUtils.allowSound();
         }
     }
-
-
-
 }
