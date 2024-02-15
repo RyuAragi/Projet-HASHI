@@ -1,28 +1,30 @@
 package com.example.demojeumenu;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.input.MouseEvent;
+
+import java.util.logging.Logger;
 
 
 public class MenuPrincipalController extends BaseController{
+    private static final Logger LOGGER = Logger.getLogger(MenuPrincipalController.class.getName());
 
     private static final int MAX_CHARS = 20;
+
     @FXML
-    private Button bouton;
+    private Button jouer;
+
+    @FXML
+    private Button didacticiel;
 
     @FXML
     public TextField zoneTexte;
 
-    private Scene scene;
-
-    @Override
-    public void setScene(Scene scene) {
-        this.scene = scene;
-    }
+    @FXML
+    private Button quitter;
 
     @FXML
     private void afficherAutreMenu() {
@@ -30,42 +32,27 @@ public class MenuPrincipalController extends BaseController{
     }
 
     @FXML
-    private void quitter() {
-        System.out.println("Bouton QUITTER a été cliqué");
-        System.exit(0);
+    private void btn1() {
+        FXMLUtils.loadFXML("AutreMenu2.fxml", scene);
     }
+
     @FXML
-    protected void initialize() {
-        Platform.runLater(() -> bouton.requestFocus());
+    private Button quitter() {
+        LOGGER.info("Bouton QUITTER a été cliqué");
+        System.exit(0);
+        return quitter;
+    }
 
-        if (GlobalVariables.userInput != null && !GlobalVariables.userInput.isEmpty()) {
-            zoneTexte.setText(GlobalVariables.userInput);
-            zoneTexte.end(); // Place le curseur à la fin du texte
-        } else {
-            zoneTexte.setText("Entrez votre nom");
-        }
-
-        zoneTexte.setOnMouseClicked(event -> {
-            if ("Entrez votre nom".equals(zoneTexte.getText())) {
-                zoneTexte.setText("");
-            }
-        });
-
-        zoneTexte.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) { // Si la zone de texte reçoit le focus
-                if (zoneTexte.getText().equals("Entrez votre nom")) {
-                    zoneTexte.end(); // Place le curseur à la fin du texte
-                }
-                //System.out.println("Zone de texte a le focus");
-            } else if (zoneTexte.getText().isEmpty()) {
-                zoneTexte.setText("Entrez votre nom");
-            }
-        });
-
-        zoneTexte.setTextFormatter(
-                new TextFormatter<>(change -> change.getControlNewText().length() > MAX_CHARS ? null : change));
-
-        zoneTexte.textProperty().addListener((observable, oldValue, newValue) -> GlobalVariables.userInput = newValue);
+    @FXML
+    private void background(MouseEvent event) {
+        //detecte le clic sur le bouton background
+        ((Node) event.getSource()).requestFocus();}
+    @FXML
+    public void initialize() {
+        SoundUtils.addHoverSound(jouer);
+        SoundUtils.addHoverSound(quitter);
+        SoundUtils.addHoverSound(didacticiel);
+        FXMLUtils.initializeTextField(zoneTexte);
     }
 
 }

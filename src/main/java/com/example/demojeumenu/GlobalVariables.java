@@ -1,28 +1,24 @@
 package com.example.demojeumenu;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class GlobalVariables {
 
+    private static final String DEFAULT_USER_INPUT = "Entrez votre nom";
+
     // Variables globales le nom de l'utilisateur
-    public static String userInput;
+    private static final StringProperty userInput = new SimpleStringProperty(DEFAULT_USER_INPUT);
 
+    public static String getUserInput() {
+        return userInput.get();
+    }
 
-    public static int sound;
+    public static void setUserInput(String value) {
+        userInput.set(value);
+    }
 
-    // méthode pour récupérer le nom de l'utilisateur
-    public static String getUser() {
-        System.out.println("GlobalVariables.getUser() : " + userInput);
+    public static StringProperty userInputProperty() {
         return userInput;
-    }
-
-    public static int getSound(){
-        return sound;
-    }
-
-    public static void incrementSound(){
-        /* A compléter */
-    }
-
-    public static void decrementSound(){
-        /* A compléter */
     }
 }

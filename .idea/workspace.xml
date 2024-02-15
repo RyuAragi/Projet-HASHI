@@ -5,10 +5,64 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44e60573-2591-4ce4-9b7e-02ae1e2a2dd2" name="Changes" comment="suite dev paramètres">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/Launcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/SoundUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/AutreMenuController2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/FXMLUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/FXMLUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/GlobalVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/GlobalVariables.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/MenuPrincipalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/MenuPrincipalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/Parametres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/Parametres.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/AutreMenu.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/AutreMenu2.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/MenuPrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/MenuPrincipal.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/Parametres.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/Parametres.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/Parametres.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/Parametres.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/AutreMenu.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/AutreMenu2.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/AutreMenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/AutreMenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/AutreMenuController2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/AutreMenuController2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/BaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/FXMLUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/FXMLUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/GlobalVariables.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/GlobalVariables.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/Logo.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/MenuPrincipal.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/MenuPrincipalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/MenuPrincipalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/Parametres.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/Parametres.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/Parametres.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/fonts/Noteworthy-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/background1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/barre_volume_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/barre_volume_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/barre_volume_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/barre_volume_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/barre_volume_4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/barre_volume_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/board.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/bouton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/bouton_fleche_droite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/bouton_fleche_gauche.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/bouton_info.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/bouton_mute.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/bouton_retour.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/bouton_volume.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/buttonFrame.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/hover_bouton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/leaderboard.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demojeumenu/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,14 +135,40 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/images" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/example/demojeumenu" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/images" />
       <recent name="$PROJECT_DIR$/.idea/Assets/font" />
-      <recent name="$PROJECT_DIR$/.idea" />
-      <recent name="$PROJECT_DIR$/.idea/Assets" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Launcher">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.demojeumenu.App" />
+      <module name="demo-jeu-menu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.demojeumenu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.demojeumenu.Launcher" />
+      <module name="demo-jeu-menu" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.demojeumenu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Projet-HASHI" />
       <method v="2">
@@ -102,6 +182,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -120,7 +206,9 @@
       <workItem from="1707125527707" duration="6811000" />
       <workItem from="1707206488321" duration="965000" />
       <workItem from="1707207885572" duration="7263000" />
-      <workItem from="1707215252977" duration="1996000" />
+      <workItem from="1707215252977" duration="2122000" />
+      <workItem from="1707221275718" duration="30000" />
+      <workItem from="1707999942441" duration="1251000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -202,7 +290,23 @@
       <option name="project" value="LOCAL" />
       <updated>1707215183368</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="suite dev paramètres">
+      <option name="closed" value="true" />
+      <created>1707217409163</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1707217409164</updated>
+    </task>
+    <task id="LOCAL-00012" summary="suite dev paramètres">
+      <option name="closed" value="true" />
+      <created>1707999999233</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1707999999234</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
