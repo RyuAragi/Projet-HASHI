@@ -9,7 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="[update]" />
+    <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="[update]">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/images/cursor3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/demo_jeu_menu_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/demo_jeu_menu_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/SoundUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/SoundUtils.java" afterDir="false" />
+    </list>
     <list id="d66a4e05-119c-40ed-9853-f62098461e57" name="Changes by thiba" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +101,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15234375&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.16111112&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;,
@@ -106,6 +115,8 @@
       <recent name="C:\Users\sedra\IdeaProjects\Projet-HASHI\src\main\resources\com\example\demojeumenu\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/images" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/cursor3.png" />
       <recent name="C:\Users\thiba\IdeaProjects\Projet-HASHI\src\main\resources\com\example\demojeumenu\images" />
     </key>
   </component>
@@ -132,8 +143,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.1-openjdk-21.0.1-3183f394aec4-7d648f2c" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-a81d5c7c" />
       </set>
     </attachedChunks>
   </component>
@@ -157,6 +168,9 @@
       <workItem from="1707353318548" duration="6139000" />
       <workItem from="1707403951423" duration="4256000" />
       <workItem from="1707435777310" duration="524000" />
+      <workItem from="1707438470130" duration="7464000" />
+      <workItem from="1707923036051" duration="599000" />
+      <workItem from="1707924702590" duration="2535000" />
     </task>
     <task id="LOCAL-00001" summary="UPDATE">
       <option name="closed" value="true" />
