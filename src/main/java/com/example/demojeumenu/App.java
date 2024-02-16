@@ -28,13 +28,13 @@ public class App extends Application {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
 
         javafx.application.Platform.runLater(() -> {
-            Image image = new Image(Objects.requireNonNull(getClass().getResource("images/normal.png")).toExternalForm());
+            Image image = new Image(Objects.requireNonNull(getClass().getResource("images/cursor2.png")).toExternalForm());
             Cursor customCursor = new ImageCursor(image);
             scene.setCursor(customCursor);
         });
 
         scene.addEventHandler(MouseEvent.MOUSE_MOVED, event -> javafx.application.Platform.runLater(() -> {
-            Image image = new Image(Objects.requireNonNull(getClass().getResource("images/normal.png")).toExternalForm());
+            Image image = new Image(Objects.requireNonNull(getClass().getResource("images/cursor2.png")).toExternalForm());
             Cursor customCursor = new ImageCursor(image);
             scene.setCursor(customCursor);
         }));
