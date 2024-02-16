@@ -13,14 +13,8 @@
     <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="[update]" />
 =======
     <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="[update]">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/images/cursor3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/demo_jeu_menu_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/demo_jeu_menu_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/SoundUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/SoundUtils.java" afterDir="false" />
     </list>
 >>>>>>> parent of 1fbda11 (Théo (#15))
     <list id="d66a4e05-119c-40ed-9853-f62098461e57" name="Changes by thiba" comment="" />
@@ -62,7 +56,7 @@
     </option>
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="70739f57-cbde-4fb9-816e-2df6a569f305" />
+        <option name="accountId" value="d8d6bc1d-996f-4fbe-9977-92e125bf0af4" />
         <option name="url" value="https://github.com/RyuAragi/Projet-HASHI.git" />
       </UrlAndAccount>
     </option>
@@ -89,6 +83,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.App.executor&quot;: &quot;Run&quot;,
@@ -114,8 +109,31 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.16111112&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "Thibault",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/thiba/IdeaProjects/Projet-HASHI/src/main/resources/META-INF/MANIFEST.MF",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15234375",
+    "project.structure.side.proportion": "0.16111112",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "vue.rearranger.settings.migration": "true"
+>>>>>>> 1fbda1151bf57c5972b5dee1420483aa2396b88e
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\thiba\IdeaProjects\Projet-HASHI\src\main\resources\com\example\demojeumenu\sounds" />
@@ -123,8 +141,6 @@
       <recent name="C:\Users\sedra\IdeaProjects\Projet-HASHI\src\main\resources\com\example\demojeumenu\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/images" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/cursor3.png" />
       <recent name="C:\Users\thiba\IdeaProjects\Projet-HASHI\src\main\resources\com\example\demojeumenu\images" />
     </key>
   </component>
@@ -151,8 +167,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-322ed176" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-a81d5c7c" />
+        <option value="jdk-21.0.1-openjdk-21.0.1-3183f394aec4-7d648f2c" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -175,6 +191,7 @@
       <workItem from="1707351778792" duration="1467000" />
       <workItem from="1707353318548" duration="6139000" />
       <workItem from="1707403951423" duration="4256000" />
+<<<<<<< HEAD
       <workItem from="1707435777310" duration="524000" />
 <<<<<<< HEAD
 =======
@@ -182,6 +199,15 @@
       <workItem from="1707923036051" duration="599000" />
       <workItem from="1707924702590" duration="2535000" />
 >>>>>>> parent of 1fbda11 (Théo (#15))
+=======
+      <workItem from="1707435777310" duration="2254000" />
+      <workItem from="1707440990501" duration="1999000" />
+      <workItem from="1707530546176" duration="472000" />
+      <workItem from="1707654933692" duration="1540000" />
+      <workItem from="1707840424826" duration="1544000" />
+      <workItem from="1707845601148" duration="592000" />
+      <workItem from="1708019229441" duration="987000" />
+>>>>>>> 1fbda1151bf57c5972b5dee1420483aa2396b88e
     </task>
     <task id="LOCAL-00001" summary="UPDATE">
       <option name="closed" value="true" />
@@ -351,7 +377,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707436110160</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="[update]">
+      <option name="closed" value="true" />
+      <created>1707436557288</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1707436557288</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -153,7 +153,7 @@ HBox{
 #soundBar{
     -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
     -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
-    -fx-image: url('../images/barre_volume_2.png');
+    /*-fx-image: url('../images/barre_volume_2.png');*/
     -fx-alignment: center;
     -fx-text-alignment: center;
     -fx-pref-height: 100;
