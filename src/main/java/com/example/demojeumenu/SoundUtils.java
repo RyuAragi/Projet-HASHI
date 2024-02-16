@@ -10,7 +10,7 @@ public class SoundUtils {
 
     private static final AtomicBoolean isPlaying = new AtomicBoolean(false);
 
-    private static int previousSoudLevel = -1;
+    private static int previousSoudLevel = 0;
     private static int soundLevel = 2;
 
 
@@ -54,4 +54,7 @@ public class SoundUtils {
         soundLevel = previousSoudLevel;
         previousSoudLevel = -1;
     }
+    private SoundUtils() {
+    }
+
 }

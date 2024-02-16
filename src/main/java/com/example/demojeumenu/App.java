@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.util.Objects;
 
@@ -23,7 +22,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
         Parent root = loader.load();
         MenuPrincipalController controller = loader.getController();
-      
+
         Scene scene = new Scene(root);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
 
@@ -32,12 +31,6 @@ public class App extends Application {
             Cursor customCursor = new ImageCursor(image);
             scene.setCursor(customCursor);
         });
-
-        scene.addEventHandler(MouseEvent.MOUSE_MOVED, event -> javafx.application.Platform.runLater(() -> {
-            Image image = new Image(Objects.requireNonNull(getClass().getResource("images/normal.png")).toExternalForm());
-            Cursor customCursor = new ImageCursor(image);
-            scene.setCursor(customCursor);
-        }));
 
         controller.setScene(scene);
         primaryStage.setScene(scene);
@@ -51,4 +44,3 @@ public class App extends Application {
         FXMLUtils.addHistory("MenuPrincipal.fxml");
     }
 }
-
