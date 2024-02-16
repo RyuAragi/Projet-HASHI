@@ -14,6 +14,9 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea/workspace.xml
+.idea/misc.xml
+
 
 # Fichiers spécifiques à Eclipse
 .apt_generated
