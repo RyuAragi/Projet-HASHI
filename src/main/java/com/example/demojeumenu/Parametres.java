@@ -39,4 +39,38 @@ public class Parametres extends BaseController {
     public void initialize() {
         FXMLUtils.initializeTextField(usernameZone);
     }
+
+
+    @FXML
+    private void right_sound_button(){
+        if(SoundUtils.getSoundLevel()<5){
+            SoundUtils.soundUp();
+            //incrémenter l'image du son
+
+        }
+    }
+
+    @FXML
+    private void left_sound_button(){
+        if(SoundUtils.getSoundLevel()>0){
+            SoundUtils.soundDown();
+
+            //décrémenter l'image du son
+        }
+    }
+
+    @FXML
+    private void no_sound_button(){
+        if(SoundUtils.getSoundLevel()>0) {
+            SoundUtils.avoidSound();
+
+        }
+    }
+
+    @FXML
+    private void sound_button(){
+        if(SoundUtils.getSoundLevel()==0) {
+            SoundUtils.allowSound();
+        }
+    }
 }

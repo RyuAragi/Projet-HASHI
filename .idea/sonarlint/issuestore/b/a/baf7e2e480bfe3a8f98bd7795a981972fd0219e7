@@ -1,8 +1,6 @@
 
 i	java:S100#"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úâà8Ÿ•†‚Û1
-d
-java:S1128"BRemove this unused import 'com.almasb.fxgl.core.collection.Array'.(ßø„¨øÿÿÿÿ8Éï°‚Û1
-Z
-java:S1128"8Remove this unused import 'javafx.scene.control.Button'.(Ë Í‹øÿÿÿÿ8Éï°‚Û1
-R
-java:S1128"5Remove this unused import 'java.util.logging.Logger'.(ƒ¥óš8Éï°‚Û1
+o	java:S100-"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ýùõ¶ÿÿÿÿÿ8ð…–ƒÛ1
+j	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃŒ–Ÿ8ñ…–ƒÛ1
+o	java:S100?"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡Üú¬øÿÿÿÿ8ñ…–ƒÛ1
+j	java:S100G"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óþÓ¨8ò…–ƒÛ1
