@@ -9,32 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="[update]">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024,_14_38_[Changes]/App.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024,_14_38_[Changes]/module-info.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024,_14_38_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024,_14_38_[Changes]1/App.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024,_14_38_[Changes]1/module-info.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024,_14_38_[Changes]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024,_14_39_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024__14_38__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024__14_38__Changes_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024__14_39__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/demo_jeu_menu_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/demo_jeu_menu_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/b/2ba9994c4a04cb28d526d0040e26be5dccf061ac" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/b/2ba9994c4a04cb28d526d0040e26be5dccf061ac" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/a/baf7e2e480bfe3a8f98bd7795a981972fd0219e7" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/a/baf7e2e480bfe3a8f98bd7795a981972fd0219e7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demojeumenu/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/Parametres.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/Parametres.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demojeumenu/images/normal.png" beforeDir="false" />
-    </list>
+    <list default="true" id="61ff2cea-9dfb-40e4-bd70-1f59fade6e26" name="Changes" comment="[update] cursor + SoundUtils" />
     <list id="d66a4e05-119c-40ed-9853-f62098461e57" name="Changes by thiba" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +26,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Tibo_Courcol &lt;44385130+thibcour@users.noreply.github.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="74a2d5233e45092bb873f48dbfcac7cd43898c87" />
@@ -120,7 +100,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15234375",
     "project.structure.side.proportion": "0.16111112",
-    "settings.editor.selected.configurable": "project.scopes",
+    "settings.editor.selected.configurable": "proofread",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -369,7 +349,23 @@
       <option name="project" value="LOCAL" />
       <updated>1707436110160</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="[update] cursor + SoundUtils">
+      <option name="closed" value="true" />
+      <created>1708059080538</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1708059080538</updated>
+    </task>
+    <task id="LOCAL-00023" summary="[update] cursor + SoundUtils">
+      <option name="closed" value="true" />
+      <created>1708059222944</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1708059222944</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,6 +412,11 @@
     <MESSAGE value="[update] Ajout des commentaires dans FXMLUtils.java" />
     <MESSAGE value="[update] ajout hover.mp3, et du cursor" />
     <MESSAGE value="[update]" />
-    <option name="LAST_COMMIT_MESSAGE" value="[update]" />
+    <MESSAGE value="[update] cursor + SoundUtils" />
+    <option name="LAST_COMMIT_MESSAGE" value="[update] cursor + SoundUtils" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
