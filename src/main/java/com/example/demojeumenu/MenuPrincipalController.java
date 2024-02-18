@@ -50,8 +50,8 @@ public class MenuPrincipalController extends BaseController{
     @FXML
     public void initialize() {
         SoundUtils.addHoverSound(jouer);
-        SoundUtils.addHoverSound(quitter);
         SoundUtils.addHoverSound(didacticiel);
+        SoundUtils.addHoverSound(quitter);
         FXMLUtils.initializeTextField(zoneTexte);
     }
 

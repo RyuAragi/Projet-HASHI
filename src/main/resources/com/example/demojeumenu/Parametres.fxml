@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <StackPane onMouseClicked="#background" styleClass="background" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.Parametres">
-    <fx:include source="Logo.fxml" />
+   <fx:include source="Logo.fxml" />
    <VBox alignment="BASELINE_CENTER">
       <Button styleClass="titre" text="RÉGLAGES" />
    </VBox>
