@@ -1,0 +1,54 @@
+# Dossiers générés par Maven
+target/
+.mvn/
+
+# Maven wrapper
+!.mvn/wrapper/maven-wrapper.jar
+
+# Dossiers générés par Maven dans src
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Fichiers et dossiers spécifiques à IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+.idea/workspace.xml
+.idea/misc.xml
+
+
+# Fichiers spécifiques à Eclipse
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# Fichiers spécifiques à NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Fichiers spécifiques à Visual Studio Code
+.vscode/
+
+# Fichiers spécifiques à Mac OS
+.DS_Store
+
+# Fichiers journaux Java
+*.log
+hs_err_pid*
+
+# Fichiers temporaires ou de sauvegarde
+*~
+*.bak
+*.swp
+*.swo
