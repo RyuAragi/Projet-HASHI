@@ -110,6 +110,5 @@ public class Parametres extends BaseController {
         SoundUtils.addClickSound(soundmore_button, this::rightSoundButton);
         SoundUtils.addClickSound(back_button, this::backButton);
         SoundUtils.addClickSound(mute_button, this::noSoundButton);
-
     }
 }
