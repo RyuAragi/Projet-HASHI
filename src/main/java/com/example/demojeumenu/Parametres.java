@@ -35,7 +35,6 @@ public class Parametres extends BaseController {
     @FXML
     private Button mute_button;
 
-
     private static final ArrayList<String> tabImgSoundbar = new ArrayList<>();
     static{
         tabImgSoundbar.add("barre_volume_0.png");
@@ -94,9 +93,11 @@ public class Parametres extends BaseController {
     }
 
     private void updateSoundBar() {
-        String imageName = "images/barre_volume_" + SoundUtils.getSoundLevel() + ".png";
-        Image image = new Image(getClass().getResource(imageName).toExternalForm());
-        soundBar.setImage(image);
+        if (SoundUtils.getSoundLevel() < tabImgSoundbar.size()) {
+            String imageName = "images/" + tabImgSoundbar.get(SoundUtils.getSoundLevel());
+            Image image = new Image(getClass().getResource(imageName).toExternalForm());
+            soundBar.setImage(image);
+        }
     }
 
     @FXML

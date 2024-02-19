@@ -27,9 +27,12 @@ public class App extends Application {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
 
         javafx.application.Platform.runLater(() -> {
-            Image image = new Image(Objects.requireNonNull(getClass().getResource("images/normal.png")).toExternalForm());
-            Cursor customCursor = new ImageCursor(image);
-            scene.setCursor(customCursor);
+            String os = System.getProperty("os.name").toLowerCase();
+            if (!os.contains("mac")) {
+                Image image = new Image(Objects.requireNonNull(getClass().getResource("images/normal.png")).toExternalForm());
+                Cursor customCursor = new ImageCursor(image);
+                scene.setCursor(customCursor);
+            }
         });
 
         controller.setScene(scene);

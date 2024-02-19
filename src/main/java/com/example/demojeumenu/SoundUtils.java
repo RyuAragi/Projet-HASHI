@@ -4,7 +4,6 @@ import javafx.animation.PauseTransition;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -19,16 +18,11 @@ public class SoundUtils {
     public static void addHoverSound(Button button) {
         button.setOnMouseEntered(event -> {
             if (!isPlaying.get()) {
-                hoverSoundDelay = new PauseTransition(Duration.millis(100)); // 200 milliseconds delay
-                hoverSoundDelay.setOnFinished(e -> playHoverSound());
-                hoverSoundDelay.play();
+                playHoverSound();
             }
         });
 
         button.setOnMouseExited(event -> {
-            if (hoverSoundDelay != null) {
-                hoverSoundDelay.stop(); // Stop the delay if the mouse leaves the button
-            }
             if (isPlaying.get()) {
                 stopHoverSound();
             }
@@ -39,7 +33,7 @@ public class SoundUtils {
         if (mediaPlayer != null) {
             mediaPlayer.stop(); // Stop the previous sound
         }
-        Media sound = new Media(SoundUtils.class.getResource("sounds/hover.mp3").toExternalForm());
+        Media sound = new Media(SoundUtils.class.getResource("sounds/test-hover.mp3").toExternalForm());
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setOnEndOfMedia(() -> isPlaying.set(false));
         isPlaying.set(true);
@@ -49,8 +43,8 @@ public class SoundUtils {
     private static void stopHoverSound() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
+            isPlaying.set(false);
         }
-        isPlaying.set(false);
     }
 
     public static void addClickSound(Button button, Runnable additionalAction) {
