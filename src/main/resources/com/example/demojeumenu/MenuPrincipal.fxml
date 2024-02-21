@@ -4,22 +4,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.MenuPrincipalController">
+<StackPane onMouseClicked="#background" styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.MenuPrincipalController">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="MENU" />
-    <!--<VBox alignment="BASELINE_CENTER">
-        <Button styleClass="custom-button-titre" text="Jacobhashi">
-         <VBox.margin>
-            <Insets />
-         </VBox.margin></Button>-->
     </VBox>
-    <VBox alignment="CENTER">
-        <HBox alignment="CENTER">
-            <TextField fx:id="zoneTexte" styleClass="custom-button" />
-        </HBox>
-        <Button onAction="#btn1" styleClass="custom-button" text="DITACTICIEL" />
-        <Button fx:id="bouton" text="JOUER" onAction="#afficherAutreMenu" styleClass="custom-button"/>
-        <Button text="QUITTER" onAction="#quitter" styleClass="custom-button"/>
-    </VBox>
+    <BorderPane>
+        <center>
+            <VBox alignment="CENTER">
+                <HBox alignment="CENTER">
+                    <TextField fx:id="zoneTexte" styleClass="custom-button" />
+                </HBox>
+                <Button fx:id="didacticiel" onAction="#btn1" styleClass="custom-button" text="DITACTICIEL" />
+                <Button fx:id="jouer" text="JOUER" onAction="#afficherAutreMenu" styleClass="custom-button"/>
+                <Button fx:id="quitter" text="QUITTER" onAction="#quitter" styleClass="custom-button"/>
+            </VBox>
+        </center>
+    </BorderPane>
 </StackPane>

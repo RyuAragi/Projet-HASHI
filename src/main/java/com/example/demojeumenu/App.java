@@ -2,11 +2,13 @@ package com.example.demojeumenu;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
+import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-
 import java.util.Objects;
 
 public class App extends Application {
@@ -17,22 +19,32 @@ public class App extends Application {
 //cocooooo
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader menuPrincipalLoader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
-        Parent menuPrincipalRoot = menuPrincipalLoader.load();
-        MenuPrincipalController menuPrincipalController = menuPrincipalLoader.getController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
+        Parent root = loader.load();
+        MenuPrincipalController controller = loader.getController();
 
-        Scene scene = new Scene(menuPrincipalRoot);
+        Scene scene = new Scene(root);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
 
-        // Définir la scène et le plein écran avant d'afficher la fenêtre principale
+        javafx.application.Platform.runLater(() -> {
+            String os = System.getProperty("os.name").toLowerCase();
+            if (!os.contains("mac")) {
+                Image image = new Image(Objects.requireNonNull(getClass().getResource("images/normal.png")).toExternalForm());
+                Cursor customCursor = new ImageCursor(image);
+                scene.setCursor(customCursor);
+            }
+        });
+
+        controller.setScene(scene);
         primaryStage.setScene(scene);
         primaryStage.setFullScreenExitHint("");
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.valueOf("alt+F4"));
+        FXMLUtils.applySceneStyles(scene);
         primaryStage.show();
 
-        menuPrincipalController.setScene(scene);
+        // Ajoutez manuellement le fichier FXML à l'historique
+        FXMLUtils.addHistory("MenuPrincipal.fxml");
     }
   }
 }
-
