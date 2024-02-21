@@ -97,6 +97,22 @@ public class GrilleJeu {
 
 
     /**
+     * Renvoie le nombre de ligne de la grille de jeu
+     * @return le nombre de ligne
+     */
+    public int getNbLigne(){
+        return nbLigne;
+    }
+
+    /**
+     * Renvoie le nombre de colonne de la grille de jeu
+     * @return le nombre de colonne
+     */
+    public int getNbColonne(){
+        return nbColonne;
+    }
+
+    /**
      * 
      * @param x la coordonnée x de la grille du joueur
      * @param y la coordonnée y de la grille du joueur
