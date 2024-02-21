@@ -384,12 +384,12 @@ public class GrilleJeu {
     }
 
     public static void main(String[] args) {
-        GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Facile-5.txt");
+        GrilleJeu testJeu = new GrilleJeu("../niveaux/difficile/Difficile-10.txt");
         testJeu.afficher_mat_out();
 
-        testJeu.poserPont(testJeu.getIleGrilleJoueur(0,0), testJeu.getIleGrilleJoueur(0,2));
+        //testJeu.poserPont(testJeu.getIleGrilleJoueur(0,0), testJeu.getIleGrilleJoueur(0,2));
 
-        System.out.println(testJeu.getIleGrilleJoueur(0,0).getValPontDir(new String("E")));
+        //System.out.println(testJeu.getIleGrilleJoueur(0,0).getValPontDir(new String("E")));
         //Aide.techniqueDeDepart(testJeu);
     }
 
