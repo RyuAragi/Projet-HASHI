@@ -6,12 +6,8 @@
 
 <StackPane styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.AutreMenuController2">
     <fx:include source="Logo.fxml" />
-
     <VBox alignment="BASELINE_CENTER">
-        <Button styleClass="custom-button-titre" text="Mode Classique" />
-    </VBox>
-
-    <VBox alignment="BASELINE_CENTER">
+        <Button styleClass="titre" text="MODE CLASSIQUE" />
         <Button styleClass="custom-barre" text="Compléter la grille avec les régles traditionelle " />
         <StackPane.margin>
             <Insets top="30.0" />
