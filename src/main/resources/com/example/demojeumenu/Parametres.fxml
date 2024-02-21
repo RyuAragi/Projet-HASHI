@@ -35,7 +35,7 @@
                   </children>
                </HBox>
             </children>
-            <Button fx:id="mute_button" onAction="#soundButton" mnemonicParsing="false" />
+            <Button fx:id="mute_button" mnemonicParsing="false" />
          </VBox>
          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <children>

@@ -114,7 +114,6 @@ public class Parametres extends BaseController {
         }
     }
 
-    @FXML
     private void initSoundButton(){
         String imgName;
         if(SoundUtils.getSoundLevel() == 0){
@@ -123,14 +122,9 @@ public class Parametres extends BaseController {
         else{
              imgName = "images/" + tabImgSoundButton.get(0);
         }
-        Image image = new Image(Objects.requireNonNull(getClass().getResource(imgName)).toExternalForm());
-        Background bg = new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, null, BackgroundPosition.CENTER, new BackgroundSize(100,100,true,true,false, false)));
-        mute_button.setBackground(bg);
-        mute_button.applyCss();
-        mute_button.setVisible(true);
-        mute_button.requestFocus();
-        mute_button.requestLayout();
-        mute_button.layout();
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imgName)));
+        Background bg = new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, null, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)));
+        mute_button.setBackground();
     }
 
     @FXML
