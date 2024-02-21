@@ -84,6 +84,10 @@ public class SoundUtils {
         }
     }
 
+    public static int getPreviousSoundLevel() {
+        return previousSoudLevel;
+    }
+
     protected static int getSoundLevel(){
         return soundLevel;
     }

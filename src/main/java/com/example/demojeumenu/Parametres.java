@@ -42,6 +42,12 @@ public class Parametres extends BaseController {
         tabImgSoundbar.add("barre_volume_5.png");
     }
 
+    private static final ArrayList<String> tabImgSoundButton = new ArrayList<>();
+    static{
+        tabImgSoundButton.add("bouton_mute.png");
+        tabImgSoundButton.add("bouton_volume.png");
+    }
+
     @FXML
     private void background(MouseEvent event) {
         //detecte le clic sur le bouton background
@@ -58,6 +64,7 @@ public class Parametres extends BaseController {
         if(SoundUtils.getSoundLevel()<5){
             SoundUtils.soundUp();
             updateSoundBar();
+            initSoundButton(); // Ajoutez cette ligne
         } else {
             SoundUtils.playErrorSound();
         }
@@ -68,25 +75,21 @@ public class Parametres extends BaseController {
         if(SoundUtils.getSoundLevel()>0){
             SoundUtils.soundDown();
             updateSoundBar();
+            initSoundButton(); // Ajoutez cette ligne
         } else {
             SoundUtils.playErrorSound();
         }
     }
 
     @FXML
-    private void noSoundButton(){
-        if(SoundUtils.getSoundLevel()>0) {
-            SoundUtils.avoidSound();
-            updateSoundBar();
-        }
-    }
-
-    @FXML
     private void soundButton(){
-        if(SoundUtils.getSoundLevel()==0) {
+        if(SoundUtils.getSoundLevel()==0 && SoundUtils.getPreviousSoundLevel() > 0) {
             SoundUtils.allowSound();
-            updateSoundBar();
+        } else {
+            SoundUtils.avoidSound();
         }
+        updateSoundBar();
+        initSoundButton();
     }
 
     private void updateSoundBar() {
@@ -97,16 +100,29 @@ public class Parametres extends BaseController {
         }
     }
 
+    private void initSoundButton(){
+        String imgName;
+        if(SoundUtils.getSoundLevel() == 0){
+            imgName = "images/" + tabImgSoundButton.get(0); // mute image
+        }
+        else{
+            imgName = "images/" + tabImgSoundButton.get(1); // volume image
+        }
+        String imageUrl = getClass().getResource(imgName).toExternalForm();
+        mute_button.setStyle("-fx-background-image: url('" + imageUrl + "');");
+    }
+
     @FXML
     public void initialize() {
         FXMLUtils.initializeTextField(usernameZone);
         updateSoundBar();
+        initSoundButton();
         SoundUtils.addHoverSound(info_button);
         SoundUtils.addHoverSound(back_button);
         SoundUtils.addHoverSound(mute_button);
         SoundUtils.addClickSound(soundless_button, this::leftSoundButton);
         SoundUtils.addClickSound(soundmore_button, this::rightSoundButton);
         SoundUtils.addClickSound(back_button, this::backButton);
-        SoundUtils.addClickSound(mute_button, this::noSoundButton);
+        SoundUtils.addClickSound(mute_button, this::soundButton);
     }
 }
