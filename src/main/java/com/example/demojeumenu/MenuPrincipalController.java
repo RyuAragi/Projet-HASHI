@@ -30,6 +30,11 @@ public class MenuPrincipalController extends BaseController{
     }
 
     @FXML
+    private void btn1() {
+        FXMLUtils.loadFXML("AutreMenu2.fxml", scene);
+    }
+
+    @FXML
     private void quitter() {
         System.out.println("Bouton QUITTER a été cliqué");
         System.exit(0);
