@@ -35,6 +35,12 @@ public class GrilleJeu {
     private List<Pont> listPontPoseHorizontal;
     private List<Pont> listPontPoseVertical;
 
+    private enum VertiHori{
+        INIT,VERTICALE,HORIZONTAL
+    }
+
+    private VertiHori estVertiHori; 
+
     /**
      * Constructeur de GrilleJeu
      * @param path le chemin vers le fichier de la grille 
@@ -45,6 +51,7 @@ public class GrilleJeu {
         nbPontTotal = 0;
         listPontPoseHorizontal = new ArrayList<>();
         listPontPoseVertical = new ArrayList<>();
+        estVertiHori = VertiHori.INIT;
     }
 
     /**
@@ -246,8 +253,24 @@ public class GrilleJeu {
 
         //A chaque pont posé entre deux îles, on le vérifie
         verifPont(i1, i2);
+        if(estHorizontal(i1, i2)){
+            setVertiHori(VertiHori.HORIZONTAL);
+        }else{
+            setVertiHori(VertiHori.VERTICALE);
+        }
     }
 
+    /**
+     * Renvoie le dernier pont ajouter
+     * @return le dernier pont ajouter
+     */
+    public Pont getDernierPontAjouter(){
+        if(estVertiHori == VertiHori.HORIZONTAL){
+            return listPontPoseHorizontal.get(listPontPoseHorizontal.size()-1);
+        }else{
+            return listPontPoseVertical.get(listPontPoseVertical.size()-1);
+        }
+    }
     /**
      * Ajoute un pont dans la direction souhaitée
      * @param dir1 La direction souhaitée du joueur1
@@ -522,6 +545,14 @@ public class GrilleJeu {
      */
     public boolean estHorizontal(Ile src, Ile dst){
         return dst.getX() == src.getX();
+    }
+
+    /**
+     * set la valeur de vertiHori
+     * @param val la valeur a affecté
+     */
+    public void setVertiHori(VertiHori val){
+        estVertiHori = val;
     }
 
     public static void main(String[] args) {

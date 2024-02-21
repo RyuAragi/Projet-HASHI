@@ -21,7 +21,7 @@ public class Aide{
         //int niveauAide;
 
         //Récupère toutes les îles non nuls de la grille de jeu
-        for(i = 0; i < grille.(); i++){
+        for(i = 0; i < grille.getNbLigne(); i++){
             for(j = 0; j < grille.getNbColonne(); j++){
                 if (grille.getIleGrilleJoueur(i, j) != null){
                     listeNoeudsGrilleJoueur.add(grille.getIleGrilleJoueur(i, j));
