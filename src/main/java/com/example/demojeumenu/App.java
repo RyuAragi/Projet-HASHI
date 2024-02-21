@@ -16,7 +16,7 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-//cocooooo
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
@@ -27,12 +27,9 @@ public class App extends Application {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
 
         javafx.application.Platform.runLater(() -> {
-            String os = System.getProperty("os.name").toLowerCase();
-            if (!os.contains("mac")) {
-                Image image = new Image(Objects.requireNonNull(getClass().getResource("images/normal.png")).toExternalForm());
-                Cursor customCursor = new ImageCursor(image);
-                scene.setCursor(customCursor);
-            }
+            Image image = new Image(Objects.requireNonNull(getClass().getResource("images/normal.png")).toExternalForm());
+            Cursor customCursor = new ImageCursor(image);
+            scene.setCursor(customCursor);
         });
 
         controller.setScene(scene);
@@ -47,4 +44,3 @@ public class App extends Application {
         FXMLUtils.addHistory("MenuPrincipal.fxml");
     }
 }
-

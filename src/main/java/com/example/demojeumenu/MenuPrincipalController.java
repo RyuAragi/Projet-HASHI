@@ -28,12 +28,12 @@ public class MenuPrincipalController extends BaseController{
 
     @FXML
     private void afficherAutreMenu() {
-        FXMLUtils.loadFXML("AutreMenu.fxml", scene);
+        FXMLUtils.loadFXML("MenuModeDuJeu.fxml", scene);
     }
 
     @FXML
     private void btn1() {
-        FXMLUtils.loadFXML("AutreMenu2.fxml", scene);
+        FXMLUtils.loadFXML("MenuReglesDuJeu.fxml", scene);
     }
 
     @FXML
@@ -50,8 +50,8 @@ public class MenuPrincipalController extends BaseController{
     @FXML
     public void initialize() {
         SoundUtils.addHoverSound(jouer);
-        SoundUtils.addHoverSound(didacticiel);
         SoundUtils.addHoverSound(quitter);
+        SoundUtils.addHoverSound(didacticiel);
         FXMLUtils.initializeTextField(zoneTexte);
     }
 

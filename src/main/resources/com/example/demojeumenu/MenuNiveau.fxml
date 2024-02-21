@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.MenuNiveau">
+    <fx:include source="Logo.fxml" />
+    <VBox alignment="BASELINE_CENTER">
+        <Button styleClass="titre" text="MODE CLASSIQUE" />
+        <Button styleClass="custom-barre" text="Compléter la grille avec les régles traditionelle " />
+    </VBox>
+
+    <VBox alignment="CENTER">
+        <Button onAction="#btn1" styleClass="custom-button" text="Facile" />
+        <Button onAction="#btn2" styleClass="custom-button" text="Moyen" />
+        <Button styleClass="custom-button" text="Difficile" />
+        <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
+    </VBox>
+</StackPane>

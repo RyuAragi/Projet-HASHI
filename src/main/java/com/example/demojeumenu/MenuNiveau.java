@@ -1,15 +1,18 @@
 package com.example.demojeumenu;
 
+
 import javafx.fxml.FXML;
 
-public class AutreMenuController3 extends BaseController{
+public class MenuNiveau extends BaseController{
+
+
     @FXML
     private void btn1() {
-        GlobalVariables.getUserInput();
+        FXMLUtils.loadFXML("MenuTailleGrille.fxml", scene);
     }
     @FXML
     private void btn2() {
-        GlobalVariables.getUserInput();
+        FXMLUtils.loadFXML("Parametres.fxml", scene);
     }
     @FXML
     private void retour() {
