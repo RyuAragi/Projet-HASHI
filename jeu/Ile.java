@@ -1,12 +1,20 @@
+/**
+ * Cette classe représente une ile abstraite
+ * @author Coupé Xavier
+ * @version 0.1
+ */
+
 import java.util.*;
 
-public class Ile extends Case{
+public abstract class Ile extends Case{
     
     //La valeur de l'île (le nombre de pont qu'il faut relier)
     private int valIle;
 
-    //Enregistre le nombre de pont en fonction de la direction (N => Nord, S => Sud, E => Est, O => Ouest)
-    private HashMap<String,Integer> nbPontDir;
+    
+
+    
+
     /**
      * 
      * @param cX La coordonnée X
@@ -17,38 +25,26 @@ public class Ile extends Case{
      * @param nbPontsE Le nombre de Pont a l'Est 
      * @param nbPontsO Le nombre de Pont a l'Ouest 
      */
-    Ile(int cX, int cY, int valIle_ , int nbPontsN_, int nbPontsS_,int nbPontsE_, int nbPontsO_){
+    Ile(int cX, int cY, int valIle_ ){
         super(cX,cY);
 
         valIle = valIle_;
-        nbPontDir = new HashMap<>();
-        nbPontDir.put("N", nbPontsN_);
-        nbPontDir.put("S", nbPontsS_);
-        nbPontDir.put("E", nbPontsE_);
-        nbPontDir.put("O", nbPontsO_);
     }
 
-    int getEtiquette(){return valIle;}
+    int getValIle(){return valIle;}
+
 
     /*
      * Méthode qui compte la somme des voisins 
      * @return la somme des voisins d'un noeud
      */
-    int getSommeVoisins(){
-        int cpt = 0;
+    abstract int getSommeVoisins();
 
-        for(Map.Entry<String, Integer> ile : nbPontDir.entrySet()){
-            cpt += ile.getValue();
-        }
-        return cpt;
-    }
-
-    int getValIle(){return valIle;}
-
-    int getValPontDir(String dir){return nbPontDir.get(dir);}
-
-    void incrementValPontDir(String dir){
-        nbPontDir.replace(dir, (nbPontDir.get(dir)+1)%3);
-    }
+    /**
+     * Méthode qui renvoie le nb de pont en fonction d'une direction
+     * @param dir la direction désirée
+     * @return Le nombre de pont associé
+     */
+    abstract int getValPontDir(String dir);
 
 }
