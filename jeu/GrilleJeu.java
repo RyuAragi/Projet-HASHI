@@ -30,9 +30,11 @@ public class GrilleJeu {
     //Le nombre total d'aide utilisé
     private double nbAide;
 
-
+    //Enum pour estVerticale / estHorizontal
     //La liste des ponts posée
-    private List<Pont> listPontPose;
+    private List<Pont> listPontPoseHorizontal;
+    private List<Pont> listPontPoseVertical;
+
     /**
      * Constructeur de GrilleJeu
      * @param path le chemin vers le fichier de la grille 
@@ -41,7 +43,8 @@ public class GrilleJeu {
         charge(path);
 
         nbPontTotal = 0;
-        listPontPose = new ArrayList<>();
+        listPontPoseHorizontal = new ArrayList<>();
+        listPontPoseVertical = new ArrayList<>();
     }
 
     /**
@@ -158,7 +161,11 @@ public class GrilleJeu {
      * @param p le pont a enregistrer
      */
     private void enregistrePont(Pont p){
-        listPontPose.add(p);
+        if (estHorizontal(p.getSrc(), p.getDst())){
+            listPontPoseHorizontal.add(p);
+        }else{
+            listPontPoseVertical.add(p);
+        }
 
     }
 
@@ -167,7 +174,11 @@ public class GrilleJeu {
      * @param p le pont a supprimer
      */
     private void supprimePont(Pont p){
-        listPontPose.remove(p);
+        if (estHorizontal(p.getSrc(), p.getDst())){
+            listPontPoseHorizontal.remove(p);
+        }else{
+            listPontPoseVertical.remove(p);
+        }
 
     }
     /*
@@ -352,39 +363,132 @@ public class GrilleJeu {
 
         int i = x;
         int j = y;
-        Ile tmp = null;
+        Ile voisinPontPotentiel = null;
 
         //Recherche de voisin au nord
         boucle_nord:
         for(i = x,j=y; j >= 0; j-- ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
-                tmp = getIleGrilleSolution(i, j);
+                voisinPontPotentiel = getIleGrilleSolution(i, j);
                 break boucle_nord;
             }
-        }
-
-        for(Pont p : listPontPose){
-            int xSrcPont = p.src.getX(), xDstPont = p.dst.getX();
-            int ySrcPont = p.src.getY(), yDstPont = p.dst.getY();
-
-            ///Déterminer si je peux poser un pont
-
-            if ()
         }
         /**
          * Si un voisin a été trouvé, on vérifie si il n'existe pas de pont entre les deux îles
          */
-        if (tmp != null){
+        if (voisinPontPotentiel != null){
+            if (pontPossibleEntre(joueur, (IleJoueur)voisinPontPotentiel)){
+                res.add("N");
+            }
+            voisinPontPotentiel = null;
+        }
+        
+        //Test de présence de voisin au sud
+        boucle_sud:
+        for(i = x,j=y; j < nbColonne; j++ ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                voisinPontPotentiel = getIleGrilleSolution(i, j);
+                break boucle_sud;
+            }
+        }
 
+        /**
+         * Si un voisin a été trouvé, on vérifie si il n'existe pas de pont entre les deux îles
+         */
+        if (voisinPontPotentiel != null){
+            if (pontPossibleEntre(joueur, (IleJoueur)voisinPontPotentiel)){
+                res.add("S");
+            }
+            voisinPontPotentiel = null;
+        }
+
+        //Test de présence de voisin au est
+        boucle_est:
+        for(i = x,j=y; i < nbLigne; i++ ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                voisinPontPotentiel = getIleGrilleSolution(i, j);
+                break boucle_est;
+            }
+        }
+
+        /**
+         * Si un voisin a été trouvé, on vérifie si il n'existe pas de pont entre les deux îles
+         */
+        if (voisinPontPotentiel != null){
+            if (pontPossibleEntre(joueur, (IleJoueur)voisinPontPotentiel)){
+                res.add("E");
+            }
+            voisinPontPotentiel = null;
         }
 
 
-
+        //Test de présence de voisin au ouest
+        boucle_ouest:
+        for(i = x,j=y; i >= 0; i-- ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                voisinPontPotentiel = getIleGrilleSolution(i, j);
+                break boucle_ouest;
+            }
+        }
+/**
+         * Si un voisin a été trouvé, on vérifie si il n'existe pas de pont entre les deux îles
+         */
+        if (voisinPontPotentiel != null){
+            if (pontPossibleEntre(joueur, (IleJoueur)voisinPontPotentiel)){
+                res.add("O");
+            }
+            voisinPontPotentiel = null;
+        }
         return res;
 
     }
 
+    /**
+     * Vérifie si un pont est posable entre deux iles
+     * @param i1 la première ile a tester
+     * @param i2 la seconde ile a tester
+     * @return True si c'est possible, false sinon
+     */
+    private boolean pontPossibleEntre(IleJoueur i1, IleJoueur i2){
+        int minX;
+        int maxX;
+        int minY;
 
+        int maxY;
+        if (estVerticale(i1, i2)){
+            if (i2.getX() < i1.getX()){
+                minX = i2.getX();
+                maxX = i1.getX();
+            }else{
+                minX = i1.getX();
+                maxX = i2.getX();
+            }
+            for (Pont p : listPontPoseHorizontal){
+                if ((p.getMinY() < i1.getY()) &&( p.getMaxY() > i1.getY()) && (minX < p.getSrc().getX()) && (maxX > p.getSrc().getX())){
+                    continue;
+                }else{
+                    return true;
+                }
+            }
+        }else{
+            if(i2.getY() < i1.getY()){
+                minY = i2.getY();
+                maxY = i1.getY();
+            }else{
+                minY = i1.getY();
+                maxY = i2.getY();
+            }
+
+            for(Pont p: listPontPoseVertical){
+                if ((minY < p.getSrc().getY()) &&(maxY > p.getSrc().getY()) && (p.getMinX() < i1.getX()) && (p.getMaxX() > i1.getX())){
+                    continue;
+                }else{
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     private void afficher_mat_out() {
         for(int i = 0; i < nbLigne; i++) {
             for(int j = 0; j < nbColonne; j++) {
@@ -399,6 +503,27 @@ public class GrilleJeu {
         }
     }
 
+
+    /**
+     * Renvoie vrai si deux iles sont à la verticale ou pas
+     * @param src l'ile source
+     * @param dst l'ile destination
+     * @return True ou False
+     */
+    public boolean estVerticale(Ile src, Ile dst){
+        return src.getY() == dst.getY();
+    }
+    
+    /**
+     * Renvoie vrai si deux iles sont à l'horizontal ou pas
+     * @param src l'ile source
+     * @param dst l'ile
+     * @return True ou False
+     */
+    public boolean estHorizontal(Ile src, Ile dst){
+        return dst.getX() == src.getX();
+    }
+
     public static void main(String[] args) {
         GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Facile-5.txt");
         testJeu.afficher_mat_out();
@@ -408,6 +533,4 @@ public class GrilleJeu {
         System.out.println(testJeu.getIleGrilleJoueur(0,0).getValPontDir(new String("E")));
         //Aide.techniqueDeDepart(testJeu);
     }
-
-    
 }

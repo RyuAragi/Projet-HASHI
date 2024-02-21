@@ -1,3 +1,9 @@
+/**
+ * Cette classe représente une ile abstraite
+ * @author Coupé Xavier
+ * @version 0.1
+ */
+
 public class Case {
 
     private int x;

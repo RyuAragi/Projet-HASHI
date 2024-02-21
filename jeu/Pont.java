@@ -8,8 +8,8 @@ public class Pont{
     boolean estHypothese; 
 
 
-    IleJoueur src;
-    IleJoueur dst;
+    private IleJoueur src;
+    private IleJoueur dst;
     
     /**
      * Constructeur de Pont
@@ -24,7 +24,63 @@ public class Pont{
 
     }
 
+    /**
+     * Renvoie vrai si le pont est un pont hypothese
+     * @return True, ou False
+     */
     public boolean estHypothese(){
         return estHypothese;
     }
+
+    /**
+     * Renvoie l'ile destination
+     * @return l'ile destination
+     */
+    public IleJoueur getDst(){
+        return dst;
+    }
+
+    /**
+     * Renvoie l'ile source
+     * @return l'ile source
+     */
+    public IleJoueur getSrc(){
+        return dst;
+    }
+
+    /**
+     * Renvoie la coordonnée y la plus petite entre les iles d'un pont
+     * @return la coordonnée y
+     */
+    public int getMinY(){
+        return src.getY() < dst.getY() ? src.getY() : dst.getY();
+    }
+
+
+    /**
+     * Renvoie la coordonnée x la plus petite entre les iles d'un pont
+     * @return la coordonnée x
+     */
+    public int getMinX(){
+        return src.getX() < dst.getX() ? src.getX() : dst.getX();
+    }
+
+
+    /**
+     * Renvoie la coordonnée y la plus petite entre les iles d'un pont
+     * @return la coordonnée y
+     */
+    public int getMaxY(){
+        return src.getY() > dst.getY() ? src.getY() : dst.getY();
+    }
+
+
+    /**
+     * Renvoie la coordonnée x la plus petite entre les iles d'un pont
+     * @return la coordonnée x
+     */
+    public int getMaxX(){
+        return src.getX() > dst.getX() ? src.getX() : dst.getX();
+    }
+
 }

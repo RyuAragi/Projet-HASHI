@@ -1,11 +1,9 @@
-import java.util.*;
-
 /** Classe aide qui lance la détection de technique et l'aide à la résolution
  * Toutes les méthodes de cette classe sont statiques
 * @author COUPE Xavier FOUQUERAY Victor
 * @version 0.0 
 */
-
+import java.util.*;
 
 public class Aide{
 
