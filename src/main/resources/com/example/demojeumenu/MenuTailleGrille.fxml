@@ -9,8 +9,7 @@
         <Button styleClass="titre" text="MODES DE JEU"  />
     </VBox>
     <VBox alignment="CENTER">
-        <Button styleClass="custom-button" text="Jouer cette grille" />
-        <Button styleClass="custom-button" text="Jouer cette grille" />
+
         <Button styleClass="custom-button" text="Jouer cette grille" />
         <Button styleClass="custom-button" text="Jouer cette grille" />
         <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
