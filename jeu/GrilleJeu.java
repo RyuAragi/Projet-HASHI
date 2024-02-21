@@ -353,7 +353,7 @@ public class GrilleJeu {
 
             ///Déterminer si je peux poser un pont
 
-            if ()
+
         }
         /**
          * Si un voisin a été trouvé, on vérifie si il n'existe pas de pont entre les deux îles
