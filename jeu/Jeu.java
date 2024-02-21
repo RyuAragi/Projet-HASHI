@@ -106,6 +106,8 @@ public class Jeu{
         mat_err = mat;
         return false;
     }
+
+    
     /**
      * Méthode permettant de poser un pont entre 2 noeuds en incremetant dans la bonne direction chacun des noeuds puis en utilisant %3, comme ça dès qu'on a dépasser deux on retourne a 0
      * @param n1 correspond au noeud 1
