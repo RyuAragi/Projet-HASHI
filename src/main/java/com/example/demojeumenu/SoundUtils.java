@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SoundUtils {
@@ -33,7 +34,7 @@ public class SoundUtils {
         if (mediaPlayer != null) {
             mediaPlayer.stop(); // Stop the previous sound
         }
-        Media sound = new Media(SoundUtils.class.getResource("sounds/test-hover.mp3").toExternalForm());
+        Media sound = new Media(Objects.requireNonNull(SoundUtils.class.getResource("sounds/hover.wav")).toExternalForm());
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setOnEndOfMedia(() -> isPlaying.set(false));
         isPlaying.set(true);
@@ -58,13 +59,12 @@ public class SoundUtils {
 
     private static void playClickSound() {
         try {
-            if (mediaPlayer != null) {
-                mediaPlayer.stop(); // Stop the previous sound
-            }
-            Media sound = new Media(SoundUtils.class.getResource("sounds/click.mp3").toExternalForm());
-            mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.setOnEndOfMedia(() -> isPlaying.set(false));
-            mediaPlayer.play();
+            Media sound = new Media(Objects.requireNonNull(SoundUtils.class.getResource("sounds/click.wav")).toExternalForm());
+            MediaPlayer newMediaPlayer = new MediaPlayer(sound);
+            newMediaPlayer.setOnEndOfMedia(() -> isPlaying.set(false));
+            newMediaPlayer.play();
+            // Update the mediaPlayer reference only after the new sound started playing
+            mediaPlayer = newMediaPlayer;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -75,7 +75,7 @@ public class SoundUtils {
             if (mediaPlayer != null) {
                 mediaPlayer.stop(); // Stop the previous sound
             }
-            Media sound = new Media(SoundUtils.class.getResource("sounds/error.mp3").toExternalForm());
+            Media sound = new Media(Objects.requireNonNull(SoundUtils.class.getResource("sounds/erreur.wav")).toExternalForm());
             mediaPlayer = new MediaPlayer(sound);
             mediaPlayer.setOnEndOfMedia(() -> isPlaying.set(false));
             mediaPlayer.play();
