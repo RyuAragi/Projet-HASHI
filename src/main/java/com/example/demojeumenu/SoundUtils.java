@@ -5,13 +5,14 @@ import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SoundUtils {
 
     private static final AtomicBoolean isPlaying = new AtomicBoolean(false);
     private static MediaPlayer mediaPlayer = null;
-    private static int previousSoudLevel = 0;
+    private static int previousSoudLevel = 1;
     private static int soundLevel = 2;
     private static PauseTransition hoverSoundDelay;
 
@@ -33,7 +34,7 @@ public class SoundUtils {
         if (mediaPlayer != null) {
             mediaPlayer.stop(); // Stop the previous sound
         }
-        Media sound = new Media(SoundUtils.class.getResource("sounds/test-hover.mp3").toExternalForm());
+        Media sound = new Media(Objects.requireNonNull(SoundUtils.class.getResource("sounds/hover.mp3")).toExternalForm());
         mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setOnEndOfMedia(() -> isPlaying.set(false));
         isPlaying.set(true);
@@ -106,7 +107,7 @@ public class SoundUtils {
 
     protected static void allowSound(){
         soundLevel = previousSoudLevel;
-        previousSoudLevel = -1;
+        previousSoudLevel = 1;
     }
     private SoundUtils() {
     }
