@@ -46,5 +46,5 @@ public class App extends Application {
         // Ajoutez manuellement le fichier FXML à l'historique
         FXMLUtils.addHistory("MenuPrincipal.fxml");
     }
-  }
 }
+
