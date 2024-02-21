@@ -13,7 +13,6 @@ public class SoundUtils {
     private static int previousSoudLevel = -1;
     private static int soundLevel = 2;
 
-
     public static void addHoverSound(Button button) {
         button.setOnMouseEntered(event -> {
             if (!isPlaying.get()) {
@@ -54,4 +53,6 @@ public class SoundUtils {
         soundLevel = previousSoudLevel;
         previousSoudLevel = -1;
     }
+
+
 }
