@@ -37,13 +37,28 @@ public class App extends Application {
         controller.setScene(scene);
         primaryStage.setScene(scene);
         primaryStage.setFullScreenExitHint("");
-        primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.valueOf("alt+F4"));
         FXMLUtils.applySceneStyles(scene);
-        primaryStage.show();
 
         // Ajoutez manuellement le fichier FXML à l'historique
         FXMLUtils.addHistory("MenuPrincipal.fxml");
+
+        primaryStage.showingProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                javafx.application.Platform.runLater(() -> {
+                    primaryStage.setFullScreen(true);
+                });
+            }
+        });
+
+        // Définir une taille par défaut pour la fenêtre en fonction de la taille de l'écran
+        primaryStage.setMinWidth(800);
+        primaryStage.setMinHeight(600);
+
+        // Maximiser la fenêtre au démarrage de l'application
+        primaryStage.setMaximized(true);
+
+        primaryStage.show();
     }
 }
 
