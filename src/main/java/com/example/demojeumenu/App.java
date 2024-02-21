@@ -16,7 +16,6 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
@@ -47,3 +46,4 @@ public class App extends Application {
         FXMLUtils.addHistory("MenuPrincipal.fxml");
     }
 }
+
