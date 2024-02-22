@@ -68,6 +68,22 @@ public class Aide{
     }
 
     /**
+     * Méthode qui détecte si une technique d'une ile au milieu est applicable
+     * @param list la liste des iles du joueur
+     * @return l'ile ou la technique est applicable ou null
+     */
+    private static Ile techniqueAuMilieu(List<Ile> list){
+        int v1 = 8;
+        int v2 = 7;
+        for(Ile n : list){
+            if(((n.getValIle() == v1) && (n.getSommeVoisins() < v1) ) ||((n.getValIle() == v2)&&(n.getSommeVoisins()==v2))){
+                return n;
+            }
+        }
+        return null;
+    }
+
+    /**
      * 
      * @param list la liste des iles du joueur
      * @return l'ile ou la technique est applicable ou null
@@ -125,6 +141,22 @@ public class Aide{
     private static Ile techniqueCinqSurLeCote(List<Ile> listJoueur, List<Ile> listResolu, GrilleJeu grille){
         for(int i = 0 ; i< listJoueur.size(); i++){
             if ((listResolu.get(i).getValIle() == 5)&&(grille.getNbVoisinReel((IleJoueur)listResolu.get(i)) == 3) && (listJoueur.get(i).getSommeVoisins()<5)){
+                return listResolu.get(i);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 
+     * @param listJoueur la liste des iles du joueur
+     * @param listResolu la liste des iles de la grille résolu
+     * @param grille la grille du jeu_
+     * @return
+     */
+    private static Ile techniqueQuatreSurLeCote(List<Ile> listJoueur, List<Ile> listResolu, GrilleJeu grille){
+        for(int i = 0 ; i< listJoueur.size(); i++){
+            if ((listResolu.get(i).getValIle() == 4)&&(grille.getNbVoisinReel((IleJoueur)listResolu.get(i)) == 3) && (listJoueur.get(i).getSommeVoisins()<4)){
                 return listResolu.get(i);
             }
         }
