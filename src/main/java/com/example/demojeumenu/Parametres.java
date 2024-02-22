@@ -1,12 +1,19 @@
 package com.example.demojeumenu;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -112,8 +119,28 @@ public class Parametres extends BaseController {
         mute_button.setStyle("-fx-background-image: url('" + imageUrl + "');");
     }
 
+    @FXML
     private void showInfo() {
-        new MenuInfoController(scene.getWindow());
+        // Charger le fichier FXML de l'external frame
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("menuInfo.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Créer la scène de l'external frame
+        Scene sceneInfo = new Scene(root);
+
+        // Créer une nouvelle fenêtre pour l'external frame
+        Stage externalFrame = new Stage();
+        externalFrame.initStyle(StageStyle.UNDECORATED);
+        externalFrame.initOwner(scene.getWindow());
+        externalFrame.getOwner().setOpacity(0.5);
+        FXMLUtils.addHistory("menuInfo.fxml");
+        externalFrame.setScene(sceneInfo);
+        externalFrame.show();
     }
 
     @FXML
