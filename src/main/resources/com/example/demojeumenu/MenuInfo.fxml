@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<StackPane prefHeight="500.0" prefWidth="500.0" styleClass="boardBg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.MenuInfoController">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <ImageView styleClass="imgLogo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="98.0" prefWidth="450.0" styleClass="text" text="Dans le cadre du Module de Génie Logiciel 2 en licence informatique à l'Université du Mans, le projet a pour objectif de créer un application permettant la résolution d'un puzzle, le Hashi.  " textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="lowtitle" text="Membres de l'équipe :" textAlignment="CENTER" />
+                  <Label styleClass="text" text="BALLEREAU Wandrille - Chef de groupe" />
+                  <Label styleClass="text" text="FOUQUERAY Victor - Chef documentaliste" />
+                  <Label styleClass="text" text="GEORGET Rémy - Back-end" textAlignment="CENTER" />
+                  <Label styleClass="text" text="COUPE Xavier - Back-end" textAlignment="CENTER" />
+                  <Label styleClass="text" text="ALHALLAK Sédra - Front-End" textAlignment="CENTER" />
+                  <Label styleClass="text" text="EL GHOUMARI Soumia - Front-End" textAlignment="CENTER" />
+                  <Label styleClass="text" text="COURCOL Thibault - Full stack" />
+                  <Label styleClass="text" text="DULUARD Théo - Full stack" />
+            </VBox>
+            <Button fx:id="bouton_retour" onAction="#retour" mnemonicParsing="false" styleClass="custom-button" text="Retour" />
+      </VBox>
+</StackPane>

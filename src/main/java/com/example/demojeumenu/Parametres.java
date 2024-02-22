@@ -7,8 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -66,6 +64,7 @@ public class Parametres extends BaseController {
         if(SoundUtils.getSoundLevel()<5){
             SoundUtils.soundUp();
             updateSoundBar();
+            updateSoundButton();
         } else {
             SoundUtils.playErrorSound();
         }
@@ -76,62 +75,52 @@ public class Parametres extends BaseController {
         if(SoundUtils.getSoundLevel()>0){
             SoundUtils.soundDown();
             updateSoundBar();
-        }
-        else {
+            updateSoundButton();
+        } else {
             SoundUtils.playErrorSound();
         }
     }
 
     @FXML
     private void soundButton(){
-        if(SoundUtils.getSoundLevel()==0) {
+        if(SoundUtils.getPreviousSoundLevel() > 0) {
             SoundUtils.allowSound();
-            updateSoundBar();
-            String imageName = "images/" + tabImgSoundButton.get(1);
-            System.out.println(imageName);
-            Image image = new Image(getClass().getResource(imageName).toExternalForm());
-            Background bg = new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, null, BackgroundPosition.CENTER, new BackgroundSize(100,100,true,true,false, false)));
-            mute_button.setBackground(bg);
-            mute_button.requestLayout();
-        }
-        else if(SoundUtils.getSoundLevel()>0) {
+        } else {
             SoundUtils.avoidSound();
-            updateSoundBar();
-            String imageName = "images/" + tabImgSoundButton.get(0);
-            System.out.println(imageName);
-            Image image = new Image(getClass().getResource(imageName).toExternalForm());
-            Background bg = new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, null, BackgroundPosition.CENTER, new BackgroundSize(100,100,true,true,false, false)));
-            mute_button.setBackground(bg);
-            mute_button.requestFocus();
         }
+        updateSoundBar();
+        updateSoundButton();
     }
 
     private void updateSoundBar() {
-        if (SoundUtils.getSoundLevel() >= 0 && SoundUtils.getSoundLevel() < tabImgSoundbar.size()) {
+        if (SoundUtils.getSoundLevel()>=0 && SoundUtils.getSoundLevel() < tabImgSoundbar.size()) {
             String imageName = "images/" + tabImgSoundbar.get(SoundUtils.getSoundLevel());
             Image image = new Image(Objects.requireNonNull(getClass().getResource(imageName)).toExternalForm());
             soundBar.setImage(image);
         }
     }
 
-    private void initSoundButton(){
+    private void updateSoundButton(){
         String imgName;
         if(SoundUtils.getSoundLevel() == 0){
-            imgName = "images/" + tabImgSoundButton.get(1);
+            imgName = "images/" + tabImgSoundButton.get(1); // volume image -> pour remettre le son
         }
         else{
-             imgName = "images/" + tabImgSoundButton.get(0);
+            imgName = "images/" + tabImgSoundButton.get(0); // mute image   -> pour supprimer le son
         }
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imgName)));
-        Background bg = new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, null, BackgroundPosition.CENTER, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)));
-        mute_button.setBackground();
+        String imageUrl = Objects.requireNonNull(getClass().getResource(imgName)).toExternalForm();
+        mute_button.setStyle("-fx-background-image: url('" + imageUrl + "');");
+    }
+
+    private void showInfo() {
+        new MenuInfoController(scene.getWindow());
     }
 
     @FXML
     public void initialize() {
         FXMLUtils.initializeTextField(usernameZone);
         updateSoundBar();
-        initSoundButton();
+        updateSoundButton();
         SoundUtils.addHoverSound(info_button);
         SoundUtils.addHoverSound(back_button);
         SoundUtils.addHoverSound(mute_button);
@@ -139,5 +128,6 @@ public class Parametres extends BaseController {
         SoundUtils.addClickSound(soundmore_button, this::rightSoundButton);
         SoundUtils.addClickSound(back_button, this::backButton);
         SoundUtils.addClickSound(mute_button, this::soundButton);
+        SoundUtils.addClickSound(info_button, this::showInfo);
     }
 }
