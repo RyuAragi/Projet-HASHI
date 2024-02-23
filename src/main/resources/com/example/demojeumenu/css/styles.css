@@ -11,7 +11,7 @@
 }
 
 .boardBg{
-    -fx-background-image: url('../images/infoBg.jpg');
+    -fx-background-image: url('../images/board.png');
     -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
     -fx-background-color: transparent;
     -fx-background-size: 100% 100%;
@@ -268,7 +268,7 @@ HBox{
     -fx-prompt-text-fill: white;
 }
 
-projectText{
+.projectText{
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: white;
     -fx-font-size: 18px;
@@ -285,7 +285,7 @@ projectText{
     -fx-underline: true;
 }
 
-#memberTitle{
+.memberTitle{
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: white;
     -fx-font-size: 20px;

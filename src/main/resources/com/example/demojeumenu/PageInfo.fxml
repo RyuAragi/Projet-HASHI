@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane maxHeight="700.0" maxWidth="700.0" minHeight="700.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" styleClass="boardBg" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="700.0" maxWidth="700.0" minHeight="700.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" styleClass="boardBg" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-      <ImageView fx:id="logoImg" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="logoImg" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" styleClass="imgLogo">
       </ImageView>
-      <Label id="projectText" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">Dans le cadre du Module de Génie Logiciel 2 en licence informatique à l'Université du Mans, le projet a pour objectif de créer un application permettant la résolution d'un puzzle, le Hashi, en implémentant un système d'aide.</Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" styleClass="projectText" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">Dans le cadre du Module de Génie Logiciel 2 en licence informatique à l'Université du Mans, le projet a pour objectif de créer un application permettant la résolution d'un puzzle, le Hashi, en implémentant un système d'aide.</Label>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-         <Label alignment="CENTER" contentDisplay="CENTER" id="memberTitle" textAlignment="CENTER">Membres de l'équipe :</Label>
+         <Label alignment="CENTER" contentDisplay="CENTER" styleClass="memberTitle" textAlignment="CENTER">Membres de l'équipe :</Label>
          <Label styleClass="textLbl" textAlignment="CENTER">BALLEREAU Wandrille - Chef de groupe</Label>
          <Label styleClass="textLbl" textAlignment="CENTER">FOUQUERAY Victor - Chef documentaliste</Label>
          <Label styleClass="textLbl" textAlignment="CENTER">GEORGET Rémy - Back-end</Label>
