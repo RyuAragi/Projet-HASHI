@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -121,6 +122,9 @@ public class Parametres extends BaseController {
 
     @FXML
     private void showInfo() {
+        ColorAdjust darkColorAdjust = new ColorAdjust();
+        darkColorAdjust.setBrightness(-0.5);
+        scene.getRoot().setEffect(darkColorAdjust);
         // Charger le fichier FXML de l'external frame
         FXMLLoader loader = new FXMLLoader(getClass().getResource("menuInfo.fxml"));
         Parent root = null;
@@ -132,13 +136,21 @@ public class Parametres extends BaseController {
 
         // Créer la scène de l'external frame
         Scene sceneInfo = new Scene(root);
+        sceneInfo.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
+        sceneInfo.getRoot().setEffect(new DropShadow());
 
         // Créer une nouvelle fenêtre pour l'external frame
         Stage externalFrame = new Stage();
+        externalFrame.setResizable(false);
+        externalFrame.setWidth(800);
+        externalFrame.setHeight(700);
+        externalFrame.setAlwaysOnTop(true);
         externalFrame.initStyle(StageStyle.UNDECORATED);
         externalFrame.initOwner(scene.getWindow());
-        externalFrame.getOwner().setOpacity(0.5);
-        FXMLUtils.addHistory("menuInfo.fxml");
+        MenuInfoController.setStage(externalFrame);
+
+        externalFrame.setOnHidden(event -> scene.getRoot().setEffect(null));
+
         externalFrame.setScene(sceneInfo);
         externalFrame.show();
     }
