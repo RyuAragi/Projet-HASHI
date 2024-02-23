@@ -1,6 +1,6 @@
 /**
  * Cette classe représente une ile dans la grille du joueur
- * @author Coupé Xavier
+ * @author Coupé Xavier, Georget Rémy 
  * @version 0.1
  */
 
@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
-public class IleJoueur extends Ile{
+public class IleJoueur extends Ile {
 
     //Représente le nombre max de pont pouvant être connecté sur un côté de l'ile
     final int NB_PONT_MAX = 2;
@@ -27,8 +28,7 @@ public class IleJoueur extends Ile{
         pontRelie.put("O", new ArrayList<Pont>());
     }
     
-
-    /*
+    /**
      * Méthode qui compte la somme des voisins 
      * @return la somme des voisins d'un noeud
      */
@@ -63,7 +63,7 @@ public class IleJoueur extends Ile{
      * @param dir une direction
      * @return la liste des ponts associée
      */
-    public List<Pont> getDirection(String dir){
+    public List<Pont> getListePonts(String dir){
         return pontRelie.get(dir);
     }
 
@@ -96,9 +96,25 @@ public class IleJoueur extends Ile{
                     pontRelie.get(dir).remove(p);
                 }
             } 
-        }else{
+        }
+        else{
             pontRelie.get(dir).add(new Pont((IleJoueur)this,(IleJoueur) j, true));
         }
     }
 
+    /**
+     * Methode permettant de pouvoir avoir la direction d'un pont dans une ile
+     * 
+     * @param p
+     * @return La direction 
+     * @throws NoSuchElementException
+     */
+    String getPontDirection(Pont p) throws NoSuchElementException{
+        for(Map.Entry<String, List<Pont>> elem : this.pontRelie.entrySet()) {
+            if(elem.getValue().contains(p)) {
+                return elem.getKey();
+            }
+        }
+        throw new NoSuchElementException();
+    } 
 }

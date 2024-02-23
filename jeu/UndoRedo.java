@@ -23,45 +23,84 @@
   *   * Ajouter le pont dans la matrice 
   */
  public class UndoRedo {
-     private Stack<Pont> Redo;
-     
-     /**
-      * Constructeur de la classe
-      */
-     UndoRedo() {   
-         this.Redo = new Stack<Pont>();
-     }
+    private Stack<Pont> redo;
+    
+    /**
+     * Constructeur de la classe
+     */
+    UndoRedo() {   
+        this.redo = new Stack<Pont>();
+    }
+
+    /**
+     * Methode permettant d'empiler sur Redo
+     */
+    void pushRedo(Pont p) {
+        this.redo.push(p);
+    }
  
-      /**
-      * Methode permettant d'empiler sur Redo
-      */
-     void pushRedo(Pont p) {
-         this.Redo.push(p);
-     }
+    /** 
+     * Methode permettant de dépiler sur Undo
+     * 
+     * @param p Pont a ajouter
+     * @return Pont 
+     */
+    Pont popRedo() {
+        return this.redo.pop();
+    }
  
-     /** 
-      * Methode permettant de dépiler sur Undo
-      * 
-      * @param p Pont a ajouter
-      * @return Pont 
-      */
-     Pont popRedo(Pont p) {
-         return this.Redo.pop();
-     }
- 
-     /** 
-      * Methode permettant de RAZ la pile Redo
-      */
-     void RazRedo() {
-         while(!(this.Redo.empty())) this.Redo.pop();
-     }
- 
-     /**
-      * Methode permettant de faire une action undo -> Revenir en arriere 
-      * @param jeu
-      */
-     void actionUndo(GrilleJeu jeu) {
-         
-     }
- 
+    /** 
+     * Methode permettant de RAZ la pile Redo
+     */
+    void RazRedo() {
+        while(!(this.redo.empty())) this.redo.pop();
+    }
+
+    /**
+     * Methode permettant de faire une action undo -> Revenir en arriere 
+     * @param jeu
+     */
+    void actionUndo(GrilleJeu jeu) {
+       Pont p = jeu.getDernierPontAjouter();
+       jeu.supprimePont(p);
+       this.pushRedo(p);
+    }
+
+    /**
+     * Methode permettant de faire une action redo -> Revenir a l'état avant le retour en arrière
+     * @param jeu
+     */
+    void actionRedo(GrilleJeu jeu) {
+        Pont pont = this.popRedo();
+        jeu.poserPont(pont.getSrc(), pont.getDst());
+    }
+
+    /**
+     * Test de Undo/Redo => A refaire avec de vrais tests maven
+     * @param args
+     */
+    public static void main(String[] args) {
+        GrilleJeu grille = new GrilleJeu("../niveaux/facile/Facile-1.txt");
+        
+        // Affichage de la matrice pour le test
+        grille.afficher_mat_out();
+
+        // Pose du pont et affichage du nombre de voisins pour savoir si ils sont connectés
+        grille.poserPont(grille.getIleGrilleJoueur(0, 1), grille.getIleGrilleJoueur(0, 3));
+        System.out.println("----- Pose du Pont -----");
+        System.out.println("Nombre de pont a l'est a l'ile 0 1 : " + grille.getIleGrilleJoueur(0, 1).getValPontDir("E"));
+        System.out.println("Nombre de pont a l'ouest a l'ile 0 3 : " + grille.getIleGrilleJoueur(0, 3).getValPontDir("O") + "\n");
+
+        // Action de undo et affichage des coordonées X et Y des deux iles
+        grille.undoRedo.actionUndo(grille);
+        System.out.println("----- Action du Undo -----");
+        System.out.println("Ile SRC : " + grille.undoRedo.redo.peek().getSrc().getX() + " " + grille.undoRedo.redo.peek().getSrc().getY());
+        System.out.println("Ile DEST : " + grille.undoRedo.redo.peek().getDst().getX() + " " + grille.undoRedo.redo.peek().getDst().getY() + "\n");
+
+        // Action de redo et affichage du nombre de voisins pour savoir si ils sont connectés
+        grille.undoRedo.actionRedo(grille);
+        System.out.println("----- Action du Redo -----");
+        System.out.println("Nombre de pont a l'est a l'ile 0 1 : " + grille.getIleGrilleJoueur(0, 1).getValPontDir("E"));
+        System.out.println("Nombre de pont a l'ouest a l'ile 0 3 : " + grille.getIleGrilleJoueur(0, 3).getValPontDir("O"));
+    }
  }

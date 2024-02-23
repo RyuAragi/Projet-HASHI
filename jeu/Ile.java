@@ -4,16 +4,10 @@
  * @version 0.1
  */
 
-import java.util.*;
-
 public abstract class Ile extends Case{
     
     //La valeur de l'île (le nombre de pont qu'il faut relier)
     private int valIle;
-
-    
-
-    
 
     /**
      * 
@@ -31,8 +25,9 @@ public abstract class Ile extends Case{
         valIle = valIle_;
     }
 
-    int getValIle(){return valIle;}
-
+    int getValIle(){
+        return valIle;
+    }
 
     /*
      * Méthode qui compte la somme des voisins 

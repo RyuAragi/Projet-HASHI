@@ -1,6 +1,6 @@
 /**
  * Cette classe représente une grille de jeu de hashi
- * @author Coupé Xavier
+ * @author Coupé Xavier, Georget Rémy 
  * @version 0.1
  */
 
@@ -30,6 +30,9 @@ public class GrilleJeu {
     //Le nombre total d'aide utilisé
     private double nbAide;
 
+    // Objet undo redo permettant d'effectuer les actions undo/redo
+    UndoRedo undoRedo;
+
     //Enum pour estVerticale / estHorizontal
     //La liste des ponts posée
     private List<Pont> listPontPoseHorizontal;
@@ -51,6 +54,7 @@ public class GrilleJeu {
         nbPontTotal = 0;
         listPontPoseHorizontal = new ArrayList<>();
         listPontPoseVertical = new ArrayList<>();
+        undoRedo = new UndoRedo();
         estVertiHori = VertiHori.INIT;
     }
 
@@ -180,11 +184,22 @@ public class GrilleJeu {
      * permet de supprimer de la liste de pont chaque fois qu'un pont est retiré 
      * @param p le pont a supprimer
      */
-    private void supprimePont(Pont p){
-        if (estHorizontal(p.getSrc(), p.getDst())){
+    protected void supprimePont(Pont p){
+        IleJoueur src = p.getSrc();
+        IleJoueur dest = p.getDst();
+        String directionSrc = src.getPontDirection(p);
+        String directionDest = dest.getPontDirection(p);
+
+        if (estHorizontal(src, dest)){
             listPontPoseHorizontal.remove(p);
-        }else{
+            src.supprimePont(directionSrc, p);
+            dest.supprimePont(directionDest, p);
+        }
+
+        else{
             listPontPoseVertical.remove(p);
+            src.supprimePont(directionSrc, p);
+            dest.supprimePont(directionDest, p);
         }
 
     }
@@ -240,9 +255,9 @@ public class GrilleJeu {
         int valXI2 = i2.getX();
         int valYI2 = i2.getY();
 
-        if(valYI1 < valYI2){
+        if(valYI1 > valYI2){
             ajoutePont("O",(IleJoueur)i1,"E",(IleJoueur)i2);
-        }else if(valYI1 > valYI2){
+        }else if(valYI1 < valYI2){
             ajoutePont("E",(IleJoueur)i1 , "O", (IleJoueur)i2);
         }else if(valXI1 > valXI2){
             ajoutePont("S", (IleJoueur)i1, "N",(IleJoueur)i2);
@@ -281,16 +296,15 @@ public class GrilleJeu {
      */
     Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2){
         if(j1.getValPontDir(dir1) == j1.getMaxPont()){
-            for(Pont p: j1.getDirection(dir1) ){
+            for(Pont p: j1.getListePonts(dir1) ){
                 if (p.estHypothese() == false){
                     j1.supprimePont(dir1,p);
                     supprimePont(p);
                 }
             } 
-            for(Pont p: j2.getDirection(dir2) ){
+            for(Pont p: j2.getListePonts(dir2) ){
                 if (p.estHypothese() == false){
                     j2.supprimePont(dir2,p);
-
                 }
             } 
         }else{
@@ -512,7 +526,7 @@ public class GrilleJeu {
         }
         return false;
     }
-    private void afficher_mat_out() {
+    protected void afficher_mat_out() {
         for(int i = 0; i < nbLigne; i++) {
             for(int j = 0; j < nbColonne; j++) {
                 if(getIleGrilleSolution(i,j) == null) {
