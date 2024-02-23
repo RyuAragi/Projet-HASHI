@@ -96,6 +96,7 @@ public class MenuPrincipalController extends BaseController {
      */
     @FXML
     public void initialize() {
+        SoundUtils.initMusic();
         SoundUtils.addHoverSound(jouer);
         SoundUtils.addHoverSound(didacticiel);
         SoundUtils.addHoverSound(quitter);
