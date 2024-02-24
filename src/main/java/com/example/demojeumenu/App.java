@@ -44,10 +44,8 @@ public class App extends Application {
         FXMLUtils.addHistory("MenuPrincipal.fxml");
 
         primaryStage.showingProperty().addListener((observable, oldValue, newValue) -> {
-            if (Boolean.TRUE.equals(newValue)) {
-                javafx.application.Platform.runLater(() -> {
-                    primaryStage.setFullScreen(true);
-                });
+            if (newValue) {
+                javafx.application.Platform.runLater(() -> primaryStage.setFullScreen(true));
             }
         });
 
