@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Classe implémentant le réglage du son dans le jeu.
+ * @author Thibault COURCOL, Théo DULUARD
  */
 public class SoundUtils {
 

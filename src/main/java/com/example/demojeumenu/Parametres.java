@@ -20,6 +20,7 @@ import java.util.Objects;
 
 /**
  * Classe implémentant le contrôle et les évènements du menu des paramètres.
+ * @author Thibault COURCOL, Théo DULUARD
  */
 public class Parametres extends BaseController {
     /**

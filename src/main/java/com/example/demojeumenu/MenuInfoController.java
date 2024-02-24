@@ -8,6 +8,7 @@ import javafx.stage.Window;
 
 /**
  * Classe implémentant les interaction avec le menu d'information concernant le projet.
+ * @author Thibault COURCOL, Théo DULUARD
  */
 public class MenuInfoController extends BaseController{
 

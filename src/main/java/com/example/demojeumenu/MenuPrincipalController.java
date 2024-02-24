@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * Classe implémentant les action du menu principal.
+ * @author Thibault COURCOL, Théo DULUARD
  */
 public class MenuPrincipalController extends BaseController {
 
