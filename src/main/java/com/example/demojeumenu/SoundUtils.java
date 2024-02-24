@@ -1,11 +1,8 @@
 package com.example.demojeumenu;
 
-import javafx.animation.PauseTransition;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
-import java.io.File;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -38,7 +35,7 @@ public class SoundUtils {
     /**
      * [MediaPlayer] Lecteur des musiques du menu et du jeu.
      */
-    private static MediaPlayer music = new MediaPlayer(new Media(Objects.requireNonNull(SoundUtils.class.getResource("music/musicMenu.wav")).toExternalForm()));;
+    private static MediaPlayer music = new MediaPlayer(new Media(Objects.requireNonNull(SoundUtils.class.getResource("music/musicMenu.wav")).toExternalForm()));
 
     /**
      * Méthode d'ajout de son lorsque la souris passe sur le bouton passé en paramètre.
@@ -110,7 +107,7 @@ public class SoundUtils {
             // Update the mediaPlayer reference only after the new sound started playing
             interactions = newMediaPlayer;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Erreur de chargement du son click : " + e);
         }
     }
 
@@ -127,7 +124,7 @@ public class SoundUtils {
             interactions.setOnEndOfMedia(() -> isPlaying.set(false));
             interactions.play();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Erreur de chargement du son erreur : " + e);
         }
     }
 

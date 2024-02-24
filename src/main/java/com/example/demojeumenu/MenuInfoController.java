@@ -2,9 +2,7 @@ package com.example.demojeumenu;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.effect.BoxBlur;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 /**
  * Classe implémentant les interaction avec le menu d'information concernant le projet.

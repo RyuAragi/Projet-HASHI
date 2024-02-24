@@ -45,9 +45,7 @@ public class App extends Application {
 
         primaryStage.showingProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                javafx.application.Platform.runLater(() -> {
-                    primaryStage.setFullScreen(true);
-                });
+                javafx.application.Platform.runLater(() -> primaryStage.setFullScreen(true));
             }
         });
 

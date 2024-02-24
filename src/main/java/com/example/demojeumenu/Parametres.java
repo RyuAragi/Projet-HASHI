@@ -183,7 +183,7 @@ public class Parametres extends BaseController {
         scene.getRoot().setEffect(darkColorAdjust);
         // Charger le fichier FXML de l'external frame
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuInfo.fxml"));
-        Parent root = null;
+        Parent root;
         try {
             root = loader.load();
         } catch (IOException e) {
