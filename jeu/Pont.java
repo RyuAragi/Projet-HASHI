@@ -21,7 +21,6 @@ public class Pont{
         src = src_;
         dst = dst_;
         estHypothese = h;
-
     }
 
     /**
@@ -45,7 +44,7 @@ public class Pont{
      * @return l'ile source
      */
     public IleJoueur getSrc(){
-        return dst;
+        return src;
     }
 
     /**
