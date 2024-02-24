@@ -7,10 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+
 /**
  * Classe implémentant les action du menu principal.
  * @author Thibault COURCOL, Théo DULUARD
  */
+
 public class MenuPrincipalController extends BaseController {
 
     /**
@@ -71,6 +73,7 @@ public class MenuPrincipalController extends BaseController {
     /**
      * Méthode permettant de charger le menu des didacticiels.
      */
+
     private void didacticiel() {
         FXMLUtils.loadFXML("AutreMenu2.fxml", scene);
     }
@@ -78,6 +81,8 @@ public class MenuPrincipalController extends BaseController {
     /**
      * Méthode permettant de quitter l'application.
      */
+
+
     private void quitter() {
         System.exit(0);
     }
@@ -95,6 +100,7 @@ public class MenuPrincipalController extends BaseController {
     /**
      * Méthode d'initialisation des actions des boutons et zone de texte du menu.
      */
+
     @FXML
     public void initialize() {
         SoundUtils.initMusic();

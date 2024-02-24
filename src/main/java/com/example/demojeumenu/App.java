@@ -55,6 +55,7 @@ public class App extends Application {
 
         // Maximiser la fenêtre au démarrage de l'application
         primaryStage.setMaximized(true);
+
         primaryStage.show();
     }
 }
