@@ -13,6 +13,7 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +22,8 @@ import java.util.logging.Logger;
 
 public class JsonApp extends BaseController {
     private static final Logger LOGGER = Logger.getLogger(JsonApp.class.getName());
+    private static HashMap<String, Boolean> shownPopups = new HashMap<>();
+
 
     private JsonApp() {
         throw new IllegalStateException("Classe utilitaire");
@@ -35,8 +38,9 @@ public class JsonApp extends BaseController {
 
         File file = new File(resourceUrl.getFile());
 
-        if (file.exists()) {
+        if (file.exists() && !shownPopups.containsKey(username)) {
             showPopupWindow(username);
+            shownPopups.put(username, true);
         } else {
             if (LOGGER.isLoggable(Level.INFO)) {
                 LOGGER.info(String.format("Le fichier pour l'utilisateur %s n'existe pas", username));
@@ -45,10 +49,6 @@ public class JsonApp extends BaseController {
     }
 
     private static void showPopupWindow(String username) {
-        ColorAdjust darkColorAdjust = new ColorAdjust();
-        darkColorAdjust.setBrightness(-0.5);
-        scene.getRoot().setEffect(darkColorAdjust);
-
         // Charger le fichier FXML de l'external frame
         FXMLLoader loader = new FXMLLoader(JsonApp.class.getResource("PopupWindow.fxml"));
         Parent root;
@@ -83,6 +83,17 @@ public class JsonApp extends BaseController {
         popupWindow.setOnHidden(event -> scene.getRoot().setEffect(null));
 
         popupWindow.setScene(scenePopup);
+
+        // Appliquer l'effet d'assombrissement à la scène principale
+        ColorAdjust darkColorAdjust = new ColorAdjust();
+        darkColorAdjust.setBrightness(-0.5);
+        scene.getRoot().setEffect(darkColorAdjust);
+
+        // Montrer la fenêtre contextuelle
         popupWindow.showAndWait();
+    }
+
+    public static void removeShownPopup(String username) {
+        shownPopups.remove(username);
     }
 }
