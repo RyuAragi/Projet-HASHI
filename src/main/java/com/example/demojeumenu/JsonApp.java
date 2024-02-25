@@ -75,7 +75,7 @@ public class JsonApp extends BaseController {
         popupWindow.setAlwaysOnTop(true);
         popupWindow.initStyle(StageStyle.TRANSPARENT);
         popupWindow.initOwner(scene.getWindow());
-        popupWindow.initModality(Modality.WINDOW_MODAL);
+        popupWindow.initModality(Modality.APPLICATION_MODAL);
         popupWindow.setUserData(false);
 
         PopupWindowController.setStage(popupWindow);
