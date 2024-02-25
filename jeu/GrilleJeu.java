@@ -11,8 +11,6 @@
  public class GrilleJeu {
      //Représente la grille sur laquelle joue le joueur 
      private Case[][] joueur;
-     //Représente la grille sur laquelle joue le joueur en mode hypothèse
-     private Case[][] joueur_hypo;
      //Représente la grille avant la première erreur détectée
      private Case[][] erreur;
      //Représente la solution de la grille 
@@ -33,8 +31,9 @@
      // Objet undo redo permettant d'effectuer les actions undo/redo
      UndoRedo undoRedo;
  
-     //Enum pour estVerticale / estHorizontal
-     //La liste des ponts posée
+
+
+     /** Mettre une seule liste on ne peut pas savoir l'avant dernier pont posé avec cette méthode */
      private List<Pont> listPontPoseHorizontal;
      private List<Pont> listPontPoseVertical;
  
@@ -181,7 +180,7 @@
      }
  
      /**
-      * permet de supprimer de la liste de pont chaque fois qu'un pont est retiré 
+      * permet de smettre à jour la liste de pont chaque fois qu'un pont est retiré 
       * @param p le pont a supprimer
       */
      protected void supprimePont(Pont p){
@@ -569,7 +568,7 @@
       * set la valeur de vertiHori
       * @param val la valeur a affecté
       */
-     public void setVertiHori(VertiHori val){
+     private void setVertiHori(VertiHori val){
          estVertiHori = val;
      }
  
