@@ -6,7 +6,9 @@
 
  import java.io.*;
  import java.util.List;
- import java.util.ArrayList;
+
+
+import java.util.ArrayList;
  
  public class GrilleJeu {
      //Représente la grille sur laquelle joue le joueur 
@@ -34,14 +36,11 @@
 
 
      /** Mettre une seule liste on ne peut pas savoir l'avant dernier pont posé avec cette méthode */
-     private List<Pont> listPontPoseHorizontal;
-     private List<Pont> listPontPoseVertical;
+     private List<Pont> listPontPose;
  
-     private enum VertiHori{
-         INIT,VERTICALE,HORIZONTAL
-     }
+     
  
-     private VertiHori estVertiHori; 
+
  
      /**
       * Constructeur de GrilleJeu
@@ -51,10 +50,8 @@
          charge(path);
  
          nbPontTotal = 0;
-         listPontPoseHorizontal = new ArrayList<>();
-         listPontPoseVertical = new ArrayList<>();
+         listPontPose= new ArrayList<>();
          undoRedo = new UndoRedo();
-         estVertiHori = VertiHori.INIT;
      }
  
      /**
@@ -81,7 +78,6 @@
  
                      //Initialisation des grille 
                      joueur = new Case[nbLigne][nbColonne];
-                     joueur_hypo = new Case[nbLigne][nbColonne];
                      erreur = null;
                      solution = new Case[nbLigne][nbColonne];
                  }else{
@@ -171,12 +167,7 @@
       * @param p le pont a enregistrer
       */
      private void enregistrePont(Pont p){
-         if (estHorizontal(p.getSrc(), p.getDst())){
-             listPontPoseHorizontal.add(p);
-         }else{
-             listPontPoseVertical.add(p);
-         }
- 
+        listPontPose.add(p);
      }
  
      /**
@@ -189,15 +180,9 @@
          String directionSrc = src.getPontDirection(p);
          String directionDest = dest.getPontDirection(p);
  
-         if (estHorizontal(src, dest)){
-             listPontPoseHorizontal.remove(p);
-             src.supprimePont(directionSrc, p);
-             dest.supprimePont(directionDest, p);
-         }
- 
-         else{
-             listPontPoseVertical.remove(p);
-             src.supprimePont(directionSrc, p);
+         if (listPontPose.isEmpty()==false){
+            listPontPose.remove(p);
+            src.supprimePont(directionSrc, p);
              dest.supprimePont(directionDest, p);
          }
  
@@ -270,11 +255,6 @@
     
             //A chaque pont posé entre deux îles, on le vérifie
             verifPont(i1, i2);
-            if(estHorizontal(i1, i2)){
-                setVertiHori(VertiHori.HORIZONTAL);
-            }else{
-                setVertiHori(VertiHori.VERTICALE);
-            }
         }
      }
  
@@ -283,11 +263,10 @@
       * @return le dernier pont ajouter
       */
      public Pont getDernierPontAjouter(){
-         if(estVertiHori == VertiHori.HORIZONTAL){
-             return listPontPoseHorizontal.get(listPontPoseHorizontal.size()-1);
-         }else{
-             return listPontPoseVertical.get(listPontPoseVertical.size()-1);
-         }
+        if (listPontPose.isEmpty()==false){
+            listPontPose.get(listPontPose.size()-1);
+        }
+        return null;
      }
      /**
       * Ajoute un pont dans la direction souhaitée
@@ -503,12 +482,15 @@
                  minX = i1.getX();
                  maxX = i2.getX();
              }
-             for (Pont p : listPontPoseHorizontal){
-                 if ((p.getMinY() < i1.getY()) &&( p.getMaxY() > i1.getY()) && (minX < p.getSrc().getX()) && (maxX > p.getSrc().getX())){
-                     continue;
-                 }else{
-                     return true;
-                 }
+             for (Pont p : listPontPose){
+                if( p.estHorizontal()){
+                    if ((p.getMinY() < i1.getY()) &&( p.getMaxY() > i1.getY()) && (minX < p.getSrc().getX()) && (maxX > p.getSrc().getX())){
+                        continue;
+                    }else{
+                        return true;
+                    }
+                }
+                 
              }
          }else{
              if(i2.getY() < i1.getY()){
@@ -519,12 +501,15 @@
                  maxY = i2.getY();
              }
  
-             for(Pont p: listPontPoseVertical){
-                 if ((minY < p.getSrc().getY()) &&(maxY > p.getSrc().getY()) && (p.getMinX() < i1.getX()) && (p.getMaxX() > i1.getX())){
-                     continue;
-                 }else{
-                     return true;
-                 }
+             for(Pont p: listPontPose){
+                if(p.estVertical()){
+                    if ((minY < p.getSrc().getY()) &&(maxY > p.getSrc().getY()) && (p.getMinX() < i1.getX()) && (p.getMaxX() > i1.getX())){
+                        continue;
+                    }else{
+                        return true;
+                    }
+                }
+                 
              }
          }
          return false;
@@ -564,13 +549,6 @@
          return dst.getX() == src.getX();
      }
  
-     /**
-      * set la valeur de vertiHori
-      * @param val la valeur a affecté
-      */
-     private void setVertiHori(VertiHori val){
-         estVertiHori = val;
-     }
  
      public static void main(String[] args) {
          GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Facile-5.txt");

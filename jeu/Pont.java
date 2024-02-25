@@ -7,6 +7,11 @@
 public class Pont{
     boolean estHypothese; 
 
+    private enum VertiHori{
+        VERTICALE,HORIZONTAL
+    }
+
+    private VertiHori estVertiHori; 
 
     private IleJoueur src;
     private IleJoueur dst;
@@ -21,6 +26,28 @@ public class Pont{
         src = src_;
         dst = dst_;
         estHypothese = h;
+
+        if (src.getX() == dst.getX()){
+            estVertiHori = VertiHori.HORIZONTAL;
+        }else{
+            estVertiHori = VertiHori.VERTICALE;
+        }
+    }
+
+    /**
+     * Renvoie vrai si la pont est vertical
+     * @return vrai ou faux
+     */
+    public boolean estVertical(){
+        return estVertiHori == VertiHori.VERTICALE;
+    }
+
+    /**
+     * Renvoie vrai si la pont est horizontal
+     * @return vrai ou faux
+     */
+    public boolean estHorizontal(){
+        return estVertiHori == VertiHori.HORIZONTAL;
     }
 
     /**
