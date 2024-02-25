@@ -160,6 +160,7 @@ public class FXMLUtils {
         zoneTexte.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.equals(DEFAULT_TEXT)) {
                 GlobalVariables.setUserInput(newValue);
+                JsonApp.checkJsonFileExists(newValue); // Ajout de la vérification du fichier ici
             }
         });
 
