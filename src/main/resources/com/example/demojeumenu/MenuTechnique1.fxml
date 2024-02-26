@@ -3,11 +3,15 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.text.Text?>
 
 <StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.MenuTechnique1">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
-        <Button styleClass="titre" text="Technique de début" />
+        <Button styleClass="titre" text="TECHNIQUE DE DEBUT" />
+    </VBox>
+    <VBox id="text" >
+        <Text text="1. 8 au centre, 6 sur un côté ou 4 dans un angle :" />
     </VBox>
 
 
@@ -19,7 +23,7 @@
                         <Image url="@images/1.png" />
                     </image>
                     <BorderPane.margin>
-                        <Insets  top="400.0" />
+                        <Insets  top="330.0" />
                     </BorderPane.margin>
                 </ImageView>
 
@@ -34,7 +38,7 @@
                         <Image url="@images/fleche.png" />
                     </image>
                     <BorderPane.margin>
-                        <Insets  top="400.0" />
+                        <Insets  top="330.0" />
                     </BorderPane.margin>
                 </ImageView>
 
@@ -49,14 +53,16 @@
                         <Image url="@images/2.png" />
                     </image>
                     <BorderPane.margin>
-                        <Insets  top="400.0" />
+                        <Insets  top="330.0" />
                     </BorderPane.margin>
                 </ImageView>
-
-
             </top>
-
         </BorderPane>
     </HBox>
+
+    <VBox>
+
+        <Button onAction="#retour" prefHeight="50.0" prefWidth="70.0" styleClass="custom-button2" text="Retour" />
+    </VBox>
 
 </StackPane>
