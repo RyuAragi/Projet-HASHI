@@ -9,10 +9,7 @@
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="Technique de début" />
     </VBox>
-    <VBox alignment="BASELINE_CENTER">
-        <Button styleClass="titre" text="1. 8 au centre, 6 sur un côté ou 4 dans un angle :" />
 
-    </VBox>
 
     <HBox alignment="CENTER">
         <BorderPane prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
