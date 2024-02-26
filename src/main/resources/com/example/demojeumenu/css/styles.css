@@ -42,6 +42,23 @@
     -fx-pref-width: 450;
     -fx-prompt-text-fill: white;
 }
+.custom-img {
+    -fx-font-family: 'Noteworthy';
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('../images/1.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+    -fx-padding: 0;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-pref-height: 450;
+    -fx-pref-width: 450;
+    -fx-prompt-text-fill: white;
+}
 .custom-button-titre {
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: white;
@@ -222,4 +239,7 @@ HBox{
     -fx-alignment: center-left;
     -fx-pref-height: 60;
     -fx-pref-width: 60;
+}
+grilleImageView {
+    border: 2px solid #000; /* 2 pixels de large, de couleur noire */
 }
