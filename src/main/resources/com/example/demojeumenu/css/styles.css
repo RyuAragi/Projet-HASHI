@@ -315,3 +315,73 @@ HBox{
     -fx-alignment: center;
     -fx-text-alignment: center;
 }
+
+.outButton {
+    -fx-background-image: url('../images/background.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+}
+
+.bgJeu {
+    -fx-background-image: url('../images/background.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.zoom {
+    -fx-background-image: url('../images/zoom.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.dezoom {
+    -fx-background-image: url('../images/dezoom.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.undo {
+    -fx-background-image: url('../images/undo.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.redo {
+    -fx-background-image: url('../images/redo.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.help {
+    -fx-background-image: url('../images/help.png');
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.check {
+    -fx-background-image: url('../images/check.png');
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.quit {
+    -fx-background-image: url('../images/home.png');
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.param {
+    -fx-background-image: url('../images/param.png');
+    -fx-background-size: 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
