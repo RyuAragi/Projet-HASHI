@@ -1,11 +1,14 @@
 package com.example.demojeumenu;
 
+import com.example.demojeumenu.jeu.GrilleJeu;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class GrilleControler extends BaseController {
+
+    private GrilleJeu grille;
 
     @FXML
     private Button quit;
@@ -29,10 +32,7 @@ public class GrilleControler extends BaseController {
     private Button help;
 
     @FXML
-    private Pane gridPane;
-
-    @FXML
-    private GridPane grille;
+    private GridPane grillePane;
 
 
     @FXML
@@ -48,5 +48,9 @@ public class GrilleControler extends BaseController {
         SoundUtils.addHoverSound(check);
         SoundUtils.addHoverSound(help);
 
+        this.grille = new GrilleJeu("/niveaux/facile/Facile-1.txt");
+        System.out.print(this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
+        grillePane.addColumn(this.grille.getNbColonne());
+        grillePane.addRow(this.grille.getNbLigne());
     }
 }
