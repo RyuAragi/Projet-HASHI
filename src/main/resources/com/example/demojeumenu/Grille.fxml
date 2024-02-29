@@ -29,7 +29,11 @@
          <Insets right="5.0" top="5.0" />
       </StackPane.margin>
    </HBox>
-     <GridPane fx:id="grillePane" alignment="TOP_CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="grille">
+     <GridPane fx:id="grillePane" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="grille">
+      <rowConstraints>
+      </rowConstraints>
+      <columnConstraints>
+      </columnConstraints>
      </GridPane>
    <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="130.0">
       <children>

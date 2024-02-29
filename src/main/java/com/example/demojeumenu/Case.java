@@ -1,4 +1,4 @@
-package com.example.demojeumenu.jeu;
+package com.example.demojeumenu;
 
 /**
  * Cette classe représente une ile abstraite

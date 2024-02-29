@@ -4,7 +4,7 @@
  * @version 0.1
  */
 
-package com.example.demojeumenu.jeu;
+package com.example.demojeumenu;
 
  import java.io.*;
  import java.util.List;

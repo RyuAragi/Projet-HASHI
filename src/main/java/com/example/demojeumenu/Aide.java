@@ -4,7 +4,7 @@
 * @version 0.0 
 */
 
-package com.example.demojeumenu.jeu;
+package com.example.demojeumenu;
 
 import java.util.*;
 
