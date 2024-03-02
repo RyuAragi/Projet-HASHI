@@ -44,4 +44,55 @@ public abstract class Ile extends Case{
      */
     abstract int getValPontDir(String dir);
 
+    public Ile getIleNord(GrilleJeu grille){
+        int i=super.getX()-1;
+        if(i<0) return null;
+
+        while(i >= 0){
+            if(grille.getIleGrilleJoueur(i, super.getY())!=null){
+                return grille.getIleGrilleJoueur(i, super.getY());
+            }
+            i--;
+        }
+        return null;
+    }
+
+    public Ile getIleSud(GrilleJeu grille){
+        int i=super.getX()+1;
+        if(i==grille.getNbLigne()) return null;
+
+        while(i < grille.getNbLigne()){
+            if(grille.getIleGrilleJoueur(i, super.getY())!=null){
+                return grille.getIleGrilleJoueur(i, super.getY());
+            }
+            i++;
+        }
+        return null;
+    }
+
+    public Ile getIleOuest(GrilleJeu grille){
+        int i=super.getY()-1;
+        if(i<0) return null;
+
+        while(i >= 0){
+            if(grille.getIleGrilleJoueur(super.getX(), i)!=null){
+                return grille.getIleGrilleJoueur(super.getX(), i);
+            }
+            i--;
+        }
+        return null;
+    }
+
+    public Ile getIleEst(GrilleJeu grille){
+        int i=super.getY()+1;
+        if(i==grille.getNbColonne()) return null;
+
+        while(i < grille.getNbColonne()){
+            if(grille.getIleGrilleJoueur(super.getX(), i)!=null){
+                return grille.getIleGrilleJoueur(super.getX(), i);
+            }
+            i++;
+        }
+        return null;
+    }
 }
