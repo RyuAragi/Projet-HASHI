@@ -44,7 +44,7 @@ public class GrilleControler extends BaseController {
     @FXML
     private GridPane grillePane;
 
-    private void fillCaseToNextIle(int column, int row, Ile ileDest, boolean versHautOuDroite, boolean highlight) throws Exception{
+    private void fillCaseToNextIle(int column, int row, Ile ileDest, boolean versHautOuDroite, boolean highlight){
         if(column==ileDest.getY()){
             if (versHautOuDroite) {     //en haut
                 for (Node node : grillePane.getChildren()) {
@@ -95,13 +95,10 @@ public class GrilleControler extends BaseController {
                 }
             }
         }
-        else{
-            throw new Exception("Les deux iles ne sont pas sur la même ligne ou colonne !");
-        }
     }
 
 
-    private void highlightRowAndColumn(int column, int row, GrilleJeu grille, boolean highlight) throws Exception {
+    private void highlightRowAndColumn(int column, int row, GrilleJeu grille, boolean highlight) {
         Ile ileSrc = grille.getIleGrilleJoueur(row, column);
         Ile ileNord = ileSrc.getIleNord(grille);
         Ile ileSud = ileSrc.getIleSud(grille);
@@ -236,12 +233,7 @@ public class GrilleControler extends BaseController {
 
                         int row = GridPane.getRowIndex(ile);
                         int col = GridPane.getColumnIndex(ile);
-
-                        try {
-                            highlightRowAndColumn(col, row, grille, true);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
+                        highlightRowAndColumn(col, row, grille, true);
                     });
 
 
@@ -250,12 +242,8 @@ public class GrilleControler extends BaseController {
 
                         int row = GridPane.getRowIndex(ile);
                         int col = GridPane.getColumnIndex(ile);
+                        highlightRowAndColumn(col, row, grille, false);
 
-                        try {
-                            highlightRowAndColumn(col, row, grille, false);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
                     });
 
                     grillePane.add(ile, j, i);
