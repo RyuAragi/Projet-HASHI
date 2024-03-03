@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<StackPane styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.AutreMenuController2">
+    <fx:include source="Logo.fxml" />
+    <VBox alignment="BASELINE_CENTER">
+        <Button styleClass="titre" text="REGLES DE JEU" />
+    </VBox>
+    <VBox alignment="CENTER">
+        <Button onAction="#btn1" styleClass="custom-button" text="Technique de début" />
+        <Button styleClass="custom-button" text="Technique basique" />
+        <Button styleClass="custom-button" text="Technique d'isolation" />
+        <Button styleClass="custom-button" text="Technique avancées" />
+        <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
+    </VBox>
+</StackPane>
