@@ -4,7 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
 public abstract class BaseController {
-    protected Scene scene;
+    protected static Scene scene;
     private boolean EtatParametres = false; // variable pour savoir si on est dans le menu parametres
 
     public void setScene(Scene scene) {

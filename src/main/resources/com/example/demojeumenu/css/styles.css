@@ -424,6 +424,7 @@ HBox{
     -fx-border-color: black;
     -fx-border-width: 1px;
     -fx-border-radius: 50%;
+    -fx-shape: "M50,0 A50,50 0 0,1 100,50 A50,50 0 0,1 50,100 A50,50 0 0,1 0,50 A50,50 0 0,1 50,0 Z"; /* Ajouté pour rendre le bouton lui-même circulaire */
 }
 
 .undisplayButton {

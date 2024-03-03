@@ -108,5 +108,11 @@ public class MenuPrincipalController extends BaseController {
         SoundUtils.addHoverSound(didacticiel);
         SoundUtils.addHoverSound(quitter);
         FXMLUtils.initializeTextField(zoneTexte);
+
+
+        zoneTexte.textProperty().addListener((observable, oldValue, newValue) -> {
+            JsonApp.removeShownPopup(oldValue);
+        });
+
     }
 }
