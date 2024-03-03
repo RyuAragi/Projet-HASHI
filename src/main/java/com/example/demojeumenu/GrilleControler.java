@@ -233,6 +233,7 @@ public class GrilleControler extends BaseController {
 
                         int row = GridPane.getRowIndex(ile);
                         int col = GridPane.getColumnIndex(ile);
+
                         highlightRowAndColumn(col, row, grille, true);
                     });
 
@@ -242,6 +243,7 @@ public class GrilleControler extends BaseController {
 
                         int row = GridPane.getRowIndex(ile);
                         int col = GridPane.getColumnIndex(ile);
+
                         highlightRowAndColumn(col, row, grille, false);
 
                     });
