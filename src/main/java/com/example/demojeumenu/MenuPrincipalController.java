@@ -47,6 +47,8 @@ public class MenuPrincipalController extends BaseController{
     private void background(MouseEvent event) {
         //detecte le clic sur le bouton background
         ((Node) event.getSource()).requestFocus();}
+
+
     @FXML
     public void initialize() {
         SoundUtils.addHoverSound(jouer);

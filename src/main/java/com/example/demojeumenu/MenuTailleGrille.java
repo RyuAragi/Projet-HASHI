@@ -1,11 +1,14 @@
 package com.example.demojeumenu;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class MenuTailleGrille extends BaseController{
+
+
     @FXML
     private void btnS() {
-        FXMLUtils.loadFXML("MenuTailleGrille2.fxml", scene);
+        FXMLUtils.loadFXML("MenuTailleGrilleClassique2.fxml", scene);
     }
     @FXML
     private void btn2() {
@@ -21,6 +24,8 @@ public class MenuTailleGrille extends BaseController{
         FXMLUtils.goBack(scene);
     }
 
+
 }
+
 
 

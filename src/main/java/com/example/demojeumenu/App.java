@@ -7,7 +7,10 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.util.Objects;
 
@@ -42,5 +45,7 @@ public class App extends Application {
 
         // Ajoutez manuellement le fichier FXML à l'historique
         FXMLUtils.addHistory("MenuPrincipal.fxml");
+
     }
+
 }
