@@ -15,7 +15,7 @@
     <VBox alignment="CENTER">
         <Button onAction="#btn1" styleClass="custom-button" text="Facile" />
         <Button onAction="#btn2" styleClass="custom-button" text="Moyen" />
-        <Button styleClass="custom-button" text="Difficile" />
+        <Button onAction="#btn2" styleClass="custom-button" text="Difficile" />
         <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
     </VBox>
 </StackPane>

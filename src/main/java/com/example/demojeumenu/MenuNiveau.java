@@ -5,15 +5,19 @@ import javafx.fxml.FXML;
 
 public class MenuNiveau extends BaseController{
 
-
     @FXML
     private void btn1() {
-        FXMLUtils.loadFXML("MenuTailleGrille.fxml", scene);
+        FXMLUtils.loadFXML("MenuTailleGrilleClassique.fxml", scene);
     }
     @FXML
     private void btn2() {
-        FXMLUtils.loadFXML("Parametres.fxml", scene);
+        FXMLUtils.loadFXML("MenuTailleGrilleMoyen.fxml", scene);
     }
+    @FXML
+    private void btn3() {
+        FXMLUtils.loadFXML("MenuTailleGrilleDif.fxml", scene);
+    }
+
     @FXML
     private void retour() {
         FXMLUtils.goBack(scene);

@@ -10,21 +10,15 @@
 
     <VBox alignment="CENTER">
         <Button styleClass="custom-buttonGrille" text="Jouer cette grille" />
-
         <Button styleClass="custom-buttonGrille" text="Jouer cette grille" />
-
         <Button styleClass="custom-buttonGrille" text="Jouer cette grille" />
-
         <Button styleClass="custom-buttonGrille" text="Jouer cette grille" />
-
         <Button styleClass="custom-buttonGrille" text="Jouer cette grille" />
-
 
 
         <!-- Utilisation d'un HBox pour organiser les boutons "Retour" et "Suivant" -->
         <HBox alignment="CENTER">
             <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-buttonR" text="Retour" />
-            <Button onAction="#btnS" prefHeight="25.0" prefWidth="66.0" styleClass="custom-buttonS" text="Suivant" />
         </HBox>
     </VBox>
 </StackPane>
