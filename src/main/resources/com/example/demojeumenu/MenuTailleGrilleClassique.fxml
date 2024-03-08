@@ -11,7 +11,7 @@
 
     <VBox alignment="CENTER">
 
-        <Button fx:id="jouer" styleClass="custom-buttonGrille" onAction="#afficherModalPopUp" text="Jouer cette grille 15x15" />
+        <Button fx:id="jouerGrille15x15Button"  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
 
 
         <Button styleClass="custom-buttonGrille" text="Jouer cette grille 15x15 "  />

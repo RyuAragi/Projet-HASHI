@@ -18,28 +18,24 @@ import javafx.stage.Stage;
 import java.io.IOException;
 public class MenuTailleGrille extends BaseController{
     @FXML
-    private Button jouer;
-
+    private Button jouerGrille15x15Button;
 
 
     @FXML
-    private void afficherModalPopUp() {
+    private void jouerGrille15x15() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ModalPopUp.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PopupWindowLB.fxml"));
             Parent root = loader.load();
 
-            // Obtenez la scène actuelle du bouton "Jouer cette grille 15x15"
-
-            Scene scene = jouer.getScene();
-            // Obtenez la fenêtre principale à partir de la scène
-            Stage primaryStage = (Stage) scene.getWindow();
-
-            // Créez une nouvelle fenêtre Stage pour la fenêtre modale
+            // Créer une nouvelle fenêtre Stage pour le popup
             Stage modalStage = new Stage();
             modalStage.initModality(Modality.APPLICATION_MODAL);
-            modalStage.initOwner(primaryStage); // Définissez la fenêtre principale comme propriétaire de la fenêtre modale
-            modalStage.setTitle("Modal Pop Up");
+            modalStage.setTitle("Popup");
+            modalStage.initOwner(jouerGrille15x15Button.getScene().getWindow()); // Définir la fenêtre principale comme propriétaire de la fenêtre modale
             modalStage.setScene(new Scene(root));
+
+            // Supprimer la barre d'outils
+            modalStage.initStyle(StageStyle.UNDECORATED);
 
             // Afficher la fenêtre modale
             modalStage.show();

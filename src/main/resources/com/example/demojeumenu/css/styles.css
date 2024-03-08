@@ -292,6 +292,9 @@ HBox{
 .imgLogo{
     -fx-image: url('../images/logo.png');
 }
+.imgLB{
+    -fx-image: url('../images/niv1.png');
+}
 
 .custom-backButton{
     -fx-font-family: 'Noteworthy';

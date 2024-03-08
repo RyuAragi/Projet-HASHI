@@ -7,13 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class PopupWindowController extends BaseController {
+public class PopupWindowControllerLB extends BaseController {
 
     @FXML
     private Button continueButton;
 
     @FXML
-    private Button newGameButton;
+    //private Button newGameButton;
     private StringProperty username = new SimpleStringProperty();
 
     private static Stage stage;
@@ -38,6 +38,6 @@ public class PopupWindowController extends BaseController {
     public void initialize(){
         usernameLabel.textProperty().bind(username);
         SoundUtils.addClickSound(continueButton, this::backButton);
-        SoundUtils.addClickSound(newGameButton, this::backButton);
+        //SoundUtils.addClickSound(newGameButton, this::backButton);
     }
 }
