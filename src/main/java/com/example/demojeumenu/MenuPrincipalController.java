@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 
 public class MenuPrincipalController extends BaseController{
+
     private static final Logger LOGGER = Logger.getLogger(MenuPrincipalController.class.getName());
 
     private static final int MAX_CHARS = 20;
@@ -25,6 +26,7 @@ public class MenuPrincipalController extends BaseController{
 
     @FXML
     private Button quitter;
+
 
     @FXML
     private void afficherAutreMenu() {
