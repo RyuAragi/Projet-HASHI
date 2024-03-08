@@ -67,7 +67,7 @@ public class MenuPrincipalController extends BaseController {
      * Méthode permettant de charger le menu des modes de jeu.
      */
     private void jouer() {
-        FXMLUtils.loadFXML("Grille.fxml", scene);
+        FXMLUtils.loadFXML("MenuModeDuJeu.fxml", scene);
     }
 
     /**
@@ -75,7 +75,7 @@ public class MenuPrincipalController extends BaseController {
      */
 
     private void didacticiel() {
-        FXMLUtils.loadFXML("AutreMenu2.fxml", scene);
+        FXMLUtils.loadFXML("MenuReglesDuJeu.fxml", scene);
     }
 
     /**
