@@ -5,13 +5,13 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.Text?>
 
-<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.MenuTechnique1">
+<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.MenuTechniqueBas3">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="TECHNIQUE DE DEBUT" />
     </VBox>
     <VBox id="text" >
-        <Text text="1. 8 au centre, 6 sur un côté ou 4 dans un angle :" />
+        <Text text="3. Cas particulier du 4 sur le côté ou avec 3 voisins :" />
     </VBox>
 
 
@@ -20,7 +20,7 @@
             <top>
                 <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
                     <image>
-                        <Image url="@images/1.png" />
+                        <Image url="@images/11.png" />
                     </image>
                     <BorderPane.margin>
                         <Insets  top="330.0" />
@@ -50,7 +50,7 @@
             <top>
                 <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
                     <image>
-                        <Image url="@images/2.png" />
+                        <Image url="@images/12.png" />
                     </image>
                     <BorderPane.margin>
                         <Insets  top="330.0" />
@@ -58,11 +58,16 @@
                 </ImageView>
             </top>
         </BorderPane>
+
     </HBox>
-
-    <VBox>
-
-        <Button onAction="#retour" prefHeight="50.0" prefWidth="70.0" styleClass="custom-button2" text="Retour" />
+    <VBox  id ="retour">
+        <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Retour" />
     </VBox>
+    <VBox  id ="suivant">
+        <Button onAction="#suivant" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Suivant" />
+    </VBox>
+
+
+
 
 </StackPane>

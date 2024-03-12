@@ -13,6 +13,12 @@ public class MenuReglesDuJeu extends BaseController {
 
     @FXML
     private void btn1() {
-        FXMLUtils.loadFXML("MenuTechnique1.fxml", scene);
+        FXMLUtils.loadFXML("MenuTechniqueDeb1.fxml", scene);
+    }
+    @FXML
+    private void btn2() { FXMLUtils.loadFXML("MenuTechniqueBas1.fxml", scene);
+    }
+    @FXML
+    private void btn3() { FXMLUtils.loadFXML("MenuTechniqueIso1.fxml", scene);
     }
 }
