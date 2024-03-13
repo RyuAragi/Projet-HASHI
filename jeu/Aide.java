@@ -312,9 +312,24 @@ public class Aide{
      * @return l'ile ou la technique est applicable ou null
      */
     private static Ile techniqueIsolementIle2Avec2Voisins1(List<Ile> listJoueur, GrilleJeu grille){
+        List<IleJoueur> listVoisin = new ArrayList<IleJoueur>();
+        int cpt = 0;
+        for (Ile n: listJoueur){
+            listVoisin = grille.getListVoisinReel((IleJoueur)n);
 
-        
+            for(IleJoueur i : listVoisin){
+                if(i.getValIle() == 1){
+                    cpt++;
+                    if (cpt == 2){
+                        return n;
+                    }
+                }
+            }
+            cpt = 0;
+        }
+
         return null;
     }
+
 
 }
