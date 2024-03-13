@@ -1,19 +1,11 @@
 /** Classe aide qui lance la détection de technique et l'aide à la résolution
  * Toutes les méthodes de cette classe sont statiques
 * @author COUPE Xavier FOUQUERAY Victor
-* @version 0.0 
+* @version 0.0
 */
 import java.util.*;
 
 
-/**
- * 
- * Voir si le code peut être factorisé
- * 
- * 
- * 
- * 
- */
 public class Aide{
 
 
@@ -27,7 +19,6 @@ public class Aide{
         List<Ile> listeIlesGrilleResolu = new ArrayList<>();
 
         int i,j;
-        //int niveauAide;
 
         //Récupère toutes les îles non nuls de la grille de jeu
         for(i = 0; i < grille.getNbLigne(); i++){
@@ -43,7 +34,6 @@ public class Aide{
             }
         }
 
-        //niveauAide = grille.getPrecisionAide();
 
 
 
@@ -67,24 +57,9 @@ public class Aide{
         
     }
 
-    /**
-     * Méthode qui détecte si une technique d'une ile au milieu est applicable
-     * @param list la liste des iles du joueur
-     * @return l'ile ou la technique est applicable ou null
-     */
-    private static Ile techniqueAuMilieu(List<Ile> list){
-        int v1 = 8;
-        int v2 = 7;
-        for(Ile n : list){
-            if(((n.getValIle() == v1) && (n.getSommeVoisins() < v1) ) ||((n.getValIle() == v2)&&(n.getSommeVoisins()==v2))){
-                return n;
-            }
-        }
-        return null;
-    }
 
     /**
-     * 
+     * Méthode permettant de detecter un 8 entouré de 4 îles
      * @param list la liste des iles du joueur
      * @return l'ile ou la technique est applicable ou null
      */
@@ -99,7 +74,7 @@ public class Aide{
     }
 
     /**
-     * 
+     * Méthode permettant de detecter un 7 entouré de 4 îles
      * @param list la liste des iles du joueur
      * @return l'ile ou la technique est applicable ou null
      */
@@ -115,7 +90,7 @@ public class Aide{
 
     
     /**
-     * 
+     * Méthode permettant de détecter un 6 entouré de 3 îles
      * @param listJoueur la liste des iles du joueur
      * @param listResolu la liste des iles de la grille résolu
      * @param grille la grille résolu
@@ -132,7 +107,7 @@ public class Aide{
     }
 
     /**
-     * 
+     * Méthode permettant de détecter un 5 entouré de 3 îles
      * @param listJoueur la liste des iles du joueur
      * @param listResolu la liste des iles de la grille résolu
      * @param grille la grille du jeu_
@@ -148,7 +123,7 @@ public class Aide{
     }
 
     /**
-     * 
+     * Méthode permettant de détecter un 4 entourer de 3 îles
      * @param listJoueur la liste des iles du joueur
      * @param listResolu la liste des iles de la grille résolu
      * @param grille la grille du jeu_
@@ -164,7 +139,7 @@ public class Aide{
     }
 
     /**
-     * 
+     * Méthode permettant de détecter un 4 entourer de 2 îles
      * @param listJoueur la liste des iles du joueur
      * @param listResolu la liste des iles de la grille résolu
      * @param grille la grille résolu
@@ -180,7 +155,7 @@ public class Aide{
     }
 
     /**
-     * 
+     * Méthode permettant de detecter un 3 entre 2 îles
      * @param listJoueur la liste des iles du joueur
      * @param listResolu la liste des iles de la grille résolu
      * @param grille la grille résolu
@@ -196,7 +171,7 @@ public class Aide{
     }
 
     /**
-     * 
+     * Méthode permettant de detecter une île ne possédant qu'un seul voisin
      * @param listJoueur la liste des iles du joueur
      * @param grille la grille résolu
      * @return l'ile ou la technique est applicable ou null
@@ -205,6 +180,126 @@ public class Aide{
         for(int i = 0 ; i< listJoueur.size(); i++){
             if(grille.getNbVoisinReel((IleJoueur)listJoueur.get(i)) == 1){
                 return listJoueur.get(i);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Méthode permettant de detecter un 6 possédant 4 voisin dont l'un d'entre eux est un 1
+     * @param listJoueur la liste des iles du joueur
+     * @param grille la grille résolu
+     * @return l'ile ou la technique est applicable ou null
+     */
+    private static Ile techniqueSixMilieuSpecial(List<Ile> listJoueur, GrilleJeu grille){
+        IleJoueur j;
+        for (Ile n : listJoueur){
+            if ((n.getValIle() == 6) && (n.getSommeVoisins() < 6)){
+
+                j=grille.getVoisinDir((IleJoueur)n,"E");
+                if(j!=null){
+                    if (j.getValIle() == 1) {
+                        return n;
+                    }
+                }
+                j=grille.getVoisinDir((IleJoueur)n,"O");
+                if(j!=null){
+                    if (j.getValIle() == 1) {
+                        return n;
+                    }
+                }
+                j=grille.getVoisinDir((IleJoueur)n,"N");
+                if(j!=null){
+                    if (j.getValIle() == 1) {
+                        return n;
+                    }
+                }
+                j=grille.getVoisinDir((IleJoueur)n,"S");
+                if(j!=null){
+                    if (j.getValIle() == 1) {
+                        return n;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Méthode permettant de detecter un 2 possédant plus de un voisin dont l'un d'entre eux est un 2
+     * @param listJoueur la liste des iles du joueur
+     * @param grille la grille résolu
+     * @return l'ile ou la technique est applicable ou null
+     */
+    private static Ile techniqueIsolation2(List<Ile> listJoueur, GrilleJeu grille){
+        IleJoueur j;
+        for (Ile n : listJoueur){
+            if ((n.getValIle() == 2) && (n.getSommeVoisins() < 2) ){
+
+                j=grille.getVoisinDir((IleJoueur)n,"E");
+                if(j!=null){
+                    if (j.getValIle() == 2) {
+                        return n;
+                    }
+                }
+                j=grille.getVoisinDir((IleJoueur)n,"O");
+                if(j!=null){
+                    if (j.getValIle() == 2) {
+                        return n;
+                    }
+                }
+                j=grille.getVoisinDir((IleJoueur)n,"N");
+                if(j!=null){
+                    if (j.getValIle() == 2) {
+                        return n;
+                    }
+                }
+                j=grille.getVoisinDir((IleJoueur)n,"S");
+                if(j!=null){
+                    if (j.getValIle() == 2) {
+                        return n;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Méthode permettant de detecter un 1 possédant plus de un voisin dont l'un d'entre eux est un 1
+     * @param listJoueur la liste des iles du joueur
+     * @param grille la grille résolu
+     * @return l'ile ou la technique est applicable ou null
+     */
+    private static Ile techniqueIsolation1(List<Ile> listJoueur, GrilleJeu grille){
+        IleJoueur j;
+        for (Ile n : listJoueur){
+            if ((n.getValIle() == 1) && (n.getSommeVoisins() < 1) ){
+
+                j=grille.getVoisinDir((IleJoueur)n,"E");
+                if(j!=null){
+                    if (j.getValIle() == 1 ){
+                        return n;
+                    }
+                }
+                j=grille.getVoisinDir((IleJoueur)n,"O");
+                if(j!=null){
+                    if (j.getValIle() == 1) {
+                        return n;
+                    }
+                }
+                j=grille.getVoisinDir((IleJoueur)n,"N");
+                if(j!=null){
+                    if (j.getValIle() == 1) {
+                        return n;
+                    }
+                }
+                j=grille.getVoisinDir((IleJoueur)n,"S");
+                if(j!=null){
+                    if (j.getValIle() == 1) {
+                        return n;
+                    }
+                }
             }
         }
         return null;
