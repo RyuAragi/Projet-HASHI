@@ -63,6 +63,9 @@
     <VBox  id ="retour">
         <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Retour" />
     </VBox>
+    <VBox  id ="suivant">
+        <Button onAction="#quitter" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Quitter" />
+    </VBox>
 
 
 </StackPane>

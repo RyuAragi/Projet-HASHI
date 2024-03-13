@@ -8,4 +8,9 @@ public class MenuTechniqueIso4 extends BaseController{
         FXMLUtils.goBack(scene);
     }
 
+    @FXML
+    private void quitter() {
+        FXMLUtils.loadFXML("MenuReglesDuJeu.fxml", scene);
+    }
+
 }

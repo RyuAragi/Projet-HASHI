@@ -132,13 +132,6 @@
 }
 
 
-VBox {
-    -fx-spacing: 5.0;
-}
-
-HBox{
-    -fx-spacing: 5.0;
-}
 
 
 #leaderboard {
