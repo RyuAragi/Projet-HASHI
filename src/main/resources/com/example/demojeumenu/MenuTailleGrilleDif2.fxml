@@ -9,13 +9,18 @@
     </VBox>
 
     <VBox alignment="CENTER">
-        <Button styleClass="custom-buttonGrille" text="Jouer cette grille 15x15 "  />
+        <Button  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
 
-        <Button styleClass="custom-buttonGrille" text="Jouer cette grille 15x15 "  />
 
-        <Button styleClass="custom-buttonGrille" text="Jouer cette grille 15x15 "  />
-        <Button styleClass="custom-buttonGrille" text="Jouer cette grille 15x15 "  />
-        <Button styleClass="custom-buttonGrille" text="Jouer cette grille 15x15 "  />
+        <Button  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+
+
+        <Button  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+
+        <Button  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+
+        <Button  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+
 
 
         <!-- Utilisation d'un HBox pour organiser les boutons "Retour" et "Suivant" -->
