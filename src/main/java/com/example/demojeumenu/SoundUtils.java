@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import java.util.Objects;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -35,7 +36,15 @@ public class SoundUtils {
     /**
      * [MediaPlayer] Lecteur des musiques du menu et du jeu.
      */
-    private static MediaPlayer music = new MediaPlayer(new Media(Objects.requireNonNull(SoundUtils.class.getResource("music/musicMenu.wav")).toExternalForm()));
+    private static MediaPlayer music;
+    private static final CountDownLatch latch = new CountDownLatch(1);
+
+    static {
+        new Thread(() -> {
+            music = new MediaPlayer(new Media(Objects.requireNonNull(SoundUtils.class.getResource("music/musicMenu.mp3")).toExternalForm()));
+            latch.countDown(); // Signal that the music player is ready
+        }).start();
+    }
 
     /**
      * Méthode d'ajout de son lorsque la souris passe sur le bouton passé en paramètre.
@@ -218,7 +227,13 @@ public class SoundUtils {
     /**
      * Méthode d'initialisation de la musique.
      */
-    protected static void initMusic(){
+    protected static void initMusic() {
+        try {
+            latch.await(); // Wait for the music player to be ready
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            // Handle exception
+        }
         music.setCycleCount(Integer.MAX_VALUE);
         updateVolume();
         playMusic();
