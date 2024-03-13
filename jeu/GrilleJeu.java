@@ -365,6 +365,59 @@ import java.util.ArrayList;
         return cpt;
     }
 
+    /**
+     * renvoie la liste des voisins 'physique' de j
+    * @param j l'ile à tester
+    * @return  la list des voisins de j
+    */
+    public List<IleJoueur> getListVoisinReel(IleJoueur joueur){
+        List<IleJoueur> listIle = new ArrayList<IleJoueur>();
+
+        int x = joueur.getX();
+        int y = joueur.getY();
+
+        int i = x;
+        int j = y;
+
+
+        //Test de présence de voisin au nord
+        boucle_nord:
+        for(i = x,j=y; j >= 0; j-- ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                listIle.add((IleJoueur)getIleGrilleSolution(i, j));
+                break boucle_nord;
+            }
+        }
+
+        //Test de présence de voisin au sud
+        boucle_sud:
+        for(i = x,j=y; j < nbColonne; j++ ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                listIle.add((IleJoueur)getIleGrilleSolution(i, j));
+                break boucle_sud;
+            }
+        }
+
+        //Test de présence de voisin au est
+        boucle_est:
+        for(i = x,j=y; i < nbLigne; i++ ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                listIle.add((IleJoueur)getIleGrilleSolution(i, j));
+                break boucle_est;
+            }
+        }
+
+        //Test de présence de voisin au ouest
+        boucle_ouest:
+        for(i = x,j=y; i >= 0; i-- ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                listIle.add((IleJoueur)getIleGrilleSolution(i, j));
+                break boucle_ouest;
+            }
+        }
+
+        return listIle;
+    }
 
     /**
      * Vérifie dans quelle direction un pont peut être posé

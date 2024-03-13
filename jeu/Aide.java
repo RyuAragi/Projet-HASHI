@@ -305,4 +305,16 @@ public class Aide{
         return null;
     }
 
+    /**
+     * Méthode permettant de detecter un 2 possédant plus de un voisin dont deux d'entre eux sont des 1
+     * @param listJoueur la liste des iles du joueur
+     * @param grille la grille résolu
+     * @return l'ile ou la technique est applicable ou null
+     */
+    private static Ile techniqueIsolementIle2Avec2Voisins1(List<Ile> listJoueur, GrilleJeu grille){
+
+        
+        return null;
+    }
+
 }
