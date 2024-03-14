@@ -11,7 +11,7 @@
         <Button styleClass="titre" text="TECHNIQUE AVANCÉES" />
     </VBox>
     <VBox id="text" >
-        <Text text="1. Isoler un segment en bloquant un pont :" />
+        <Text text="2. Isoler un segment en ajoutant un pont :" />
     </VBox>
 
 
@@ -93,6 +93,7 @@
     <VBox  id ="retour">
         <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Retour" />
     </VBox>
+
     <VBox  id ="suivant">
         <Button onAction="#suivant" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Suivant" />
     </VBox>
