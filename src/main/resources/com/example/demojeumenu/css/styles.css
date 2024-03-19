@@ -32,7 +32,25 @@
     -fx-padding: 35;
     -fx-alignment: center;
     -fx-text-alignment: center;
+
 }
+#text{
+    -fx-font-family: 'Noteworthy';
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-padding: 230 350 ;
+}
+#retour{
+
+    -fx-translate-x: 410; /* Position horizontale */
+    -fx-translate-y: 630; /* Position verticale */
+}
+#suivant{
+
+    -fx-translate-x: 930; /* Position horizontale */
+    -fx-translate-y: 630; /* Position verticale */
+}
+
 
 .custom-button {
     -fx-font-family: 'Noteworthy';
@@ -68,6 +86,33 @@
     -fx-pref-width: 400;
     -fx-prompt-text-fill: white;
 }
+
+.custom-button2 {
+    -fx-font-family: 'Noteworthy';
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('../images/bouton.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-pref-height: 70;
+    -fx-pref-width: 100;
+    -fx-prompt-text-fill: white;
+
+}
+
+.custom-img {
+    -fx-padding: 0;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-pref-height: 70;
+    -fx-pref-width: 400;
+    -fx-prompt-text-fill: white;
+}
 .custom-buttonS {
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: white;
@@ -84,7 +129,24 @@
     -fx-prompt-text-fill: white;
 
 }
+
 .custom-buttonR {
+    -fx-font-family: 'Noteworthy';
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('../images/bouton.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+    -fx-text-alignment: center;
+    -fx-pref-height: 100;
+    -fx-pref-width: 180;
+    -fx-prompt-text-fill: white;
+}
+
+ .custom-buttonR {
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: white;
     -fx-font-size: 25px;
@@ -123,6 +185,7 @@
     -fx-prompt-text-fill: white;
 }
 
+
 .custom-barre {
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: white;
@@ -145,13 +208,6 @@
 }
 
 
-VBox {
-    -fx-spacing: 5.0;
-}
-
-HBox{
-    -fx-spacing: 5.0;
-}
 
 
 #leaderboard {
@@ -287,6 +343,10 @@ HBox{
     -fx-alignment: center-left;
     -fx-pref-height: 60;
     -fx-pref-width: 60;
+}
+
+grilleImageView {
+    border: 2px solid #000; /* 2 pixels de large, de couleur noire */
 }
 
 .imgLogo{
