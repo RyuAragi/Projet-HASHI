@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
-            <version>11.1.2</version>
+            <version>11.2.0</version>
         </dependency>
         <dependency>
             <groupId>com.github.almasb</groupId>
@@ -75,8 +75,6 @@
             <version>1.7.32</version>
         </dependency>
     </dependencies>
-
-
     <build>
         <plugins>
             <plugin>

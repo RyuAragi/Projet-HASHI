@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.MenuTailleGrille">
+    <fx:include source="Logo.fxml" />
+    <VBox alignment="BASELINE_CENTER">
+        <Button styleClass="titre" text="TAILLE DE GRILLE"  />
+    </VBox>
+
+    <VBox alignment="CENTER">
+
+        <Button fx:id="jouerGrille15x15Button"  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+
+
+        <Button styleClass="custom-buttonGrille" text="Jouer cette grille 15x15 "  />
+
+        <Button styleClass="custom-buttonGrille" text="Jouer cette grille 15x15 "  />
+        <Button styleClass="custom-buttonGrille" text="Jouer cette grille 15x15 "  />
+        <Button styleClass="custom-buttonGrille" text="Jouer cette grille 15x15 "  />
+        <!-- Utilisation d'un HBox pour organiser les boutons "Retour" et "Suivant" -->
+        <HBox alignment="CENTER">
+            <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-buttonR" text="Retour" />
+            <Button onAction="#btnS" prefHeight="25.0" prefWidth="66.0" styleClass="custom-buttonS" text="Suivant" />
+        </HBox>
+    </VBox>
+
+
+</StackPane>
