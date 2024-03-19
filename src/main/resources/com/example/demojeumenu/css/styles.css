@@ -462,6 +462,13 @@ HBox{
     -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
 }
 
+#text{
+    -fx-font-family: 'Noteworthy';
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-padding: 150 300 ;
+}
+
 .param {
     -fx-background-image: url('../images/param.png');
     -fx-background-size: 100% 100%;

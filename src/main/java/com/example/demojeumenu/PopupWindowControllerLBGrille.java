@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class PopupWindowControllerLB extends BaseController {
+public class PopupWindowControllerLBGrille extends BaseController {
 
     @FXML
     private Button continueButton;

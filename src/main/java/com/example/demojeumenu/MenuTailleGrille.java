@@ -28,37 +28,7 @@ public class MenuTailleGrille extends BaseController{
 
     @FXML
     private void jouerGrille15x15() {
-        /*
-        try {
-            ColorAdjust darkColorAdjust = new ColorAdjust();
-            darkColorAdjust.setBrightness(-0.5);
-            scene.getRoot().setEffect(darkColorAdjust);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("PopupWindowLB.fxml"));
-            Parent root = loader.load();
 
-            // Créer une nouvelle fenêtre Stage pour le popup
-            Stage modalStage = new Stage();
-            //modalStage.initModality(Modality.APPLICATION_MODAL);
-            modalStage.setTitle("Popup");
-            modalStage.setAlwaysOnTop(true);
-            modalStage.initOwner(scene.getWindow()); // Définir la fenêtre principale comme propriétaire de la fenêtre modale
-            PopupWindowControllerLB.setStage(modalStage);
-
-            Scene scene = new Scene(root);
-            scene.setFill(Color.TRANSPARENT);
-            modalStage.setScene(scene);
-
-            // Supprimer la barre d'outils
-            modalStage.initStyle(StageStyle.TRANSPARENT);
-            modalStage.setOnHidden(event -> {
-                scene.getRoot().setEffect(null);
-            });
-            // Afficher la fenêtre modale
-            modalStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
         ColorAdjust darkColorAdjust = new ColorAdjust();
         darkColorAdjust.setBrightness(-0.5);
         scene.getRoot().setEffect(darkColorAdjust);
