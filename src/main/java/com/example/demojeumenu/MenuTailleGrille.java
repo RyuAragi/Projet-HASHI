@@ -25,45 +25,41 @@ public class MenuTailleGrille extends BaseController{
    /* @FXML
     private Button jouerGrille15x15Button;*/
 
-
     @FXML
-    private void jouerGrille15x15() {
-
-        ColorAdjust darkColorAdjust = new ColorAdjust();
-        darkColorAdjust.setBrightness(-0.5);
-        scene.getRoot().setEffect(darkColorAdjust);
-        // Charger le fichier FXML de l'external frame
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("PopupWindowLB.fxml"));
-        Parent root;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // Créer la scène de l'external frame
-        Scene sceneInfo = new Scene(root);
-        sceneInfo.setFill(Color.TRANSPARENT);
-        sceneInfo.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
-        sceneInfo.getRoot().setEffect(new DropShadow());
-
-        // Créer une nouvelle fenêtre pour l'external frame
-        Stage externalFrame = new Stage();
-        externalFrame.setResizable(false);
-        externalFrame.setWidth(800);
-        externalFrame.setHeight(700);
-        externalFrame.setAlwaysOnTop(true);
-        externalFrame.initStyle(StageStyle.TRANSPARENT);
-        externalFrame.initOwner(scene.getWindow());
-        PopupWindowControllerLB.setStage(externalFrame);
-        externalFrame.initModality(Modality.APPLICATION_MODAL);
-        externalFrame.setUserData(false);
-
-        externalFrame.setOnHidden(event -> scene.getRoot().setEffect(null));
-
-        externalFrame.setScene(sceneInfo);
-        externalFrame.show();
+    private void jouerGrille15x15(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        String buttonId = button.getId();
+        String levelDifficulty = buttonId.substring(buttonId.indexOf('_') + 1, buttonId.lastIndexOf('_'));
+        String levelNumber = buttonId.substring(buttonId.lastIndexOf('_') + 1);
+        String levelFileName = levelDifficulty + "-" + levelNumber + ".txt";
+        String levelFileNameCorrected = getLevelFileNameCorrected(levelFileName);
+        loadGrille(levelFileNameCorrected, scene);
     }
+
+    private String getLevelFileNameCorrected(String levelFileName) {
+        return levelFileName.substring(0, 1).toUpperCase() + levelFileName.substring(1);
+    }
+
+    private void loadGrille(String levelFileNameCorrected,Scene scene) {
+        System.out.println(levelFileNameCorrected);
+        String firstPart = levelFileNameCorrected.substring(0, levelFileNameCorrected.indexOf('-')).toLowerCase();
+        GrilleControler.levelFileNameCorrected = firstPart + "/" + levelFileNameCorrected;
+        System.out.println(GrilleControler.levelFileNameCorrected);
+        FXMLUtils.loadFXML("Grille.fxml", scene);
+    }
+
+    public void loadFXML(String fxmlFile, Scene scene) {
+        try {
+            // Load the FXML file
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+
+            // Set the scene
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     @FXML

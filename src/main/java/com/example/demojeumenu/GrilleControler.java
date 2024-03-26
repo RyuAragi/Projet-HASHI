@@ -14,6 +14,7 @@ import org.fxmisc.richtext.Selection;
 import java.awt.*;
 
 public class GrilleControler extends BaseController {
+    public static String levelFileNameCorrected;
 
     private GrilleJeu grille;
 
@@ -175,8 +176,13 @@ public class GrilleControler extends BaseController {
         }
     }
 
+    public void loadGrid() {
+        this.grille = new GrilleJeu("./src/main/resources/com/example/demojeumenu/niveaux/" + levelFileNameCorrected);
+    }
+
     @FXML
-    public void initialize(){
+    public void initialize() {
+
         /*
             Changer la musique...
          */
@@ -192,8 +198,8 @@ public class GrilleControler extends BaseController {
         SoundUtils.addClickSound(zoom, this::zoomMethod);
         SoundUtils.addClickSound(dezoom, this::dezoomMethod);
 
-        this.grille = new GrilleJeu("./src/main/java/com/example/demojeumenu/niveaux/facile/Facile-2.txt");
-        System.out.print(this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
+        loadGrid();
+        System.out.print("Grille charger :"+this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
 
         int pixelSize=0;
         if(this.grille.getNbColonne()<10 && this.grille.getNbLigne()<10){

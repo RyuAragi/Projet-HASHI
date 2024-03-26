@@ -9,17 +9,11 @@
     </VBox>
 
     <VBox alignment="CENTER">
-        <Button  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-
-        <Button  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-
-        <Button  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-
-        <Button  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-
-        <Button  onAction="#jouerGrille15x15" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-
-
+        <Button  onAction="#jouerGrille15x15" id="jouerGrille15x15_facile_6" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="jouerGrille15x15_facile_7" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="jouerGrille15x15_facile_8" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="jouerGrille15x15_facile_9" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="jouerGrille15x15_facile_10" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
 
         <!-- Utilisation d'un HBox pour organiser les boutons "Retour" et "Suivant" -->
         <HBox alignment="CENTER">
