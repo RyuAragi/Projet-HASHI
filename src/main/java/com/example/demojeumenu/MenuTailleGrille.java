@@ -25,41 +25,22 @@ public class MenuTailleGrille extends BaseController{
    /* @FXML
     private Button jouerGrille15x15Button;*/
 
+
+
     @FXML
     private void jouerGrille15x15(ActionEvent event) {
         Button button = (Button) event.getSource();
-        String buttonId = button.getId();
-        String levelDifficulty = buttonId.substring(buttonId.indexOf('_') + 1, buttonId.lastIndexOf('_'));
-        String levelNumber = buttonId.substring(buttonId.lastIndexOf('_') + 1);
-        String levelFileName = levelDifficulty + "-" + levelNumber + ".txt";
-        String levelFileNameCorrected = getLevelFileNameCorrected(levelFileName);
-        loadGrille(levelFileNameCorrected, scene);
-    }
-
-    private String getLevelFileNameCorrected(String levelFileName) {
-        return levelFileName.substring(0, 1).toUpperCase() + levelFileName.substring(1);
-    }
-
-    private void loadGrille(String levelFileNameCorrected,Scene scene) {
-        System.out.println(levelFileNameCorrected);
-        String firstPart = levelFileNameCorrected.substring(0, levelFileNameCorrected.indexOf('-')).toLowerCase();
-        GrilleControler.levelFileNameCorrected = firstPart + "/" + levelFileNameCorrected;
-        System.out.println(GrilleControler.levelFileNameCorrected);
-        FXMLUtils.loadFXML("Grille.fxml", scene);
-    }
-
-    public void loadFXML(String fxmlFile, Scene scene) {
-        try {
-            // Load the FXML file
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-
-            // Set the scene
-            scene.setRoot(root);
-        } catch (IOException e) {
-            e.printStackTrace();
+        String levelName = button.getId();
+        String[] parts = levelName.split("-");
+        if (parts.length > 0) {
+            String difficulty = parts[0].toLowerCase();
+            levelFileName = difficulty + "/" + levelName + ".txt";
+            System.out.println("jouerGrille15x15Button levelFileName: " + levelFileName);
+            FXMLUtils.loadFXML("Grille.fxml", scene, levelFileName);
+        } else {
+            System.err.println("Invalid level name format: " + levelName);
         }
     }
-
 
 
     @FXML

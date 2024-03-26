@@ -9,12 +9,11 @@
     </VBox>
 
     <VBox alignment="CENTER">
-        <Button  onAction="#jouerGrille15x15" id="jouerGrille15x15_difficile_6" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="jouerGrille15x15_difficile_7" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="jouerGrille15x15_difficile_8" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="jouerGrille15x15_difficile_9" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="jouerGrille15x15_difficile_10" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-
+        <Button  onAction="#jouerGrille15x15" id="Difficile-6" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="Difficile-7" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="Difficile-8" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="Difficile-9" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="Difficile-10" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
         <!-- Utilisation d'un HBox pour organiser les boutons "Retour" et "Suivant" -->
         <HBox alignment="CENTER">
             <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-buttonR" text="Retour" />

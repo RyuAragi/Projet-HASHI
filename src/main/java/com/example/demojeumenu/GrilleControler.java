@@ -11,12 +11,16 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import org.fxmisc.richtext.Selection;
 
+import java.io.*;
 import java.awt.*;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 
 public class GrilleControler extends BaseController {
-    public static String levelFileNameCorrected;
-
     private GrilleJeu grille;
+    private ClassLoader classLoader;
+    public String levelFileNameCorrected;
 
     @FXML
     private Button quit;
@@ -176,12 +180,35 @@ public class GrilleControler extends BaseController {
         }
     }
 
-    public void loadGrid() {
-        this.grille = new GrilleJeu("./src/main/resources/com/example/demojeumenu/niveaux/" + levelFileNameCorrected);
+    public void initData(String levelFileName) {
+        this.levelFileNameCorrected = levelFileName;
+        System.out.println("LevelFileNameCorrected: " + levelFileNameCorrected);
+
+        // Get the absolute path of the file
+        URL fileUrl = getClass().getResource("niveaux/" + levelFileNameCorrected);
+
+        if (fileUrl == null) {
+            System.err.println("File not found: " + levelFileNameCorrected);
+            // Handle the error, for example by throwing an exception or returning null
+        } else {
+            try {
+                // Convert the URL to a file path
+                String filePath = Paths.get(fileUrl.toURI()).toString();
+
+                // Pass the FileInputStream to GrilleJeu
+                this.grille = new GrilleJeu(filePath);
+                initializeGrille();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+                // Handle the exception, for example by logging it or throwing a RuntimeException
+            }
+        }
     }
 
-    @FXML
-    public void initialize() {
+
+
+
+    public void initializeGrille() {
 
         /*
             Changer la musique...
@@ -198,8 +225,8 @@ public class GrilleControler extends BaseController {
         SoundUtils.addClickSound(zoom, this::zoomMethod);
         SoundUtils.addClickSound(dezoom, this::dezoomMethod);
 
-        loadGrid();
-        System.out.print("Grille charger :"+this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
+        //this.grille = new GrilleJeu(levelFileNameCorrected);
+        System.out.print("Grille charger :"+this.grille.getNbColonne() + " - " + this.grille.getNbLigne()+"\n");
 
         int pixelSize=0;
         if(this.grille.getNbColonne()<10 && this.grille.getNbLigne()<10){
@@ -265,5 +292,10 @@ public class GrilleControler extends BaseController {
                 }
             }
         }
+    }
+
+    @FXML
+    public void initialize() {
+
     }
 }

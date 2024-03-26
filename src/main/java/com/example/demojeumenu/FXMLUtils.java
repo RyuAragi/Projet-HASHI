@@ -66,6 +66,22 @@ public class FXMLUtils {
         }
     }
 
+    public static void loadFXML(String fxml, Scene scene, String levelFileName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(FXMLUtils.class.getResource(fxml));
+            Parent root = loader.load();
+
+            Object controller = loader.getController();
+            if (controller instanceof GrilleControler) {
+                ((GrilleControler) controller).initData(levelFileName);
+            }
+
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Ajoute le fichier FXML à l'historique
      * @param fxmlFileName nom du fichier FXML

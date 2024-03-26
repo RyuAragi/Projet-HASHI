@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 public abstract class BaseController {
     protected static Scene scene;
     private boolean EtatParametres = false; // variable pour savoir si on est dans le menu parametres
+    protected String levelFileName;
 
     public void setScene(Scene scene) {
         this.scene = scene;
@@ -20,5 +21,10 @@ public abstract class BaseController {
                 }
             }
         });
+    }
+
+
+    public void initData(String data) {
+        this.levelFileName = data;
     }
 }
