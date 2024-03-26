@@ -22,9 +22,4 @@ public abstract class BaseController {
             }
         });
     }
-
-
-    public void initData(String data) {
-        this.levelFileName = data;
-    }
 }
