@@ -345,10 +345,11 @@
     -fx-pref-width: 60;
 }
 
-grilleImageView {
-    border: 2px solid #000; /* 2 pixels de large, de couleur noire */
+#grilleImageView {
+    -fx-border-width: 2px;
+    -fx-border-color: black;
+    -fx-border-style: solid;
 }
-
 .imgLogo{
     -fx-image: url('../images/logo.png');
 }
