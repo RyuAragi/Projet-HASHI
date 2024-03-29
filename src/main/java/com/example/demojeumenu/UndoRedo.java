@@ -79,7 +79,7 @@ package com.example.demojeumenu;
     /**
      * Test de Undo/Redo => A refaire avec de vrais tests maven
      * @param args
-     */
+     *//*
     public static void main(String[] args) {
         GrilleJeu grille = new GrilleJeu("../niveaux/facile/Facile-1.txt");
         
@@ -103,5 +103,5 @@ package com.example.demojeumenu;
         System.out.println("----- Action du Redo -----");
         System.out.println("Nombre de pont a l'est a l'ile 0 1 : " + grille.getIleGrilleJoueur(0, 1).getValPontDir("E"));
         System.out.println("Nombre de pont a l'ouest a l'ile 0 3 : " + grille.getIleGrilleJoueur(0, 3).getValPontDir("O"));
-    }
+    }*/
  }

@@ -184,24 +184,17 @@ public class GrilleControler extends BaseController {
         this.levelFileNameCorrected = levelFileName;
         System.out.println("LevelFileNameCorrected: " + levelFileNameCorrected);
 
-        // Get the absolute path of the file
-        URL fileUrl = getClass().getResource("niveaux/" + levelFileNameCorrected);
+        // Get the resource as a stream
+        InputStream resourceStream = getClass().getResourceAsStream("niveaux/" + levelFileNameCorrected);
 
-        if (fileUrl == null) {
-            System.err.println("File not found: " + levelFileNameCorrected);
+        if (resourceStream == null) {
+            System.err.println("Resource not found: " + levelFileNameCorrected);
             // Handle the error, for example by throwing an exception or returning null
         } else {
-            try {
-                // Convert the URL to a file path
-                String filePath = Paths.get(fileUrl.toURI()).toString();
-
-                // Pass the FileInputStream to GrilleJeu
-                this.grille = new GrilleJeu(filePath);
-                initializeGrille();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-                // Handle the exception, for example by logging it or throwing a RuntimeException
-            }
+            // Pass the InputStream to GrilleJeu
+            this.grille = new GrilleJeu(new InputStreamReader(resourceStream));
+            System.out.println("Grille: " + this.grille);
+            initializeGrille();
         }
     }
 

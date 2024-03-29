@@ -44,11 +44,11 @@ package com.example.demojeumenu;
  
      /**
       * Constructeur de GrilleJeu
-      * @param path le chemin vers le fichier de la grille 
+      * @param reader le chemin vers le fichier de la grille
       */
-     public GrilleJeu(String path){
-         charge(path);
- 
+     public GrilleJeu(InputStreamReader reader){
+         charge(reader);
+
          nbPontTotal = 0;
          listPontPose= new ArrayList<>();
          undoRedo = new UndoRedo();
@@ -58,16 +58,15 @@ package com.example.demojeumenu;
       * Charge un fichier passé en parametre et insère les données dans les grilles correspondantes
       * @param path Le chemin du fichier a charger
       */
-     private void charge(String path){
+     private void charge(InputStreamReader reader){
          try{
-             FileReader file = new FileReader(new File(path));
-             BufferedReader reader = new BufferedReader(file);
- 
+             BufferedReader bufferedReader = new BufferedReader(reader);
+
              String ligne; // Sert a stocker chaque ligne du fichier 'path'
              int valeurIle;
              int i = 0;
-             
-             while((ligne = reader.readLine())!= null){
+
+             while((ligne = bufferedReader.readLine())!= null){
                  String[] data ; 
                  data = ligne.split(" ");
                  
@@ -98,7 +97,7 @@ package com.example.demojeumenu;
                  }
                  i+=1;
              }
-             reader.close();
+             bufferedReader.close();
          }catch(IOException e){
              e.printStackTrace();
          }
@@ -549,7 +548,7 @@ package com.example.demojeumenu;
          return dst.getX() == src.getX();
      }
  
- 
+ /*
      public static void main(String[] args) {
          GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Facile-5.txt");
          testJeu.afficher_mat_out();
@@ -558,5 +557,5 @@ package com.example.demojeumenu;
  
          System.out.println(testJeu.getIleGrilleJoueur(0,0).getValPontDir(new String("E")));
          //Aide.techniqueDeDepart(testJeu);
-     }
+     }*/
  }
