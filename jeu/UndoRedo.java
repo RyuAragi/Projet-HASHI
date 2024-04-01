@@ -3,6 +3,7 @@
  * @version 1.0
  */
 
+
  import java.util.Stack;
 
  /** 
@@ -28,7 +29,7 @@
     /**
      * Constructeur de la classe
      */
-    UndoRedo() {   
+    public UndoRedo() {   
         this.redo = new Stack<Pont>();
     }
 
@@ -57,10 +58,17 @@
     }
 
     /**
+     * Renvoie le premier élément de la pile
+     * @return le pont représentant le premier de la pile
+     */
+    public Pont getPremierElement(){
+        return redo.peek();
+    }
+    /**
      * Methode permettant de faire une action undo -> Revenir en arriere 
      * @param jeu
      */
-    void actionUndo(GrilleJeu jeu) {
+    public void actionUndo(GrilleJeu jeu) {
        Pont p = jeu.getDernierPontAjouter();
        jeu.supprimePont(p);
        this.pushRedo(p);
@@ -70,7 +78,7 @@
      * Methode permettant de faire une action redo -> Revenir a l'état avant le retour en arrière
      * @param jeu
      */
-    void actionRedo(GrilleJeu jeu) {
+    public void actionRedo(GrilleJeu jeu) {
         Pont pont = this.popRedo();
         jeu.poserPont(pont.getSrc(), pont.getDst());
     }
@@ -92,13 +100,13 @@
         System.out.println("Nombre de pont a l'ouest a l'ile 0 3 : " + grille.getIleGrilleJoueur(0, 3).getValPontDir("O") + "\n");
 
         // Action de undo et affichage des coordonées X et Y des deux iles
-        grille.undoRedo.actionUndo(grille);
+        grille.undo(grille);
         System.out.println("----- Action du Undo -----");
-        System.out.println("Ile SRC : " + grille.undoRedo.redo.peek().getSrc().getX() + " " + grille.undoRedo.redo.peek().getSrc().getY());
-        System.out.println("Ile DEST : " + grille.undoRedo.redo.peek().getDst().getX() + " " + grille.undoRedo.redo.peek().getDst().getY() + "\n");
+        System.out.println("Ile SRC : " + grille.premierPontPile().getSrc().getX() + " " + grille.premierPontPile().getSrc().getY());
+        System.out.println("Ile DEST : " + grille.premierPontPile().getDst().getX() + " " + grille.premierPontPile().getDst().getY() + "\n");
 
         // Action de redo et affichage du nombre de voisins pour savoir si ils sont connectés
-        grille.undoRedo.actionRedo(grille);
+        grille.redo(grille);
         System.out.println("----- Action du Redo -----");
         System.out.println("Nombre de pont a l'est a l'ile 0 1 : " + grille.getIleGrilleJoueur(0, 1).getValPontDir("E"));
         System.out.println("Nombre de pont a l'ouest a l'ile 0 3 : " + grille.getIleGrilleJoueur(0, 3).getValPontDir("O"));
