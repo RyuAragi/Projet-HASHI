@@ -885,9 +885,11 @@ public class GrilleControler extends BaseController {
          */
 
         List<Node> listObj = grillePane.getChildren();
-        for (Rectangle rec : rectFromMousedIle.get(onYellowBridge).values()) {
-            if(rec!=null){
-                listObj.remove(rec);
+        if(onYellowBridge!=Direction.None) {
+            for (Rectangle rec : rectFromMousedIle.get(onYellowBridge).values()) {
+                if (rec != null) {
+                    listObj.remove(rec);
+                }
             }
         }
 
@@ -902,18 +904,6 @@ public class GrilleControler extends BaseController {
         }
 
     }
-
-/*
-    public boolean partieFinie(){
-        for (Node node: grillePane.getChildren()) {
-            if(node instanceof Button){
-                if(node)
-            }
-        }
-        return true;
-    }
-
- */
 
     @FXML
     public void initialize() {
