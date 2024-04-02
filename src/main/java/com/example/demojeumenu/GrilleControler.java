@@ -16,6 +16,7 @@ import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class GrilleControler extends BaseController {
@@ -876,17 +877,30 @@ public class GrilleControler extends BaseController {
 
     private void deleteBridges() {
         System.out.println(onYellowBridge);
+
+        /*
         if(onYellowBridge!=Direction.None){
             rectFromMousedIle.remove(onYellowBridge);
         }
-        for (HashMap<Button, Rectangle> rect : rectFromMousedIle.values()) {
-            if(rect!=null) {
-                grillePane.getChildren().removeAll(rect.values());
-                for (Button button : rect.keySet()) {
-                    button.setStyle("-fx-background-color: transparent;");
-                }
+         */
+
+        List<Node> listObj = grillePane.getChildren();
+        for (Rectangle rec : rectFromMousedIle.get(onYellowBridge).values()) {
+            if(rec!=null){
+                listObj.remove(rec);
             }
         }
+
+
+        for (Node node: listObj) {
+            if(node instanceof Button){
+                node.setStyle("-fx-background-color: transparent;");
+            }
+            else if(node instanceof Rectangle && ((Rectangle) node).getFill()==Color.YELLOW){
+                grillePane.getChildren().removeAll(node);
+            }
+        }
+
     }
 
 /*
@@ -907,7 +921,7 @@ public class GrilleControler extends BaseController {
         initChrono();
         onYellowBridge = Direction.None;
 
-        this.grille = new GrilleJeu("./src/main/java/com/example/demojeumenu/niveaux/moyen/Moyen-1.txt");
+        this.grille = new GrilleJeu("./src/main/java/com/example/demojeumenu/niveaux/facile/Facile-2.txt");
         System.out.print(this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
         if (this.grille.getNbColonne() < 10 && this.grille.getNbLigne() < 10) {
             this.fontSize = 15;
