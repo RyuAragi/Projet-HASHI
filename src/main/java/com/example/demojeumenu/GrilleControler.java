@@ -19,7 +19,9 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class GrilleControler extends BaseController {
-
+    /**
+     * Enumérateur de directions parmis Nord, Sud, Ouest et Est
+     */
     enum Direction {None, Nord, Est, Ouest, Sud}
     private GrilleJeu grille;
     private int fontSize;
