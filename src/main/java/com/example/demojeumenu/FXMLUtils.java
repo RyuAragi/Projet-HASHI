@@ -1,5 +1,7 @@
 package com.example.demojeumenu;
 
+import com.example.demojeumenu.controler.GlobalVariables;
+import com.example.demojeumenu.utils.BaseController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -63,6 +65,22 @@ public class FXMLUtils {
         } catch (IOException e) {
             Logger logger = LoggerFactory.getLogger(FXMLUtils.class);
             logger.error("Une erreur est survenue lors du chargement du fichier FXML", e);
+        }
+    }
+
+    public static void loadFXML(String fxml, Scene scene, String levelFileName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(FXMLUtils.class.getResource(fxml));
+            Parent root = loader.load();
+
+            Object controller = loader.getController();
+            if (controller instanceof GrilleControler) {
+                ((GrilleControler) controller).initData(levelFileName);
+            }
+
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

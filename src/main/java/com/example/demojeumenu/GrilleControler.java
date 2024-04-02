@@ -1,22 +1,22 @@
 package com.example.demojeumenu;
 
-import javafx.collections.ObservableList;
+import com.example.demojeumenu.game.GrilleJeu;
+import com.example.demojeumenu.game.Ile;
+import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
-import org.fxmisc.richtext.Selection;
 
-import java.awt.*;
+import java.io.*;
 
 public class GrilleControler extends BaseController {
-    public static String levelFileNameCorrected;
-
     private GrilleJeu grille;
+    private ClassLoader classLoader;
+    public String levelFileNameCorrected;
 
     @FXML
     private Button quit;
@@ -176,12 +176,28 @@ public class GrilleControler extends BaseController {
         }
     }
 
-    public void loadGrid() {
-        this.grille = new GrilleJeu("./src/main/resources/com/example/demojeumenu/niveaux/" + levelFileNameCorrected);
+    public void initData(String levelFileName) {
+        this.levelFileNameCorrected = levelFileName;
+        System.out.println("LevelFileNameCorrected: " + levelFileNameCorrected);
+
+        // Get the resource as a stream
+        InputStream resourceStream = getClass().getResourceAsStream("niveaux/" + levelFileNameCorrected);
+
+        if (resourceStream == null) {
+            System.err.println("Resource not found: " + levelFileNameCorrected);
+            // Handle the error, for example by throwing an exception or returning null
+        } else {
+            // Pass the InputStream to GrilleJeu
+            this.grille = new GrilleJeu(new InputStreamReader(resourceStream));
+            System.out.println("Grille: " + this.grille);
+            initializeGrille();
+        }
     }
 
-    @FXML
-    public void initialize() {
+
+
+
+    public void initializeGrille() {
 
         /*
             Changer la musique...
@@ -198,8 +214,8 @@ public class GrilleControler extends BaseController {
         SoundUtils.addClickSound(zoom, this::zoomMethod);
         SoundUtils.addClickSound(dezoom, this::dezoomMethod);
 
-        loadGrid();
-        System.out.print("Grille charger :"+this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
+        //this.grille = new GrilleJeu(levelFileNameCorrected);
+        System.out.print("Grille charger :"+this.grille.getNbColonne() + " - " + this.grille.getNbLigne()+"\n");
 
         int pixelSize=0;
         if(this.grille.getNbColonne()<10 && this.grille.getNbLigne()<10){
@@ -265,5 +281,10 @@ public class GrilleControler extends BaseController {
                 }
             }
         }
+    }
+
+    @FXML
+    public void initialize() {
+
     }
 }
