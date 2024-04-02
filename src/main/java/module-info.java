@@ -9,6 +9,7 @@ module com.example.demojeumenu {
     requires java.logging;
     requires java.desktop;
     requires javafx.media;
+    requires com.fasterxml.jackson.databind;
 
     opens com.example.demojeumenu to javafx.fxml;
     exports com.example.demojeumenu;

@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class PopupWindowControllerLB extends BaseController {
-
     @FXML
     private Button continueButton;
 /// hi
@@ -43,6 +42,7 @@ public class PopupWindowControllerLB extends BaseController {
         //Stage stage = (Stage) continueButton.getScene().getWindow();
         stage.close();
     }
+
 
 
     @FXML
