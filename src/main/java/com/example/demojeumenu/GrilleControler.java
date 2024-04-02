@@ -26,7 +26,7 @@ public class GrilleControler extends BaseController {
     private int pixelSize;
     private boolean enModeHypothese;
     private Direction onYellowBridge;
-    private Timeline timeline;
+    private static Timeline timeline;
     HashMap<Direction, HashMap<Button,Rectangle>> rectFromMousedIle;
 
     @FXML
@@ -107,6 +107,8 @@ public class GrilleControler extends BaseController {
     private String chronoToString(){
         return this.chrono.getText();
     }
+
+    public static Timeline getChrono(){ return timeline; }
 
     private Button createButton(Ile ile, int x, int y) {
         Button boutonIle = new Button(ile.getValIle()+"");
@@ -218,7 +220,7 @@ public class GrilleControler extends BaseController {
     private HashMap<Button, Rectangle> createNorthBridge(Ile ileSrc, Button boutonSrc) {
         Ile ileNord = ileSrc.getIleNord(grille);
 
-        if (ileNord != null && !ileNord.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("N") == 0) {
+        if (ileNord != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileNord) && !ileNord.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("N") == 0) {
             Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
 
             if (buttonDestNord != null) {
@@ -406,7 +408,7 @@ public class GrilleControler extends BaseController {
     private HashMap<Button, Rectangle> createSouthBridge(Ile ileSrc, Button boutonSrc) {
         Ile ileSud = ileSrc.getIleSud(grille);
 
-        if (ileSud != null && !ileSud.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("S") == 0) {
+        if (ileSud != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileSud) && !ileSud.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("S") == 0) {
             Button buttonDestSud = findButtonByCoord(ileSud.getY(), ileSud.getX());
 
             if (buttonDestSud != null) {
@@ -561,7 +563,7 @@ public class GrilleControler extends BaseController {
     private HashMap<Button, Rectangle> createWestBridge(Ile ileSrc, Button boutonSrc) {
         Ile ileOuest = ileSrc.getIleOuest(grille);
 
-        if (ileOuest != null && !ileOuest.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("O") == 0) {
+        if (ileOuest != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileOuest) && !ileOuest.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("O") == 0) {
             Button buttonDestOuest = findButtonByCoord(ileOuest.getY(), ileOuest.getX());
 
             if (buttonDestOuest != null) {
@@ -718,7 +720,7 @@ public class GrilleControler extends BaseController {
     private HashMap<Button, Rectangle> createEastBridge(Ile ileSrc, Button boutonSrc) {
         Ile ileEst = ileSrc.getIleEst(grille);
 
-        if (ileEst != null && !ileEst.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("E") == 0) {
+        if (ileEst != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileEst) && !ileEst.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("E") == 0) {
             Button buttonDestEst = findButtonByCoord(ileEst.getY(), ileEst.getX());
 
             if (buttonDestEst != null) {
@@ -885,19 +887,31 @@ public class GrilleControler extends BaseController {
         }
     }
 
+/*
+    public boolean partieFinie(){
+        for (Node node: grillePane.getChildren()) {
+            if(node instanceof Button){
+                if(node)
+            }
+        }
+        return true;
+    }
+
+ */
+
     @FXML
     public void initialize() {
         initButtons();
         initChrono();
         onYellowBridge = Direction.None;
 
-        this.grille = new GrilleJeu("./src/main/java/com/example/demojeumenu/niveaux/facile/Facile-2.txt");
+        this.grille = new GrilleJeu("./src/main/java/com/example/demojeumenu/niveaux/moyen/Moyen-1.txt");
         System.out.print(this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
         if (this.grille.getNbColonne() < 10 && this.grille.getNbLigne() < 10) {
             this.fontSize = 15;
             this.pixelSize = 50;
         } else {
-            this.fontSize = 14;
+            this.fontSize = 7;
             this.pixelSize = 25;
         }
 

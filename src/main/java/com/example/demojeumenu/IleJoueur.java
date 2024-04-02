@@ -74,6 +74,10 @@ package com.example.demojeumenu;
       * @param p le pont a supprimé
       */
      public void supprimePont(String dir, Pont p){
+         pontRelie.get(dir).remove(p);
+     }
+
+     public void reinitPont(String dir){
          pontRelie.remove(dir);
          pontRelie.put(dir, new ArrayList<Pont>());
      }
@@ -105,7 +109,7 @@ package com.example.demojeumenu;
      }
  
      /**
-      * Methode permettant de pouvoir avoir la direction d'un pont dans une ile
+      * Methode permettant d'obtenir la direction qui contient le pont passé en paramètre.
       * 
       * @param p
       * @return La direction 
