@@ -878,30 +878,30 @@ public class GrilleControler extends BaseController {
     private void deleteBridges() {
         System.out.println(onYellowBridge);
 
-        /*
-        if(onYellowBridge!=Direction.None){
-            rectFromMousedIle.remove(onYellowBridge);
-        }
-         */
-
-        List<Node> listObj = grillePane.getChildren();
+        Rectangle rect=null;
         if(onYellowBridge!=Direction.None) {
             for (Rectangle rec : rectFromMousedIle.get(onYellowBridge).values()) {
                 if (rec != null) {
-                    listObj.remove(rec);
+                    rect = rec;
                 }
             }
         }
+        List<Node> nodesToRemove = new ArrayList<>();
 
-
-        for (Node node: listObj) {
-            if(node instanceof Button){
-                node.setStyle("-fx-background-color: transparent;");
+        // Parcourir tous les nœuds de la grille
+        for (Node node : grillePane.getChildren()) {
+            if (node instanceof Rectangle rectangle) {
+                if (rectangle.getFill().equals(Color.YELLOW)) {
+                    nodesToRemove.add(rectangle);
+                }
             }
-            else if(node instanceof Rectangle && ((Rectangle) node).getFill()==Color.YELLOW){
-                grillePane.getChildren().removeAll(node);
+            else if(node instanceof Button && !node.getStyle().contains("-fx-background-color: lightgrey;")){
+                node.setStyle("-fx-background-color: transparent");
             }
         }
+
+        nodesToRemove.remove(rect);
+        grillePane.getChildren().removeAll(nodesToRemove);
 
     }
 
