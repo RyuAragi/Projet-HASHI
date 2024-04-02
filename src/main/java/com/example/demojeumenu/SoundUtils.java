@@ -149,14 +149,14 @@ public class SoundUtils {
      * Méthode retournant le niveau du son courant.
      * @return [Integer entre 0 et 5] Le niveau du son courant.
      */
-    protected static int getSoundLevel(){
+    public static int getSoundLevel(){
         return soundLevel;
     }
 
     /**
      * Méthode augmentant le niveau du son.
      */
-    protected static void soundUp(){
+    public static void soundUp(){
         soundLevel++;
         updateVolume();
         if(previousSoudLevel!=-1){
@@ -167,7 +167,7 @@ public class SoundUtils {
     /**
      * Méthode baissant le niveau du son.
      */
-    protected static void soundDown(){
+    public static void soundDown(){
         soundLevel--;
         updateVolume();
         if(soundLevel==0){
@@ -178,7 +178,7 @@ public class SoundUtils {
     /**
      * Méthode mettant le niveau du son à 0.
      */
-    protected static void avoidSound(){
+    public static void avoidSound(){
         previousSoudLevel = soundLevel;
         soundLevel = 0;
         updateVolume();
@@ -187,7 +187,7 @@ public class SoundUtils {
     /**
      * Méthode rétablissant le son à partir du dernier niveau de son enregistré.
      */
-    protected static void allowSound(){
+    public static void allowSound(){
         soundLevel = previousSoudLevel;
         previousSoudLevel = -1;
         updateVolume();
@@ -227,7 +227,7 @@ public class SoundUtils {
     /**
      * Méthode d'initialisation de la musique.
      */
-    protected static void initMusic() {
+    public static void initMusic() {
         try {
             latch.await(); // Wait for the music player to be ready
         } catch (InterruptedException e) {

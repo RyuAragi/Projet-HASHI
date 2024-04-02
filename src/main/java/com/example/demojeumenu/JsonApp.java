@@ -1,5 +1,7 @@
 package com.example.demojeumenu;
 
+import com.example.demojeumenu.controler.PopupWindowController;
+import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

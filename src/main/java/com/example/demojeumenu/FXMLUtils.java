@@ -1,5 +1,7 @@
 package com.example.demojeumenu;
 
+import com.example.demojeumenu.controler.GlobalVariables;
+import com.example.demojeumenu.utils.BaseController;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;

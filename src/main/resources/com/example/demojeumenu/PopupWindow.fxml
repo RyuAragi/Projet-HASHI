@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane fx:controller="com.example.demojeumenu.PopupWindowController" cache="true" maxHeight="700.0" maxWidth="700.0" minHeight="700.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" styleClass="boardBg" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:controller="com.example.demojeumenu.controler.PopupWindowController" cache="true" maxHeight="700.0" maxWidth="700.0" minHeight="700.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" styleClass="boardBg" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
         <HBox alignment="CENTER" maxWidth="600.0" prefHeight="162.0" prefWidth="600.0">
             <children>
