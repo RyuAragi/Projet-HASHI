@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.layout.GridPane?>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="bgJeu" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.GrilleControler">
+    <Label fx:id="chrono" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="130.0" styleClass="chrono" StackPane.alignment="TOP_CENTER">00:00</Label>
+    <HBox prefHeight="60.0" prefWidth="130.0" StackPane.alignment="TOP_LEFT">
+        <StackPane.margin>
+            <Insets left="5.0" top="5.0" />
+        </StackPane.margin>
+        <Button fx:id="quit" alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#testMethod" prefHeight="60.0" prefWidth="60.0" styleClass="quit" />
+        <Button fx:id="param" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="param" />
+    </HBox>
+    <HBox alignment="TOP_RIGHT" prefHeight="60.0" prefWidth="200.0">
+        <StackPane.margin>
+            <Insets right="5.0" top="5.0" />
+        </StackPane.margin>
+        <Button fx:id="valid_hypo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="valid_hypo" />
+        <Button fx:id="supp_hypo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="supp_hypo" />
+        <Button fx:id="hypothese" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#hypotheseMethod" prefHeight="60.0" prefWidth="60.0" styleClass="hypothese" />
+        <Button fx:id="restart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="restart" />
+        <Button fx:id="redo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="undo" />
+        <Button fx:id="undo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="redo" />
+        <Button fx:id="help" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="help" />
+        <Button fx:id="check" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#testMethod" prefHeight="60.0" prefWidth="60.0" styleClass="check" />
+    </HBox>
+   <GridPane fx:id="grillePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="160.0" style="-fx-background-color: white;" />
+    <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="200.0">
+        <StackPane.margin>
+            <Insets bottom="5.0" right="5.0" />
+        </StackPane.margin>
+        <Button fx:id="dezoom" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="dezoom" />
+        <Button fx:id="zoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="58.0" prefWidth="60.0" styleClass="zoom" />
+    </HBox>
+</StackPane>

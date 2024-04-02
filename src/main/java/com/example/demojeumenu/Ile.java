@@ -27,7 +27,7 @@ public abstract class Ile extends Case{
         valIle = valIle_;
     }
 
-    int getValIle(){
+    public int getValIle(){
         return valIle;
     }
 
@@ -94,5 +94,9 @@ public abstract class Ile extends Case{
             i++;
         }
         return null;
+    }
+
+    public boolean ileComplete(){
+        return getValIle() == getSommeVoisins();
     }
 }

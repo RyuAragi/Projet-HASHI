@@ -5,42 +5,51 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="bgJeu" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.GrilleControler">
-   <HBox prefHeight="60.0" prefWidth="130.0" StackPane.alignment="TOP_LEFT">
-      <children>
-          <Button fx:id="quit" alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="quit" />
-         <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="param" />
-      </children>
-      <StackPane.margin>
-         <Insets left="5.0" top="5.0" />
-      </StackPane.margin>
-   </HBox>
-   <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="TOP_CENTER">
-      <children>
-          <Button fx:id="restart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="restart" />
-          <Button fx:id="redo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="undo" />
-          <Button fx:id="undo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="redo" />
-          <Button fx:id="help" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="help" />
-          <Button fx:id="check" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="check" />
-      </children>
-      <StackPane.margin>
-         <Insets right="5.0" top="5.0" />
-      </StackPane.margin>
-   </HBox>
-     <GridPane fx:id="grillePane" alignment="CENTER" gridLinesVisible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="grille">
-      <rowConstraints>
-      </rowConstraints>
-      <columnConstraints>
-      </columnConstraints>
-     </GridPane>
-   <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="130.0">
-      <children>
-          <Button fx:id="dezoom" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="dezoom" />
-          <Button fx:id="zoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="58.0" prefWidth="60.0" styleClass="zoom" />
-      </children>
-      <StackPane.margin>
-         <Insets bottom="5.0" right="5.0" />
-      </StackPane.margin>
-   </HBox>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" styleClass="bgJeu" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.GrilleControler2">
+    <HBox prefHeight="60.0" prefWidth="130.0" StackPane.alignment="TOP_LEFT">
+        <StackPane.margin>
+            <Insets left="5.0" top="5.0"/>
+        </StackPane.margin>
+        <Button fx:id="quit" alignment="TOP_LEFT" onAction="#testMethod" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
+                styleClass="quit"/>
+        <Button fx:id="param" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="param"/>
+    </HBox>
+    <Label fx:id="chrono" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="130.0" styleClass="chrono">00:00</Label>
+    <HBox alignment="TOP_RIGHT" prefHeight="60.0" prefWidth="200.0">
+        <StackPane.margin>
+            <Insets right="5.0" top="5.0"/>
+        </StackPane.margin>
+        <Button fx:id="valid_hypo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="valid_hypo"/>
+        <Button fx:id="supp_hypo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="supp_hypo"/>
+        <Button fx:id="hypothese" onAction="#hypotheseMethod" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="hypothese"/>
+        <Button fx:id="restart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="restart"/>
+        <Button fx:id="redo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="undo"/>
+        <Button fx:id="undo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="redo"/>
+        <Button fx:id="help" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="help"/>
+        <Button fx:id="check" onAction="#testMethod" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="check"/>
+    </HBox>
+    <GridPane fx:id="grillePane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="grille">
+    </GridPane>
+    <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="130.0">
+        <StackPane.margin>
+            <Insets bottom="5.0" right="5.0"/>
+        </StackPane.margin>
+        <Button fx:id="dezoom" onAction="#dezoomMethod" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity"
+                minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0"
+                styleClass="dezoom"/>
+        <Button fx:id="zoom" onAction="#zoomMethod" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                mnemonicParsing="false" prefHeight="58.0" prefWidth="60.0" styleClass="zoom"/>
+    </HBox>
 </StackPane>

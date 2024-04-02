@@ -140,6 +140,7 @@ package com.example.demojeumenu;
      public Ile getIleGrilleJoueur(int x, int y){
          return (Ile)joueur[x][y];
      }
+
  
  
      /**
@@ -180,7 +181,7 @@ package com.example.demojeumenu;
          String directionSrc = src.getPontDirection(p);
          String directionDest = dest.getPontDirection(p);
  
-         if (listPontPose.isEmpty()==false){
+         if (!listPontPose.isEmpty() && directionSrc!=null && directionDest!=null){
             listPontPose.remove(p);
             src.supprimePont(directionSrc, p);
              dest.supprimePont(directionDest, p);
@@ -247,9 +248,11 @@ package com.example.demojeumenu;
             }else if(valYI1 < valYI2){
                 ajoutePont("E",(IleJoueur)i1 , "O", (IleJoueur)i2);
             }else if(valXI1 > valXI2){
-                ajoutePont("S", (IleJoueur)i1, "N",(IleJoueur)i2);
+                System.out.println("ici");
+                ajoutePont("N", (IleJoueur)i1, "S",(IleJoueur)i2);
             }else{
-                ajoutePont("N",(IleJoueur)i1, "S", (IleJoueur)i2);
+                System.out.println("là");
+                ajoutePont("S",(IleJoueur)i1, "N", (IleJoueur)i2);
             }
             nbPontTotal += 1;
     
@@ -277,19 +280,21 @@ package com.example.demojeumenu;
       * @return renvoie le pont créé
       */
      Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2){
-         if(j1.getValPontDir(dir1) == j1.getMaxPont()){
+         if(j1.getValPontDir(dir1) == j1.getMaxPont() || j2.getValPontDir(dir2) == j2.getMaxPont()){
+             System.out.println("Supp");
              for(Pont p: j1.getListePonts(dir1) ){
-                 if (p.estHypothese() == false){
+                 if (!p.estHypothese()){
                      j1.supprimePont(dir1,p);
                      supprimePont(p);
                  }
              } 
              for(Pont p: j2.getListePonts(dir2) ){
-                 if (p.estHypothese() == false){
+                 if (!p.estHypothese()){
                      j2.supprimePont(dir2,p);
                  }
              } 
          }else{
+             System.out.println("Pas supp");
              Pont p = new Pont(j1,j2, false);
              j1.ajoutePontList(dir1,p);
              j2.ajoutePontList(dir2, p);

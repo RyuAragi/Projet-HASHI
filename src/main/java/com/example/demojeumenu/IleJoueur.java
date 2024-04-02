@@ -74,7 +74,8 @@ package com.example.demojeumenu;
       * @param p le pont a supprimé
       */
      public void supprimePont(String dir, Pont p){
-         pontRelie.get(dir).remove(p);
+         pontRelie.remove(dir);
+         pontRelie.put(dir, new ArrayList<Pont>());
      }
  
  
@@ -116,6 +117,7 @@ package com.example.demojeumenu;
                  return elem.getKey();
              }
          }
-         throw new NoSuchElementException();
+         //throw new NoSuchElementException();
+         return null;
      } 
  }
