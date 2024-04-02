@@ -1,5 +1,7 @@
 package com.example.demojeumenu;
 
+import com.example.demojeumenu.Menu.MenuInfoController;
+import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

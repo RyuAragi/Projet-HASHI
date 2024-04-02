@@ -1,21 +1,17 @@
 package com.example.demojeumenu;
 
-import javafx.collections.ObservableList;
+import com.example.demojeumenu.game.GrilleJeu;
+import com.example.demojeumenu.game.Ile;
+import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
-import org.fxmisc.richtext.Selection;
 
 import java.io.*;
-import java.awt.*;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Paths;
 
 public class GrilleControler extends BaseController {
     private GrilleJeu grille;

@@ -12,4 +12,16 @@ module com.example.demojeumenu {
 
     opens com.example.demojeumenu to javafx.fxml;
     exports com.example.demojeumenu;
+    exports com.example.demojeumenu.utils;
+    opens com.example.demojeumenu.utils to javafx.fxml;
+    exports com.example.demojeumenu.controler;
+    opens com.example.demojeumenu.controler to javafx.fxml;
+    exports com.example.demojeumenu.technique;
+    opens com.example.demojeumenu.technique to javafx.fxml;
+    exports com.example.demojeumenu.undoRedo;
+    opens com.example.demojeumenu.undoRedo to javafx.fxml;
+    exports com.example.demojeumenu.Menu;
+    opens com.example.demojeumenu.Menu to javafx.fxml;
+    exports com.example.demojeumenu.game;
+    opens com.example.demojeumenu.game to javafx.fxml;
 }
