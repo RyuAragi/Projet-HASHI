@@ -73,7 +73,7 @@
       * @param p le pont a supprimé
       */
      public void supprimePont(String dir, Pont p){
-         pontRelie.get(dir).remove(p);
+        pontRelie.get(dir).remove(p);
      }
  
  
@@ -109,12 +109,13 @@
       * @return La direction 
       * @throws NoSuchElementException
       */
-     String getPontDirection(Pont p) throws NoSuchElementException{
+     String getPontDirection(Pont p){
          for(Map.Entry<String, List<Pont>> elem : this.pontRelie.entrySet()) {
              if(elem.getValue().contains(p)) {
                  return elem.getKey();
              }
          }
-         throw new NoSuchElementException();
+         return null;
+         //throw new NoSuchElementException();
      } 
  }

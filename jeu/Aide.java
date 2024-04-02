@@ -10,6 +10,27 @@ import java.util.*;
 
 public class Aide{
 
+    private static Aide instance = null;
+
+
+    private IleJoueur cibleTechnique;
+    private int niveauxPrecision;
+
+    private Aide(){
+        niveauxPrecision = 0;
+    }
+
+    public synchronized Aide getInstance(){
+        if (instance == null){
+            instance = new Aide();
+        }
+        return instance;
+    }
+    
+
+    public int getNiveauxPrecision(){
+        return niveauxPrecision;
+    }
 
     /**
      * Méthode qui permet de détecter si une technique de départ est applicable

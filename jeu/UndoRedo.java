@@ -80,7 +80,7 @@
      */
     public void actionRedo(GrilleJeu jeu) {
         Pont pont = this.popRedo();
-        jeu.poserPont(pont.getSrc(), pont.getDst());
+        jeu.poserPont(pont.getSrc(), pont.getDst(),false);
     }
 
     /**
@@ -94,7 +94,7 @@
         grille.afficher_mat_out();
 
         // Pose du pont et affichage du nombre de voisins pour savoir si ils sont connectés
-        grille.poserPont(grille.getIleGrilleJoueur(0, 1), grille.getIleGrilleJoueur(0, 3));
+        grille.poserPont(grille.getIleGrilleJoueur(0, 1), grille.getIleGrilleJoueur(0, 3),false);
         System.out.println("----- Pose du Pont -----");
         System.out.println("Nombre de pont a l'est a l'ile 0 1 : " + grille.getIleGrilleJoueur(0, 1).getValPontDir("E"));
         System.out.println("Nombre de pont a l'ouest a l'ile 0 3 : " + grille.getIleGrilleJoueur(0, 3).getValPontDir("O") + "\n");
