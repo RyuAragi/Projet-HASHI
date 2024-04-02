@@ -81,7 +81,7 @@ public class MenuTailleGrille extends BaseController {
             String difficulty = parts[0].toLowerCase();
             levelFileName = difficulty + "/" + levelName + ".txt";
             System.out.println("jouerGrille15x15Button levelFileName: " + levelFileName);
-            FXMLUtils.loadFXML("Grille.fxml", scene, levelFileName);
+            FXMLUtils.loadFXML("GrilleDisplay.fxml", scene, levelFileName);
         } else {
             System.err.println("Invalid level name format: " + levelName);
         }
