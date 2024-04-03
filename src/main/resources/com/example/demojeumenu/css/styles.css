@@ -161,6 +161,22 @@
     -fx-pref-width: 180;
     -fx-prompt-text-fill: white;
 }
+ /*style pour les buttons de leaderboard score et temps*/
+.custom-buttonFrameLB {
+    -fx-font-family: 'Noteworthy';
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('../images/buttonFrame.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+    -fx-text-alignment: center;
+    -fx-pref-height: 100;
+    -fx-pref-width: 180;
+    -fx-prompt-text-fill: white;
+}
 
 #buttonContainer {
     -fx-alignment: center-right;
@@ -597,4 +613,265 @@
     -fx-pref-width: 130;
     -fx-prompt-text-fill: white;
 
+}
+
+
+/* ajout*/
+
+.background {
+    -fx-background-image: url('../images/background.png'), url('../images/board.png');
+    -fx-background-size: cover, 70% 80%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.boardBg{
+    -fx-background-image: url('../images/board.png');
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-color: transparent;
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+
+.chrono {
+    -fx-font-family: 'Noteworthy';
+    -fx-font-size: 30px;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+
+.custom-barre {
+    -fx-font-family: 'Noteworthy';
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('../images/barre.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    /*-fx-padding: 20 50 30 50;*/
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-start-margin: 20;
+}
+
+.custom-button:hover {
+    -fx-background-image: url('../images/hover_bouton.png');
+}
+
+
+VBox {
+    -fx-spacing: 5.0;
+}
+
+HBox{
+    -fx-spacing: 5.0;
+}
+
+
+#leaderboard {
+    -fx-background-color: red; /*couleur temporaire pour le test*/
+    -fx-background-image: url('../images/leaderboard.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+    -fx-alignment: center;
+}
+
+#info_button{
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('../images/bouton_info.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+    -fx-text-alignment: center;
+    -fx-pref-height: 60;
+    -fx-pref-width: 60;
+}
+
+
+#mute_button{
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+    -fx-alignment: bottom-center;
+    -fx-pref-height: 60;
+    -fx-pref-width: 60;
+}
+
+#soundBar{
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    /*-fx-image: url('../images/barre_volume_2.png');*/
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-pref-height: 100;
+    -fx-pref-width: 600;
+}
+
+#back_button{
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('../images/bouton_retour.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 100% 100%;
+    -fx-alignment: center-left;
+    -fx-pref-height: 60;
+    -fx-pref-width: 60;
+}
+
+.imgLogo{
+    -fx-image: url('../images/logo.png');
+}
+
+
+.bgJeu {
+    -fx-background-image: url('../images/background.png');
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+}
+
+.zoom {
+    -fx-background-image: url('../images/zoom.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+
+.undo {
+    -fx-background-image: url('../images/undo.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+.redo {
+    -fx-background-image: url('../images/redo.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+.help {
+    -fx-background-image: url('../images/help.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+.check {
+    -fx-background-image: url('../images/check.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+.quit {
+    -fx-background-image: url('../images/home.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center, center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+.param {
+    -fx-background-image: url('../images/param.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+.restart {
+    -fx-background-image: url('../images/restart.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+
+.grille {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+}
+
+
+.boutonIle {
+    -fx-font-family: 'Noteworthy';
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-alignment: center;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 50%;
+    -fx-shape: "M50,0 A50,50 0 0,1 100,50 A50,50 0 0,1 50,100 A50,50 0 0,1 0,50 A50,50 0 0,1 50,0 Z"; /* Ajouté pour rendre le bouton lui-même circulaire */
+}
+
+.undisabledButton {
+    -fx-background-color: transparent;
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-alignment: center;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+}
+
+.hypothese{
+    -fx-background-image: url('../images/hypothese.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+.valid_hypo{
+    -fx-background-image: url('../images/bouton_valid_hypo.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+}
+
+.supp_hypo{
+    -fx-background-image: url('../images/bouton_supp_hypo.png');
+    -fx-background-size: 100% 100%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
 }

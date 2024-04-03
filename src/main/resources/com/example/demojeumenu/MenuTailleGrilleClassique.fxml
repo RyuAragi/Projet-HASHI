@@ -11,7 +11,7 @@
 
     <VBox alignment="CENTER">
 
-        <Button  onAction="#jouerGrille15x15" id="Facile-1" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="Facile-1" styleClass="custom-buttonGrille"  text="Jouer cette grille 7 x 5" />
         <Button  onAction="#jouerGrille15x15" id="Facile-2" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
         <Button  onAction="#jouerGrille15x15" id="Facile-3" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
         <Button  onAction="#jouerGrille15x15" id="Facile-4" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
