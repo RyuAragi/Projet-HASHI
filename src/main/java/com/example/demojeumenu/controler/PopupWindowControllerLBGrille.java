@@ -17,9 +17,6 @@ public class PopupWindowControllerLBGrille extends BaseController {
 
 
 
-    @FXML
-    //private Button newGameButton;
-    private StringProperty username = new SimpleStringProperty();
 
     private static Stage stage;
     @FXML
@@ -28,9 +25,6 @@ public class PopupWindowControllerLBGrille extends BaseController {
         stage = st;
     }
 
-    public void setUsername(String username) {
-        this.username.set(username);
-    }
 
     @FXML
     private void btnHome() {
@@ -47,7 +41,7 @@ public class PopupWindowControllerLBGrille extends BaseController {
 
     @FXML
     public void initialize(){
-        usernameLabel.textProperty().bind(username);
+
         SoundUtils.addClickSound(continueButton, this::backButton);
     }
 }
