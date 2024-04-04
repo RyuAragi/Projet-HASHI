@@ -8,6 +8,7 @@ package com.example.demojeumenu.undoRedo;
  import com.example.demojeumenu.game.GrilleJeu;
  import com.example.demojeumenu.game.Pont;
 
+ import java.io.Serializable;
  import java.util.Stack;
 
  /** 
@@ -27,7 +28,7 @@ package com.example.demojeumenu.undoRedo;
   *   * Depiler le coup de redo
   *   * Ajouter le pont dans la matrice 
   */
- public class UndoRedo {
+ public class UndoRedo implements Serializable {
     private Stack<Pont> redo;
     
     /**

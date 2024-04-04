@@ -23,7 +23,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class GrilleControler extends BaseController {
 
@@ -924,8 +923,9 @@ public class GrilleControler extends BaseController {
             System.err.println("Resource not found: " + levelFileName);
             // Handle the error, for example by throwing an exception or returning null
         } else {
+            InputStreamReader reader = new InputStreamReader(resourceStream);
             // Pass the InputStream to GrilleJeu
-            this.grille = new GrilleJeu(new InputStreamReader(resourceStream));
+            this.grille = new GrilleJeu(reader);
             System.out.println("Grille: " + this.grille);
             initializeGrille();
         }

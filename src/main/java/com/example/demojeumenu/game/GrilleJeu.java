@@ -7,6 +7,7 @@
 package com.example.demojeumenu.game;
 
  import com.example.demojeumenu.GrilleControler;
+ import com.example.demojeumenu.Sauvegarde;
  import com.example.demojeumenu.undoRedo.UndoRedo;
  import javafx.animation.Timeline;
 
@@ -14,7 +15,7 @@ package com.example.demojeumenu.game;
  import java.util.List;
  import java.util.ArrayList;
  
- public class GrilleJeu {
+ public class GrilleJeu implements Serializable{
      //Représente la grille sur laquelle joue le joueur 
      private Case[][] joueur;
      //Représente la grille avant la première erreur détectée
@@ -22,35 +23,30 @@ package com.example.demojeumenu.game;
      //Représente la solution de la grille 
      private Case[][] solution;
      
-     //Le nombre de ligne de la grille
+     //Le nombre de lignes de la grille
      private int nbLigne;
-     //Le nombre de colonne de la grille
+     //Le nombre de colonnes de la grille
      private int nbColonne;
  
      //Le score du joueur
      private double score ;
-     //Le nombre de pont total de posés
+     //Le nombre de ponts total de posés
      private double nbPontTotal;
-     //Le nombre total d'aide utilisé
+     //Le nombre total d'aides utilisés
      private double nbAide;
- 
+
      // Objet undo redo permettant d'effectuer les actions undo/redo
      UndoRedo undoRedo;
- 
 
 
      /** Mettre une seule liste on ne peut pas savoir l'avant dernier pont posé avec cette méthode */
      private List<Pont> listPontPose;
- 
-     
- 
 
- 
      /**
       * Constructeur de GrilleJeu
       * @param reader le chemin vers le fichier de la grille
       */
-     public GrilleJeu(InputStreamReader reader){
+     public GrilleJeu(InputStreamReader reader) {
          charge(reader);
 
          nbPontTotal = 0;
@@ -59,7 +55,7 @@ package com.example.demojeumenu.game;
      }
  
      /**
-      * Charge un fichier passé en parametre et insère les données dans les grilles correspondantes
+      * Charge un fichier passé en parametres et insère les données dans les grilles correspondantes
       * @param path Le chemin du fichier a charger
       */
      private void charge(InputStreamReader reader){
@@ -79,7 +75,7 @@ package com.example.demojeumenu.game;
                      nbLigne = Integer.valueOf(data[0]);
                      nbColonne = Integer.valueOf(data[1]);
  
-                     //Initialisation des grille 
+                     //Initialisation des grilles
                      joueur = new Case[nbLigne][nbColonne];
                      erreur = null;
                      solution = new Case[nbLigne][nbColonne];
@@ -203,7 +199,7 @@ package com.example.demojeumenu.game;
       * @param i2 la seconde île
       * @return true ou false en fonction de si le pont est valide ou pas
       */
-     private void verifPont(Ile i1, Ile i2){
+     public void verifPont(Ile i1, Ile i2){
          //Il faut s'assurer que i1 et i2 soit bien deux réels voisins
          if (erreur == null){
 
@@ -557,14 +553,55 @@ package com.example.demojeumenu.game;
          return dst.getX() == src.getX();
      }
 
-/*
-     public static void main(String[] args) {
-         GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Facile-5.txt");
-         testJeu.afficher_mat_out();
+     /**
+      * Methode permettant de créer une sauvegarde de la grille en cours
+      * @param path_niveau le path doit être de la forme : /niveau/{Difficulte}/{Difficulte}-{Numero_Niveau}.txt
+      */
+     public void creer_sauvegarde(String path_niveau) {
+         try {
+             Sauvegarde save = new Sauvegarde();
+             //String nom_joueur = GlobalVariables.getUserInput();
+             String nom_joueur = "Nathan";
+             String[] result = path_niveau.split("/");
 
-         testJeu.poserPont(testJeu.getIleGrilleJoueur(0,0), testJeu.getIleGrilleJoueur(0,2));
+             System.out.println(save.getPath() + result[1] + "/" + nom_joueur + "/" + result[2].substring(0, result[2].length()-4)+ ".ser");
 
-         System.out.println(testJeu.getIleGrilleJoueur(0,0).getValPontDir(new String("E")));
-         //Aide.techniqueDeDepart(testJeu);
-     }*/
+             File fichier_save = new File(save.getPath() + result[1] + "/" + nom_joueur + "/" + result[2].substring(0, result[2].length()-4)+ ".ser");
+
+             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier_save));
+             oos.writeObject(this);
+             oos.close();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+     }
+
+     /**
+      * Methode permettant de créer une sauvegarde de la grille en cours
+      * @param path_niveau le path doit être de la forme : {Numero_Niveau}.ser
+      */
+     public GrilleJeu charger_sauvegarde(String nom_fichier) {
+         try {
+             Sauvegarde save = new Sauvegarde();
+             //String nom_joueur = GlobalVariables.getUserInput();
+             String nom_joueur = "Nathan";
+             String[] result = nom_fichier.split("-");
+
+
+             File fichier = new File(save.getPath() + "/" + result[0] + "/" + nom_joueur + "/" + nom_fichier);
+
+             // ouverture d'un flux sur un fichier
+             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichier));
+
+             // désérialization de l'objet
+             GrilleJeu courant = (GrilleJeu) ois.readObject();
+
+             ois.close();
+
+             return courant;
+         } catch (Exception e) {
+             e.printStackTrace();
+             return null;
+         }
+     }
  }
