@@ -8,13 +8,14 @@ package com.example.demojeumenu.game;
 
 import com.example.demojeumenu.game.Pont;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-public class IleJoueur extends Ile {
+public class IleJoueur extends Ile implements Serializable {
 
     //Représente le nombre max de pont pouvant être connecté sur un côté de l'ile
     final int NB_PONT_MAX = 2;
@@ -22,7 +23,7 @@ public class IleJoueur extends Ile {
     private final HashMap<String, List<Pont>> pontRelie;
 
 
-    IleJoueur(int cX, int cY, int valIle_ ){
+    public IleJoueur(int cX, int cY, int valIle_){
         super(cX, cY, valIle_);
         pontRelie = new HashMap<>();
         pontRelie.put("N", new ArrayList<Pont>());

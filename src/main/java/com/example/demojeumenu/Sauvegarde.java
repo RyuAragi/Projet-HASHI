@@ -17,17 +17,26 @@ import java.util.ArrayList;
 public class Sauvegarde {
 
     private final String path = System.getProperty("user.dir") + "/JacobHashi/Sauvegarde/";
-    private ArrayList<String> liste_difficultes;
 
+    private ArrayList<String> liste_difficultes;
     /**
      * Constructeur de la classe
      */
-    Sauvegarde() {
+    public Sauvegarde() {
         liste_difficultes = new ArrayList<String>();
         liste_difficultes.add("Facile");
         liste_difficultes.add("Moyen");
         liste_difficultes.add("Difficile");
     }
+
+    /**
+     * Getter de path
+     * @return String
+     */
+    public String getPath() {
+        return path;
+    }
+
     /**
      * Methode permettant de créer l'arborescence de fichiers qu'on va éditer
      * → Les dossiers qui stockent la Sauvegarde des Niveaux
@@ -55,7 +64,7 @@ public class Sauvegarde {
     public void creer_arborescence() throws IOException {
         File directory = new File(path);
         // Creation des repertoires JacobHashi/Sauvegarde
-        if(directory.mkdirs()) {
+        if(!(directory.exists()) && directory.mkdirs()) {
 
             System.out.println("Repertoire JacobHashi/Sauvegarde bien crée !");
 
