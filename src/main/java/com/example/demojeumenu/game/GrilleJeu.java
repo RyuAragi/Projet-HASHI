@@ -241,6 +241,7 @@
  
          int valXI2 = i2.getX();
          int valYI2 = i2.getY();
+
         
          if(valXI1 == valXI2 || valYI1 == valYI2){
             if(valYI1 > valYI2){
