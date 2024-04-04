@@ -10,7 +10,7 @@
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="TECHNIQUE AVANCÉES" />
     </VBox>
-    <VBox id="text" layoutY="500">
+    <VBox id="text">
     <Text text="1. Isoler un segment en bloquant un pont :" />
     </VBox>
 

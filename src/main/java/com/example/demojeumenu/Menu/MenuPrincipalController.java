@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import com.example.demojeumenu.controler.GlobalVariables;
 
 
 /**
@@ -113,12 +114,23 @@ public class MenuPrincipalController extends BaseController {
         SoundUtils.addHoverSound(quitter);
         FXMLUtils.initializeTextField(zoneTexte);
 
-        zoneTexte.textProperty().addListener((_, oldValue, newValue) -> {
-            jouer.setDisable(newValue.trim().isEmpty());
+        // Ajout de l'écouteur sur la propriété text de la zone de texte
+        zoneTexte.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Vérifie si le nouveau texte est vide ou égal au texte par défaut
+            if (newValue.isEmpty() || newValue.equals(GlobalVariables.getDefaultUserInput())) {
+                // Désactive le bouton jouer
+                jouer.setDisable(true);
+            } else {
+                // Active le bouton jouer
+                jouer.setDisable(false);
+            }
+
             JsonApp.removeShownPopup(oldValue);
         });
 
-        // Initially disable the jouer button
-        jouer.setDisable(true);
+        // Désactive le bouton jouer initialement si le texte de la zone de texte est vide ou égal au texte par défaut
+        if (zoneTexte.getText().isEmpty() || zoneTexte.getText().equals(GlobalVariables.getDefaultUserInput())) {
+            jouer.setDisable(true);
+        }
     }
 }

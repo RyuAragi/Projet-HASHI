@@ -6,9 +6,9 @@ import javafx.scene.input.KeyCode;
 
 public abstract class BaseController {
     protected static Scene scene;
+    protected static boolean isJouerButtonEnabled = false; // Change this to false
     private boolean EtatParametres = false; // variable pour savoir si on est dans le menu parametres
     protected String levelFileName;
-
     public void setScene(Scene scene) {
         this.scene = scene;
         this.scene.setOnKeyPressed(event -> {
