@@ -113,10 +113,12 @@ public class MenuPrincipalController extends BaseController {
         SoundUtils.addHoverSound(quitter);
         FXMLUtils.initializeTextField(zoneTexte);
 
-
-        zoneTexte.textProperty().addListener((observable, oldValue, newValue) -> {
+        zoneTexte.textProperty().addListener((_, oldValue, newValue) -> {
+            jouer.setDisable(newValue.trim().isEmpty());
             JsonApp.removeShownPopup(oldValue);
         });
 
+        // Initially disable the jouer button
+        jouer.setDisable(true);
     }
 }

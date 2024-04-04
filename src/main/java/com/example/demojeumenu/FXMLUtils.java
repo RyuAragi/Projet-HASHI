@@ -18,12 +18,14 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 
 /**
  * Classe utilitaire pour charger les fichiers FXML
  */
 
 public class FXMLUtils {
+    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(FXMLUtils.class.getName());
     private static final int MAX_CHARS = 20;
     private static final String DEFAULT_TEXT = "Entrez votre nom";
     /**
@@ -81,7 +83,7 @@ public class FXMLUtils {
 
             scene.setRoot(root);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Failed to load FXML", e);
         }
     }
 
@@ -120,14 +122,14 @@ public class FXMLUtils {
 
             // Affiche la hauteur de l'écran dans le terminal
 
-            Node titreNode = scene.lookup(".titre"); // Récupère le noeud avec le style .titre
+            Node titreNode = scene.lookup(".titre"); // Récupère le nœud avec le style. Titre
 
             // calcule -fx-pref-height par rapport à la hauteur de l'écran
             double prefHeight = getHeight(screenHeight);
             double prefWidth = getWidth(screenHeight);
 
             if (titreNode != null) {
-                titreNode.setStyle("-fx-pref-height: " + prefHeight + "; -fx-pref-width: " + prefWidth +";"); // Applique le style calculé
+                titreNode.setStyle(STR."-fx-pref-height: \{prefHeight}; -fx-pref-width: \{prefWidth};"); // Applique le style calculé
             }
         }
     }

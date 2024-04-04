@@ -6,8 +6,6 @@
 
 package com.example.demojeumenu.game;
 
-import com.example.demojeumenu.game.Pont;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;

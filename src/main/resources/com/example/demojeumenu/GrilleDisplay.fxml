@@ -34,7 +34,7 @@
         <StackPane.margin>
             <Insets bottom="5.0" right="5.0" />
         </StackPane.margin>
-        <Button fx:id="dezoom" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="dezoom" />
-        <Button fx:id="zoom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="58.0" prefWidth="60.0" styleClass="zoom" />
+        <Button fx:id="dezoom" alignment="CENTER" prefHeight="60.0" prefWidth="60.0" styleClass="dezoom" />
+        <Button fx:id="zoom"  prefHeight="58.0" prefWidth="60.0" styleClass="zoom" />
     </HBox>
 </StackPane>

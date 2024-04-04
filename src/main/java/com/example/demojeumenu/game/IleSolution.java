@@ -5,9 +5,6 @@
  */
 
 package com.example.demojeumenu.game;
-
-import com.example.demojeumenu.game.Ile;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +12,7 @@ import java.util.Map;
 public class IleSolution extends Ile implements Serializable {
 
     //Enregistre le nombre de pont en fonction de la direction (N => Nord, S => Sud, E => Est, O => Ouest)
-    private HashMap<String,Integer> pontRelie;
+    private final HashMap<String,Integer> pontRelie;
 
     public IleSolution(int cX, int cY, int valIle_, int nbPontsN_, int nbPontsS_, int nbPontsE_, int nbPontsO_){
         super(cX,cY,valIle_);

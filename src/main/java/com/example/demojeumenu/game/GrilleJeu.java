@@ -56,7 +56,7 @@ package com.example.demojeumenu.game;
  
      /**
       * Charge un fichier passé en parametres et insère les données dans les grilles correspondantes
-      * @param path Le chemin du fichier a charger
+      * @param reader Le chemin du fichier a charger
       */
      private void charge(InputStreamReader reader){
          try{
@@ -578,7 +578,7 @@ package com.example.demojeumenu.game;
 
      /**
       * Methode permettant de créer une sauvegarde de la grille en cours
-      * @param path_niveau le path doit être de la forme : {Numero_Niveau}.ser
+      * @param nom_fichier le path doit être de la forme : {Numero_Niveau}.ser
       */
      public GrilleJeu charger_sauvegarde(String nom_fichier) {
          try {

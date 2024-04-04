@@ -11,10 +11,10 @@ import java.io.Serializable;
 public class Pont implements Serializable {
     boolean estHypothese;
 
-    private EnumVertiHori estVertiHori;
+    private final EnumVertiHori estVertiHori;
 
-    private IleJoueur src;
-    private IleJoueur dst;
+    private final IleJoueur src;
+    private final IleJoueur dst;
     
     /**
      * Constructeur de Pont
@@ -79,7 +79,7 @@ public class Pont implements Serializable {
      * @return la coordonnée y
      */
     public int getMinY(){
-        return src.getY() < dst.getY() ? src.getY() : dst.getY();
+        return Math.min(src.getY(), dst.getY());
     }
 
 
@@ -88,7 +88,7 @@ public class Pont implements Serializable {
      * @return la coordonnée x
      */
     public int getMinX(){
-        return src.getX() < dst.getX() ? src.getX() : dst.getX();
+        return Math.min(src.getX(), dst.getX());
     }
 
 
@@ -97,7 +97,7 @@ public class Pont implements Serializable {
      * @return la coordonnée y
      */
     public int getMaxY(){
-        return src.getY() > dst.getY() ? src.getY() : dst.getY();
+        return Math.max(src.getY(), dst.getY());
     }
 
 
@@ -106,7 +106,7 @@ public class Pont implements Serializable {
      * @return la coordonnée x
      */
     public int getMaxX(){
-        return src.getX() > dst.getX() ? src.getX() : dst.getX();
+        return Math.max(src.getX(), dst.getX());
     }
 
 }

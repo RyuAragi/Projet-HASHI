@@ -16,7 +16,7 @@ public class PopupWindowController extends BaseController {
 
     @FXML
     private Button newGameButton;
-    private StringProperty username = new SimpleStringProperty();
+    private final StringProperty username = new SimpleStringProperty();
 
     private static Stage stage;
     @FXML

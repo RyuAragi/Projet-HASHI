@@ -10,8 +10,8 @@ import java.io.Serializable;
 
 public class Case implements Serializable {
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     /**
      * Constructeur d'une Case
