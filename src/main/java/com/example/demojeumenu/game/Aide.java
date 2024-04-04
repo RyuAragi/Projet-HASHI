@@ -6,6 +6,7 @@
 
 package com.example.demojeumenu.game;
 
+import java.io.Serializable;
 import java.util.*;
 
 
@@ -18,7 +19,7 @@ import java.util.*;
  * 
  */
 
-public class Aide{
+public class Aide implements Serializable {
 
 
     /**

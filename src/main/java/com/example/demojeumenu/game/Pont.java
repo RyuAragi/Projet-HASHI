@@ -6,16 +6,12 @@
 
 package com.example.demojeumenu.game;
 
-import com.example.demojeumenu.game.IleJoueur;
+import java.io.Serializable;
 
-public class Pont{
-    boolean estHypothese; 
+public class Pont implements Serializable {
+    boolean estHypothese;
 
-    private enum VertiHori{
-        VERTICALE,HORIZONTAL
-    }
-
-    private VertiHori estVertiHori; 
+    private EnumVertiHori estVertiHori;
 
     private IleJoueur src;
     private IleJoueur dst;
@@ -32,9 +28,9 @@ public class Pont{
         estHypothese = h;
 
         if (src.getX() == dst.getX()){
-            estVertiHori = VertiHori.HORIZONTAL;
+            estVertiHori = EnumVertiHori.HORIZONTAL;
         }else{
-            estVertiHori = VertiHori.VERTICALE;
+            estVertiHori = EnumVertiHori.VERTICALE;
         }
     }
 
@@ -43,7 +39,7 @@ public class Pont{
      * @return vrai ou faux
      */
     public boolean estVertical(){
-        return estVertiHori == VertiHori.VERTICALE;
+        return estVertiHori == EnumVertiHori.VERTICALE;
     }
 
     /**
@@ -51,7 +47,7 @@ public class Pont{
      * @return vrai ou faux
      */
     public boolean estHorizontal(){
-        return estVertiHori == VertiHori.HORIZONTAL;
+        return estVertiHori == EnumVertiHori.HORIZONTAL;
     }
 
     /**

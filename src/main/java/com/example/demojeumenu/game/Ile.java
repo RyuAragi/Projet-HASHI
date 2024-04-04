@@ -6,7 +6,7 @@
 
 package com.example.demojeumenu.game;
 
-public abstract class Ile extends Case{
+public abstract class Ile extends Case {
 
     //La valeur de l'île (le nombre de pont qu'il faut relier)
     private int valIle;
@@ -42,7 +42,7 @@ public abstract class Ile extends Case{
      * @param dir la direction désirée
      * @return Le nombre de pont associé
      */
-    abstract int getValPontDir(String dir);
+    public abstract int getValPontDir(String dir);
 
     public Ile getIleNord(GrilleJeu grille){
         int i=super.getX()-1;

@@ -74,6 +74,7 @@ public class FXMLUtils {
             Parent root = loader.load();
 
             Object controller = loader.getController();
+
             if (controller instanceof GrilleControler) {
                 ((GrilleControler) controller).initData(levelFileName);
             }
