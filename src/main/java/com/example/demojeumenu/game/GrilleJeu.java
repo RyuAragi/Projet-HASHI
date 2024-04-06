@@ -175,7 +175,7 @@
       * permet de smettre à jour la liste de pont chaque fois qu'un pont est retiré 
       * @param p le pont a supprimer
       */
-     public void supprimePont(Pont p){
+     public void supprimePontUndoRedo(Pont p){
          IleJoueur src = p.getSrc();
          IleJoueur dest = p.getDst();
          String directionSrc = src.getPontDirection(p);
@@ -184,17 +184,23 @@
          if (listPontPose.isEmpty()==false){
             listPontPose.remove(p);
             src.supprimePont(directionSrc, p);
-             dest.supprimePont(directionDest, p);
+            dest.supprimePont(directionDest, p);
          }
  
      }
 
-     
-     /*
-      * --------------------------------
-      * A TESTER // A TESTER // A TESTER
-      * --------------------------------
-      */
+    /**
+     * permet de smettre à jour la liste de pont chaque fois qu'un pont est retiré 
+    * @param p le pont a supprimer
+    */
+    public void supprimePont(Pont p){
+
+        if (listPontPose.isEmpty()==false){
+            listPontPose.remove(p);
+        }
+
+    }
+
      private void copieGrille(Case[][] src, Case[][] dst){
          int i = 0;
          int j = 0;
@@ -234,8 +240,9 @@
       * Méthode permettant de poser un pont entre 2 iles
       * @param i1 correspond a l'ile 1
       * @param i2 correspond a l'ile 2
+      * @param estHypothese vrai si l'ile doit etre hypothese , false sinon
       */
-     public void poserPont(Ile i1, Ile i2){
+     public void poserPont(Ile i1, Ile i2, Boolean estHypothese){
          int valXI1 = i1.getX();
          int valYI1 = i1.getY();
  
@@ -245,13 +252,13 @@
         
          if(valXI1 == valXI2 || valYI1 == valYI2){
             if(valYI1 > valYI2){
-                ajoutePont("O",(IleJoueur)i1,"E",(IleJoueur)i2);
+                ajoutePont("O",(IleJoueur)i1,"E",(IleJoueur)i2, estHypothese);
             }else if(valYI1 < valYI2){
-                ajoutePont("E",(IleJoueur)i1 , "O", (IleJoueur)i2);
+                ajoutePont("E",(IleJoueur)i1 , "O", (IleJoueur)i2, estHypothese);
             }else if(valXI1 > valXI2){
-                ajoutePont("S", (IleJoueur)i1, "N",(IleJoueur)i2);
+                ajoutePont("S", (IleJoueur)i1, "N",(IleJoueur)i2, estHypothese);
             }else{
-                ajoutePont("N",(IleJoueur)i1, "S", (IleJoueur)i2);
+                ajoutePont("N",(IleJoueur)i1, "S", (IleJoueur)i2, estHypothese);
             }
             nbPontTotal += 1;
     
@@ -278,21 +285,21 @@
       * @param j2 l'ile du joueur 2
       * @return renvoie le pont créé
       */
-     Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2){
+     Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2,Boolean estHypothese){
          if(j1.getValPontDir(dir1) == j1.getMaxPont()){
              for(Pont p: j1.getListePonts(dir1) ){
-                 if (p.estHypothese() == false){
+                 if (p.estHypothese() == estHypothese){
                      j1.supprimePont(dir1,p);
                      supprimePont(p);
                  }
              } 
              for(Pont p: j2.getListePonts(dir2) ){
-                 if (p.estHypothese() == false){
+                 if (p.estHypothese() == estHypothese){
                      j2.supprimePont(dir2,p);
                  }
              } 
          }else{
-             Pont p = new Pont(j1,j2, false);
+             Pont p = new Pont(j1,j2, estHypothese);
              j1.ajoutePontList(dir1,p);
              j2.ajoutePontList(dir2, p);
              enregistrePont(p);
@@ -370,7 +377,102 @@
          return cpt;
      }
  
+     /**
+     * Test si pour une ile donnée et une direction donnée, un voisin existe
+    * @param ile l'ile à tester
+    * @param dir la direction à tester
+    * @return l'ile si elle existe, null sinon
+    */
+    public IleJoueur getVoisinDir(IleJoueur ile, String dir){
+        int i = -1;
+        int j = -1;
+
+        int x = ile.getX();
+        int y = ile.getY();
+
+        if (dir.compareTo("N") == 0){
+            for(i = ile.getX(),j=ile.getY(); j >= 0; j-- ){
+                if (getIleGrilleJoueur(i, j) != null && (i!=ile.getX() || j!= ile.getY())){
+                    return (IleJoueur)getIleGrilleJoueur(i, j);
+                }
+            }
+        }else if(dir.compareTo("S") == 0){
+            for(i = x,j=y; j < nbColonne; j++ ){
+                if (getIleGrilleJoueur(i, j) != null && (i!=x || j!= y)){
+                    return (IleJoueur) getIleGrilleJoueur(i, j);
+                }
+            }
+        }else if(dir.compareTo("E") == 0){
+            for(i = x,j=y; i < nbLigne; i++ ){
+                if (getIleGrilleJoueur(i, j) != null && (i!=x || j!= y)){
+                    return (IleJoueur) getIleGrilleJoueur(i, j);
+                }
+            }
+        }else{
+            for(i = x,j=y; i >= 0; i-- ){
+                if (getIleGrilleJoueur(i, j) != null && (i!=x || j!= y)){
+                    return (IleJoueur) getIleGrilleJoueur(i, j);
+                }
+            }
+        }
+        //Ne peut pas arriver
+        return null;
+    }
  
+     /**
+     * renvoie la liste des voisins 'physique' de j
+    * @param j l'ile à tester
+    * @return  la list des voisins de j
+    */
+    public List<IleJoueur> getListVoisinReel(IleJoueur joueur){
+        List<IleJoueur> listIle = new ArrayList<IleJoueur>();
+
+        int x = joueur.getX();
+        int y = joueur.getY();
+
+        int i = x;
+        int j = y;
+
+
+        //Test de présence de voisin au nord
+        boucle_nord:
+        for(i = x,j=y; j >= 0; j-- ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                listIle.add((IleJoueur)getIleGrilleJoueur(i, j));
+                break boucle_nord;
+            }
+        }
+
+        //Test de présence de voisin au sud
+        boucle_sud:
+        for(i = x,j=y; j < nbColonne; j++ ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                listIle.add((IleJoueur)getIleGrilleJoueur(i, j));
+                break boucle_sud;
+            }
+        }
+
+        //Test de présence de voisin au est
+        boucle_est:
+        for(i = x,j=y; i < nbLigne; i++ ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                listIle.add((IleJoueur)getIleGrilleJoueur(i, j));
+                break boucle_est;
+            }
+        }
+
+        //Test de présence de voisin au ouest
+        boucle_ouest:
+        for(i = x,j=y; i >= 0; i-- ){
+            if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
+                listIle.add((IleJoueur)getIleGrilleJoueur(i, j));
+                break boucle_ouest;
+            }
+        }
+
+        return listIle;
+    }
+
      /**
       * Vérifie dans quelle direction un pont peut être posé
       * @param joueur l'ile qu'il faut tester
@@ -516,6 +618,8 @@
          }
          return false;
      }
+
+     
      protected void afficher_mat_out() {
          for(int i = 0; i < nbLigne; i++) {
              for(int j = 0; j < nbColonne; j++) {
