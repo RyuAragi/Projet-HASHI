@@ -1,5 +1,6 @@
 package com.example.demojeumenu;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -10,27 +11,53 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class GrilleControler extends BaseController {
+
     /**
      * Enumérateur de directions parmis Nord, Sud, Ouest et Est
      */
     enum Direction {None, Nord, Est, Ouest, Sud}
+
+    private int niveau_aide;
     private GrilleJeu grille;
     private int fontSize;
     private int pixelSize;
     private boolean enModeHypothese;
     private Direction onYellowBridge;
     private static Timeline timeline;
-    HashMap<Direction, HashMap<Button,Rectangle>> rectFromMousedIle;
+    HashMap<Direction, HashMap<Button, Rectangle>> rectFromMousedIle;
+
+    @FXML
+    public HBox hbox_bouton_HD;
+
+    @FXML
+    public HBox hbox_bouton_HG;
+
+    @FXML
+    public HBox hbox_bouton_BD;
+
+    @FXML
+    public VBox vbox_aide_info;
+
+    @FXML
+    public Label textInfo;
+
+    @FXML
+    public Button ok_button;
+
+    @FXML
+    public Button next_clue;
+
+    @FXML
+    public Button see_tech;
 
     @FXML
     private Button quit;
@@ -90,7 +117,7 @@ public class GrilleControler extends BaseController {
         chrono.setText(String.format("%02d", minutes) + ":" + String.format("%02d", secondes));
     }
 
-    private void initChrono(){
+    private void initChrono() {
         chrono.setText("00:00");
         this.timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             // Appeler la méthode pour incrémenter le chrono chaque seconde
@@ -99,22 +126,24 @@ public class GrilleControler extends BaseController {
         this.timeline.setCycleCount(Timeline.INDEFINITE); // Pour répéter indéfiniment
     }
 
-    private void startChrono(){
+    private void startChrono() {
         this.timeline.play();
     }
 
-    private void stopChrono(){
+    private void stopChrono() {
         this.timeline.stop();
     }
 
-    private String chronoToString(){
+    private String chronoToString() {
         return this.chrono.getText();
     }
 
-    public static Timeline getChrono(){ return timeline; }
+    public static Timeline getChrono() {
+        return timeline;
+    }
 
     private Button createButton(Ile ile, int x, int y) {
-        Button boutonIle = new Button(ile.getValIle()+"");
+        Button boutonIle = new Button(ile.getValIle() + "");
         boutonIle.toFront();
         boutonIle.getStyleClass().add("boutonIle");
         boutonIle.setStyle("-fx-font-size: " + this.fontSize + "px;");
@@ -124,8 +153,128 @@ public class GrilleControler extends BaseController {
     }
 
     @FXML
-    private void testMethod() {
-        System.out.println("test");
+    private void validation_hypotheses() {
+        System.out.println("test valid");
+    }
+
+    @FXML
+    private void suppression_hypotheses() {
+        System.out.println("test supp");
+    }
+
+    @FXML
+    private void helpMethod() {
+        //Mettre ici condition pour vérifier niveau d'aide
+        if(niveau_aide >= 1) {
+
+            int mid_X = grille.getNbLigne() / 2;
+            int mid_Y = grille.getNbColonne() / 2;
+            if (grille.getNbLigne() % 2 == 1) {
+                mid_X++;
+            }
+            if (grille.getNbColonne() % 2 == 1) {
+                mid_Y++;
+            }
+            System.out.println("mid : " + mid_X + " - " + mid_Y);
+
+
+            Rectangle zoneSolution = new Rectangle();
+            zoneSolution.setArcWidth(20);
+            zoneSolution.setArcHeight(20);
+            zoneSolution.toBack();
+            zoneSolution.setStrokeWidth(4.0);
+            zoneSolution.setStroke(Color.valueOf("#BC1C58"));
+            zoneSolution.setFill(Color.TRANSPARENT);
+            zoneSolution.setWidth((grille.getNbColonne() - mid_Y) * this.pixelSize);
+            zoneSolution.setHeight((grille.getNbLigne() - mid_X) * this.pixelSize);
+            Ile ileSolution = new IleJoueur(2, 5, 3);
+
+            System.out.println("Ile sol : " + ileSolution.getX() + " - " + ileSolution.getY());
+            if (ileSolution.getX() < mid_X && ileSolution.getY() < mid_Y) {
+                //Coin haut gauche
+                zoneSolution.setX(0);
+                zoneSolution.setY(0);
+            } else if (ileSolution.getX() < mid_X && ileSolution.getY() >= mid_Y) {
+                //coin haut droit
+                zoneSolution.setX(0);
+                zoneSolution.setY(mid_Y);
+            } else if (ileSolution.getX() >= mid_X && ileSolution.getY() < mid_Y) {
+                //coin bas gauche
+                zoneSolution.setX(mid_X);
+                zoneSolution.setY(0);
+            } else {
+                //coin bas droit
+                zoneSolution.setX(mid_X);
+                zoneSolution.setY(mid_Y);
+            }
+            System.out.println(zoneSolution.getX() + " " + zoneSolution.getY());
+            grillePane.add(zoneSolution, (int) zoneSolution.getY(), (int) zoneSolution.getX(), (int) grille.getNbColonne() - mid_Y, (int) grille.getNbLigne() - mid_X);
+
+
+            FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(5), zoneSolution);
+            fadeTransition1.setFromValue(1.0);
+            fadeTransition1.setToValue(0.0);
+            fadeTransition1.setOnFinished(event -> {
+                grillePane.getChildren().remove(zoneSolution); // Supprimer le rectangle après la disparition
+            });
+
+
+            vbox_aide_info.setVisible(true);
+            vbox_aide_info.setDisable(false);
+            vbox_aide_info.toFront();
+
+            if(niveau_aide==3){
+                textInfo.setText("La technique ... est applicable dans cette ile !");
+                next_clue.setDisable(true);
+                next_clue.setVisible(false);
+                grillePane.getChildren().remove(zoneSolution);
+
+                Circle ileCercle = new Circle();
+                ileCercle.setRadius((double) this.pixelSize /2);
+                ileCercle.setStrokeWidth(4.0);
+                ileCercle.setStroke(Color.valueOf("#BC1C58"));
+                ileCercle.setFill(Color.TRANSPARENT);
+                grillePane.add(ileCercle, ileSolution.getY(), ileSolution.getX(), 1, 1);
+
+                FadeTransition fadeTransition2 = new FadeTransition(Duration.seconds(5), ileCercle);
+                fadeTransition2.setFromValue(1.0);
+                fadeTransition2.setToValue(0.0);
+                fadeTransition2.setOnFinished(event -> {
+                    grillePane.getChildren().remove(ileCercle);
+                });
+
+
+                ok_button.setOnMouseClicked(event -> {
+                    fadeTransition2.play();
+                    vbox_aide_info.setVisible(false);
+                });
+
+            }
+            else {
+                if(niveau_aide==1){
+                    textInfo.setText("Une technique peut être appliquée dans cette zone !");
+                    see_tech.setVisible(false);
+                    see_tech.setDisable(true);
+                }
+                if(niveau_aide==2){
+                    textInfo.setText("La technique ... est applicable dans cette zone !");
+                    see_tech.setVisible(true);
+                    see_tech.setDisable(false);
+                }
+                ok_button.setOnMouseClicked(event -> {
+                    fadeTransition1.play();
+                    vbox_aide_info.setVisible(false);
+                });
+                next_clue.setOnMouseClicked(event -> {
+                    vbox_aide_info.setVisible(false);
+                    grillePane.getChildren().remove(zoneSolution);
+                    niveau_aide++;
+                    helpMethod();
+                });
+            }
+
+
+        }
     }
 
     @FXML
@@ -185,17 +334,21 @@ public class GrilleControler extends BaseController {
     }
 
     private void initButtons() {
-        this.enModeHypothese = true;
+        this.enModeHypothese = false;
+
+        hbox_bouton_HD.toFront();
+
         valid_hypo.setDisable(true);
         valid_hypo.setVisible(false);
+
         supp_hypo.setDisable(true);
         supp_hypo.setVisible(false);
-        /*
-            Changer la musique...
-         */
+
+        vbox_aide_info.setDisable(true);
+        vbox_aide_info.setVisible(false);
     }
 
-    private void createBridges(Button buttonSrc, int row, int col){
+    private void createBridges(Button buttonSrc, int row, int col) {
         onYellowBridge = Direction.None;
         this.rectFromMousedIle = new HashMap<>();
         Ile ileSrc = grille.getIleGrilleJoueur(row, col);
@@ -205,7 +358,7 @@ public class GrilleControler extends BaseController {
         this.rectFromMousedIle.put(Direction.Est, createEastBridge(ileSrc, buttonSrc));
     }
 
-    private void createLine2(Line line1, Line line2){
+    private void createLine2(Line line1, Line line2) {
         line2.setStartX(line1.getStartX());
         line2.setStartY(line1.getStartY());
         line2.setEndX(line1.getEndX());
@@ -220,16 +373,17 @@ public class GrilleControler extends BaseController {
     //   Le programme passera beaucoup de temps sur cette portion de code  //
     // ------------------------------------------------------------------- //
 
+
     private HashMap<Button, Rectangle> createNorthBridge(Ile ileSrc, Button boutonSrc) {
         Ile ileNord = ileSrc.getIleNord(grille);
 
-        if (ileNord != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileNord) && !ileNord.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("N") == 0) {
+        if (ileNord != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileNord) && !ileNord.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur) ileSrc).getValPontDir("N") == 0) {
             Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
 
             if (buttonDestNord != null) {
-                buttonDestNord.setStyle("-fx-background-color: yellow;");
+                buttonDestNord.setStyle("-fx-background-color: #F7ECB8;");
                 int height = ileSrc.getX() - ileNord.getX() - 1;
-                Rectangle rectangle = createYellowRectangle(height,Direction.Nord);
+                Rectangle rectangle = createYellowRectangle(height, Direction.Nord);
 
                 setNorthRectangleMouseEvents(rectangle, buttonDestNord, ileSrc, ileNord, boutonSrc);
 
@@ -256,25 +410,24 @@ public class GrilleControler extends BaseController {
 
     private Rectangle createYellowRectangle(int size, Direction dir) {
         Rectangle rectangle = new Rectangle();
-        if(dir==Direction.Sud || dir==Direction.Nord){
-            rectangle.setWidth((double) this.pixelSize /2);
+        if (dir == Direction.Sud || dir == Direction.Nord) {
+            rectangle.setWidth((double) this.pixelSize / 2);
             rectangle.setHeight(this.pixelSize * size);
-        }
-        else if (dir==Direction.Est || dir==Direction.Ouest){
-            rectangle.setHeight((double) this.pixelSize /2);
+        } else if (dir == Direction.Est || dir == Direction.Ouest) {
+            rectangle.setHeight((double) this.pixelSize / 2);
             rectangle.setWidth(this.pixelSize * size);
         }
-        rectangle.setFill(Color.YELLOW);
+        rectangle.setFill(Color.valueOf("#F7ECB8"));
         rectangle.toFront();
         return rectangle;
     }
 
 
-
     private void setNorthRectangleMouseEvents(Rectangle rectangle, Button finalButtonDestNord, Ile ileSrc, Ile ileNord, Button boutonSrc) {
         rectangle.setOnMouseEntered(event -> {
             this.onYellowBridge = Direction.Nord;
-            if (rectangle.getFill() != Color.TRANSPARENT) finalButtonDestNord.setStyle("-fx-background-color: transparent;");
+            if (rectangle.getFill() != Color.TRANSPARENT)
+                finalButtonDestNord.setStyle("-fx-background-color: transparent;");
         });
 
         int height = ileSrc.getX() - ileNord.getX() - 1;
@@ -295,9 +448,9 @@ public class GrilleControler extends BaseController {
                 // ACTIONS LINE 1
                 line1.setOnMouseClicked(event1 -> {
                     //S'il existe un pont vers l'ile au nord
-                    if(((IleJoueur) ileSrc).getValPontDir("N") == 1){
+                    if (((IleJoueur) ileSrc).getValPontDir("N") == 1) {
                         //Si ni l'ile source ni l'ile au nord n'est complète
-                        if(!ileSrc.ileComplete() && !ileNord.ileComplete()) {
+                        if (!ileSrc.ileComplete() && !ileNord.ileComplete()) {
                             grille.poserPont(ileSrc, ileNord);
 
                             line1.setTranslateX(-5);
@@ -326,8 +479,7 @@ public class GrilleControler extends BaseController {
                             if (ileNord.ileComplete()) {
                                 finalButtonDestNord.setStyle("-fx-background-color: lightgrey;");
                             }
-                        }
-                        else {
+                        } else {
                             finalButtonDestNord.setStyle("-fx-background-color: transparent");
                             boutonSrc.setStyle("-fx-background-color: transparent");
                             grillePane.getChildren().removeAll(line1, rectangle);
@@ -336,7 +488,7 @@ public class GrilleControler extends BaseController {
                         }
                     }
                     //S'il existe un pont double vers l'ile du nord
-                    else if(((IleJoueur) ileSrc).getValPontDir("N") == 2){
+                    else if (((IleJoueur) ileSrc).getValPontDir("N") == 2) {
                         finalButtonDestNord.setStyle("-fx-background-color: transparent");
                         boutonSrc.setStyle("-fx-background-color: transparent");
                         grillePane.getChildren().removeAll(line1, line2, rectangle);
@@ -346,15 +498,15 @@ public class GrilleControler extends BaseController {
                 // FIN ACTION LINE 1
 
                 grillePane.add(line1, ileNord.getY(), ileNord.getX() + 1, 1, height);
-                if(ileSrc.ileComplete()){
+                if (ileSrc.ileComplete()) {
                     boutonSrc.setStyle("-fx-background-color: lightgrey;");
                 }
-                if(ileNord.ileComplete()){
+                if (ileNord.ileComplete()) {
                     finalButtonDestNord.setStyle("-fx-background-color: lightgrey;");
                 }
             } else if (valPontDirN == 1) {
                 //Si ni l'ile source ni l'ile au nord n'est complète
-                if(!ileSrc.ileComplete() && !ileNord.ileComplete()) {
+                if (!ileSrc.ileComplete() && !ileNord.ileComplete()) {
                     grille.poserPont(ileSrc, ileNord);
 
                     line1.setTranslateX(-5);
@@ -377,8 +529,7 @@ public class GrilleControler extends BaseController {
                     if (ileNord.ileComplete()) {
                         finalButtonDestNord.setStyle("-fx-background-color: lightgrey;");
                     }
-                }
-                else{
+                } else {
                     finalButtonDestNord.setStyle("-fx-background-color: transparent");
                     boutonSrc.setStyle("-fx-background-color: transparent");
                     grillePane.getChildren().removeAll(line1, rectangle);
@@ -411,13 +562,13 @@ public class GrilleControler extends BaseController {
     private HashMap<Button, Rectangle> createSouthBridge(Ile ileSrc, Button boutonSrc) {
         Ile ileSud = ileSrc.getIleSud(grille);
 
-        if (ileSud != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileSud) && !ileSud.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("S") == 0) {
+        if (ileSud != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileSud) && !ileSud.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur) ileSrc).getValPontDir("S") == 0) {
             Button buttonDestSud = findButtonByCoord(ileSud.getY(), ileSud.getX());
 
             if (buttonDestSud != null) {
-                buttonDestSud.setStyle("-fx-background-color: yellow;");
+                buttonDestSud.setStyle("-fx-background-color: #F7ECB8;");
                 int height = ileSud.getX() - ileSrc.getX() - 1;
-                Rectangle rectangle = createYellowRectangle(height,Direction.Sud);
+                Rectangle rectangle = createYellowRectangle(height, Direction.Sud);
 
                 setSouthRectangleMouseEvents(rectangle, buttonDestSud, ileSrc, ileSud, boutonSrc);
 
@@ -434,7 +585,8 @@ public class GrilleControler extends BaseController {
     private void setSouthRectangleMouseEvents(Rectangle rectangle, Button finalButtonDestSud, Ile ileSrc, Ile ileSud, Button boutonSrc) {
         rectangle.setOnMouseEntered(event -> {
             this.onYellowBridge = Direction.Sud;
-            if (rectangle.getFill() != Color.TRANSPARENT) finalButtonDestSud.setStyle("-fx-background-color: transparent;");
+            if (rectangle.getFill() != Color.TRANSPARENT)
+                finalButtonDestSud.setStyle("-fx-background-color: transparent;");
         });
 
         int height = ileSud.getX() - ileSrc.getX() - 1;
@@ -455,9 +607,9 @@ public class GrilleControler extends BaseController {
                 // ACTIONS LINE 1
                 line1.setOnMouseClicked(event1 -> {
                     //S'il existe un pont vers l'ile au nord
-                    if(((IleJoueur) ileSrc).getValPontDir("S") == 1){
+                    if (((IleJoueur) ileSrc).getValPontDir("S") == 1) {
                         //Si ni l'ile source ni l'ile au nord n'est complète
-                        if(!ileSrc.ileComplete() && !ileSud.ileComplete()) {
+                        if (!ileSrc.ileComplete() && !ileSud.ileComplete()) {
                             grille.poserPont(ileSrc, ileSud);
 
                             line1.setTranslateX(-5);
@@ -486,8 +638,7 @@ public class GrilleControler extends BaseController {
                             if (ileSud.ileComplete()) {
                                 finalButtonDestSud.setStyle("-fx-background-color: lightgrey;");
                             }
-                        }
-                        else {
+                        } else {
                             finalButtonDestSud.setStyle("-fx-background-color: transparent");
                             boutonSrc.setStyle("-fx-background-color: transparent");
                             grillePane.getChildren().removeAll(line1, rectangle);
@@ -496,7 +647,7 @@ public class GrilleControler extends BaseController {
                         }
                     }
                     //S'il existe un pont double vers l'ile du nord
-                    else if(((IleJoueur) ileSrc).getValPontDir("S") == 2){
+                    else if (((IleJoueur) ileSrc).getValPontDir("S") == 2) {
                         finalButtonDestSud.setStyle("-fx-background-color: transparent");
                         boutonSrc.setStyle("-fx-background-color: transparent");
                         grillePane.getChildren().removeAll(line1, line2, rectangle);
@@ -506,15 +657,15 @@ public class GrilleControler extends BaseController {
                 // FIN ACTION LINE 1
 
                 grillePane.add(line1, ileSrc.getY(), ileSrc.getX() + 1, 1, height);
-                if(ileSrc.ileComplete()){
+                if (ileSrc.ileComplete()) {
                     boutonSrc.setStyle("-fx-background-color: lightgrey;");
                 }
-                if(ileSud.ileComplete()){
+                if (ileSud.ileComplete()) {
                     finalButtonDestSud.setStyle("-fx-background-color: lightgrey;");
                 }
             } else if (valPontDirN == 1) {
                 //Si ni l'ile source ni l'ile au nord n'est complète
-                if(!ileSrc.ileComplete() && !ileSud.ileComplete()) {
+                if (!ileSrc.ileComplete() && !ileSud.ileComplete()) {
                     grille.poserPont(ileSrc, ileSud);
 
                     line1.setTranslateX(-5);
@@ -536,8 +687,7 @@ public class GrilleControler extends BaseController {
                     if (ileSud.ileComplete()) {
                         finalButtonDestSud.setStyle("-fx-background-color: lightgrey;");
                     }
-                }
-                else{
+                } else {
                     finalButtonDestSud.setStyle("-fx-background-color: transparent");
                     boutonSrc.setStyle("-fx-background-color: transparent");
                     grillePane.getChildren().removeAll(line1, rectangle);
@@ -566,13 +716,13 @@ public class GrilleControler extends BaseController {
     private HashMap<Button, Rectangle> createWestBridge(Ile ileSrc, Button boutonSrc) {
         Ile ileOuest = ileSrc.getIleOuest(grille);
 
-        if (ileOuest != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileOuest) && !ileOuest.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("O") == 0) {
+        if (ileOuest != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileOuest) && !ileOuest.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur) ileSrc).getValPontDir("O") == 0) {
             Button buttonDestOuest = findButtonByCoord(ileOuest.getY(), ileOuest.getX());
 
             if (buttonDestOuest != null) {
-                buttonDestOuest.setStyle("-fx-background-color: yellow;");
+                buttonDestOuest.setStyle("-fx-background-color: #F7ECB8;");
                 int width = ileSrc.getY() - ileOuest.getY() - 1;
-                Rectangle rectangle = createYellowRectangle(width,Direction.Ouest);
+                Rectangle rectangle = createYellowRectangle(width, Direction.Ouest);
 
                 setWestRectangleMouseEvents(rectangle, buttonDestOuest, ileSrc, ileOuest, boutonSrc);
 
@@ -589,7 +739,8 @@ public class GrilleControler extends BaseController {
     private void setWestRectangleMouseEvents(Rectangle rectangle, Button finalButtonDestOuest, Ile ileSrc, Ile ileOuest, Button boutonSrc) {
         rectangle.setOnMouseEntered(event -> {
             this.onYellowBridge = Direction.Ouest;
-            if (rectangle.getFill() != Color.TRANSPARENT) finalButtonDestOuest.setStyle("-fx-background-color: transparent;");
+            if (rectangle.getFill() != Color.TRANSPARENT)
+                finalButtonDestOuest.setStyle("-fx-background-color: transparent;");
         });
 
         int width = ileSrc.getY() - ileOuest.getY() - 1;
@@ -603,16 +754,16 @@ public class GrilleControler extends BaseController {
 
                 line1.setStrokeWidth(2.0);
                 line1.setStartX(rectangle.getX());
-                line1.setStartY(rectangle.getY() + rectangle.getHeight()/2);
+                line1.setStartY(rectangle.getY() + rectangle.getHeight() / 2);
                 line1.setEndX(rectangle.getX() + rectangle.getWidth());
-                line1.setEndY(rectangle.getY() + rectangle.getHeight()/2);
+                line1.setEndY(rectangle.getY() + rectangle.getHeight() / 2);
 
                 // ACTIONS LINE 1
                 line1.setOnMouseClicked(event1 -> {
                     //S'il existe un pont vers l'ile au nord
-                    if(((IleJoueur) ileSrc).getValPontDir("O") == 1){
+                    if (((IleJoueur) ileSrc).getValPontDir("O") == 1) {
                         //Si ni l'ile source ni l'ile au nord n'est complète
-                        if(!ileSrc.ileComplete() && !ileOuest.ileComplete()) {
+                        if (!ileSrc.ileComplete() && !ileOuest.ileComplete()) {
                             grille.poserPont(ileSrc, ileOuest);
 
                             line1.setTranslateY(-5);
@@ -633,7 +784,7 @@ public class GrilleControler extends BaseController {
                                 }
                             });
 
-                            grillePane.add(line2, ileOuest.getY()+1, ileOuest.getX(), width, 1);
+                            grillePane.add(line2, ileOuest.getY() + 1, ileOuest.getX(), width, 1);
 
                             if (ileSrc.ileComplete()) {
                                 boutonSrc.setStyle("-fx-background-color: lightgrey;");
@@ -641,8 +792,7 @@ public class GrilleControler extends BaseController {
                             if (ileOuest.ileComplete()) {
                                 finalButtonDestOuest.setStyle("-fx-background-color: lightgrey;");
                             }
-                        }
-                        else {
+                        } else {
                             finalButtonDestOuest.setStyle("-fx-background-color: transparent");
                             boutonSrc.setStyle("-fx-background-color: transparent");
                             grillePane.getChildren().removeAll(line1, rectangle);
@@ -651,7 +801,7 @@ public class GrilleControler extends BaseController {
                         }
                     }
                     //S'il existe un pont double vers l'ile du nord
-                    else if(((IleJoueur) ileSrc).getValPontDir("O") == 2){
+                    else if (((IleJoueur) ileSrc).getValPontDir("O") == 2) {
                         finalButtonDestOuest.setStyle("-fx-background-color: transparent");
                         boutonSrc.setStyle("-fx-background-color: transparent");
                         grillePane.getChildren().removeAll(line1, line2, rectangle);
@@ -660,16 +810,16 @@ public class GrilleControler extends BaseController {
                 });
                 // FIN ACTION LINE 1
 
-                grillePane.add(line1, ileOuest.getY()+1, ileOuest.getX(), width, 1);
-                if(ileSrc.ileComplete()){
+                grillePane.add(line1, ileOuest.getY() + 1, ileOuest.getX(), width, 1);
+                if (ileSrc.ileComplete()) {
                     boutonSrc.setStyle("-fx-background-color: lightgrey;");
                 }
-                if(ileOuest.ileComplete()){
+                if (ileOuest.ileComplete()) {
                     finalButtonDestOuest.setStyle("-fx-background-color: lightgrey;");
                 }
             } else if (valPontDirN == 1) {
                 //Si ni l'ile source ni l'ile au nord n'est complète
-                if(!ileSrc.ileComplete() && !ileOuest.ileComplete()) {
+                if (!ileSrc.ileComplete() && !ileOuest.ileComplete()) {
                     grille.poserPont(ileSrc, ileOuest);
                     line1.setTranslateY(-5);
 
@@ -684,7 +834,6 @@ public class GrilleControler extends BaseController {
                     });
 
 
-
                     grillePane.add(line2, ileOuest.getY() + 1, ileOuest.getX(), width, 1);
 
                     if (ileSrc.ileComplete()) {
@@ -693,8 +842,7 @@ public class GrilleControler extends BaseController {
                     if (ileOuest.ileComplete()) {
                         finalButtonDestOuest.setStyle("-fx-background-color: lightgrey;");
                     }
-                }
-                else{
+                } else {
                     finalButtonDestOuest.setStyle("-fx-background-color: transparent");
                     boutonSrc.setStyle("-fx-background-color: transparent");
                     grillePane.getChildren().removeAll(line1, rectangle);
@@ -723,13 +871,13 @@ public class GrilleControler extends BaseController {
     private HashMap<Button, Rectangle> createEastBridge(Ile ileSrc, Button boutonSrc) {
         Ile ileEst = ileSrc.getIleEst(grille);
 
-        if (ileEst != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileEst) && !ileEst.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur)ileSrc).getValPontDir("E") == 0) {
+        if (ileEst != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileEst) && !ileEst.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur) ileSrc).getValPontDir("E") == 0) {
             Button buttonDestEst = findButtonByCoord(ileEst.getY(), ileEst.getX());
 
             if (buttonDestEst != null) {
-                buttonDestEst.setStyle("-fx-background-color: yellow;");
+                buttonDestEst.setStyle("-fx-background-color: #F7ECB8;");
                 int width = ileEst.getY() - ileSrc.getY() - 1;
-                Rectangle rectangle = createYellowRectangle(width,Direction.Est);
+                Rectangle rectangle = createYellowRectangle(width, Direction.Est);
 
                 setEastRectangleMouseEvents(rectangle, buttonDestEst, ileSrc, ileEst, boutonSrc);
 
@@ -746,10 +894,11 @@ public class GrilleControler extends BaseController {
     private void setEastRectangleMouseEvents(Rectangle rectangle, Button finalButtonDestEst, Ile ileSrc, Ile ileEst, Button boutonSrc) {
         rectangle.setOnMouseEntered(event -> {
             this.onYellowBridge = Direction.Est;
-            if (rectangle.getFill() != Color.TRANSPARENT) finalButtonDestEst.setStyle("-fx-background-color: transparent;");
+            if (rectangle.getFill() != Color.TRANSPARENT)
+                finalButtonDestEst.setStyle("-fx-background-color: transparent;");
         });
 
-        int width =  ileEst.getY() - ileSrc.getY() - 1;
+        int width = ileEst.getY() - ileSrc.getY() - 1;
         Line line1 = new Line();
         Line line2 = new Line();
         rectangle.setOnMouseClicked(event -> {
@@ -760,16 +909,16 @@ public class GrilleControler extends BaseController {
 
                 line1.setStrokeWidth(2.0);
                 line1.setStartX(rectangle.getX());
-                line1.setStartY(rectangle.getY() + rectangle.getHeight()/2);
+                line1.setStartY(rectangle.getY() + rectangle.getHeight() / 2);
                 line1.setEndX(rectangle.getX() + rectangle.getWidth());
-                line1.setEndY(rectangle.getY() + rectangle.getHeight()/2);
+                line1.setEndY(rectangle.getY() + rectangle.getHeight() / 2);
 
                 // ACTIONS LINE 1
                 line1.setOnMouseClicked(event1 -> {
                     //S'il existe un pont vers l'ile au nord
-                    if(((IleJoueur) ileSrc).getValPontDir("E") == 1){
+                    if (((IleJoueur) ileSrc).getValPontDir("E") == 1) {
                         //Si ni l'ile source ni l'ile au nord n'est complète
-                        if(!ileSrc.ileComplete() && !ileEst.ileComplete()) {
+                        if (!ileSrc.ileComplete() && !ileEst.ileComplete()) {
                             grille.poserPont(ileSrc, ileEst);
 
                             line1.setTranslateY(-5);
@@ -790,7 +939,7 @@ public class GrilleControler extends BaseController {
                                 }
                             });
 
-                            grillePane.add(line2, ileSrc.getY()+1, ileSrc.getX(), width, 1);
+                            grillePane.add(line2, ileSrc.getY() + 1, ileSrc.getX(), width, 1);
 
                             if (ileSrc.ileComplete()) {
                                 boutonSrc.setStyle("-fx-background-color: lightgrey;");
@@ -798,8 +947,7 @@ public class GrilleControler extends BaseController {
                             if (ileEst.ileComplete()) {
                                 finalButtonDestEst.setStyle("-fx-background-color: lightgrey;");
                             }
-                        }
-                        else {
+                        } else {
                             finalButtonDestEst.setStyle("-fx-background-color: transparent");
                             boutonSrc.setStyle("-fx-background-color: transparent");
                             grillePane.getChildren().removeAll(line1, rectangle);
@@ -808,7 +956,7 @@ public class GrilleControler extends BaseController {
                         }
                     }
                     //S'il existe un pont double vers l'ile du nord
-                    else if(((IleJoueur) ileSrc).getValPontDir("E") == 2){
+                    else if (((IleJoueur) ileSrc).getValPontDir("E") == 2) {
                         finalButtonDestEst.setStyle("-fx-background-color: transparent");
                         boutonSrc.setStyle("-fx-background-color: transparent");
                         grillePane.getChildren().removeAll(line1, line2, rectangle);
@@ -817,16 +965,16 @@ public class GrilleControler extends BaseController {
                 });
                 // FIN ACTION LINE 1
 
-                grillePane.add(line1, ileSrc.getY()+1, ileSrc.getX(), width, 1);
-                if(ileSrc.ileComplete()){
+                grillePane.add(line1, ileSrc.getY() + 1, ileSrc.getX(), width, 1);
+                if (ileSrc.ileComplete()) {
                     boutonSrc.setStyle("-fx-background-color: lightgrey;");
                 }
-                if(ileEst.ileComplete()){
+                if (ileEst.ileComplete()) {
                     finalButtonDestEst.setStyle("-fx-background-color: lightgrey;");
                 }
             } else if (valPontDirN == 1) {
                 //Si ni l'ile source ni l'ile au nord n'est complète
-                if(!ileSrc.ileComplete() && !ileEst.ileComplete()) {
+                if (!ileSrc.ileComplete() && !ileEst.ileComplete()) {
                     grille.poserPont(ileSrc, ileEst);
                     line1.setTranslateY(-5);
 
@@ -848,8 +996,7 @@ public class GrilleControler extends BaseController {
                     if (ileEst.ileComplete()) {
                         finalButtonDestEst.setStyle("-fx-background-color: lightgrey;");
                     }
-                }
-                else{
+                } else {
                     finalButtonDestEst.setStyle("-fx-background-color: transparent");
                     boutonSrc.setStyle("-fx-background-color: transparent");
                     grillePane.getChildren().removeAll(line1, rectangle);
@@ -876,10 +1023,8 @@ public class GrilleControler extends BaseController {
     }
 
     private void deleteBridges() {
-        System.out.println(onYellowBridge);
-
-        Rectangle rect=null;
-        if(onYellowBridge!=Direction.None) {
+        Rectangle rect = null;
+        if (onYellowBridge != Direction.None) {
             for (Rectangle rec : rectFromMousedIle.get(onYellowBridge).values()) {
                 if (rec != null) {
                     rect = rec;
@@ -891,11 +1036,10 @@ public class GrilleControler extends BaseController {
         // Parcourir tous les nœuds de la grille
         for (Node node : grillePane.getChildren()) {
             if (node instanceof Rectangle rectangle) {
-                if (rectangle.getFill().equals(Color.YELLOW)) {
+                if (rectangle.getFill().equals(Color.valueOf("#F7ECB8"))) {
                     nodesToRemove.add(rectangle);
                 }
-            }
-            else if(node instanceof Button && !node.getStyle().contains("-fx-background-color: lightgrey;")){
+            } else if (node instanceof Button && !node.getStyle().contains("-fx-background-color: lightgrey;")) {
                 node.setStyle("-fx-background-color: transparent");
             }
         }
@@ -910,6 +1054,7 @@ public class GrilleControler extends BaseController {
         initButtons();
         initChrono();
         onYellowBridge = Direction.None;
+        niveau_aide = 1;
 
         this.grille = new GrilleJeu("./src/main/java/com/example/demojeumenu/niveaux/facile/Facile-2.txt");
         System.out.print(this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
