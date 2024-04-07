@@ -13,9 +13,9 @@ import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
 
 public class AideManager implements Aide{
-    private List<Technique> listTechniqueDetecte ;
+    private List<TechniqueInter> listTechniqueDetecte ;
 
-    private AideStat aide;
+    private TechniqueInter techniqueCourante;
     static private AideManager instance = null
 
     private AideManager(){
@@ -56,7 +56,7 @@ public class AideManager implements Aide{
      * @return la technique applicable ,null si il en existe pas
      */
     @Override
-    public Technique detecte(GrilleJeu grille){
+    public TechniqueInter detecte(GrilleJeu grille){
         List<Ile> listeIlesGrilleJoueur  = new ArrayList<>();
         List<Ile> listeIlesGrilleResolu = new ArrayList<>();
 
@@ -72,17 +72,16 @@ public class AideManager implements Aide{
             }
         }
 
-        for (Technique t : listTechniqueDetecte){
+        for (TechniqueInter t : listTechniqueDetecte){
             t.detecte(listeIlesGrilleJoueur, listeIlesGrilleResolu,grille);
 
             if(t.getIle()!=null){
-                aide.setTechnique(t);
-                return t;
+                techniqueCourante = t;
+                return techniqueCourante;
             }
         }
         return null;
 
-        public 
     }
 
     /**
@@ -111,6 +110,10 @@ public class AideManager implements Aide{
     @Override
     public String getStat(){
         return aide.getStat();
+    }
+
+    public TechniqueInter getTechnique(){
+        return techniqueCourante;
     }
 
 
