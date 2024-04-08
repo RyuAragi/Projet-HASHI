@@ -72,7 +72,7 @@ package com.example.demojeumenu.undoRedo;
      * Methode permettant de faire une action undo -> Revenir en arriere 
      * @param jeu
      */
-    void actionUndo(GrilleJeu jeu) {
+    public void actionUndo(GrilleJeu jeu) {
        Pont p = jeu.getDernierPontAjouter();
        jeu.supprimePont(p);
        this.pushRedo(p);

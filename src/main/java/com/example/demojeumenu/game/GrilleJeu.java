@@ -330,15 +330,14 @@
       * Vérifie la grille et modifie la liste de Pont en conséquence
       * @return vrai si la grille est correct, faux sinon
       */
-     boolean verifMatrice(){
-         if (erreur != null){
-             copieGrille(joueur, erreur);
-             erreur =null;
+     public void corrigeList(){
+        int taille = listPontPose.size();
+        while(taille > premiereErreur){
+            undoRedo.actionUndo(this);
+            taille = listPontPose.size();
+        }
+        undoRedo.RazRedo();
  
-             return false;
-         }
- 
-         return true;
      }
  
      /**
