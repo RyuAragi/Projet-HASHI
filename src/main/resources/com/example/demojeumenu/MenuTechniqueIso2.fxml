@@ -18,7 +18,7 @@
     <HBox alignment="CENTER">
         <BorderPane prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
             <top>
-                <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+                <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
                     <image>
                         <Image url="@images/15.png" />
                     </image>
@@ -33,7 +33,7 @@
         </BorderPane>
         <BorderPane prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
             <top>
-                <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+                <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
                     <image>
                         <Image url="@images/fleche.png" />
                     </image>
@@ -48,7 +48,7 @@
         </BorderPane>
         <BorderPane prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
             <top>
-                <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+                <ImageView  fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
                     <image>
                         <Image url="@images/16.png" />
                     </image>
@@ -66,5 +66,7 @@
     <VBox  id ="suivant">
         <Button onAction="#suivant" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Suivant" />
     </VBox>
+
+    <Button onAction="#param" styleClass="param" BorderPane.alignment="BOTTOM_RIGHT" StackPane.alignment="BOTTOM_RIGHT" />
 
 </StackPane>

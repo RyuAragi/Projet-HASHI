@@ -24,4 +24,7 @@ public class MenuNiveau extends BaseController {
     private void retour() {
         FXMLUtils.goBack(scene);
     }
+    @FXML
+    private void param() {FXMLUtils.loadFXML("Parametres.fxml", scene);
+    }
 }

@@ -25,4 +25,7 @@ public class MenuReglesDuJeu extends BaseController {
     @FXML
     private void btn4() { FXMLUtils.loadFXML("MenuTechniqueAv1.fxml", scene);
     }
+    @FXML
+    private void param() { FXMLUtils.loadFXML("Parametres.fxml", scene);
+    }
 }

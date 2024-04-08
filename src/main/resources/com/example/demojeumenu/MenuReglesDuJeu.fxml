@@ -10,11 +10,15 @@
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="REGLES DE JEU" />
     </VBox>
+
+
     <VBox alignment="CENTER">
         <Button onAction="#btn1" styleClass="custom-button" text="Technique de début" />
         <Button onAction="#btn2" styleClass="custom-button" text="Technique basique" />
         <Button onAction="#btn3" styleClass="custom-button" text="Technique d'isolation" />
         <Button onAction="#btn4" styleClass="custom-button" text="Technique avancées" />
+
         <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
     </VBox>
+    <Button onAction="#param" styleClass="param" BorderPane.alignment="BOTTOM_RIGHT" StackPane.alignment="BOTTOM_RIGHT" />
 </StackPane>

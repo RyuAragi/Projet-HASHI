@@ -16,4 +16,9 @@ public class MenuModeDuJeu extends BaseController {
     private void btn1() {
         FXMLUtils.loadFXML("MenuNiveau.fxml", scene);
     }
+
+    @FXML
+    private void param() {
+        FXMLUtils.loadFXML("Parametres.fxml", scene);
+    }
 }
