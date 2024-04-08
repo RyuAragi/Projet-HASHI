@@ -44,4 +44,6 @@ public interface TechniqueInter {
     static public TechniqueInter getInstance(){
         return null;
     }
+
+    public abstract String getNomTechnique();
 }

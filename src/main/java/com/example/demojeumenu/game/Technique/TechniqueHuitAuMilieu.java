@@ -47,5 +47,9 @@ public class TechniqueHuitAuMilieu extends Technique{
         return res;
     }
 
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "huit au milieu est applicable ici ";
+    }
     
 }

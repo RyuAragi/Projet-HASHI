@@ -48,4 +48,8 @@ public class TechniqueTroisDansUnCoin extends Technique{
         res.setIle(null);
         return res;
     }
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "trois dans un coin est applicable ici ";
+    }
 }

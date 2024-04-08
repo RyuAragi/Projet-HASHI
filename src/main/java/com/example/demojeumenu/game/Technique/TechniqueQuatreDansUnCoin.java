@@ -46,4 +46,8 @@ public class TechniqueQuatreDansUnCoin extends Technique {
         res.setIle(null);
         return res;
     }
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "quatre dans un coin est applicable ici ";
+    }
 }

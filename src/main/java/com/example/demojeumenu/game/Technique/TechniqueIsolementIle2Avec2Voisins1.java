@@ -22,7 +22,7 @@ public class TechniqueIsolementIle2Avec2Voisins1 extends Technique{
      */
     synchronized static public TechniqueInter getInstance(){
         if (technique == null){
-            technique = new TechniqueIsolementIle2Avec2Voisins1("Cette technique vise une ile qui a comme valeur un avec plus d'un voisin, et il faut qu'un de ses voisins soit de valeur un. Dans cette configuration il ne faut pas relier l'ile et son voisins ensemble");
+            technique = new TechniqueIsolementIle2Avec2Voisins1("Cette technique vise une ile qui a comme valeur deux avec plus d'un voisin, et il faut quue deux de ses voisins soit de valeur un. Dans cette configuration il ne faut pas relier l'ile et ses voisins ensemble");
         }
         return technique;
     }
@@ -57,5 +57,9 @@ public class TechniqueIsolementIle2Avec2Voisins1 extends Technique{
 
         res.setIle(null);
         return res;
+    }
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "ile avec comme valeur deux ayant plus d'un voisin dont deux de valeur un est applicable ici ";
     }
 }

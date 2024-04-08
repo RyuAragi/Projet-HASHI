@@ -47,4 +47,8 @@ public class TechniqueSixSurLeCote extends Technique {
         res.setIle(null);
         return res;
     }
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "six sur le côté est applicable ici ";
+    }
 }

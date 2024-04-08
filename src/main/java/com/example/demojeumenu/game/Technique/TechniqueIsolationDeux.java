@@ -74,4 +74,8 @@ public class TechniqueIsolationDeux extends Technique{
         res.setIle(null);
         return res;
     }
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "ile avec comme valeur deux ayant plus d'un voisin dont un de même valeur que l'ile est applicable ici ";
+    }
 }

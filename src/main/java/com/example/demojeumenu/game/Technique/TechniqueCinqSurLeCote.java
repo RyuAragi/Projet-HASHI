@@ -48,5 +48,9 @@ public class TechniqueCinqSurLeCote extends Technique{
         res.setIle(null);
         return res;
     }
+ 
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "cinq sur le côté est applicable ici ";
+    }
     
 }

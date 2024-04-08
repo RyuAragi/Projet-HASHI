@@ -74,4 +74,8 @@ public class TechniqueIsolation1 extends Technique{
         res.setIle(null);
         return res;
     }
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "ile avec comme valeur un ayant plus d'un voisin dont un de même valeur que l'ile est applicable ici ";
+    }
 }

@@ -46,5 +46,9 @@ public class TechniqueIleUnSeulVoisin extends Technique{
         res.setIle(null);
         return res;
     }
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "ile avec un seul voisin est applicable ici";
+    }
     
 }

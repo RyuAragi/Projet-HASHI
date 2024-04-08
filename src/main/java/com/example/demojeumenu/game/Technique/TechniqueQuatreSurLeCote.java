@@ -48,4 +48,8 @@ public class TechniqueQuatreSurLeCote extends Technique{
         res.setIle(null);
         return res;
     }
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "quatre sur le côté est applicable ici ";
+    }
 }

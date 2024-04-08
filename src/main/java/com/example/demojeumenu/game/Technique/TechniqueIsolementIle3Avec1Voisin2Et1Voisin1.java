@@ -22,7 +22,7 @@ public class TechniqueIsolementIle3Avec1Voisin2Et1Voisin1 extends Technique{
      */
     synchronized static public TechniqueInter getInstance(){
         if (technique == null){
-            technique = new TechniqueIsolementIle3Avec1Voisin2Et1Voisin1("Cette technique vise une ile qui a comme valeur un avec plus d'un voisin, et il faut qu'un de ses voisins soit de valeur un et un autre de valeur deux. Dans cette configuration il ne faut pas relier l'ile et ses voisins ensemble");
+            technique = new TechniqueIsolementIle3Avec1Voisin2Et1Voisin1("Cette technique vise une ile qui a comme valeur trois avec plus d'un voisin, et il faut qu'un de ses voisins soit de valeur un et un autre de valeur deux. Dans cette configuration il ne faut pas relier l'ile et ses voisins ensemble");
         }
         return technique;
     }
@@ -62,5 +62,9 @@ public class TechniqueIsolementIle3Avec1Voisin2Et1Voisin1 extends Technique{
         }
         res.setIle(null);
         return res;
+    }
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "ile avec comme valeur trois ayant plus d'un voisin dont un de valeur un et un de valeur deux est applicable ici ";
     }
 }

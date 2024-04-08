@@ -15,15 +15,21 @@
  public class GrilleJeu {
      //Représente la grille sur laquelle joue le joueur 
      private Case[][] joueur;
-     //Représente la grille avant la première erreur détectée
-     private Case[][] erreur;
+     
      //Représente la solution de la grille 
      private Case[][] solution;
      
+
+     //Représente un boolean qui vaut vrai si une erreur a été commise dans la grille
+     private Boolean erreur;
+     //Représente l'indice de la première erreur rencontrée
+     private int premiereErreur;
      //Le nombre de ligne de la grille
      private int nbLigne;
      //Le nombre de colonne de la grille
      private int nbColonne;
+
+
  
      //Le score du joueur
      private double score ;
@@ -54,6 +60,7 @@
          nbPontTotal = 0;
          listPontPose= new ArrayList<>();
          undoRedo = new UndoRedo();
+         erreur = false;
      }
  
      /**
@@ -79,7 +86,6 @@
  
                      //Initialisation des grille 
                      joueur = new Case[nbLigne][nbColonne];
-                     erreur = null;
                      solution = new Case[nbLigne][nbColonne];
                  }else{
                      //Récupère chaque ile de la matrice
@@ -216,7 +222,7 @@
       * @param n2 la seconde île
       * @return true ou false en fonction de si le pont est valide ou pas
       */
-     private void verifPont(Ile i1, Ile i2){
+     private Boolean verifPont(Ile i1, Ile i2){
          //Il faut s'assurer que i1 et i2 soit bien deux réels voisins
          if (erreur == null){
  
@@ -230,10 +236,9 @@
                  if(i1.getValPontDir("S") <= getIleGrilleSolution(i1.getX(), i1.getY()).getValPontDir("S")) return;
  
              }
-             erreur = new Case[nbLigne][nbColonne];
-             copieGrille(joueur, erreur);
+             erreur = true;
          }
-         return;
+         return true;
      }
  
      /**
@@ -262,8 +267,6 @@
             }
             nbPontTotal += 1;
     
-            //A chaque pont posé entre deux îles, on le vérifie
-            verifPont(i1, i2);
         }
      }
  
@@ -285,7 +288,7 @@
       * @param j2 l'ile du joueur 2
       * @return renvoie le pont créé
       */
-     Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2,Boolean estHypothese){
+    public Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2,Boolean estHypothese){
          if(j1.getValPontDir(dir1) == j1.getMaxPont()){
              for(Pont p: j1.getListePonts(dir1) ){
                  if (p.estHypothese() == estHypothese){
@@ -303,13 +306,28 @@
              j1.ajoutePontList(dir1,p);
              j2.ajoutePontList(dir2, p);
              enregistrePont(p);
-             return p;
+
+             //A chaque pont posé entre deux îles, on le vérifie
+            if (!erreur && verifPont(i1, i2)){
+                premiereErreur = listPontPose.size()-1;
+            }else if(erreur){
+                if (premiereErreur > listPontPose.size()) erreur = false;
+            }
+            return p;
+
          }
          return null;
      }
  
      /**
-      * Vérifie la grille et la modifie en conséquence
+      * Renvoie l'indice de la première erreur
+      * @return l'indice de la première erreur
+      */
+     public int getPremiereErreur(){
+        return premiereErreur;
+     }
+     /**
+      * Vérifie la grille et modifie la liste de Pont en conséquence
       * @return vrai si la grille est correct, faux sinon
       */
      boolean verifMatrice(){

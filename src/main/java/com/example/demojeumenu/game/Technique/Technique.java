@@ -42,5 +42,10 @@ abstract public class Technique implements TechniqueInter{
         courante = i;
     }
 
+    @Override 
+    public String getNomTechnique(){
+        return "Une technique ";
+    }
+
     
 }

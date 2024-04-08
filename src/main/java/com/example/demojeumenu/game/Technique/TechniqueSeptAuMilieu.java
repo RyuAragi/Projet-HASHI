@@ -47,4 +47,8 @@ public class TechniqueSeptAuMilieu extends Technique {
         res.setIle(null);
         return res;
     }
+
+    public String getNomTechnique(){
+        return super.getNomTechnique() + "sept au milieu est applicable ici ";
+    }
 }
