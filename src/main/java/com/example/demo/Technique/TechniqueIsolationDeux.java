@@ -2,9 +2,9 @@ package com.example.demo.Technique;
 
 import java.util.List;
 
-import com.example.demojeumenu.game.GrilleJeu;
-import com.example.demojeumenu.game.Ile;
-import com.example.demojeumenu.game.IleJoueur;
+import com.example.demo.game.GrilleJeu;
+import com.example.demo.game.Ile;
+import com.example.demo.game.IleJoueur;
 
 public class TechniqueIsolationDeux extends Technique{
     static private TechniqueInter technique = null;
@@ -29,7 +29,7 @@ public class TechniqueIsolationDeux extends Technique{
      * Regarde si la technique est applicable
      * @param listJoueur la liste d'ile du joueur
      * @param listResolu la liste d'ile résolu
-     * @param grill la grille de jeu
+     * @param grille la grille de jeu
      * @return La technique si elle trouvée, null sinon
      */
     @Override
@@ -38,7 +38,7 @@ public class TechniqueIsolationDeux extends Technique{
         res = getInstance();
         IleJoueur j;
         for (Ile n : listJoueur){
-            if ((n.getValIle() == 2) &&(grille.getNbVoisinReel(n)>1)&& (n.getSommeVoisins() < 2) ){
+            if ((n.getValIle() == 2) &&(grille.getNbVoisinReel((IleJoueur) n)>1)&& (n.getSommeVoisins() < 2) ){
 
                 j=grille.getVoisinDir((IleJoueur)n,"E");
                 if(j!=null){

@@ -1,10 +1,13 @@
 package com.example.demo;
 
+import com.example.demo.Technique.TechniqueInter;
 import com.example.demo.game.GrilleJeu;
 import com.example.demo.game.Ile;
 import com.example.demo.game.IleJoueur;
 import com.example.demo.game.RectPontPossible;
 import com.example.demo.utils.BaseController;
+import com.example.demo.Aide.AideManager;
+
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
@@ -22,7 +25,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import org.springframework.stereotype.Controller;
@@ -30,18 +32,11 @@ import org.springframework.stereotype.Controller;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
 @Controller
 public class GrilleControler extends BaseController {
-
-    /**
-     * [Integer] Valeur du niveau d'aide (1,2 ou 3).
-     */
-    private int niveau_aide;
-
     /**
      * [GrilleJeu] Référence vers la grille actuelle.
      */
@@ -283,11 +278,14 @@ public class GrilleControler extends BaseController {
      */
     @FXML
     private void helpMethod() {
-        //Mettre ici condition pour vérifier niveau d'aide
         Rectangle zoneSolution;
 
+        AideManager aideManager = AideManager.getInstance();
+        aideManager.detecte(grille);
 
-        Ile ileSolution = new IleJoueur(2, 5, 3);
+        int niveau_aide = aideManager.getPrecision();
+        TechniqueInter technique = aideManager.getTechnique();
+        Ile ileSolution = technique.getIle();
 
         vbox_aide_info.setVisible(true);
         vbox_aide_info.setDisable(false);
@@ -389,7 +387,7 @@ public class GrilleControler extends BaseController {
         return event -> {
             vbox_aide_info.setVisible(false);
             grillePane.getChildren().remove(zoneSolution);
-            niveau_aide++;
+
             helpMethod();
         };
     }
@@ -539,7 +537,7 @@ public class GrilleControler extends BaseController {
             if (buttonDestNord != null) {
                 buttonDestNord.setStyle("-fx-background-color: #F7ECB8;");
                 int height = ileSrc.getX() - ileNord.getX() - 1;
-                RectPontPossible pontNord = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonSrc, buttonDestNord, ileSrc, ileNord, "N" );
+                RectPontPossible pontNord = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonSrc, buttonDestNord, ileSrc, ileNord, "N", this.enModeHypothese );
                 pontNord.addToGridPane();
             }
         }
@@ -559,7 +557,7 @@ public class GrilleControler extends BaseController {
             if (buttonDestSud != null) {
                 buttonDestSud.setStyle("-fx-background-color: #F7ECB8;");
                 int height = ileSud.getX() - ileSrc.getX() - 1;
-                RectPontPossible pontSud = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonSrc, buttonDestSud, ileSrc, ileSud, "S" );
+                RectPontPossible pontSud = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonSrc, buttonDestSud, ileSrc, ileSud, "S" , this.enModeHypothese);
                 pontSud.addToGridPane();
             }
         }
@@ -579,7 +577,7 @@ public class GrilleControler extends BaseController {
             if (buttonDestOuest != null) {
                 buttonDestOuest.setStyle("-fx-background-color: #F7ECB8;");
                 int width = ileSrc.getY() - ileOuest.getY() - 1;
-                RectPontPossible pontOuest = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonSrc, buttonDestOuest, ileSrc, ileOuest, "O" );
+                RectPontPossible pontOuest = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonSrc, buttonDestOuest, ileSrc, ileOuest, "O", this.enModeHypothese);
                 pontOuest.addToGridPane();
             }
         }
@@ -599,7 +597,7 @@ public class GrilleControler extends BaseController {
             if (buttonDestEst != null) {
                 buttonDestEst.setStyle("-fx-background-color: #F7ECB8;");
                 int width = ileEst.getY() - ileSrc.getY() - 1;
-                RectPontPossible pontEst = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonSrc, buttonDestEst, ileSrc, ileEst, "E" );
+                RectPontPossible pontEst = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonSrc, buttonDestEst, ileSrc, ileEst, "E", this.enModeHypothese);
                 pontEst.addToGridPane();
             }
         }
@@ -673,6 +671,7 @@ public class GrilleControler extends BaseController {
 
     @FXML
     public void initializeGrille() {
+        this.enModeHypothese = false;
         initButtons();
         initChrono();
 

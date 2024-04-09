@@ -24,7 +24,7 @@ public class LignePont extends Line {
         return event -> {
             if (((IleJoueur) pontPossible.ileSrc).getValPontDir(pontPossible.dir) == 1) {
                 if (!pontPossible.ileSrc.ileComplete() && !pontPossible.ileDest.ileComplete()) {
-                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest);
+                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
                     if(pontPossible.dir.equals("N") || pontPossible.dir.equals("S")) {
                         this.setTranslateX(-5);
                     }
@@ -54,14 +54,14 @@ public class LignePont extends Line {
                     pontPossible.boutonDest.setStyle("-fx-background-color: transparent");
                     pontPossible.boutonSrc.setStyle("-fx-background-color: transparent");
                     pontPossible.removeFromGridPane(pontPossible.grillePane);
-                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest);
-                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest);
+                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
+                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
                 }
             }
             else if (((IleJoueur) pontPossible.ileSrc).getValPontDir(pontPossible.dir) == 2) {
                 pontPossible.boutonDest.setStyle("-fx-background-color: transparent");
                 pontPossible.boutonSrc.setStyle("-fx-background-color: transparent");
-                pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest);
+                pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
             }
         };
     }

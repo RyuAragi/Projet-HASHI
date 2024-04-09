@@ -57,7 +57,7 @@ import java.util.Stack;
     /** 
      * Methode permettant de RAZ la pile Redo
      */
-    void RazRedo() {
+    public void RazRedo() {
         while(!(this.redo.empty())) this.redo.pop();
     }
 
@@ -65,7 +65,7 @@ import java.util.Stack;
      * Methode permettant de faire une action undo -> Revenir en arriere 
      * @param jeu
      */
-    void actionUndo(GrilleJeu jeu) {
+    public void actionUndo(GrilleJeu jeu) {
        Pont p = jeu.getDernierPontAjouter();
        jeu.supprimePont(p);
        this.pushRedo(p);
@@ -77,7 +77,7 @@ import java.util.Stack;
      */
     void actionRedo(GrilleJeu jeu) {
         Pont pont = this.popRedo();
-        jeu.poserPont(pont.getSrc(), pont.getDst());
+        jeu.poserPont(pont.getSrc(), pont.getDst(), pont.estHypothese());
     }
 
     /**

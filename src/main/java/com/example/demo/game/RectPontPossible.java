@@ -22,10 +22,11 @@ public class RectPontPossible extends Rectangle {
 
     public GrilleJeu grille;
     public GridPane grillePane;
+    public boolean hypothese;
 
 
 
-    public RectPontPossible(GrilleJeu grille, GridPane grillePane, int width, int height, Button boutonSrc, Button boutonDest, Ile ileSrc, Ile ileDest, String dir){
+    public RectPontPossible(GrilleJeu grille, GridPane grillePane, int width, int height, Button boutonSrc, Button boutonDest, Ile ileSrc, Ile ileDest, String dir, boolean hypothese){
         super(width,height);
         this.line1 = null;
         this.line2 = null;
@@ -37,6 +38,7 @@ public class RectPontPossible extends Rectangle {
         this.dir = dir;
         this.grille = grille;
         this.grillePane = grillePane;
+        this.hypothese = hypothese;
 
         this.setFill(Color.valueOf("#F7ECB8"));
         this.toFront();
@@ -98,7 +100,7 @@ public class RectPontPossible extends Rectangle {
                 case 0 -> {
                     this.setFill(Color.TRANSPARENT);
 
-                    grille.poserPont(ileSrc, ileDest);
+                    grille.poserPont(ileSrc, ileDest, hypothese);
                     if(dir.equals("N") || dir.equals("S")) {
                         line1 = new LignePont(this, (int) (this.getX() + this.getWidth() / 2), (int) this.getY(), (int) (this.getX() + this.getWidth() / 2), (int) (this.getY() + this.getHeight()));
                     }
@@ -116,7 +118,7 @@ public class RectPontPossible extends Rectangle {
                 }
                 case 1 -> {
                     if (!ileSrc.ileComplete() && !ileDest.ileComplete()) {
-                        grille.poserPont(ileSrc, ileDest);
+                        grille.poserPont(ileSrc, ileDest, hypothese);
                         if(dir.equals("N") || dir.equals("S")) {
                             line1.setTranslateX(-5);
                         }
@@ -144,15 +146,15 @@ public class RectPontPossible extends Rectangle {
                         boutonDest.setStyle("-fx-background-color: transparent");
                         boutonSrc.setStyle("-fx-background-color: transparent");
                         removeFromGridPane(grillePane);
-                        grille.poserPont(ileSrc, ileDest);
-                        grille.poserPont(ileSrc, ileDest);
+                        grille.poserPont(ileSrc, ileDest, hypothese);
+                        grille.poserPont(ileSrc, ileDest, hypothese);
                     }
                 }
                 case 2 -> {
                     boutonDest.setStyle("-fx-background-color: transparent");
                     boutonSrc.setStyle("-fx-background-color: transparent");
                     removeFromGridPane(grillePane);
-                    grille.poserPont(ileSrc, ileDest);
+                    grille.poserPont(ileSrc, ileDest, hypothese);
                 }
             }
         };

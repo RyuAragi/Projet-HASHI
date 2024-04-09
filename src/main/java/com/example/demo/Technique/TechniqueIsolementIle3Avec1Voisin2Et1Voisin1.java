@@ -3,9 +3,9 @@ package com.example.demo.Technique;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demojeumenu.game.GrilleJeu;
-import com.example.demojeumenu.game.Ile;
-import com.example.demojeumenu.game.IleJoueur;
+import com.example.demo.game.GrilleJeu;
+import com.example.demo.game.Ile;
+import com.example.demo.game.IleJoueur;
 
 public class TechniqueIsolementIle3Avec1Voisin2Et1Voisin1 extends Technique{
     static private TechniqueInter technique = null;
