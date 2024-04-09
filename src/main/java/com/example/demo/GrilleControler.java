@@ -526,7 +526,6 @@ public class GrilleControler extends BaseController {
     private void creerPontPossibleNord(Ile ileSrc, Button boutonSrc) {
         Ile ileNord = ileSrc.getIleNord(grille);
 
-        System.out.println(ileNord + " " + grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileNord) + " " + (!ileNord.ileComplete() && !ileSrc.ileComplete()) + " " + ileSrc.getValPontDir("N"));
         if (ileNord != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileNord) && !ileNord.ileComplete() && !ileSrc.ileComplete() && ileSrc.getValPontDir("N") == 0) {
             Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
 

@@ -635,6 +635,10 @@ public class GrilleJeu implements Serializable{
         int minY;
         int maxY;
 
+        if(i1==null || i2==null){
+            return false;
+        }
+
         if (estVerticale(i1, i2)){
             System.out.println("Verticale");
             if (i2.getX() < i1.getX()){
