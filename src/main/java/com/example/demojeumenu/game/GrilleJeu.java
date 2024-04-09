@@ -4,15 +4,18 @@
  * @version 0.1
  */
 
- package com.example.demojeumenu.game;
+package com.example.demo.game;
 
- import com.example.demojeumenu.undoRedo.UndoRedo;
+import com.example.demo.GrilleControler;
+import com.example.demo.Sauvegarde;
+import com.example.demo.undoRedo.UndoRedo;
+import javafx.animation.Timeline;
 
- import java.io.*;
- import java.util.List;
- import java.util.ArrayList;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
  
- public class GrilleJeu {
+ public class GrilleJeu implements Serializable{
      //Représente la grille sur laquelle joue le joueur 
      private Case[][] joueur;
      
@@ -285,11 +288,16 @@
             }else if(valYI1 < valYI2){
                 ajoutePont("E",(IleJoueur)i1 , "O", (IleJoueur)i2, estHypothese);
             }else if(valXI1 > valXI2){
-                ajoutePont("S", (IleJoueur)i1, "N",(IleJoueur)i2, estHypothese);
+                ajoutePont("N", (IleJoueur)i1, "S",(IleJoueur)i2, estHypothese);
             }else{
-                ajoutePont("N",(IleJoueur)i1, "S", (IleJoueur)i2, estHypothese);
+                ajoutePont("S",(IleJoueur)i1, "N", (IleJoueur)i2, estHypothese);
             }
             nbPontTotal += 1;
+
+            if(verifMatrice()){
+                Timeline timeline = GrilleControler.getChrono();
+                timeline.stop()
+            }
     
         }
      }
@@ -363,6 +371,50 @@
         undoRedo.RazRedo();
  
      }
+
+     /**
+      * Vérifie la grille et la modifie en conséquence
+      * @return vrai si la grille est correct, faux sinon
+      */
+      public boolean verifMatrice(){
+        if (erreur != null){
+            copieGrille(joueur, erreur);
+            erreur =null;
+            return false;
+        }
+
+        for (int i = 0; i< nbLigne; i++){
+            for(int j = 0; j < nbColonne; j++){
+                if(getIleGrilleJoueur(i,j)!=null && !getIleGrilleJoueur(i,j).ileComplete()){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Vérifie la grille et la modifie en conséquence
+    * @return vrai si la grille est correct, faux sinon
+    */
+    public boolean verifMatrice(){
+        if (erreur != null){
+            copieGrille(joueur, erreur);
+            erreur =null;
+            return false;
+        }
+
+        for (int i = 0; i< nbLigne; i++){
+            for(int j = 0; j < nbColonne; j++){
+                if(getIleGrilleJoueur(i,j)!=null && !getIleGrilleJoueur(i,j).ileComplete()){
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
  
      /**
       * Calcul le nombre de voisin 'physique' de j
@@ -695,6 +747,58 @@
      public boolean estHorizontal(Ile src, Ile dst){
          return dst.getX() == src.getX();
      }
+
+    /**
+     * Methode permettant de créer une sauvegarde de la grille en cours
+    * @param path_niveau le path doit être de la forme : /niveau/{Difficulte}/{Difficulte}-{Numero_Niveau}.txt
+    */
+    public void creer_sauvegarde(String path_niveau) {
+        try {
+            Sauvegarde save = new Sauvegarde();
+            //String nom_joueur = GlobalVariables.getUserInput();
+            String nom_joueur = "Nathan";
+            String[] result = path_niveau.split("/");
+
+            System.out.println(save.getPath() + result[1] + "/" + nom_joueur + "/" + result[2].substring(0, result[2].length()-4)+ ".ser");
+
+            File fichier_save = new File(save.getPath() + result[1] + "/" + nom_joueur + "/" + result[2].substring(0, result[2].length()-4)+ ".ser");
+
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier_save));
+            oos.writeObject(this);
+            oos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Methode permettant de créer une sauvegarde de la grille en cours
+     * @param nom_fichier le path doit être de la forme : {Numero_Niveau}.ser
+     */
+    public GrilleJeu charger_sauvegarde(String nom_fichier) {
+        try {
+            Sauvegarde save = new Sauvegarde();
+            //String nom_joueur = GlobalVariables.getUserInput();
+            String nom_joueur = "Nathan";
+            String[] result = nom_fichier.split("-");
+
+
+            File fichier = new File(save.getPath() + "/" + result[0] + "/" + nom_joueur + "/" + nom_fichier);
+
+            // ouverture d'un flux sur un fichier
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichier));
+
+            // désérialization de l'objet
+            GrilleJeu courant = (GrilleJeu) ois.readObject();
+
+            ois.close();
+
+            return courant;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
  
  /*
      public static void main(String[] args) {
