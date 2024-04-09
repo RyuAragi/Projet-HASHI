@@ -55,6 +55,5 @@ public class TechniqueIleUnSeulVoisin extends Technique{
     public String getFichierFXML(){
         return "MenuTechniqueDeb2.fxml";
     }
-    MenuTechniqueDeb2.fxml
     
 }

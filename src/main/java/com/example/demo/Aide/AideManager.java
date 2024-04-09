@@ -8,7 +8,6 @@ package com.example.demo.Aide;
 
 import java.util.*;
 
-import com.example.demo.Technique.TechniqueInter;
 import com.example.demo.Technique.*;
 import com.example.demo.game.GrilleJeu;
 import com.example.demo.game.Ile;
@@ -17,11 +16,12 @@ public class AideManager implements Aide{
     private List<TechniqueInter> listTechniqueDetecte ;
 
     private TechniqueInter techniqueCourante;
-    static private AideManager instance = null
+    private Integer precision;
+    static private AideManager instance = null;
 
     private AideManager(){
-        aide = AidePrecision1.getInstance();
         listTechniqueDetecte = new ArrayList<>();
+        precision = 0;
 
         listTechniqueDetecte.add(TechniqueHuitAuMilieu.getInstance());
         listTechniqueDetecte.add(TechniqueQuatreSurLeCote.getInstance());
@@ -72,49 +72,36 @@ public class AideManager implements Aide{
                 }
             }
         }
-
+        TechniqueInter tmp;
         for (TechniqueInter t : listTechniqueDetecte){
-            t.detecte(listeIlesGrilleJoueur, listeIlesGrilleResolu,grille);
 
-            if(t.getIle()!=null){
+            if ((tmp = t.detecte(listeIlesGrilleJoueur, listeIlesGrilleResolu,grille))!=null){
+                if (tmp == t){
+                    precision += 1;
+                    if (precision > 3) precision = 3;
+                }else{
+                    precision = 0;
+                }
+                
                 techniqueCourante = t;
                 return techniqueCourante;
             }
+
         }
         return null;
 
     }
 
-    /**
-     * 
-     * @return renvoie le niveau suivant de precision de l'aide 
-     */
-    @Override
-    public AideStat suivant(){
-        aide = aide.suivant();
-        return aide;
-    }
-
-    /**
-     * 
-     * @return renvoie le niveau 1 de precision de l'aide 
-     */
-    @Override
-    public AideStat reinit(){
-        aide = aide.reinit();
-        return aide;
-    }
 
     /**
      * @return renvoie les informations nécessaires à l'affichage de l'aide
      */
     @Override
-    public String getStat(){
-        return aide.getStat();
+    public Integer getPrecision(){
+        return precision;
     }
 
     public TechniqueInter getTechnique(){
         return techniqueCourante;
     }
-
 }
