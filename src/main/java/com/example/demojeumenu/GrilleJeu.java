@@ -275,7 +275,6 @@ package com.example.demojeumenu;
       */
      Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2){
          if(j1.getValPontDir(dir1) == j1.getMaxPont() || j2.getValPontDir(dir2) == j2.getMaxPont()){
-             System.out.println("Supp");
              for(Pont p: j1.getListePonts(dir1) ){
                  if (!p.estHypothese()){
                      supprimePont(p);
@@ -288,7 +287,6 @@ package com.example.demojeumenu;
                  }
              } 
          }else{
-             System.out.println("Pas supp");
              Pont p = new Pont(j1,j2, false);
              j1.ajoutePontList(dir1,p);
              j2.ajoutePontList(dir2, p);
