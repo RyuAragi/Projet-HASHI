@@ -283,6 +283,7 @@ public class GrilleControler extends BaseController {
         aideManager.detecte(grille);
 
         int niveau_aide = aideManager.getPrecision();
+        System.out.println("niveau_aide : " + niveau_aide);
         TechniqueInter technique = aideManager.getTechnique();
         Ile ileSolution = technique.getIle();
 

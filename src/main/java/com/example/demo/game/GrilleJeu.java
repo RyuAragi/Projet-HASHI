@@ -316,7 +316,7 @@ public class GrilleJeu implements Serializable{
         if(j1.getValPontDir(dir1) == j1.getMaxPont() || j2.getValPontDir(dir2) == j2.getMaxPont()){
             for(Pont p: j1.getListePonts(dir1) ){
                 if (p.estHypothese() == estHypothese){
-                    j1.supprimePont(dir1,p);
+                    supprimePont(p);
                     j1.reinitPont(dir1);
                 }
             }
