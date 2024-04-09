@@ -110,10 +110,10 @@ public class MenuPrincipalController extends BaseController {
 
     @FXML
     public void initialize() {
-//        SoundUtils.initMusic();
-//        SoundUtils.addHoverSound(jouer);
-//        SoundUtils.addHoverSound(didacticiel);
-//        SoundUtils.addHoverSound(quitter);
+        SoundUtils.initMusic();
+        SoundUtils.addHoverSound(jouer);
+        SoundUtils.addHoverSound(didacticiel);
+        SoundUtils.addHoverSound(quitter);
         FXMLUtils.initializeTextField(zoneTexte);
 
         // Ajout de l'écouteur sur la propriété text de la zone de texte
