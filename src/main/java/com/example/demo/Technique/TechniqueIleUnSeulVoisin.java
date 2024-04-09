@@ -49,5 +49,12 @@ public class TechniqueIleUnSeulVoisin extends Technique{
     public String getNomTechnique(){
         return super.getNomTechnique() + "ile avec un seul voisin est applicable ici";
     }
+
+
+    @Override
+    public String getFichierFXML(){
+        return "MenuTechniqueDeb2.fxml";
+    }
+    MenuTechniqueDeb2.fxml
     
 }

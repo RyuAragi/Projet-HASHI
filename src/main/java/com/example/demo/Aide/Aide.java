@@ -1,11 +1,11 @@
 package com.example.demo.Aide;
 
+import com.example.demo.Technique.*;
+
 public interface Aide {
 
     abstract public Technique detecte();
-    abstract public AideStat suivant();
-    abstract public AideStat reinit();
 
     abstract public Technique getTechnique();
-    abstract public Int getPrecision();
+    abstract public int getPrecision();
 }

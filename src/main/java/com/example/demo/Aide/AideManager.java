@@ -8,9 +8,10 @@ package com.example.demo.Aide;
 
 import java.util.*;
 
-import com.example.demojeumenu.game.Technique.*;
-import com.example.demojeumenu.game.GrilleJeu;
-import com.example.demojeumenu.game.Ile;
+import com.example.demo.Technique.TechniqueInter;
+import com.example.demo.Technique.*;
+import com.example.demo.game.GrilleJeu;
+import com.example.demo.game.Ile;
 
 public class AideManager implements Aide{
     private List<TechniqueInter> listTechniqueDetecte ;
@@ -44,7 +45,7 @@ public class AideManager implements Aide{
      */
     synchronized static public AideManager getInstance(){
         if(instance == null){
-            instance = new AideManagerr();
+            instance = new AideManager();
         }
         return instance;
     }
@@ -115,10 +116,5 @@ public class AideManager implements Aide{
     public TechniqueInter getTechnique(){
         return techniqueCourante;
     }
-
-
-
-
-        
 
 }

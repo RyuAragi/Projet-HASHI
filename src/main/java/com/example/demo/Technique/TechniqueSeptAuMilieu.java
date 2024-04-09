@@ -50,4 +50,9 @@ public class TechniqueSeptAuMilieu extends Technique {
     public String getNomTechnique(){
         return super.getNomTechnique() + "sept au milieu est applicable ici ";
     }
+
+    @Override
+    public String getFichierFXML(){
+        return "MenuTechniqueBas1.fxml";
+    }
 }

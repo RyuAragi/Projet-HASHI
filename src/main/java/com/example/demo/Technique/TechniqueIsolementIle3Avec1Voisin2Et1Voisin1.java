@@ -66,4 +66,9 @@ public class TechniqueIsolementIle3Avec1Voisin2Et1Voisin1 extends Technique{
     public String getNomTechnique(){
         return super.getNomTechnique() + "ile avec comme valeur trois ayant plus d'un voisin dont un de valeur un et un de valeur deux est applicable ici ";
     }
+
+    @Override
+    public String getFichierFXML(){
+        return "MenuTechniqueIso2.fxml";
+    }
 }

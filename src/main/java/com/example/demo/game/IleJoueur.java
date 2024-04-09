@@ -30,7 +30,7 @@ public class IleJoueur extends Ile implements Serializable {
      * Méthode qui compte la somme des voisins
      * @return la somme des voisins d'un noeud
      */
-    int getSommeVoisins(){
+    public int getSommeVoisins(){
         int cpt = 0;
 
         for(Map.Entry<String, List<Pont>> ile : pontRelie.entrySet()){

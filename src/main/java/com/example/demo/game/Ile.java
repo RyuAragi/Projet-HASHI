@@ -31,7 +31,7 @@ public abstract class Ile extends Case {
      * Méthode qui compte la somme des voisins
      * @return la somme des voisins d'un noeud
      */
-    abstract int getSommeVoisins();
+    public abstract int getSommeVoisins();
 
     /**
      * Méthode qui renvoie le nb de pont en fonction d'une direction

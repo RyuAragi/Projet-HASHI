@@ -49,4 +49,9 @@ public class TechniqueQuatreDansUnCoin extends Technique {
     public String getNomTechnique(){
         return super.getNomTechnique() + "quatre dans un coin est applicable ici ";
     }
+
+    @Override
+    public String getFichierFXML(){
+        return "MenuTechniqueDeb1.fxml";
+    }
 }

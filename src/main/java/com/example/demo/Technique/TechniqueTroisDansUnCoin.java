@@ -50,4 +50,10 @@ public class TechniqueTroisDansUnCoin extends Technique{
     public String getNomTechnique(){
         return super.getNomTechnique() + "trois dans un coin est applicable ici ";
     }
+
+    @Override
+    public String getFichierFXML(){
+        return "MenuTechniqueBas1.fxml";
+    }
+    
 }
