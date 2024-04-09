@@ -1,7 +1,6 @@
 package com.example.demo.Menu;
 
 import com.example.demo.FXMLUtils;
-import com.example.demo.JsonApp;
 import com.example.demo.controler.PopupWindowController;
 import com.example.demo.utils.BaseController;
 import javafx.event.ActionEvent;
@@ -30,7 +29,7 @@ public class MenuTailleGrille extends BaseController {
     @FXML
     private void leaderboard(){
         // Load the FXML file for the external frame
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PopupWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PopupWindowLB.fxml"));
         Parent root;
         try {
             root = loader.load();
@@ -38,12 +37,12 @@ public class MenuTailleGrille extends BaseController {
             throw new RuntimeException(e);
         }
 
-        PopupWindowController controller = loader.getController();
+        loader.getController();
 
         // Create the scene for the external frame
         Scene scenePopup = new Scene(root);
         scenePopup.setFill(Color.TRANSPARENT);
-        scenePopup.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
+        scenePopup.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/styles.css")).toExternalForm());
         scenePopup.getRoot().setEffect(new DropShadow());
 
         // Create a new window for the external frame
@@ -75,7 +74,7 @@ public class MenuTailleGrille extends BaseController {
 
     @FXML
     private void jouerGrille15x15(ActionEvent event) {
-        //leaderboard();
+        leaderboard();
         Button button = (Button) event.getSource();
         String levelName = button.getId();
         String[] parts = levelName.split("-");

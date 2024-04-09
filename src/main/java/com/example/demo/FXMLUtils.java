@@ -207,4 +207,5 @@ public class FXMLUtils {
     private FXMLUtils() {
         throw new IllegalStateException("Utility class");
     }
+
 }
