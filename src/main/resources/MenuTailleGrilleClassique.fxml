@@ -3,7 +3,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demo.Menu.MenuTailleGrille">
+<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.Menu.MenuTailleGrille">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="TAILLE DE GRILLE"  />

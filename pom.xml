@@ -16,7 +16,7 @@
     <properties>
         <java.version>22</java.version>
         <javafx.version>22</javafx.version>
-        <start-class>com.example.demo.Launcher</start-class>
+        <start-class>com.example.demojeumenu.Launcher</start-class>
     </properties>
     <dependencies>
         <dependency>
