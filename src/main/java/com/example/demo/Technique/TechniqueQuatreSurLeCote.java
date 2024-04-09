@@ -31,7 +31,7 @@ public class TechniqueQuatreSurLeCote extends Technique{
      * Regarde si la technique est applicable
      * @param listJoueur la liste d'ile du joueur
      * @param listResolu la liste d'ile résolu
-     * @param grill la grille de jeu
+     * @param grille la grille de jeu
      * @return La technique si elle trouvée, null sinon
      */
     @Override
