@@ -21,8 +21,8 @@ public class RectPontPossible extends Rectangle {
     public Button boutonDest;
 
     public GrilleJeu grille;
-
     public GridPane grillePane;
+
 
 
     public RectPontPossible(GrilleJeu grille, GridPane grillePane, int width, int height, Button boutonSrc, Button boutonDest, Ile ileSrc, Ile ileDest, String dir){

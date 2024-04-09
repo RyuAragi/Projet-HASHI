@@ -272,6 +272,8 @@ public class GrilleControler extends BaseController {
     private void helpMethod() {
         //Mettre ici condition pour vérifier niveau d'aide
         Rectangle zoneSolution;
+
+
         Ile ileSolution = new IleJoueur(2, 5, 3);
 
         vbox_aide_info.setVisible(true);
