@@ -634,7 +634,7 @@ public class GrilleControler extends BaseController {
     private void deleteBridges(){
         List<RectPontPossible> nodesToRemove = new ArrayList<>();
         for (Node node: grillePane.getChildren()) {
-            if(node instanceof RectPontPossible && !((RectPontPossible) node).getFill().equals(Color.TRANSPARENT)){
+            if(node instanceof RectPontPossible && ((RectPontPossible)node).line1==null ){
                 nodesToRemove.add((RectPontPossible)node);
             } else if (node instanceof Button && !node.getStyle().contains("-fx-background-color: lightgrey;")) {
                 node.setStyle("-fx-background-color: transparent");

@@ -313,16 +313,16 @@ public class GrilleJeu implements Serializable{
      * @return renvoie le pont créé
      */
     public Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2,Boolean estHypothese){
-        if(j1.getValPontDir(dir1) == j1.getMaxPont()){
+        if(j1.getValPontDir(dir1) == j1.getMaxPont() || j2.getValPontDir(dir2) == j2.getMaxPont()){
             for(Pont p: j1.getListePonts(dir1) ){
                 if (p.estHypothese() == estHypothese){
                     j1.supprimePont(dir1,p);
-                    supprimePont(p);
+                    j1.reinitPont(dir1);
                 }
             }
             for(Pont p: j2.getListePonts(dir2) ){
                 if (p.estHypothese() == estHypothese){
-                    j2.supprimePont(dir2,p);
+                    j2.reinitPont(dir2);
                 }
             }
         }else{

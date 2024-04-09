@@ -87,7 +87,8 @@ public class RectPontPossible extends Rectangle {
     private EventHandler<MouseEvent> getMouseOn(Button buttonDest){
         return event -> {
             this.mouseOn = true;
-            if (this.getFill() != Color.TRANSPARENT) {
+            this.setFill(Color.valueOf("#F7ECB8"));
+            if (!ileDest.ileComplete()) {
                 buttonDest.setStyle("-fx-background-color: transparent;");
             }
         };
@@ -96,6 +97,7 @@ public class RectPontPossible extends Rectangle {
     private EventHandler<MouseEvent> getClickedAction(){
         return event -> {
             int valPontDir = ((IleJoueur) ileSrc).getValPontDir(dir);
+            System.out.println(valPontDir);
             switch (valPontDir){
                 case 0 -> {
                     this.setFill(Color.TRANSPARENT);
@@ -163,7 +165,8 @@ public class RectPontPossible extends Rectangle {
     private EventHandler<MouseEvent> getMouseOut(){
         return event -> {
             this.mouseOn = false;
-            if (this.getFill() != Color.TRANSPARENT) {
+            this.setFill(Color.TRANSPARENT);
+            if (line1==null) {
                 removeFromGridPane(grillePane);
                 boutonDest.setStyle("-fx-background-color: transparent;");
             }

@@ -3,6 +3,8 @@ package com.example.demo.game;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
 public class LignePont extends Line {
@@ -18,6 +20,16 @@ public class LignePont extends Line {
         this.pontPossible = pontPossible;
 
         this.setOnMouseClicked(getClickedAction());
+        this.setOnMouseEntered(getMouseOn());
+        this.setOnMouseExited(getMouseOut());
+    }
+
+    private EventHandler<MouseEvent> getMouseOn(){
+        return event -> pontPossible.setFill(Paint.valueOf("#F7ECB8"));
+    }
+
+    private EventHandler<MouseEvent> getMouseOut(){
+        return event -> pontPossible.setFill(Color.TRANSPARENT);
     }
 
     private EventHandler<MouseEvent> getClickedAction() {
@@ -62,6 +74,7 @@ public class LignePont extends Line {
                 pontPossible.boutonDest.setStyle("-fx-background-color: transparent");
                 pontPossible.boutonSrc.setStyle("-fx-background-color: transparent");
                 pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
+                pontPossible.removeFromGridPane(pontPossible.grillePane);
             }
         };
     }
