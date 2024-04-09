@@ -11,10 +11,9 @@ import com.example.demojeumenu.game.GrilleJeu;
 public class TechniqueQuatreSurLeCote extends Technique{
     static private TechniqueInter technique = null;
 
-    private TechniqueQuatreSurLeCote(String descri){
+    private TechniqueQuatreSurLeCote(){
         courante = null;
 
-        description = descri;
     }
 
     /**
@@ -23,7 +22,7 @@ public class TechniqueQuatreSurLeCote extends Technique{
      */
     synchronized static public TechniqueInter getInstance(){
         if (technique == null){
-            technique = new TechniqueQuatreSurLeCote("Cette technique vise une ile qui a comme valeur quatre et qui a trois voisins");
+            technique = new TechniqueQuatreSurLeCote();
         }
         return technique;
     }

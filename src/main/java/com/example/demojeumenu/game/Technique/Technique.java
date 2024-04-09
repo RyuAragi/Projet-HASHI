@@ -11,7 +11,6 @@ import com.example.demojeumenu.game.IleJoueur;
 abstract public class Technique implements TechniqueInter{
 
     protected IleJoueur courante ;
-    protected String description;
 
 
 
@@ -24,14 +23,6 @@ abstract public class Technique implements TechniqueInter{
         return courante;
     }
 
-    /**
-     * Renvoie la description de la technique
-     * @return la description
-     */
-    @Override
-    public String getDescription(){
-        return description;
-    }  
 
     /**
      * modifie l'ile visée par la technique

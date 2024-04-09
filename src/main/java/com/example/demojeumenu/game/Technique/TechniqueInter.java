@@ -45,5 +45,9 @@ public interface TechniqueInter {
         return null;
     }
 
+    /**
+     * Renvoie le nom de la technique
+     * @return le nom de la technique
+     */
     public abstract String getNomTechnique();
 }

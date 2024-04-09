@@ -9,10 +9,9 @@ import com.example.demojeumenu.game.IleJoueur;
 public class TechniqueIleUnSeulVoisin extends Technique{
     static private TechniqueInter technique = null;
 
-    private TechniqueIleUnSeulVoisin(String descri){
+    private TechniqueIleUnSeulVoisin(){
         courante = null;
 
-        description = descri;
     }
 
     /**
@@ -21,7 +20,7 @@ public class TechniqueIleUnSeulVoisin extends Technique{
      */
     synchronized static public TechniqueInter getInstance(){
         if (technique == null){
-            technique = new TechniqueIleUnSeulVoisin("Cette technique vise une ile qui a un seul voisin, vous devez la remplir avec des ponts la reliant avec son seul voisin");
+            technique = new TechniqueIleUnSeulVoisin();
         }
         return technique;
     }

@@ -10,10 +10,9 @@ public class TechniqueSeptAuMilieu extends Technique {
     static private TechniqueInter technique = null;
 
 
-    private TechniqueSeptAuMilieu(String descri){
+    private TechniqueSeptAuMilieu(){
         courante = null;
 
-        description = descri;
     }
 
     /**
@@ -22,7 +21,7 @@ public class TechniqueSeptAuMilieu extends Technique {
      */
     synchronized static public TechniqueInter getInstance(){
         if (technique == null){
-            technique = new TechniqueSeptAuMilieu("Cette technique vise une ile qui a comme valeur, 7. Avec cette configuration il faut relié tous les voisins de l'ile avec un pont au minimum ");
+            technique = new TechniqueSeptAuMilieu();
         }
         return technique;
     }

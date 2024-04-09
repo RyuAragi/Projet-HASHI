@@ -178,7 +178,7 @@
      }
  
      /**
-      * permet de smettre à jour la liste de pont chaque fois qu'un pont est retiré 
+      * permet de mettre à jour la liste de pont chaque fois qu'un pont est retiré 
       * @param p le pont a supprimer
       */
      public void supprimePontUndoRedo(Pont p){
@@ -203,6 +203,30 @@
 
         if (listPontPose.isEmpty()==false){
             listPontPose.remove(p);
+        }
+
+    }
+
+
+    /**
+     * Méthode qui remplace tous les ponts hypothèses en pont non hypothèse
+     */
+    public void valideHypothese(){
+        for(Pont p: listPontPose){
+            if(p.estHypothese()){
+                p.setHypothese(false);
+            }
+        }
+    }
+
+    /**
+     * Méthode qui détruit tous les ponts hypothèses
+     */
+    public void quitteHypothèse(){
+        for(Pont p: listPontPose){
+            if(p.estHypothese()){
+                listPontPose.remove(p);
+            }
         }
 
     }

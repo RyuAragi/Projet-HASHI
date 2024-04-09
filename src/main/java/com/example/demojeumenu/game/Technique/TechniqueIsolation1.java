@@ -9,10 +9,8 @@ import com.example.demojeumenu.game.IleJoueur;
 public class TechniqueIsolation1 extends Technique{
     static private TechniqueInter technique = null;
 
-    private TechniqueIsolation1(String descri){
+    private TechniqueIsolation1(){
         courante = null;
-
-        description = descri;
     }
 
     /**
@@ -21,7 +19,7 @@ public class TechniqueIsolation1 extends Technique{
      */
     synchronized static public TechniqueInter getInstance(){
         if (technique == null){
-            technique = new TechniqueIsolation1("Cette technique vise une ile qui a comme valeur un avec plus d'un voisin, et il faut qu'un de ses voisins soit de valeur un. Dans cette configuration il ne faut pas relier l'ile et son voisins ensemble");
+            technique = new TechniqueIsolation1();
         }
         return technique;
     }

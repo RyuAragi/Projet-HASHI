@@ -9,7 +9,7 @@
  import com.example.demojeumenu.game.IleJoueur;
  
  public class Pont{
-     boolean estHypothese; 
+    private boolean estHypothese; 
  
      private enum VertiHori{
          VERTICALE,HORIZONTAL
@@ -112,5 +112,14 @@
      public int getMaxX(){
          return src.getX() > dst.getX() ? src.getX() : dst.getX();
      }
+
+    
+    /**
+     * Set la valeur estHypothese du pont
+     * @param b true ou false
+     */
+    public void setHypothese(Boolean b){
+
+    }
  
  }

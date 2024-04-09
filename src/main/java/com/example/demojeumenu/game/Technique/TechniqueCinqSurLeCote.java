@@ -10,10 +10,9 @@ public class TechniqueCinqSurLeCote extends Technique{
     static private TechniqueInter technique = null;
 
 
-    private TechniqueCinqSurLeCote(String descri){
+    private TechniqueCinqSurLeCote(){
         courante = null;
 
-        description = descri;
     }
 
     /**
@@ -22,7 +21,7 @@ public class TechniqueCinqSurLeCote extends Technique{
      */
     synchronized static public TechniqueInter getInstance(){
         if (technique == null){
-            technique = new TechniqueCinqSurLeCote("Cette technique vise une ile qui à comme valeur un cinq avec trois voisins exactement, dans cette configuration il faut relier chaque voisin avec un pont au minimum");
+            technique = new TechniqueCinqSurLeCote();
         }
         return technique;
     }

@@ -9,10 +9,9 @@ import com.example.demojeumenu.game.IleJoueur;
 public class TechniqueQuatreDansUnCoin extends Technique {
     static private TechniqueInter technique = null;
 
-    private TechniqueQuatreDansUnCoin(String descri){
+    private TechniqueQuatreDansUnCoin(){
         courante = null;
 
-        description = descri;
     }
 
     /**
@@ -21,7 +20,7 @@ public class TechniqueQuatreDansUnCoin extends Technique {
      */
     synchronized static public TechniqueInter getInstance(){
         if (technique == null){
-            technique = new TechniqueQuatreDansUnCoin("Cette technique vise une ile qui a comme valeur quatre et qui a deux voisins. Il faut relier deux ponts avec chaque voisins de l'ile");
+            technique = new TechniqueQuatreDansUnCoin();
         }
         return technique;
     }

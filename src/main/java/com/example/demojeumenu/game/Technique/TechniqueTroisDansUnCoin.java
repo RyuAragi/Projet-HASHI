@@ -11,10 +11,8 @@ import com.example.demojeumenu.game.IleJoueur;
 public class TechniqueTroisDansUnCoin extends Technique{
     static private TechniqueInter technique = null;
 
-    private TechniqueTroisDansUnCoin(String descri){
+    private TechniqueTroisDansUnCoin(){
         courante = null;
-
-        description = descri;
     }
 
     /**
@@ -23,7 +21,7 @@ public class TechniqueTroisDansUnCoin extends Technique{
      */
     synchronized static public TechniqueInter getInstance(){
         if (technique == null){
-            technique = new TechniqueTroisDansUnCoin("Cette technique vise une ile qui a comme valeur trois et qui a trois voisins exactement");
+            technique = new TechniqueTroisDansUnCoin();
         }
         return technique;
     }

@@ -9,10 +9,9 @@ import com.example.demojeumenu.game.GrilleJeu;
 public class TechniqueHuitAuMilieu extends Technique{
     static private TechniqueInter technique = null;
 
-    private TechniqueHuitAuMilieu(String descri){
+    private TechniqueHuitAuMilieu(){
         courante = null;
 
-        description = descri;
     }
 
     /**
@@ -21,7 +20,7 @@ public class TechniqueHuitAuMilieu extends Technique{
      */
     synchronized static public TechniqueInter getInstance(){
         if (technique == null){
-            technique = new TechniqueHuitAuMilieu("Cette technique vise une ile qui a comme valeur, 8. Avec cette configuration il faut relié tous les voisins de l'ile avec deux ponts");
+            technique = new TechniqueHuitAuMilieu();
         }
         return technique;
     }
