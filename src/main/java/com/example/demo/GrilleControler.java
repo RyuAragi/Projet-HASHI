@@ -526,6 +526,7 @@ public class GrilleControler extends BaseController {
     private void creerPontPossibleNord(Ile ileSrc, Button boutonSrc) {
         Ile ileNord = ileSrc.getIleNord(grille);
 
+        System.out.println(ileNord + " " + grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileNord) + " " + (!ileNord.ileComplete() && !ileSrc.ileComplete()) + " " + ileSrc.getValPontDir("N"));
         if (ileNord != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileNord) && !ileNord.ileComplete() && !ileSrc.ileComplete() && ileSrc.getValPontDir("N") == 0) {
             Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
 
@@ -699,7 +700,10 @@ public class GrilleControler extends BaseController {
                     button.toFront();
                     int J = j;
                     int I = i;
-                    button.setOnMouseEntered(event -> createBridges(button, I, J));
+                    button.setOnMouseEntered(event -> {
+                        createBridges(button, I, J);
+                        System.out.println("Sur ile!");
+                    });
 
                     button.setOnMouseExited(event -> {
                         Timeline timelineDel = new Timeline(new KeyFrame(Duration.seconds(0.05), eventDel -> deleteBridges()));

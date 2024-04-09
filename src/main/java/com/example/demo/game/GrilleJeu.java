@@ -633,9 +633,10 @@ public class GrilleJeu implements Serializable{
         int minX;
         int maxX;
         int minY;
-
         int maxY;
+
         if (estVerticale(i1, i2)){
+            System.out.println("Verticale");
             if (i2.getX() < i1.getX()){
                 minX = i2.getX();
                 maxX = i1.getX();
@@ -646,14 +647,14 @@ public class GrilleJeu implements Serializable{
             for (Pont p : listPontPose){
                 if( p.estHorizontal()){
                     if ((p.getMinY() < i1.getY()) &&( p.getMaxY() > i1.getY()) && (minX < p.getSrc().getX()) && (maxX > p.getSrc().getX())){
-                        continue;
-                    }else{
-                        return true;
+                        return false;
                     }
                 }
-
             }
-        }else{
+            return true;
+        }
+        else{
+            System.out.println("Horizontale");
             if(i2.getY() < i1.getY()){
                 minY = i2.getY();
                 maxY = i1.getY();
@@ -664,16 +665,13 @@ public class GrilleJeu implements Serializable{
 
             for(Pont p: listPontPose){
                 if(p.estVertical()){
-                    if ((minY < p.getSrc().getY()) &&(maxY > p.getSrc().getY()) && (p.getMinX() < i1.getX()) && (p.getMaxX() > i1.getX())){
-                        continue;
-                    }else{
-                        return true;
+                    if ((minY < p.getSrc().getY()) && (maxY > p.getSrc().getY()) && (p.getMinX() < i1.getX()) && (p.getMaxX() > i1.getX())) {
+                        return false;
                     }
                 }
-
             }
+            return true;
         }
-        return false;
     }
 
 
