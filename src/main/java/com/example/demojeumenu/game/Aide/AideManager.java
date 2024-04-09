@@ -76,7 +76,7 @@ public class AideManager implements Aide{
         for (TechniqueInter t : listTechniqueDetecte){
 
             if ((tmp = t.detecte(listeIlesGrilleJoueur, listeIlesGrilleResolu,grille))!=null){
-                if (tmp == t){
+                if ((tmp == t) && (tmp.getIle() == t.getIle())){
                     precision += 1;
                     if (precision > 3) precision = 3;
                 }else{
