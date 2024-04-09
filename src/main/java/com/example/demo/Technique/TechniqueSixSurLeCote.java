@@ -38,8 +38,8 @@ public class TechniqueSixSurLeCote extends Technique {
         TechniqueInter res;
         res = getInstance();
         for(int i = 0 ; i< listJoueur.size(); i++){
-            if ((listResolu.get(i).getValIle() == 6)&&(grille.getNbVoisinReel((IleJoueur)listJoueur.get(i))== 3) && (listJoueur.get(i).getSommeVoisins()<6)){
-                res.setIle((IleJoueur)listResolu.get(i));
+            if ((listJoueur.get(i).getValIle() == 6)&&(grille.getNbVoisinReel((IleJoueur)listJoueur.get(i))== 3) && (listJoueur.get(i).getSommeVoisins()<6)){
+                res.setIle((IleJoueur) listJoueur.get(i));
                 return res;
             }
         }

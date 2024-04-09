@@ -11,7 +11,6 @@ public class TechniqueHuitAuMilieu extends Technique{
 
     private TechniqueHuitAuMilieu(){
         courante = null;
-
     }
 
     /**

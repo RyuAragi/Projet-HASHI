@@ -5,7 +5,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.Text?>
 
-<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demo.technique_old.MenuTechniqueIso4">
+<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demo.controler.MenuTechniqueIso4">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="TECHNIQUE D'ISOLATION" />
@@ -60,10 +60,10 @@
         </BorderPane>
 
     </HBox>
-    <VBox  id ="retour">
+    <VBox id ="retour">
         <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Retour" />
     </VBox>
-    <VBox  id ="suivant">
+    <VBox id ="suivant">
         <Button onAction="#quitter" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Quitter" />
     </VBox>
 

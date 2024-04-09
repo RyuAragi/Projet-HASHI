@@ -14,7 +14,6 @@ import com.example.demo.game.Ile;
 
 public class AideManager implements Aide{
     private List<TechniqueInter> listTechniqueDetecte ;
-
     private TechniqueInter techniqueCourante;
     private Integer precision;
     static private AideManager instance = null;
@@ -74,8 +73,7 @@ public class AideManager implements Aide{
         }
         TechniqueInter tmp;
         for (TechniqueInter t : listTechniqueDetecte){
-
-            if ((tmp = t.detecte(listeIlesGrilleJoueur, listeIlesGrilleResolu,grille))!=null){
+            if ((tmp = t.detecte(listeIlesGrilleJoueur, listeIlesGrilleResolu, grille))!=null && t.getIle()!=null){
                 if ((tmp == t) && (tmp.getIle() == t.getIle())){
                     precision += 1;
                     if (precision > 3) precision = 3;
@@ -104,10 +102,4 @@ public class AideManager implements Aide{
     public TechniqueInter getTechnique(){
         return techniqueCourante;
     }
-
-
-
-
-        
-
 }

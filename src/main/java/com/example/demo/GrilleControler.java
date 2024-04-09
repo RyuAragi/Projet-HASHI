@@ -285,6 +285,7 @@ public class GrilleControler extends BaseController {
         int niveau_aide = aideManager.getPrecision();
         System.out.println("niveau_aide : " + niveau_aide);
         TechniqueInter technique = aideManager.getTechnique();
+        System.out.println(technique);
         Ile ileSolution = technique.getIle();
 
         vbox_aide_info.setVisible(true);
@@ -348,15 +349,16 @@ public class GrilleControler extends BaseController {
                 see_tech.setDisable(true);
             }
             if(niveau_aide==2){
-                textInfo.setText("La technique ... est applicable dans cette zone !");
+                textInfo.setText(technique.getNomTechnique() +" est applicable dans cette zone !");
                 see_tech.setVisible(true);
                 see_tech.setDisable(false);
             }
             ok_button.setOnMouseClicked(getOkButtonAction(fadeTransition1));
             next_clue.setOnMouseClicked(getNextClueAction(zoneSolution));
+            see_tech.setOnMouseClicked(getTechniqueAction(technique));
         }
         else if(niveau_aide==3){
-            textInfo.setText("La technique ... est applicable dans cette ile !");
+            textInfo.setText(technique.getNomTechnique() +" est applicable dans cette ile !");
             next_clue.setDisable(true);
             next_clue.setVisible(false);
 
@@ -408,10 +410,9 @@ public class GrilleControler extends BaseController {
      * Méthode retournant l'action du bouton permettant l'affichage de la technique à utiliser.
      * @return [EventHandler<Event>] Action du bouton.
      */
-    private EventHandler<Event> getTechniqueAction(){
+    private EventHandler<Event> getTechniqueAction(TechniqueInter technique){
         return event -> {
-            // A compléter avec l'affichage de la technique adéquate.
-            //FXMLUtils.loadFXML();
+            FXMLUtils.loadFXML("/"+technique.getFichierFXML(), scene);
         };
     }
 
@@ -478,6 +479,8 @@ public class GrilleControler extends BaseController {
      * Méthode d'initialisation de boutons et d'éléments graphiques.
      */
     private void initButtons() {
+        hbox_bouton_HD.toFront();
+
         valid_hypo.setDisable(true);
         valid_hypo.setVisible(false);
 
@@ -744,8 +747,6 @@ public class GrilleControler extends BaseController {
             }
         });
 
-        help.setOnAction(event -> {
-            helpMethod();
-        });
+        help.setOnAction(event -> helpMethod());
     }
 }

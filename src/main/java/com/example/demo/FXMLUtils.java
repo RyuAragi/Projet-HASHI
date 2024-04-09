@@ -80,6 +80,10 @@ public class FXMLUtils {
                 ((GrilleControler) controller).initData(levelFileName);
             }
 
+            if (fxmlHistory.isEmpty() || !fxmlHistory.peek().equals(fxml)) {
+                fxmlHistory.push(fxml);
+            }
+
             scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
