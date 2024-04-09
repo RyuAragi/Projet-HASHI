@@ -279,7 +279,6 @@ public class GrilleControler extends BaseController {
     @FXML
     private void helpMethod() {
         Rectangle zoneSolution;
-
         AideManager aideManager = AideManager.getInstance();
         aideManager.detecte(grille);
 
@@ -332,7 +331,7 @@ public class GrilleControler extends BaseController {
                 zoneSolution.setY(mid_Y);
             }
             System.out.println(zoneSolution.getX() + " " + zoneSolution.getY());
-            grillePane.add(zoneSolution, (int) zoneSolution.getY(), (int) zoneSolution.getX(), (int) grille.getNbColonne() - mid_Y, (int) grille.getNbLigne() - mid_X);
+            grillePane.add(zoneSolution, (int) zoneSolution.getY(), (int) zoneSolution.getX(), grille.getNbColonne() - mid_Y, grille.getNbLigne() - mid_X);
 
 
             FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(5), zoneSolution);
@@ -478,10 +477,6 @@ public class GrilleControler extends BaseController {
      * Méthode d'initialisation de boutons et d'éléments graphiques.
      */
     private void initButtons() {
-        this.enModeHypothese = false;
-
-        hbox_bouton_HD.toFront();
-
         valid_hypo.setDisable(true);
         valid_hypo.setVisible(false);
 
@@ -531,7 +526,7 @@ public class GrilleControler extends BaseController {
     private void creerPontPossibleNord(Ile ileSrc, Button boutonSrc) {
         Ile ileNord = ileSrc.getIleNord(grille);
 
-        if (ileNord != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileNord) && !ileNord.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur) ileSrc).getValPontDir("N") == 0) {
+        if (ileNord != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileNord) && !ileNord.ileComplete() && !ileSrc.ileComplete() && ileSrc.getValPontDir("N") == 0) {
             Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
 
             if (buttonDestNord != null) {
@@ -704,14 +699,10 @@ public class GrilleControler extends BaseController {
                     button.toFront();
                     int J = j;
                     int I = i;
-                    button.setOnMouseEntered(event -> {
-                        createBridges(button, I, J);
-                    });
+                    button.setOnMouseEntered(event -> createBridges(button, I, J));
 
                     button.setOnMouseExited(event -> {
-                        Timeline timelineDel = new Timeline(new KeyFrame(Duration.seconds(0.05), eventDel -> {
-                            deleteBridges();
-                        }));
+                        Timeline timelineDel = new Timeline(new KeyFrame(Duration.seconds(0.05), eventDel -> deleteBridges()));
                         timelineDel.play();
                     });
 
@@ -727,18 +718,30 @@ public class GrilleControler extends BaseController {
     }
 
     public void initialize() {
+        final int[] zoom_level = {0};
+
         zoom.setOnAction(event -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);
-            st.setByX(0.1);
-            st.setByY(0.1);
-            st.play();
+            if(zoom_level[0]<=5) {
+                zoom_level[0]++;
+                st.setByX(0.1);
+                st.setByY(0.1);
+                st.play();
+            }
         });
 
         dezoom.setOnAction(event -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);
-            st.setByX(-0.1);
-            st.setByY(-0.1);
-            st.play();
+            if(zoom_level[0]>=-5) {
+                zoom_level[0]--;
+                st.setByX(-0.1);
+                st.setByY(-0.1);
+                st.play();
+            }
+        });
+
+        help.setOnAction(event -> {
+            helpMethod();
         });
     }
 }
