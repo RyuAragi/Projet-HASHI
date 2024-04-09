@@ -1,4 +1,4 @@
-package com.example.demo.technique;
+package com.example.demo.technique_old;
 
 import com.example.demo.FXMLUtils;
 import com.example.demo.utils.BaseController;
