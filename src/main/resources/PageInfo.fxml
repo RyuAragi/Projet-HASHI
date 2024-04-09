@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane cache="true" maxHeight="700.0" maxWidth="700.0" minHeight="700.0" minWidth="700.0" prefHeight="700.0" prefWidth="700.0" styleClass="boardBg" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <HBox alignment="CENTER" maxWidth="600.0" prefHeight="162.0" prefWidth="600.0">
+         <children>
+            <ImageView fx:id="logoImg" fitHeight="145.0" fitWidth="126.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="imgLogo">
+      </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="155.0" prefWidth="469.0" styleClass="projectText" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">Dans le cadre du Module de Génie Logiciel 2 en licence informatique à l'Université du Mans, le projet a pour objectif de créer un application permettant la résolution d'un puzzle, le Hashi, en implémentant un système d'aide.</Label>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <Label alignment="CENTER" contentDisplay="CENTER" styleClass="memberTitle" textAlignment="CENTER">Membres de l'équipe :</Label>
+         <Label styleClass="textLbl" textAlignment="CENTER">BALLEREAU Wandrille - Chef de groupe</Label>
+         <Label styleClass="textLbl" textAlignment="CENTER">FOUQUERAY Victor - Chef documentaliste</Label>
+         <Label styleClass="textLbl" textAlignment="CENTER">GEORGET Rémy - Back-end</Label>
+         <Label styleClass="textLbl" textAlignment="CENTER">COUPE Xavier - Back-end</Label>
+         <Label styleClass="textLbl" textAlignment="CENTER">ALHALLAK Sédra - Front-End</Label>
+         <Label styleClass="textLbl" textAlignment="CENTER">EL GHOUMARI Soumia - Front-End</Label>
+         <Label styleClass="textLbl" textAlignment="CENTER">COURCOL Thibault - Full stack</Label>
+         <Label styleClass="textLbl" textAlignment="CENTER">DULUARD Théo - Full stack</Label>
+      </VBox>
+   </VBox>
+   <Button alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" prefWidth="0.0" styleClass="custom-backButton" text="Retour" StackPane.alignment="BOTTOM_CENTER" />
+</StackPane>

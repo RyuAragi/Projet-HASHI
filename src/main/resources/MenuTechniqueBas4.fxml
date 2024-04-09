@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.Text?>
+
+<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demo.technique.MenuTechniqueBas4">
+    <fx:include source="Logo.fxml" />
+    <VBox alignment="BASELINE_CENTER">
+        <Button styleClass="titre" text="TECHNIQUE DE DEBUT" />
+    </VBox>
+    <VBox id="text" >
+        <Text text="4. Cas particulier du 6 au milieu  :" />
+    </VBox>
+
+
+    <HBox alignment="CENTER">
+        <BorderPane prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+            <top>
+                <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+                    <image>
+                        <Image url="@images/9.png" />
+                    </image>
+                    <BorderPane.margin>
+                        <Insets  top="330.0" />
+                    </BorderPane.margin>
+                </ImageView>
+
+
+            </top>
+
+        </BorderPane>
+        <BorderPane prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+            <top>
+                <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+                    <image>
+                        <Image url="@images/fleche.png" />
+                    </image>
+                    <BorderPane.margin>
+                        <Insets  top="330.0" />
+                    </BorderPane.margin>
+                </ImageView>
+
+
+            </top>
+
+        </BorderPane>
+        <BorderPane prefHeight="250.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+            <top>
+                <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+                    <image>
+                        <Image url="@images/10.png" />
+                    </image>
+                    <BorderPane.margin>
+                        <Insets  top="330.0" />
+                    </BorderPane.margin>
+                </ImageView>
+            </top>
+        </BorderPane>
+
+    </HBox>
+    <VBox  id ="retour">
+        <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Retour" />
+    </VBox>
+
+    <VBox  id ="suivant">
+        <Button onAction="#quitter" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button2" text="Quitter" />
+    </VBox>
+
+
+</StackPane>
