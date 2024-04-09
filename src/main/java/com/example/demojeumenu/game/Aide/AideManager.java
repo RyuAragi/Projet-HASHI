@@ -16,7 +16,7 @@ public class AideManager implements Aide{
     private List<TechniqueInter> listTechniqueDetecte ;
 
     private TechniqueInter techniqueCourante;
-    private Integer precision
+    private Integer precision;
     static private AideManager instance = null;
 
     private AideManager(){

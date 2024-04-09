@@ -119,7 +119,7 @@
      * @param b true ou false
      */
     public void setHypothese(Boolean b){
-
+        estHypothese = b;
     }
  
  }
