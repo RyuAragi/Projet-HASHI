@@ -6,11 +6,11 @@
 
 package com.example.demo.Aide;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
 
 import com.example.demo.Technique.*;
-import com.example.demo.game.GrilleJeu;
-import com.example.demo.game.Ile;
+import com.example.demo.game.*;
 
 public class AideManager implements Aide{
     private List<TechniqueInter> listTechniqueDetecte ;
@@ -75,7 +75,7 @@ public class AideManager implements Aide{
         TechniqueInter tmp;
         for (TechniqueInter t : listTechniqueDetecte){
 
-            if ((tmp = t.detecte(listeIlesGrilleJoueur, listeIlesGrilleResolu,grille))!=null){
+            if ((tmp = t.detecte(listeIlesGrilleJoueur, listeIlesGrilleResolu, grille))!=null){
                 if (tmp == t){
                     precision += 1;
                     if (precision > 3) precision = 3;

@@ -1,9 +1,9 @@
 package com.example.demo.Technique;
 
 import java.util.List;
-import com.example.demojeumenu.game.IleJoueur;
-import com.example.demojeumenu.game.Ile;
-import com.example.demojeumenu.game.GrilleJeu;
+import com.example.demo.game.IleJoueur;
+import com.example.demo.game.Ile;
+import com.example.demo.game.GrilleJeu;
 /**
  * Interface représent les messages communs que toutes les techniques peuvent répondre
  */
@@ -22,9 +22,7 @@ public interface TechniqueInter {
      * @return une ile
      */
     public abstract IleJoueur getIle();
- 
 
-    
 
     /**
      * modifie l'ile visée par la technique

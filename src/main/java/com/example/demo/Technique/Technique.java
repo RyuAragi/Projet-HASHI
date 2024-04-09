@@ -6,12 +6,11 @@
 
 package com.example.demo.Technique;
 
-import com.example.demojeumenu.game.IleJoueur;
+import com.example.demo.game.IleJoueur;
 
 abstract public class Technique implements TechniqueInter{
 
     protected IleJoueur courante ;
-
 
 
     /**

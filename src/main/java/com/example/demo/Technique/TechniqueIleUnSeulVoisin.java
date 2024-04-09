@@ -2,9 +2,9 @@ package com.example.demo.Technique;
 
 import java.util.List;
 
-import com.example.demojeumenu.game.GrilleJeu;
-import com.example.demojeumenu.game.Ile;
-import com.example.demojeumenu.game.IleJoueur;
+import com.example.demo.game.GrilleJeu;
+import com.example.demo.game.Ile;
+import com.example.demo.game.IleJoueur;
 
 public class TechniqueIleUnSeulVoisin extends Technique{
     static private TechniqueInter technique = null;
@@ -29,7 +29,7 @@ public class TechniqueIleUnSeulVoisin extends Technique{
      * Regarde si la technique est applicable
      * @param listJoueur la liste d'ile du joueur
      * @param listResolu la liste d'ile résolu
-     * @param grill la grille de jeu
+     * @param grille la grille de jeu
      * @return La technique si elle trouvée, null sinon
      */
     @Override
