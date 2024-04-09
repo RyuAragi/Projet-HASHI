@@ -14,7 +14,7 @@ public class MenuTechniqueBas4 extends BaseController {
 
     @FXML
     private void quitter() {
-        FXMLUtils.loadFXML("MenuReglesDuJeu.fxml", scene);
+        FXMLUtils.loadFXML("/MenuReglesDuJeu.fxml", scene);
     }
 
 }
