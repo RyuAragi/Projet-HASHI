@@ -377,11 +377,7 @@ import java.util.List;
       * @return vrai si la grille est correct, faux sinon
       */
       public boolean verifMatrice(){
-        if (erreur != null){
-            copieGrille(joueur, erreur);
-            erreur =null;
-            return false;
-        }
+
 
         for (int i = 0; i< nbLigne; i++){
             for(int j = 0; j < nbColonne; j++){
