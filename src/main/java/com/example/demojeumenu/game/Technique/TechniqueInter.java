@@ -22,12 +22,7 @@ public interface TechniqueInter {
      * @return une ile
      */
     public abstract IleJoueur getIle();
-
-    /**
-     * Renvoie la description de la technique
-     * @return la description
-     */
-    public abstract String getDescription();  
+ 
 
     
 
@@ -50,4 +45,10 @@ public interface TechniqueInter {
      * @return le nom de la technique
      */
     public abstract String getNomTechnique();
+
+    /**
+     * Revnoie le nom du fichier FXML associée à la technique 
+     * @return
+     */
+    public abstract String getFichierFXML();
 }

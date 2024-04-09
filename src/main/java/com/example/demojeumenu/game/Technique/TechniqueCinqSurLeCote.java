@@ -51,5 +51,10 @@ public class TechniqueCinqSurLeCote extends Technique{
     public String getNomTechnique(){
         return super.getNomTechnique() + "cinq sur le côté est applicable ici ";
     }
+
+    @Override
+    public String getFichierFXML(){
+        return "MenuTechniqueBas1.fxml";
+    }
     
 }

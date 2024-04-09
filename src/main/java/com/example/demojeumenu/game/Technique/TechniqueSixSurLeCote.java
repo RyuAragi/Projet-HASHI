@@ -50,4 +50,9 @@ public class TechniqueSixSurLeCote extends Technique {
     public String getNomTechnique(){
         return super.getNomTechnique() + "six sur le côté est applicable ici ";
     }
+
+    @Override
+    public String getFichierFXML(){
+        return "MenuTechniqueDeb1.fxml";
+    }
 }

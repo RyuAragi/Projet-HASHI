@@ -38,7 +38,7 @@ public class TechniqueIsolationDeux extends Technique{
         res = getInstance();
         IleJoueur j;
         for (Ile n : listJoueur){
-            if ((n.getValIle() == 2) && (n.getSommeVoisins() < 2) ){
+            if ((n.getValIle() == 2) &&(grille.getNbVoisinReel(n)>1)&& (n.getSommeVoisins() < 2) ){
 
                 j=grille.getVoisinDir((IleJoueur)n,"E");
                 if(j!=null){
@@ -76,5 +76,10 @@ public class TechniqueIsolationDeux extends Technique{
 
     public String getNomTechnique(){
         return super.getNomTechnique() + "ile avec comme valeur deux ayant plus d'un voisin dont un de même valeur que l'ile est applicable ici ";
+    }
+
+    @Override
+    public String getFichierFXML(){
+        return "MenuTechniqueIso1.fxml";
     }
 }

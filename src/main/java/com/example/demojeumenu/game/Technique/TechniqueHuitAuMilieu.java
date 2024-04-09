@@ -50,5 +50,10 @@ public class TechniqueHuitAuMilieu extends Technique{
     public String getNomTechnique(){
         return super.getNomTechnique() + "huit au milieu est applicable ici ";
     }
+
+    @Override
+    public String getFichierFXML(){
+        return "MenuTechniqueDeb1.fxml";
+    }
     
 }

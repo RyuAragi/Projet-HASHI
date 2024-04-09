@@ -51,4 +51,10 @@ public class TechniqueQuatreSurLeCote extends Technique{
     public String getNomTechnique(){
         return super.getNomTechnique() + "quatre sur le côté est applicable ici ";
     }
+
+    @Override
+    public String getFichierFXML(){
+        return "MenuTechniqueBas3.fxml";
+    }
+   
 }
