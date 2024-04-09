@@ -28,7 +28,7 @@ public class MenuTailleGrille extends BaseController {
     @FXML
     private void leaderboard(){
         // Charger le fichier FXML de l'external frame
-        FXMLLoader loader = new FXMLLoader(JsonApp.class.getResource("PopupWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(JsonApp.class.getResource("PopupWindowLB.fxml"));
         Parent root;
         try {
             root = loader.load();
@@ -36,7 +36,7 @@ public class MenuTailleGrille extends BaseController {
             throw new RuntimeException(e);
         }
 
-        PopupWindowController controller = loader.getController();
+        loader.getController();
 
         // Créer la scène de l'external frame
         Scene scenePopup = new Scene(root);
