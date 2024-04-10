@@ -42,7 +42,8 @@ public class PopupWindowControllerLB extends BaseController {
     private void backButton() {
         // Code pour fermer la fenêtre du popup
         //Stage stage = (Stage) continueButton.getScene().getWindow();
-        stage.close();
+        if(stage!=null)
+            stage.close();
     }
 
 

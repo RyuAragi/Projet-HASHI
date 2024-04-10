@@ -43,28 +43,28 @@ public class TechniqueIsolationDeux extends Technique{
                 j=grille.getVoisinDir((IleJoueur)n,"E");
                 if(j!=null){
                     if (j.getValIle() == 2) {
-                        res.setIle((IleJoueur)n);
+                        res.setIle(n);
                         return res;
                     }
                 }
                 j=grille.getVoisinDir((IleJoueur)n,"O");
                 if(j!=null){
                     if (j.getValIle() == 2) {
-                        res.setIle((IleJoueur)n);
+                        res.setIle(n);
                         return res;
                     }
                 }
                 j=grille.getVoisinDir((IleJoueur)n,"N");
                 if(j!=null){
                     if (j.getValIle() == 2) {
-                        res.setIle((IleJoueur)n);
+                        res.setIle(n);
                         return res;
                     }
                 }
                 j=grille.getVoisinDir((IleJoueur)n,"S");
                 if(j!=null){
                     if (j.getValIle() == 2) {
-                        res.setIle((IleJoueur)n);
+                        res.setIle(n);
                         return res;
                     }
                 }
@@ -75,7 +75,7 @@ public class TechniqueIsolationDeux extends Technique{
     }
 
     public String getNomTechnique(){
-        return super.getNomTechnique() + "ile avec comme valeur deux ayant plus d'un voisin dont un de même valeur que l'ile est applicable ici ";
+        return super.getNomTechnique() + " « Ile 2 ayant au moins une ile voisine de même valeur » ";
     }
 
     @Override

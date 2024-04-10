@@ -12,7 +12,6 @@ public class TechniqueSixSurLeCote extends Technique {
 
     private TechniqueSixSurLeCote(){
         courante = null;
-
     }
 
     /**
@@ -39,7 +38,7 @@ public class TechniqueSixSurLeCote extends Technique {
         res = getInstance();
         for(int i = 0 ; i< listJoueur.size(); i++){
             if ((listJoueur.get(i).getValIle() == 6)&&(grille.getNbVoisinReel((IleJoueur)listJoueur.get(i))== 3) && (listJoueur.get(i).getSommeVoisins()<6)){
-                res.setIle((IleJoueur) listJoueur.get(i));
+                res.setIle( listJoueur.get(i));
                 return res;
             }
         }
@@ -48,7 +47,7 @@ public class TechniqueSixSurLeCote extends Technique {
     }
 
     public String getNomTechnique(){
-        return super.getNomTechnique() + "six sur le côté est applicable ici ";
+        return super.getNomTechnique() + " « Six sur un côté » ";
     }
 
     @Override

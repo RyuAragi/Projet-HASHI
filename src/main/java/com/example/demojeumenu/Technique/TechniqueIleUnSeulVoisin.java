@@ -38,7 +38,7 @@ public class TechniqueIleUnSeulVoisin extends Technique{
         res = getInstance();
         for(int i = 0 ; i< listJoueur.size(); i++){
             if(grille.getNbVoisinReel((IleJoueur)listJoueur.get(i)) == 1){
-                res.setIle((IleJoueur)listJoueur.get(i));
+                res.setIle(listJoueur.get(i));
                 return res;
             }
         }
@@ -47,7 +47,7 @@ public class TechniqueIleUnSeulVoisin extends Technique{
     }
 
     public String getNomTechnique(){
-        return super.getNomTechnique() + "ile avec un seul voisin est applicable ici";
+        return super.getNomTechnique() + " « Ile avec un seul voisin » ";
     }
 
 

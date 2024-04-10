@@ -72,22 +72,25 @@ public class AideManager implements Aide{
             }
         }
         TechniqueInter tmp;
+        Ile ile = null;
+        if(techniqueCourante!=null){
+            ile = techniqueCourante.getIle();
+        }
         for (TechniqueInter t : listTechniqueDetecte){
-            if ((tmp = t.detecte(listeIlesGrilleJoueur, listeIlesGrilleResolu, grille))!=null && t.getIle()!=null){
-                if ((tmp == t) && (tmp.getIle() == t.getIle())){
+            if ((tmp = t.detecte(listeIlesGrilleJoueur, listeIlesGrilleResolu, grille))!=null && tmp.getIle()!=null){
+                if ((tmp == techniqueCourante) && ile!=null && (tmp.getIle() == ile)){
                     precision += 1;
                     if (precision > 3) precision = 3;
                 }else{
-                    precision = 0;
+                    precision = 1;
+                    techniqueCourante = tmp;
                 }
-                
-                techniqueCourante = t;
                 return techniqueCourante;
             }
 
         }
+        precision = 0;
         return null;
-
     }
 
 
@@ -97,6 +100,10 @@ public class AideManager implements Aide{
     @Override
     public Integer getPrecision(){
         return precision;
+    }
+
+    public void decrementePrecision(){
+        this.precision--;
     }
 
     public TechniqueInter getTechnique(){

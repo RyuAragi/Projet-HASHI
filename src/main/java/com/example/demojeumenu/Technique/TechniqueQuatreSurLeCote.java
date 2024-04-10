@@ -40,7 +40,7 @@ public class TechniqueQuatreSurLeCote extends Technique{
         res = getInstance();
         for(int i = 0 ; i< listJoueur.size(); i++){
             if ((listResolu.get(i).getValIle() == 4)&&(grille.getNbVoisinReel((IleJoueur)listJoueur.get(i)) == 3) && (listJoueur.get(i).getSommeVoisins()<4)){
-                res.setIle((IleJoueur)listResolu.get(i));
+                res.setIle(listResolu.get(i));
                 return res;
             }
         }
@@ -49,7 +49,7 @@ public class TechniqueQuatreSurLeCote extends Technique{
     }
 
     public String getNomTechnique(){
-        return super.getNomTechnique() + "quatre sur le côté est applicable ici ";
+        return super.getNomTechnique() + " « Quatre sur un côté » ";
     }
 
     @Override

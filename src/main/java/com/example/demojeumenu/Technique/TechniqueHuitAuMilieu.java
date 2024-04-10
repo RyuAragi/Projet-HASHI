@@ -37,7 +37,7 @@ public class TechniqueHuitAuMilieu extends Technique{
         res = getInstance();
         for (Ile n : listJoueur){
             if ((n.getValIle() == 8) && (n.getSommeVoisins() < 8)){
-                res.setIle((IleJoueur)n);
+                res.setIle(n);
                 return res;
             }
         }
@@ -47,7 +47,7 @@ public class TechniqueHuitAuMilieu extends Technique{
 
 
     public String getNomTechnique(){
-        return super.getNomTechnique() + "huit au milieu est applicable ici ";
+        return super.getNomTechnique() + " « Huit au milieu » ";
     }
 
     @Override
