@@ -6,11 +6,11 @@
 
 package com.example.demojeumenu.Technique;
 
-import com.example.demojeumenu.game.IleJoueur;
+import com.example.demojeumenu.game.Ile;
 
 abstract public class Technique implements TechniqueInter{
 
-    protected IleJoueur courante ;
+    protected Ile courante ;
 
 
     /**
@@ -18,7 +18,7 @@ abstract public class Technique implements TechniqueInter{
      * @return une ile
      */
     @Override
-    public IleJoueur getIle(){
+    public Ile getIle(){
         return courante;
     }
 
@@ -28,13 +28,13 @@ abstract public class Technique implements TechniqueInter{
      * @param i l'ile 
      */
     @Override
-    public void setIle(IleJoueur i){
+    public void setIle(Ile i){
         courante = i;
     }
 
     @Override 
     public String getNomTechnique(){
-        return "Une technique ";
+        return "La technique";
     }
 
     

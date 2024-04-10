@@ -21,14 +21,14 @@ public interface TechniqueInter {
      * Renvoie l'ile visée par la technique
      * @return une ile
      */
-    public abstract IleJoueur getIle();
+    public abstract Ile getIle();
 
 
     /**
      * modifie l'ile visée par la technique
      * @param i l'ile 
      */
-    public abstract void setIle(IleJoueur i);
+    public abstract void setIle(Ile i);
 
     /**
      * renvoie l'instance de la technique

@@ -39,7 +39,7 @@ public class TechniqueSeptAuMilieu extends Technique {
         res = getInstance();
         for (Ile n : listJoueur){
             if ((n.getValIle() == 7) && (n.getSommeVoisins() < 7)){
-                res.setIle((IleJoueur)n);
+                res.setIle(n);
                 return res;
             }
         }
@@ -48,7 +48,7 @@ public class TechniqueSeptAuMilieu extends Technique {
     }
 
     public String getNomTechnique(){
-        return super.getNomTechnique() + "sept au milieu est applicable ici ";
+        return super.getNomTechnique() + " « Sept au milieu » ";
     }
 
     @Override

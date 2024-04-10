@@ -74,7 +74,7 @@ public class MenuTailleGrille extends BaseController {
 
     @FXML
     private void jouerGrille15x15(ActionEvent event) {
-        leaderboard();
+        //leaderboard();
         Button button = (Button) event.getSource();
         String levelName = button.getId();
         String[] parts = levelName.split("-");
@@ -82,7 +82,7 @@ public class MenuTailleGrille extends BaseController {
             String difficulty = parts[0].toLowerCase();
             levelFileName = difficulty + "/" + levelName + ".txt";
             System.out.println("jouerGrille15x15Button levelFileName: " + levelFileName);
-            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName);
+            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName, true);
         } else {
             System.err.println("Invalid level name format: " + levelName);
         }

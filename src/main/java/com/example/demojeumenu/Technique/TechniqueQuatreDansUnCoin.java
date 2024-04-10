@@ -38,7 +38,7 @@ public class TechniqueQuatreDansUnCoin extends Technique {
         res = getInstance();
         for(int i = 0 ; i< listJoueur.size(); i++){
             if ((listResolu.get(i).getValIle() == 4)&&(grille.getNbVoisinReel((IleJoueur)listJoueur.get(i)) == 2) && (listJoueur.get(i).getSommeVoisins()<4)){
-                res.setIle((IleJoueur)listResolu.get(i));
+                res.setIle(listResolu.get(i));
                 return res;
             }
         }
@@ -47,7 +47,7 @@ public class TechniqueQuatreDansUnCoin extends Technique {
     }
 
     public String getNomTechnique(){
-        return super.getNomTechnique() + "quatre dans un coin est applicable ici ";
+        return super.getNomTechnique() + " « Quatre dans un coin » ";
     }
 
     @Override

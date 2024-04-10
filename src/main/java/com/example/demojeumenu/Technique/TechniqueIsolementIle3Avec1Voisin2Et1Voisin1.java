@@ -38,8 +38,8 @@ public class TechniqueIsolementIle3Avec1Voisin2Et1Voisin1 extends Technique{
         TechniqueInter res;
         res = getInstance();
         List<IleJoueur> listVoisin = new ArrayList<IleJoueur>();
-        Boolean deux = false;
-        Boolean un = false;
+        boolean deux = false;
+        boolean un = false;
 
         for (Ile n: listJoueur){
             listVoisin = grille.getListVoisinReel((IleJoueur)n);
@@ -51,8 +51,8 @@ public class TechniqueIsolementIle3Avec1Voisin2Et1Voisin1 extends Technique{
                 }else if(i.getValIle() == 2){
                     deux = true;
                 }
-                if(un == true && deux == true){
-                    res.setIle((IleJoueur)n);
+                if(un && deux){
+                    res.setIle(n);
                     return res;
                 }
             }
@@ -64,7 +64,7 @@ public class TechniqueIsolementIle3Avec1Voisin2Et1Voisin1 extends Technique{
     }
 
     public String getNomTechnique(){
-        return super.getNomTechnique() + "ile avec comme valeur trois ayant plus d'un voisin dont un de valeur un et un de valeur deux est applicable ici ";
+        return super.getNomTechnique() + " « Ile 3 ayant au moins une ile voisine de valeur un et une de valeur deux » ";
     }
 
     @Override

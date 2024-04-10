@@ -17,12 +17,12 @@
         <Button fx:id="quit" alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="quit" />
         <Button fx:id="param" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" styleClass="param" />
     </HBox>
-   <VBox fx:id="vbox_aide_info" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="350.0" styleClass="vbox_aide" StackPane.alignment="TOP_RIGHT">
+   <VBox fx:id="vbox_aide_info" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="350.0" styleClass="vbox_aide" StackPane.alignment="TOP_RIGHT">
       <StackPane.margin>
          <Insets right="25.0" top="80.0" />
       </StackPane.margin>
       <children>
-         <Label fx:id="textInfo" styleClass="textAide" />
+         <Label fx:id="textInfo" styleClass="textAide" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="280.0" textAlignment="CENTER"/>
          <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
             <children>
                 <Button fx:id="see_tech" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" styleClass="bouton_ok" text="Voir la technique" />

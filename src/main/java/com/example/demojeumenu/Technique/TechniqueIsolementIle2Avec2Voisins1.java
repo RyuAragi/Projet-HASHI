@@ -46,7 +46,7 @@ public class TechniqueIsolementIle2Avec2Voisins1 extends Technique{
                 if(i.getValIle() == 1){
                     cpt++;
                     if (cpt == 2){
-                        res.setIle((IleJoueur)n);
+                        res.setIle(n);
                         return res;
                     }
                 }
@@ -59,7 +59,7 @@ public class TechniqueIsolementIle2Avec2Voisins1 extends Technique{
     }
 
     public String getNomTechnique(){
-        return super.getNomTechnique() + "ile avec comme valeur deux ayant plus d'un voisin dont deux de valeur un est applicable ici ";
+        return super.getNomTechnique() + " « Ile 2 ayant au moins deux iles voisines de valeur un » ";
     }
 
     @Override

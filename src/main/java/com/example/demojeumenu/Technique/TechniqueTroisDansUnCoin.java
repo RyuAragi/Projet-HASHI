@@ -39,7 +39,7 @@ public class TechniqueTroisDansUnCoin extends Technique{
         res = getInstance();
         for(int i = 0 ; i< listJoueur.size(); i++){
             if ((listResolu.get(i).getValIle() == 3)&&(grille.getNbVoisinReel((IleJoueur)listJoueur.get(i)) == 2) && (listJoueur.get(i).getSommeVoisins()<3)){
-                res.setIle((IleJoueur)listResolu.get(i));
+                res.setIle(listResolu.get(i));
                 return res;
             }
         }
@@ -48,7 +48,7 @@ public class TechniqueTroisDansUnCoin extends Technique{
     }
 
     public String getNomTechnique(){
-        return super.getNomTechnique() + "trois dans un coin est applicable ici ";
+        return super.getNomTechnique() + " « Trois dans un coin » ";
     }
 
     @Override
