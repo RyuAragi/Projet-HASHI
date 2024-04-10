@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane onMouseClicked="#background" styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.Menu.MenuPrincipalController">
+    <fx:include source="Logo.fxml" />
+    <VBox alignment="BASELINE_CENTER">
+        <Button styleClass="titre" text="MENU" />
+    </VBox>
+    <BorderPane>
+        <center>
+            <VBox alignment="CENTER">
+                <HBox alignment="CENTER">
+                    <TextField fx:id="zoneTexte" styleClass="custom-button" />
+                </HBox>
+                <Button fx:id="didacticiel" onAction="#buttonAction" styleClass="custom-button" text="DIDACTICIEL" />
+                <Button fx:id="jouer" text="JOUER" onAction="#buttonAction" styleClass="custom-button"/>
+                <Button fx:id="quitter" text="QUITTER" onAction="#buttonAction" styleClass="custom-button"/>
+            </VBox>
+        </center>
+    </BorderPane>
+</StackPane>

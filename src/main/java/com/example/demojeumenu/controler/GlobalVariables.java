@@ -21,4 +21,8 @@ public class GlobalVariables {
     public static StringProperty userInputProperty() {
         return userInput;
     }
+
+    public static String getDefaultUserInput() {
+        return DEFAULT_USER_INPUT;
+    }
 }

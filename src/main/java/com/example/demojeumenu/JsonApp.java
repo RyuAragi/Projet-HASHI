@@ -52,7 +52,7 @@ public class JsonApp extends BaseController {
 
     private static void showPopupWindow(String username) {
         // Charger le fichier FXML de l'external frame
-        FXMLLoader loader = new FXMLLoader(JsonApp.class.getResource("PopupWindow.fxml"));
+        FXMLLoader loader = new FXMLLoader(JsonApp.class.getResource("/PopupWindow.fxml"));
         Parent root;
         try {
             root = loader.load();

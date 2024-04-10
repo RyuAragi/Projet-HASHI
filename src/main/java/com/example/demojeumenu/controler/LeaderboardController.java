@@ -2,7 +2,9 @@ package com.example.demojeumenu.controler;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class LeaderboardController {
 
     @FXML

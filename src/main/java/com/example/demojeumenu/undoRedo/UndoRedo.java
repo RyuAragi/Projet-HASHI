@@ -5,10 +5,11 @@
 
 package com.example.demojeumenu.undoRedo;
 
- import com.example.demojeumenu.game.GrilleJeu;
- import com.example.demojeumenu.game.Pont;
+import com.example.demojeumenu.game.GrilleJeu;
+import com.example.demojeumenu.game.Pont;
 
- import java.util.Stack;
+import java.io.Serializable;
+import java.util.Stack;
 
  /** 
   * La classe UndoRedo symbolise le fait de pouvoir revenir en arriere ou reprendre un coup déja posé. 
@@ -27,7 +28,7 @@ package com.example.demojeumenu.undoRedo;
   *   * Depiler le coup de redo
   *   * Ajouter le pont dans la matrice 
   */
- public class UndoRedo {
+ public class UndoRedo implements Serializable {
     private Stack<Pont> redo;
     
     /**
@@ -56,18 +57,10 @@ package com.example.demojeumenu.undoRedo;
     /** 
      * Methode permettant de RAZ la pile Redo
      */
-    void RazRedo() {
+    public void RazRedo() {
         while(!(this.redo.empty())) this.redo.pop();
     }
 
-    /**
-     * Renvoie le premier élément de la pile
-     * @return le pont représentant le premier de la pile
-     */
-    public Pont getPremierElement(){
-        return redo.peek();
-    }
-    
     /**
      * Methode permettant de faire une action undo -> Revenir en arriere 
      * @param jeu
@@ -84,7 +77,7 @@ package com.example.demojeumenu.undoRedo;
      */
     void actionRedo(GrilleJeu jeu) {
         Pont pont = this.popRedo();
-        jeu.poserPont(pont.getSrc(), pont.getDst());
+        jeu.poserPont(pont.getSrc(), pont.getDst(), pont.estHypothese());
     }
 
     /**

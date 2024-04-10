@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class PopupWindowController extends BaseController {
 
     @FXML
@@ -16,7 +18,7 @@ public class PopupWindowController extends BaseController {
 
     @FXML
     private Button newGameButton;
-    private StringProperty username = new SimpleStringProperty();
+    private final StringProperty username = new SimpleStringProperty();
 
     private static Stage stage;
     @FXML

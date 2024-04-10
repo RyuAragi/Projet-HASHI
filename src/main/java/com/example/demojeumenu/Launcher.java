@@ -1,11 +1,13 @@
 package com.example.demojeumenu;
 
 import javafx.application.Application;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.IOException;
-
+@SpringBootApplication
 public class Launcher {
-    public static void main(String[] args) throws IOException {
-        Application.launch(App.class, args);
+
+    public static void main(String[] args) {
+        Application.launch(JavaFxApplication.class, args);
     }
+
 }

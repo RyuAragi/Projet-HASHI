@@ -1,15 +1,17 @@
 package com.example.demojeumenu.game;
 
+import java.io.Serializable;
+
 /**
  * Cette classe représente une ile abstraite
  * @author Coupé Xavier
  * @version 0.1
  */
 
-public class Case {
+public class Case implements Serializable {
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     /**
      * Constructeur d'une Case

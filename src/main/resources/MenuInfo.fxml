@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane cache="true" maxHeight="725.0" maxWidth="700.0" minHeight="700.0" minWidth="700.0" prefHeight="725.0" prefWidth="700.0" styleClass="boardBg" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.Menu.MenuInfoController">
+         <Button alignment="TOP_CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="430.0" styleClass="titreInfo" text="CREDITS" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" StackPane.alignment="TOP_CENTER" />
+      <VBox alignment="CENTER" prefHeight="735.0" prefWidth="698.0" StackPane.alignment="CENTER">
+            <HBox alignment="CENTER" maxWidth="600.0" prefHeight="162.0" prefWidth="600.0">
+                  <ImageView fitHeight="144.0" fitWidth="123.0" nodeOrientation="INHERIT" pickOnBounds="true" smooth="false" styleClass="imgLogo">
+                  </ImageView>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="155.0" prefWidth="469.0" styleClass="projectText" text="Dans le cadre du Module de Génie Logiciel 2 en licence informatique à l'Université du Mans, notre projet a pour objectif de créer un application permettant la résolution d'un puzzle, le Hashi, en implémentant un système d'aide." textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                        Dans le cadre du Module de Génie Logiciel 2 en licence informatique à l'Université du Mans, le
+                        projet a pour objectif de créer un application permettant la résolution d'un puzzle, le Hashi,
+                        en implémentant un système d'aide.
+                  </Label>
+            </HBox>
+            <VBox alignment="BASELINE_CENTER" prefHeight="322.0" prefWidth="698.0">
+                  <Label alignment="CENTER" contentDisplay="CENTER" styleClass="memberTitle" textAlignment="CENTER">Membres de l'équipe :</Label>
+                  <Label styleClass="textLbl" textAlignment="CENTER">BALLEREAU Wandrille - Chef de groupe</Label>
+                  <Label styleClass="textLbl" textAlignment="CENTER">FOUQUERAY Victor - Chef documentaliste</Label>
+                  <Label styleClass="textLbl" textAlignment="CENTER">GEORGET Rémy - Back-end</Label>
+                  <Label styleClass="textLbl" textAlignment="CENTER">COUPE Xavier - Back-end</Label>
+                  <Label styleClass="textLbl" textAlignment="CENTER">ALHALLAK Sédra - Front-End</Label>
+                  <Label styleClass="textLbl" textAlignment="CENTER">EL GHOUMARI Soumia - Front-End</Label>
+                  <Label styleClass="textLbl" textAlignment="CENTER">COURCOL Thibault - Full stack</Label>
+                  <Label styleClass="textLbl" textAlignment="CENTER">DULUARD Théo - Full stack</Label>
+            </VBox>
+      <padding>
+         <Insets bottom="-30.0" />
+      </padding>
+      </VBox>
+      <Button fx:id="bouton_retour" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" styleClass="custom-backButton" text="Retour" StackPane.alignment="BOTTOM_CENTER" />
+</StackPane>
