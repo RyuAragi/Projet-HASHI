@@ -3,7 +3,6 @@ package com.example.demojeumenu.Technique;
 import java.util.List;
 
 import com.example.demojeumenu.controler.MenuTechniqueDeb1;
-import com.example.demojeumenu.game.IleJoueur;
 import com.example.demojeumenu.game.Ile;
 import com.example.demojeumenu.game.GrilleJeu;
 import javafx.stage.Stage;

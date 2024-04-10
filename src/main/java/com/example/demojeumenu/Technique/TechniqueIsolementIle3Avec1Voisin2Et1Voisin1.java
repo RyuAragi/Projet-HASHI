@@ -3,7 +3,7 @@ package com.example.demojeumenu.Technique;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demojeumenu.controler.MenuTechniqueDeb1;
+import com.example.demojeumenu.controler.MenuTechniqueIso2;
 import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
 import com.example.demojeumenu.game.IleJoueur;
@@ -76,6 +76,6 @@ public class TechniqueIsolementIle3Avec1Voisin2Et1Voisin1 extends Technique{
 
     @Override
     public void setStage(Stage st){
-        MenuTechniqueDeb1.setStage(st);
+        MenuTechniqueIso2.setStage(st);
     }
 }

@@ -18,6 +18,7 @@ public class MenuTechniqueBas1 extends BaseController {
     public static void setStage(Stage st){
         stage = st;
     }
+
     @FXML
     private void retour() {
         System.out.println("retour");

@@ -1,7 +1,7 @@
 package com.example.demojeumenu.Technique;
 
 
-import com.example.demojeumenu.controler.MenuTechniqueDeb1;
+import com.example.demojeumenu.controler.MenuTechniqueBas3;
 import com.example.demojeumenu.game.IleJoueur;
 import com.example.demojeumenu.game.Ile;
 
@@ -61,7 +61,7 @@ public class TechniqueQuatreSurLeCote extends Technique{
 
     @Override
     public void setStage(Stage st){
-        MenuTechniqueDeb1.setStage(st);
+        MenuTechniqueBas3.setStage(st);
     }
    
 }
