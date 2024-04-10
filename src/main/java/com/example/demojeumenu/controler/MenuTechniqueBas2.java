@@ -8,10 +8,10 @@ import javafx.stage.Stage;
 
 public class MenuTechniqueBas2 extends BaseController {
     @FXML
-    public Button retour;
+    public Button bouton_retour;
 
     @FXML
-    public Button suivant;
+    public Button bouton_suivant;
 
     public static Stage stage = null;
 
@@ -21,6 +21,7 @@ public class MenuTechniqueBas2 extends BaseController {
 
     @FXML
     private void retour() {
+        System.out.println("retour");
         if(FXMLUtils.topHistory().equals("/GrilleDisplay.fxml") && stage!=null){
             stage.close();
         }
@@ -32,5 +33,13 @@ public class MenuTechniqueBas2 extends BaseController {
     @FXML
     private void suivant() {
         FXMLUtils.loadFXML("/MenuTechniqueBas3.fxml", scene);
+    }
+
+    @FXML
+    private void initialize(){
+        if(FXMLUtils.topHistory().equals("/GrilleDisplay.fxml")){
+            bouton_suivant.setVisible(false);
+            bouton_suivant.setDisable(true);
+        }
     }
 }
