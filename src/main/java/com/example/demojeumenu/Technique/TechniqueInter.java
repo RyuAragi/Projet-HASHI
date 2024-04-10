@@ -4,6 +4,8 @@ import java.util.List;
 import com.example.demojeumenu.game.IleJoueur;
 import com.example.demojeumenu.game.Ile;
 import com.example.demojeumenu.game.GrilleJeu;
+import javafx.stage.Stage;
+
 /**
  * Interface représent les messages communs que toutes les techniques peuvent répondre
  */
@@ -49,4 +51,7 @@ public interface TechniqueInter {
      * @return
      */
     public abstract String getFichierFXML();
+
+
+    public void setStage(Stage st);
 }

@@ -1,6 +1,8 @@
 package com.example.demojeumenu;
 
+import com.example.demojeumenu.Technique.Technique;
 import com.example.demojeumenu.Technique.TechniqueInter;
+import com.example.demojeumenu.controler.MenuTechniqueDeb1;
 import com.example.demojeumenu.controler.PopupWindowController;
 import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
@@ -440,7 +442,47 @@ public class GrilleControler extends BaseController {
      */
     private EventHandler<Event> getTechniqueAction(TechniqueInter technique){
         return event -> {
-            FXMLUtils.loadFXML("/"+technique.getFichierFXML(),scene);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/"+technique.getFichierFXML()));
+            Parent root;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            loader.getController();
+
+            // Create the scene for the external frame
+            Scene scenePopup = new Scene(root);
+            scenePopup.setFill(Color.TRANSPARENT);
+            scenePopup.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/styles.css")).toExternalForm());
+            scenePopup.getRoot().setEffect(new DropShadow());
+
+            // Create a new window for the external frame
+            Stage popupWindow = new Stage();
+            popupWindow.setResizable(false);
+            popupWindow.setWidth(scene.getWidth());
+            popupWindow.setHeight(scene.getHeight());
+            popupWindow.setAlwaysOnTop(true);
+            popupWindow.initStyle(StageStyle.TRANSPARENT);
+            popupWindow.initOwner(scene.getWindow());
+            popupWindow.initModality(Modality.APPLICATION_MODAL);
+            popupWindow.setUserData(false);
+
+            PopupWindowController.setStage(popupWindow);
+
+            popupWindow.setOnHidden(event1 -> scene.getRoot().setEffect(null));
+
+            popupWindow.setScene(scenePopup);
+            technique.setStage(popupWindow);
+
+            // Apply the darkening effect to the main scene
+            ColorAdjust darkColorAdjust = new ColorAdjust();
+            darkColorAdjust.setBrightness(-0.5);
+            scene.getRoot().setEffect(darkColorAdjust);
+
+            // Show the popup window
+            popupWindow.showAndWait();
         };
     }
 

@@ -21,6 +21,8 @@ public class PopupWindowController extends BaseController {
     private final StringProperty username = new SimpleStringProperty();
 
     private static Stage stage;
+
+
     @FXML
     private Label usernameLabel;
     public static void setStage(Stage st){
