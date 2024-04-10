@@ -23,9 +23,9 @@ Projet JacoBhashi est un projet incroyable qui accomplit des tâches extraordina
 ## Installation
 Pour installer le projet, suivez ces étapes simples :
 
-$ git clone https://github.com/RyuAragi/Projet-HASHI.git
-$ cd Projet-HASHI
-$ mvn spring-boot:run
+$ git clone https://github.com/RyuAragi/Projet-HASHI.git</br>
+$ cd Projet-HASHI</br>
+$ mvn spring-boot:run</br>
 
 
 <!-- Membres du Projet -->
