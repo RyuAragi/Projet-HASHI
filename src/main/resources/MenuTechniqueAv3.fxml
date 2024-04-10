@@ -8,6 +8,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.Text?>
 
 <StackPane prefHeight="839.0" prefWidth="1267.0" styleClass="background" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.controler.MenuTechniqueAv3">
@@ -77,6 +81,8 @@
             </VBox>
         </children>
     </GridPane>
+
+    <Button onAction="#param" styleClass="param" BorderPane.alignment="BOTTOM_RIGHT" StackPane.alignment="BOTTOM_RIGHT" />
 
 
 

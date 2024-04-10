@@ -20,5 +20,9 @@
                 <Button fx:id="quitter" text="QUITTER" onAction="#buttonAction" styleClass="custom-button"/>
             </VBox>
         </center>
+      <bottom>
+           <Button onAction="#param" styleClass="param" BorderPane.alignment="BOTTOM_RIGHT" />
+      </bottom>
     </BorderPane>
+
 </StackPane>

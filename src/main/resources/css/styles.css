@@ -32,6 +32,20 @@
     -fx-padding: 35;
     -fx-alignment: center;
     -fx-text-alignment: center;
+
+}
+.param {
+
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('../images/param.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: Right;
+    -fx-background-size: 100% 100%;
+    -fx-pref-height: 70;
+    -fx-pref-width: 70;
+
+
 }
 
 #text{

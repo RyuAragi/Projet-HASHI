@@ -103,6 +103,12 @@ public class MenuPrincipalController extends BaseController {
         //detecte le clic sur le bouton background
         ((Node) event.getSource()).requestFocus();
     }
+    /**
+     * Méthode permettant d'acceder aux parametres.
+     */
+    @FXML
+    private void param() { FXMLUtils.loadFXML("Parametres.fxml", scene);
+    }
 
     /**
      * Méthode d'initialisation des actions des boutons et zone de texte du menu.
@@ -135,4 +141,5 @@ public class MenuPrincipalController extends BaseController {
             jouer.setDisable(true);
         }
     }
+
 }
