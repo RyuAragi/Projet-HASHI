@@ -3,6 +3,7 @@ package com.example.demojeumenu.Menu;
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.JsonApp;
 import com.example.demojeumenu.SoundUtils;
+import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.utils.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import com.example.demojeumenu.controler.GlobalVariables;
+import org.springframework.stereotype.Controller;
 
 
 /**
@@ -18,6 +19,7 @@ import com.example.demojeumenu.controler.GlobalVariables;
  * @author Thibault COURCOL, Théo DULUARD
  */
 
+@Controller
 public class MenuPrincipalController extends BaseController {
 
     /**
@@ -72,7 +74,7 @@ public class MenuPrincipalController extends BaseController {
      * Méthode permettant de charger le menu des modes de jeu.
      */
     private void jouer() {
-        FXMLUtils.loadFXML("MenuModeDuJeu.fxml", scene);
+        FXMLUtils.loadFXML("/MenuModeDuJeu.fxml", scene);
     }
 
     /**
@@ -80,7 +82,7 @@ public class MenuPrincipalController extends BaseController {
      */
 
     private void didacticiel() {
-        FXMLUtils.loadFXML("MenuReglesDuJeu.fxml", scene);
+        FXMLUtils.loadFXML("/MenuReglesDuJeu.fxml", scene);
     }
 
     /**

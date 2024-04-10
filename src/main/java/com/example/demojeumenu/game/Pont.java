@@ -6,16 +6,18 @@
 
 package com.example.demojeumenu.game;
 
-import java.io.Serializable;
+public class Pont{
+    private boolean estHypothese;
 
-public class Pont implements Serializable {
-    boolean estHypothese;
+    private enum VertiHori{
+        VERTICALE,HORIZONTAL
+    }
 
-    private final EnumVertiHori estVertiHori;
+    private VertiHori estVertiHori;
 
-    private final IleJoueur src;
-    private final IleJoueur dst;
-    
+    private IleJoueur src;
+    private IleJoueur dst;
+
     /**
      * Constructeur de Pont
      * @param src_ l'ile source du pont
@@ -28,9 +30,9 @@ public class Pont implements Serializable {
         estHypothese = h;
 
         if (src.getX() == dst.getX()){
-            estVertiHori = EnumVertiHori.HORIZONTAL;
+            estVertiHori = VertiHori.HORIZONTAL;
         }else{
-            estVertiHori = EnumVertiHori.VERTICALE;
+            estVertiHori = VertiHori.VERTICALE;
         }
     }
 
@@ -39,7 +41,7 @@ public class Pont implements Serializable {
      * @return vrai ou faux
      */
     public boolean estVertical(){
-        return estVertiHori == EnumVertiHori.VERTICALE;
+        return estVertiHori == VertiHori.VERTICALE;
     }
 
     /**
@@ -47,7 +49,7 @@ public class Pont implements Serializable {
      * @return vrai ou faux
      */
     public boolean estHorizontal(){
-        return estVertiHori == EnumVertiHori.HORIZONTAL;
+        return estVertiHori == VertiHori.HORIZONTAL;
     }
 
     /**
@@ -79,7 +81,7 @@ public class Pont implements Serializable {
      * @return la coordonnée y
      */
     public int getMinY(){
-        return Math.min(src.getY(), dst.getY());
+        return src.getY() < dst.getY() ? src.getY() : dst.getY();
     }
 
 
@@ -88,7 +90,7 @@ public class Pont implements Serializable {
      * @return la coordonnée x
      */
     public int getMinX(){
-        return Math.min(src.getX(), dst.getX());
+        return src.getX() < dst.getX() ? src.getX() : dst.getX();
     }
 
 
@@ -97,7 +99,7 @@ public class Pont implements Serializable {
      * @return la coordonnée y
      */
     public int getMaxY(){
-        return Math.max(src.getY(), dst.getY());
+        return src.getY() > dst.getY() ? src.getY() : dst.getY();
     }
 
 
@@ -106,7 +108,16 @@ public class Pont implements Serializable {
      * @return la coordonnée x
      */
     public int getMaxX(){
-        return Math.max(src.getX(), dst.getX());
+        return src.getX() > dst.getX() ? src.getX() : dst.getX();
+    }
+
+
+    /**
+     * Set la valeur estHypothese du pont
+     * @param b true ou false
+     */
+    public void setHypothese(Boolean b){
+        estHypothese = b;
     }
 
 }

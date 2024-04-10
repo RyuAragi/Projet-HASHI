@@ -1,4 +1,4 @@
-package com.example.demojeumenu.technique;
+package com.example.demojeumenu.controler;
 
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.utils.BaseController;
@@ -12,6 +12,6 @@ public class MenuTechniqueAv1 extends BaseController {
 
     @FXML
     private void suivant() {
-        FXMLUtils.loadFXML("MenuTechniqueAv2.fxml", scene);
+        FXMLUtils.loadFXML("/MenuTechniqueAv2.fxml", scene);
     }
 }

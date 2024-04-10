@@ -1,7 +1,6 @@
 package com.example.demojeumenu.Menu;
 
 import com.example.demojeumenu.FXMLUtils;
-import com.example.demojeumenu.JsonApp;
 import com.example.demojeumenu.controler.PopupWindowController;
 import com.example.demojeumenu.utils.BaseController;
 import javafx.event.ActionEvent;
@@ -16,18 +15,21 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.util.Objects;
 
+
+@Controller
 public class MenuTailleGrille extends BaseController {
    /* @FXML
     private Button jouerGrille15x15Button;*/
 
     @FXML
     private void leaderboard(){
-        // Charger le fichier FXML de l'external frame
-        FXMLLoader loader = new FXMLLoader(JsonApp.class.getResource("PopupWindowLB.fxml"));
+        // Load the FXML file for the external frame
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/PopupWindowLB.fxml"));
         Parent root;
         try {
             root = loader.load();
@@ -37,13 +39,13 @@ public class MenuTailleGrille extends BaseController {
 
         loader.getController();
 
-        // Créer la scène de l'external frame
+        // Create the scene for the external frame
         Scene scenePopup = new Scene(root);
         scenePopup.setFill(Color.TRANSPARENT);
-        scenePopup.getStylesheets().add(Objects.requireNonNull(JsonApp.class.getResource("css/styles.css")).toExternalForm());
+        scenePopup.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/styles.css")).toExternalForm());
         scenePopup.getRoot().setEffect(new DropShadow());
 
-        // Créer une nouvelle fenêtre pour l'external frame
+        // Create a new window for the external frame
         Stage popupWindow = new Stage();
         popupWindow.setResizable(false);
         popupWindow.setWidth(800);
@@ -60,19 +62,19 @@ public class MenuTailleGrille extends BaseController {
 
         popupWindow.setScene(scenePopup);
 
-        // Appliquer l'effet d'assombrissement à la scène principale
+        // Apply the darkening effect to the main scene
         ColorAdjust darkColorAdjust = new ColorAdjust();
         darkColorAdjust.setBrightness(-0.5);
         scene.getRoot().setEffect(darkColorAdjust);
 
-        // Montrer la fenêtre contextuelle
+        // Show the popup window
         popupWindow.showAndWait();
     }
 
 
     @FXML
     private void jouerGrille15x15(ActionEvent event) {
-        leaderboard();
+        //leaderboard();
         Button button = (Button) event.getSource();
         String levelName = button.getId();
         String[] parts = levelName.split("-");
@@ -80,7 +82,7 @@ public class MenuTailleGrille extends BaseController {
             String difficulty = parts[0].toLowerCase();
             levelFileName = difficulty + "/" + levelName + ".txt";
             System.out.println("jouerGrille15x15Button levelFileName: " + levelFileName);
-            FXMLUtils.loadFXML("GrilleDisplay.fxml", scene, levelFileName);
+            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName, true);
         } else {
             System.err.println("Invalid level name format: " + levelName);
         }
@@ -90,15 +92,15 @@ public class MenuTailleGrille extends BaseController {
 
     @FXML
     private void btnS() {
-        FXMLUtils.loadFXML("MenuTailleGrilleClassique2.fxml", scene);
+        FXMLUtils.loadFXML("/MenuTailleGrilleClassique2.fxml", scene);
     }
     @FXML
     private void btn2() {
-        FXMLUtils.loadFXML("MenuTailleGrilleMoyen2.fxml", scene);
+        FXMLUtils.loadFXML("/MenuTailleGrilleMoyen2.fxml", scene);
     }
     @FXML
     private void btn3() {
-        FXMLUtils.loadFXML("MenuTailleGrilleDif2.fxml", scene);
+        FXMLUtils.loadFXML("/MenuTailleGrilleDif2.fxml", scene);
     }
 
     @FXML

@@ -7,11 +7,7 @@
 package com.example.demojeumenu.game;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class IleJoueur extends Ile implements Serializable {
 
@@ -34,7 +30,7 @@ public class IleJoueur extends Ile implements Serializable {
      * Méthode qui compte la somme des voisins
      * @return la somme des voisins d'un noeud
      */
-    int getSommeVoisins(){
+    public int getSommeVoisins(){
         int cpt = 0;
 
         for(Map.Entry<String, List<Pont>> ile : pontRelie.entrySet()){

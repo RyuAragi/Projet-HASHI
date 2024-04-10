@@ -1,10 +1,10 @@
-package com.example.demojeumenu.technique;
+package com.example.demojeumenu.controler;
 
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXML;
 
-public class MenuTechniqueBas3 extends BaseController {
+public class MenuTechniqueIso2 extends BaseController {
     @FXML
     private void retour() {
         FXMLUtils.goBack(scene);
@@ -12,6 +12,8 @@ public class MenuTechniqueBas3 extends BaseController {
 
     @FXML
     private void suivant() {
-        FXMLUtils.loadFXML("MenuTechniqueBas4.fxml", scene);
+        FXMLUtils.loadFXML("/MenuTechniqueIso3.fxml", scene);
     }
 }
+
+

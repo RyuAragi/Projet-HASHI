@@ -16,8 +16,8 @@ public abstract class BaseController {
                 if (EtatParametres) {
                     FXMLUtils.goBack(scene);
                     EtatParametres = false;
-                } else if (!scene.getStylesheets().contains("Parametres.fxml")) {
-                    FXMLUtils.loadFXML("Parametres.fxml", scene);
+                } else if (!scene.getStylesheets().contains("/Parametres.fxml")) {
+                    FXMLUtils.loadFXML("/Parametres.fxml", scene);
                     EtatParametres = true;
                 }
             }

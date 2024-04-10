@@ -6,7 +6,9 @@ import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class PopupWindowControllerLBGrille extends BaseController {
 
     @FXML
@@ -19,7 +21,7 @@ public class PopupWindowControllerLBGrille extends BaseController {
     @FXML
     private void btnHome() {
         stage.close();
-        FXMLUtils.loadFXML("MenuPrincipal.fxml", scene);
+        FXMLUtils.loadFXML("/MenuPrincipal.fxml", scene);
     }
     @FXML
     private void backButton() {

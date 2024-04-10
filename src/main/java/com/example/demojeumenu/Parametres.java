@@ -9,13 +9,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.*;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.springframework.stereotype.Controller;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -24,6 +27,8 @@ import java.util.Objects;
  * Classe implémentant le contrôle et les évènements du menu des paramètres.
  * @author Thibault COURCOL, Théo DULUARD
  */
+
+@Controller
 public class Parametres extends BaseController {
     /**
      * [Textfield] Zone de texte en entrée où le joueur saisi son pseudo.
@@ -154,7 +159,7 @@ public class Parametres extends BaseController {
      */
     private void updateSoundBar() {
         if (SoundUtils.getSoundLevel()>=0 && SoundUtils.getSoundLevel() < tabImgSoundbar.size()) {
-            String imageName = "images/" + tabImgSoundbar.get(SoundUtils.getSoundLevel());
+            String imageName = "/images/" + tabImgSoundbar.get(SoundUtils.getSoundLevel());
             Image image = new Image(Objects.requireNonNull(getClass().getResource(imageName)).toExternalForm());
             soundBar.setImage(image);
         }
@@ -166,10 +171,10 @@ public class Parametres extends BaseController {
     private void updateSoundButton(){
         String imgName;
         if(SoundUtils.getSoundLevel() == 0){
-            imgName = "images/" + tabImgSoundButton.get(1); // volume image -> pour remettre le son
+            imgName = "/images/" + tabImgSoundButton.get(1); // volume image -> pour remettre le son
         }
         else{
-            imgName = "images/" + tabImgSoundButton.get(0); // mute image   -> pour supprimer le son
+            imgName = "/images/" + tabImgSoundButton.get(0); // mute image   -> pour supprimer le son
         }
         String imageUrl = Objects.requireNonNull(getClass().getResource(imgName)).toExternalForm();
         mute_button.setStyle("-fx-background-image: url('" + imageUrl + "');");
@@ -184,7 +189,7 @@ public class Parametres extends BaseController {
         darkColorAdjust.setBrightness(-0.5);
         scene.getRoot().setEffect(darkColorAdjust);
         // Charger le fichier FXML de l'external frame
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuInfo.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MenuInfo.fxml"));
         Parent root;
         try {
             root = loader.load();
@@ -195,7 +200,7 @@ public class Parametres extends BaseController {
         // Créer la scène de l'external frame
         Scene sceneInfo = new Scene(root);
         sceneInfo.setFill(Color.TRANSPARENT);
-        sceneInfo.getStylesheets().add(Objects.requireNonNull(getClass().getResource("css/styles.css")).toExternalForm());
+        sceneInfo.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/styles.css")).toExternalForm());
         sceneInfo.getRoot().setEffect(new DropShadow());
 
         // Créer une nouvelle fenêtre pour l'external frame

@@ -5,11 +5,14 @@ import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Controller;
 
 /**
  * Classe implémentant les interaction avec le menu d'information concernant le projet.
  * @author Thibault COURCOL, Théo DULUARD
  */
+
+@Controller
 public class MenuInfoController extends BaseController {
 
     /**
