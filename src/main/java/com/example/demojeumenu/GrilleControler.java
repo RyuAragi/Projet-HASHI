@@ -48,6 +48,12 @@ import java.util.Objects;
 
 @Controller
 public class GrilleControler extends BaseController {
+
+    /**
+     * [Integer] niveau de zoom de la grille
+     */
+    private int zoom_level;
+
     /**
      * [GrilleJeu] Référence vers la grille actuelle.
      */
@@ -434,7 +440,7 @@ public class GrilleControler extends BaseController {
      */
     private EventHandler<Event> getTechniqueAction(TechniqueInter technique){
         return event -> {
-
+            FXMLUtils.loadFXML("/"+technique.getFichierFXML(),scene);
         };
     }
 
@@ -516,29 +522,23 @@ public class GrilleControler extends BaseController {
         vbox_aide_info.setVisible(false);
 
         zoom.setOnAction(event -> {
-            /*
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);
-            if(zoom_level[0]<=5) {
-                zoom_level[0]++;
+            if(zoom_level<=5) {
+                zoom_level++;
                 st.setByX(0.1);
                 st.setByY(0.1);
                 st.play();
             }
-            */
-             System.out.println("zoom");
         });
 
         dezoom.setOnAction(event -> {
-            /*
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);
-            if(zoom_level[0]>=-5) {
-                zoom_level[0]--;
+            if(zoom_level>=-5) {
+                zoom_level--;
                 st.setByX(-0.1);
                 st.setByY(-0.1);
                 st.play();
             }
-             */
-            System.out.println("dezoom");
         });
 
         quit.setOnAction(event -> {
@@ -752,20 +752,23 @@ public class GrilleControler extends BaseController {
         } else {
             InputStreamReader reader = new InputStreamReader(resourceStream);
             // Pass the InputStream to GrilleJeu
-            this.grille = new GrilleJeu(reader);
-            System.out.println("Grille: " + this.grille);
 
             this.enModeHypothese = false;
+            this.zoom_level = 0;
             initButtons();
             initChrono();
 
-            initializeGrille();
+            this.grille = new GrilleJeu(reader);
 
             if(chargement){
-                chargeGrille();
+                //grille.charger_sauvegarde("");
+                //chargeGrille();
             }
-        }
+            System.out.println("Grille: " + this.grille);
+            initializeGrille();
 
+            startChrono();
+        }
     }
 
     public void initializeGrille() {
@@ -814,7 +817,5 @@ public class GrilleControler extends BaseController {
             }
         }
         grillePane.toFront();
-
-        startChrono();
     }
 }

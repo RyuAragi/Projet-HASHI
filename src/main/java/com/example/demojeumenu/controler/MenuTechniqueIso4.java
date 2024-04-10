@@ -18,4 +18,8 @@ public class MenuTechniqueIso4 extends BaseController {
         FXMLUtils.goBack(scene);
     }
 
+    @FXML
+    private void initialize(){
+        
+    }
 }

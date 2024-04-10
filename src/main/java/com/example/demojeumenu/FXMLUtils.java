@@ -89,6 +89,10 @@ public class FXMLUtils {
         }
     }
 
+    public static String topHistory(){
+        return fxmlHistory.peek();
+    }
+
     /**
      * Ajoute le fichier FXML à l'historique
      * @param fxmlFileName nom du fichier FXML
