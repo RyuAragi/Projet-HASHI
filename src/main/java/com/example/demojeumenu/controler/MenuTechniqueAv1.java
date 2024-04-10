@@ -1,10 +1,10 @@
-package com.example.demojeumenu.Technique;
+package com.example.demojeumenu.controler;
 
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXML;
 
-public class MenuTechniqueIso4 extends BaseController {
+public class MenuTechniqueAv1 extends BaseController {
 
     /**
      * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
@@ -17,14 +17,12 @@ public class MenuTechniqueIso4 extends BaseController {
     /**
      * Méthode d'action du bouton retour. Permet d'acceder au menu suivant.
      */
-
     @FXML
-    private void quitter() {
-        FXMLUtils.loadFXML("MenuReglesDuJeu.fxml", scene);
+    private void suivant() {
+        FXMLUtils.loadFXML("MenuTechniqueAv2.fxml", scene);
     }
 
     @FXML
     private void param() {FXMLUtils.loadFXML("Parametres.fxml", scene);
     }
-
 }

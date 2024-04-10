@@ -5,7 +5,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.Text?>
 
-<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.Technique.MenuTechniqueAv1">
+<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.controler.MenuTechniqueAv1">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="TECHNIQUE AVANCÉES" />
