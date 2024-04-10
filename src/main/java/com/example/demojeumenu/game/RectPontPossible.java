@@ -94,7 +94,7 @@ public class RectPontPossible extends Rectangle {
 
     private EventHandler<MouseEvent> getClickedAction(){
         return event -> {
-            int valPontDir = ((IleJoueur) ileSrc).getValPontDir(dir);
+            int valPontDir = ileSrc.getValPontDir(dir);
             System.out.println(valPontDir);
             switch (valPontDir){
                 case 0 -> {

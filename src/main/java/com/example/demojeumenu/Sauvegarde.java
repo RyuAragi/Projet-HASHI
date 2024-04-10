@@ -18,7 +18,7 @@ public class Sauvegarde {
 
     private final String path = System.getProperty("user.dir") + "/JacobHashi/Sauvegarde/";
 
-    private ArrayList<String> liste_difficultes;
+    private final ArrayList<String> liste_difficultes;
     /**
      * Constructeur de la classe
      */

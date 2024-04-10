@@ -33,7 +33,7 @@ public class LignePont extends Line {
 
     private EventHandler<MouseEvent> getClickedAction() {
         return event -> {
-            if (((IleJoueur) pontPossible.ileSrc).getValPontDir(pontPossible.dir) == 1) {
+            if (pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 1) {
                 if (!pontPossible.ileSrc.ileComplete() && !pontPossible.ileDest.ileComplete()) {
                     pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
                     if(pontPossible.dir.equals("N") || pontPossible.dir.equals("S")) {
@@ -69,7 +69,7 @@ public class LignePont extends Line {
                     pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
                 }
             }
-            else if (((IleJoueur) pontPossible.ileSrc).getValPontDir(pontPossible.dir) == 2) {
+            else if (pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 2) {
                 pontPossible.boutonDest.setStyle("-fx-background-color: transparent");
                 pontPossible.boutonSrc.setStyle("-fx-background-color: transparent");
                 pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);

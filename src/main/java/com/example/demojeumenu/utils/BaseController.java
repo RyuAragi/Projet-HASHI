@@ -11,8 +11,8 @@ public abstract class BaseController {
     private boolean EtatParametres = false; // variable pour savoir si on est dans le menu parametres
     protected String levelFileName;
     public void setScene(Scene scene) {
-        this.scene = scene;
-        this.scene.setOnKeyPressed(event -> {
+        BaseController.scene = scene;
+        BaseController.scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 if (EtatParametres) {
                     FXMLUtils.goBack(scene);

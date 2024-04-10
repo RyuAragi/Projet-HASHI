@@ -15,26 +15,26 @@ public interface TechniqueInter {
      * @param grill la grille de jeu
      * @return La technique si elle trouvée, null sinon
      */
-    public abstract TechniqueInter detecte(List<Ile> listJoueur, List<Ile> listResolu, GrilleJeu grill);
+    TechniqueInter detecte(List<Ile> listJoueur, List<Ile> listResolu, GrilleJeu grill);
 
     /**
      * Renvoie l'ile visée par la technique
      * @return une ile
      */
-    public abstract Ile getIle();
+    Ile getIle();
 
 
     /**
      * modifie l'ile visée par la technique
      * @param i l'ile 
      */
-    public abstract void setIle(Ile i);
+    void setIle(Ile i);
 
     /**
      * renvoie l'instance de la technique
      * @return l'instance unique de la technique
      */
-    static public TechniqueInter getInstance(){
+    static TechniqueInter getInstance(){
         return null;
     }
 
@@ -42,11 +42,11 @@ public interface TechniqueInter {
      * Renvoie le nom de la technique
      * @return le nom de la technique
      */
-    public abstract String getNomTechnique();
+    String getNomTechnique();
 
     /**
      * Revnoie le nom du fichier FXML associée à la technique 
      * @return
      */
-    public abstract String getFichierFXML();
+    String getFichierFXML();
 }

@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 public class JsonApp extends BaseController {
     private static final Logger LOGGER = Logger.getLogger(JsonApp.class.getName());
-    private static HashMap<String, Boolean> shownPopups = new HashMap<>();
+    private static final HashMap<String, Boolean> shownPopups = new HashMap<>();
 
 
     private JsonApp() {
