@@ -6,7 +6,7 @@
 </div>
 
 [![Pull Requests](https://img.shields.io/github/issues-pr/RyuAragi/Projet-HASHI.svg?style=flat-square)](https://github.com/RyuAragi/Projet-HASHI/pulls)
-[![Commits](https://img.shields.io/github/commits-since/RyuAragi/Projet-HASHI/latest.svg?style=flat-square)](https://github.com/RyuAragi/Projet-HASHI/commits/master)
+[![Commits](https://img.shields.io/github/commits-since/RyuAragi/Projet-HASHI/latest.svg?style=flat-square)](https://github.com/RyuAragi/Projet-HASHI/commits/main)
 [![Version](https://img.shields.io/github/v/tag/RyuAragi/Projet-HASHI.svg?style=flat-square&labelColor=green)](https://github.com/RyuAragi/Projet-HASHI/releases/latest)
 [![Release](https://img.shields.io/github/release/RyuAragi/Projet-HASHI.svg?style=flat-square)](https://github.com/RyuAragi/Projet-HASHI/releases/latest)
 
