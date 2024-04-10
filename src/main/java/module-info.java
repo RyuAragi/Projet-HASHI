@@ -16,8 +16,8 @@ module com.example.demojeumenu {
     opens com.example.demojeumenu.utils to javafx.fxml;
     exports com.example.demojeumenu.controler;
     opens com.example.demojeumenu.controler to javafx.fxml;
-    exports com.example.demojeumenu.technique;
-    opens com.example.demojeumenu.technique to javafx.fxml;
+    exports com.example.demojeumenu.Technique;
+    opens com.example.demojeumenu.Technique to javafx.fxml;
     exports com.example.demojeumenu.undoRedo;
     opens com.example.demojeumenu.undoRedo to javafx.fxml;
     exports com.example.demojeumenu.Menu;

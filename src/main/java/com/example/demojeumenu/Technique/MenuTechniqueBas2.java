@@ -1,4 +1,4 @@
-package com.example.demojeumenu.technique;
+package com.example.demojeumenu.Technique;
 
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.utils.BaseController;
