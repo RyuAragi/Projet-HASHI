@@ -14,6 +14,7 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Objects;
@@ -32,15 +33,19 @@ public class JsonApp extends BaseController {
     }
 
     public static void checkJsonFileExists(String username) {
-        URL resourceUrl = JsonApp.class.getResource("json/" + username + ".json");
-        if (resourceUrl == null) {
+        InputStream resourceStream = JsonApp.class.getResourceAsStream("/json/" + username + ".json");
+        if (resourceStream == null) {
             LOGGER.severe("Ressource introuvable: json/" + username + ".json");
             return;
         }
 
-        File file = new File(resourceUrl.getFile());
+        try {
+            resourceStream.close();
+        } catch (IOException e) {
+            LOGGER.severe("Error closing resource stream: " + e.getMessage());
+        }
 
-        if (file.exists() && !shownPopups.containsKey(username)) {
+        if (!shownPopups.containsKey(username)) {
             showPopupWindow(username);
             shownPopups.put(username, true);
         } else {
@@ -51,7 +56,7 @@ public class JsonApp extends BaseController {
     }
 
     private static void showPopupWindow(String username) {
-        // Charger le fichier FXML de l'external frame
+        // Load the FXML file for the external frame
         FXMLLoader loader = new FXMLLoader(JsonApp.class.getResource("/PopupWindow.fxml"));
         Parent root;
         try {
@@ -60,38 +65,44 @@ public class JsonApp extends BaseController {
             throw new RuntimeException(e);
         }
 
-        PopupWindowController controller = loader.getController();
-        controller.setUsername(username);
+        // Get the controller and set the username
+       loader.getController();
+        //controller.setUsername(username);
 
-        // Créer la scène de l'external frame
+        // Create the scene for the external frame
         Scene scenePopup = new Scene(root);
         scenePopup.setFill(Color.TRANSPARENT);
-        scenePopup.getStylesheets().add(Objects.requireNonNull(JsonApp.class.getResource("css/styles.css")).toExternalForm());
+        scenePopup.getStylesheets().add(Objects.requireNonNull(JsonApp.class.getResource("/css/styles.css")).toExternalForm());
         scenePopup.getRoot().setEffect(new DropShadow());
 
-        // Créer une nouvelle fenêtre pour l'external frame
+        // Create a new window for the external frame
         Stage popupWindow = new Stage();
         popupWindow.setResizable(false);
         popupWindow.setWidth(800);
         popupWindow.setHeight(700);
         popupWindow.setAlwaysOnTop(true);
         popupWindow.initStyle(StageStyle.TRANSPARENT);
-        popupWindow.initOwner(scene.getWindow());
+        if (scene != null && scene.getWindow() != null) {
+            popupWindow.initOwner(scene.getWindow());
+        }
         popupWindow.initModality(Modality.APPLICATION_MODAL);
         popupWindow.setUserData(false);
 
+        // Set the stage in the controller
         PopupWindowController.setStage(popupWindow);
 
+        // Set the effect when the window is hidden
         popupWindow.setOnHidden(event -> scene.getRoot().setEffect(null));
 
+        // Set the scene for the popup window
         popupWindow.setScene(scenePopup);
 
-        // Appliquer l'effet d'assombrissement à la scène principale
+        // Apply the darkening effect to the main scene
         ColorAdjust darkColorAdjust = new ColorAdjust();
         darkColorAdjust.setBrightness(-0.5);
         scene.getRoot().setEffect(darkColorAdjust);
 
-        // Montrer la fenêtre contextuelle
+        // Show the popup window
         popupWindow.showAndWait();
     }
 
