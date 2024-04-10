@@ -107,13 +107,6 @@ public class MenuTailleGrille extends BaseController {
     private void retour() {
         FXMLUtils.goBack(scene);
     }
-    @FXML
-    private void param() {
-        FXMLUtils.loadFXML("Parametres.fxml", scene);
-    }
-
-
-
 }
 
 

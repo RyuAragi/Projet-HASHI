@@ -32,20 +32,6 @@
     -fx-padding: 35;
     -fx-alignment: center;
     -fx-text-alignment: center;
-
-}
-.param {
-
-    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
-    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
-    -fx-background-image: url('../images/param.png');
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: Right;
-    -fx-background-size: 100% 100%;
-    -fx-pref-height: 70;
-    -fx-pref-width: 70;
-
-
 }
 
 #text{
@@ -157,7 +143,7 @@
     -fx-prompt-text-fill: white;
 }
 
- .custom-buttonR {
+.custom-buttonR {
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: white;
     -fx-font-size: 25px;
@@ -172,7 +158,7 @@
     -fx-pref-width: 180;
     -fx-prompt-text-fill: white;
 }
- /*style pour les buttons de leaderboard score et temps*/
+/*style pour les buttons de leaderboard score et temps*/
 .custom-buttonFrameLB {
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: white;
@@ -1148,4 +1134,18 @@ HBox{
 .bouton_ok:hover {
     -fx-background-color: #712746;
     -fx-background-insets: 0, 1, 2;
+}
+
+.param2 {
+
+    -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
+    -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
+    -fx-background-image: url('../images/param.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: Right;
+    -fx-background-size: 100% 100%;
+    -fx-pref-height: 70;
+    -fx-pref-width: 70;
+
+
 }

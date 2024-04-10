@@ -1,6 +1,7 @@
 package com.example.demojeumenu.utils;
 
 import com.example.demojeumenu.FXMLUtils;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
@@ -22,5 +23,14 @@ public abstract class BaseController {
                 }
             }
         });
+    }
+
+    /**
+     * Méthode permettant d'acceder aux parametres.
+     */
+
+    @FXML
+    private void param() {
+        FXMLUtils.loadFXML("/Parametres.fxml", scene);
     }
 }

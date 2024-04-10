@@ -23,7 +23,4 @@ public class MenuTechniqueAv3 extends BaseController {
         FXMLUtils.loadFXML("/MenuTechniqueAv4.fxml", scene);
     }
 
-    @FXML
-    private void param() {FXMLUtils.loadFXML("Parametres.fxml", scene);
-    }
 }

@@ -23,8 +23,4 @@ public class MenuTechniqueDeb2 extends BaseController {
         FXMLUtils.goBack(scene);
         FXMLUtils.goBack(scene);
     }
-
-    @FXML
-    private void param() {FXMLUtils.loadFXML("Parametres.fxml", scene);
-    }
 }

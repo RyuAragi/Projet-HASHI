@@ -20,5 +20,5 @@
 
         <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
     </VBox>
-    <Button onAction="#param" styleClass="param" BorderPane.alignment="BOTTOM_RIGHT" StackPane.alignment="BOTTOM_RIGHT" />
+    <Button onAction="#param" styleClass="param2" BorderPane.alignment="BOTTOM_RIGHT" StackPane.alignment="BOTTOM_RIGHT" />
 </StackPane>

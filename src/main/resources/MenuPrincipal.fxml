@@ -21,7 +21,7 @@
             </VBox>
         </center>
       <bottom>
-           <Button onAction="#param" styleClass="param" BorderPane.alignment="BOTTOM_RIGHT" />
+           <Button onAction="#param" styleClass="param2" BorderPane.alignment="BOTTOM_RIGHT" />
       </bottom>
     </BorderPane>
 
