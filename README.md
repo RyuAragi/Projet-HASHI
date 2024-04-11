@@ -12,7 +12,7 @@
 
 
 <!-- Description -->
-Projet JacoBhashi est un projet incroyable qui accomplit des tâches extraordinaires en résolvant les problèmes les plus complexes avec une simplicité étonnante.
+Projet JacoBhashi 
 
 <!-- Table des Matières -->
 ## Table des Matières
