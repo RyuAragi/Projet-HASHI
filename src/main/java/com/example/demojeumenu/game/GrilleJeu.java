@@ -25,8 +25,8 @@ public class GrilleJeu implements Serializable{
 
     //Représente un boolean qui vaut vrai si une erreur a été commise dans la grille
     private Boolean erreur;
-    //Représente l'indice de la première erreur rencontrée
-    private int premiereErreur;
+    //Représente le premier pont incorrect
+    private Pont premiereErreur;
     //Le nombre de ligne de la grille
     private int nbLigne;
     //Le nombre de colonne de la grille
@@ -58,6 +58,7 @@ public class GrilleJeu implements Serializable{
         listPontPose= new ArrayList<>();
         undoRedo = new UndoRedo();
         erreur = false;
+        premiereErreur = null;
     }
 
     /**
@@ -333,9 +334,7 @@ public class GrilleJeu implements Serializable{
 
             //A chaque pont posé entre deux îles, on le vérifie
             if (!erreur && verifPont(j1, j2)){
-                premiereErreur = listPontPose.size()-1;
-            }else if(erreur){
-                if (premiereErreur > listPontPose.size()) erreur = false;
+                premiereErreur = listPontPose.get(listPontPose.size()-1);
             }
             return p;
 
@@ -344,10 +343,10 @@ public class GrilleJeu implements Serializable{
     }
 
     /**
-     * Renvoie l'indice de la première erreur
-     * @return l'indice de la première erreur
+     * Renvoie le pont incorrect
+     * @return le pont incorrect
      */
-    public int getPremiereErreur(){
+    public Pont getPremiereErreur(){
         return premiereErreur;
     }
     /**
@@ -356,12 +355,16 @@ public class GrilleJeu implements Serializable{
      */
     public void corrigeList(){
         int taille = listPontPose.size();
-        while(taille > premiereErreur){
-            undoRedo.actionUndo(this);
-            taille = listPontPose.size();
+
+        if(listPontPose.contains(premiereErreur)){
+            int indice = listPontPose.indexOf(premiereErreur);
+            while(taille > indice){
+                undoRedo.actionUndo(this);
+                taille = listPontPose.size();
+            }
+            
         }
         undoRedo.RazRedo();
-
     }
 
     /**
@@ -766,14 +769,5 @@ public class GrilleJeu implements Serializable{
         }
     }
  
- /*
-     public static void main(String[] args) {
-         GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Facile-5.txt");
-         testJeu.afficher_mat_out();
  
-         testJeu.poserPont(testJeu.getIleGrilleJoueur(0,0), testJeu.getIleGrilleJoueur(0,2));
- 
-         System.out.println(testJeu.getIleGrilleJoueur(0,0).getValPontDir(new String("E")));
-         //Aide.techniqueDeDepart(testJeu);
-     }*/
 }
