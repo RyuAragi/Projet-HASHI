@@ -50,6 +50,10 @@ import java.util.Objects;
 
 @Controller
 public class GrilleControler extends BaseController {
+    /**
+     * [String] Nom (+chemin) du fichier chargé de la grille.
+     */
+    private String loadedFile;
 
     /**
      * [Integer] niveau de zoom de la grille
@@ -549,9 +553,10 @@ public class GrilleControler extends BaseController {
      * Méthode d'initialisation de boutons et d'éléments graphiques.
      */
     private void initButtons() {
-        hbox_bouton_HD.toFront();
+        //hbox_bouton_HD.toFront();
         hbox_bouton_HD.setDisable(false);
         hbox_bouton_BD.setDisable(false);
+        hbox_bouton_HG.toFront();
         hbox_bouton_HG.setDisable(false);
 
         valid_hypo.setDisable(true);
@@ -589,6 +594,11 @@ public class GrilleControler extends BaseController {
         });
 
         help.setOnAction(event -> helpMethod());
+
+        quit.setOnAction(event -> {
+            grille.creer_sauvegarde("/niveau/"+this.loadedFile);
+            FXMLUtils.goBack(scene);
+        });
     }
 
     /**
@@ -784,12 +794,13 @@ public class GrilleControler extends BaseController {
 
     public void initData(String levelFileName, boolean chargement) {
         System.out.println("LevelFileNameCorrected: " + levelFileName);
+        this.loadedFile = levelFileName;
 
         // Get the resource as a stream
-        InputStream resourceStream = getClass().getResourceAsStream("/niveaux/" + levelFileName);
+        InputStream resourceStream = getClass().getResourceAsStream("/niveaux/" + this.loadedFile);
 
         if (resourceStream == null) {
-            System.err.println("Resource not found: " + levelFileName);
+            System.err.println("Resource not found: " + loadedFile);
             // Handle the error, for example by throwing an exception or returning null
         } else {
             InputStreamReader reader = new InputStreamReader(resourceStream);
