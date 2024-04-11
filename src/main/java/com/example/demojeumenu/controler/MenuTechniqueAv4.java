@@ -20,10 +20,9 @@ public class MenuTechniqueAv4 extends BaseController {
 
     @FXML
     private void quitter() {
-        FXMLUtils.loadFXML("MenuReglesDuJeu.fxml", scene);
-    }
-
-    @FXML
-    private void param() {FXMLUtils.loadFXML("Parametres.fxml", scene);
+        FXMLUtils.goBack(scene);
+        FXMLUtils.goBack(scene);
+        FXMLUtils.goBack(scene);
+        FXMLUtils.goBack(scene);
     }
 }

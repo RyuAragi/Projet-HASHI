@@ -6,20 +6,18 @@
 
 package com.example.demojeumenu.game;
 
-import com.example.demojeumenu.game.IleJoueur;
-
 public class Pont{
-    boolean estHypothese; 
+    private boolean estHypothese;
 
     private enum VertiHori{
         VERTICALE,HORIZONTAL
     }
 
-    private VertiHori estVertiHori; 
+    private final VertiHori estVertiHori;
 
-    private IleJoueur src;
-    private IleJoueur dst;
-    
+    private final IleJoueur src;
+    private final IleJoueur dst;
+
     /**
      * Constructeur de Pont
      * @param src_ l'ile source du pont
@@ -111,6 +109,15 @@ public class Pont{
      */
     public int getMaxX(){
         return src.getX() > dst.getX() ? src.getX() : dst.getX();
+    }
+
+
+    /**
+     * Set la valeur estHypothese du pont
+     * @param b true ou false
+     */
+    public void setHypothese(Boolean b){
+        estHypothese = b;
     }
 
 }

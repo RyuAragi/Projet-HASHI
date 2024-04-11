@@ -20,10 +20,6 @@ public class MenuTechniqueDeb1 extends BaseController {
 
     @FXML
     private void suivant() {
-        FXMLUtils.loadFXML("MenuTechniqueDeb2.fxml", scene);
-    }
-
-    @FXML
-    private void param() {FXMLUtils.loadFXML("Parametres.fxml", scene);
+        FXMLUtils.loadFXML("/MenuTechniqueDeb2.fxml", scene);
     }
 }

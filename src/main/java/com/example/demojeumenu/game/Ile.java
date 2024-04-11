@@ -7,21 +7,17 @@
 package com.example.demojeumenu.game;
 
 public abstract class Ile extends Case {
-    
+
     //La valeur de l'île (le nombre de pont qu'il faut relier)
-    private int valIle;
+    private final int valIle;
 
     /**
-     * 
+     *
      * @param cX La coordonnée X
      * @param cY La coordonnée Y
-     * @param valIle La valeur de l'île 
-     * @param nbPontsN Le nombre de Pont au Nord
-     * @param nbPontsS Le nombre de Pont au Sud
-     * @param nbPontsE Le nombre de Pont a l'Est 
-     * @param nbPontsO Le nombre de Pont a l'Ouest 
+     * @param valIle_ La valeur de l'île
      */
-    protected Ile(int cX, int cY, int valIle_){
+    Ile(int cX, int cY, int valIle_ ){
         super(cX,cY);
 
         valIle = valIle_;
@@ -32,7 +28,7 @@ public abstract class Ile extends Case {
     }
 
     /*
-     * Méthode qui compte la somme des voisins 
+     * Méthode qui compte la somme des voisins
      * @return la somme des voisins d'un noeud
      */
     public abstract int getSommeVoisins();
@@ -94,5 +90,9 @@ public abstract class Ile extends Case {
             i++;
         }
         return null;
+    }
+
+    public boolean ileComplete(){
+        return getValIle() == getSommeVoisins();
     }
 }

@@ -3,6 +3,7 @@ package com.example.demojeumenu.Menu;
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.JsonApp;
 import com.example.demojeumenu.SoundUtils;
+import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.utils.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import org.springframework.stereotype.Controller;
 
 
 /**
@@ -17,6 +19,7 @@ import javafx.scene.input.MouseEvent;
  * @author Thibault COURCOL, Théo DULUARD
  */
 
+@Controller
 public class MenuPrincipalController extends BaseController {
 
     /**
@@ -71,7 +74,7 @@ public class MenuPrincipalController extends BaseController {
      * Méthode permettant de charger le menu des modes de jeu.
      */
     private void jouer() {
-        FXMLUtils.loadFXML("MenuModeDuJeu.fxml", scene);
+        FXMLUtils.loadFXML("/MenuModeDuJeu.fxml", scene);
     }
 
     /**
@@ -79,7 +82,7 @@ public class MenuPrincipalController extends BaseController {
      */
 
     private void didacticiel() {
-        FXMLUtils.loadFXML("MenuReglesDuJeu.fxml", scene);
+        FXMLUtils.loadFXML("/MenuReglesDuJeu.fxml", scene);
     }
 
     /**
@@ -100,12 +103,6 @@ public class MenuPrincipalController extends BaseController {
         //detecte le clic sur le bouton background
         ((Node) event.getSource()).requestFocus();
     }
-    /**
-     * Méthode permettant d'acceder aux parametres.
-     */
-    @FXML
-    private void param() { FXMLUtils.loadFXML("Parametres.fxml", scene);
-    }
 
     /**
      * Méthode d'initialisation des actions des boutons et zone de texte du menu.
@@ -119,11 +116,20 @@ public class MenuPrincipalController extends BaseController {
         SoundUtils.addHoverSound(quitter);
         FXMLUtils.initializeTextField(zoneTexte);
 
-
+        // Ajout de l'écouteur sur la propriété text de la zone de texte
         zoneTexte.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Vérifie si le nouveau texte est vide ou égal au texte par défaut
+            // Désactive le bouton jouer
+            // Active le bouton jouer
+            jouer.setDisable(newValue.isEmpty() || newValue.equals(GlobalVariables.getDefaultUserInput()));
+
             JsonApp.removeShownPopup(oldValue);
         });
 
+        // Désactive le bouton jouer initialement si le texte de la zone de texte est vide ou égal au texte par défaut
+        if (zoneTexte.getText().isEmpty() || zoneTexte.getText().equals(GlobalVariables.getDefaultUserInput())) {
+            jouer.setDisable(true);
+        }
     }
 
 }

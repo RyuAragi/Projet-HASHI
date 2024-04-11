@@ -20,11 +20,7 @@ public class MenuTechniqueIso2 extends BaseController {
 
     @FXML
     private void suivant() {
-        FXMLUtils.loadFXML("MenuTechniqueIso3.fxml", scene);
-    }
-
-    @FXML
-    private void param() {FXMLUtils.loadFXML("Parametres.fxml", scene);
+        FXMLUtils.loadFXML("/MenuTechniqueIso3.fxml", scene);
     }
 }
 

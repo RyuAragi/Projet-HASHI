@@ -4,27 +4,27 @@ package com.example.demojeumenu.Menu;
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXML;
+import org.springframework.stereotype.Controller;
 
+
+@Controller
 public class MenuNiveau extends BaseController {
 
     @FXML
     private void btn1() {
-        FXMLUtils.loadFXML("MenuTailleGrilleClassique.fxml", scene);
+        FXMLUtils.loadFXML("/MenuTailleGrilleClassique.fxml", scene);
     }
     @FXML
     private void btn2() {
-        FXMLUtils.loadFXML("MenuTailleGrilleMoyen.fxml", scene);
+        FXMLUtils.loadFXML("/MenuTailleGrilleMoyen.fxml", scene);
     }
     @FXML
     private void btn3() {
-        FXMLUtils.loadFXML("MenuTailleGrilleDif.fxml", scene);
+        FXMLUtils.loadFXML("/MenuTailleGrilleDif.fxml", scene);
     }
 
     @FXML
     private void retour() {
         FXMLUtils.goBack(scene);
-    }
-    @FXML
-    private void param() {FXMLUtils.loadFXML("Parametres.fxml", scene);
     }
 }

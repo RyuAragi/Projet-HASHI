@@ -3,7 +3,13 @@ package com.example.demojeumenu;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import java.util.Objects;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -41,9 +47,40 @@ public class SoundUtils {
 
     static {
         new Thread(() -> {
-            music = new MediaPlayer(new Media(Objects.requireNonNull(SoundUtils.class.getResource("music/musicMenu.mp3")).toExternalForm()));
+            music = new MediaPlayer(createMedia("/music/musicMenu.mp3"));
             latch.countDown(); // Signal that the music player is ready
         }).start();
+    }
+
+    /**
+     * Méthode de création d'un média à partir d'un fichier audio.
+     * @param resourceName [String] Nom du fichier audio.
+     * @return [Media] Média créé à partir du fichier audio.
+     */
+
+
+    private static Media createMedia(String resourceName) {
+        URL resourceUrl = SoundUtils.class.getResource(resourceName);
+        if (resourceUrl == null) {
+            throw new IllegalArgumentException("Resource not found: " + resourceName);
+        }
+
+        if (resourceUrl.getProtocol().equals("jar")) {
+            try {
+                Path tempDir = Files.createTempDirectory("audio_resources");
+                tempDir.toFile().deleteOnExit();
+                Path tempFile = Files.createTempFile(tempDir, "sound", ".wav");
+                tempFile.toFile().deleteOnExit();
+                try (InputStream audioStream = SoundUtils.class.getResourceAsStream(resourceName)) {
+                    Files.copy(audioStream, tempFile, StandardCopyOption.REPLACE_EXISTING);
+                }
+                return new Media(tempFile.toUri().toString());
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to extract audio resource to temp file", e);
+            }
+        } else {
+            return new Media(resourceUrl.toString());
+        }
     }
 
     /**
@@ -71,7 +108,7 @@ public class SoundUtils {
         if (interactions != null) {
             interactions.stop(); // Stop the previous sound
         }
-        Media sound = new Media(Objects.requireNonNull(SoundUtils.class.getResource("sounds/hover.wav")).toExternalForm());
+        Media sound = createMedia("/sounds/hover.wav");
         interactions = new MediaPlayer(sound);
         interactions.setOnEndOfMedia(() -> isPlaying.set(false));
         isPlaying.set(true);
@@ -108,7 +145,7 @@ public class SoundUtils {
      */
     private static void playClickSound() {
         try {
-            Media sound = new Media(Objects.requireNonNull(SoundUtils.class.getResource("sounds/click.wav")).toExternalForm());
+            Media sound = createMedia("/sounds/click.wav");
             MediaPlayer newMediaPlayer = new MediaPlayer(sound);
             newMediaPlayer.setOnEndOfMedia(() -> isPlaying.set(false));
             updateVolume();
@@ -128,7 +165,7 @@ public class SoundUtils {
             if (interactions != null) {
                 interactions.stop(); // Stop the previous sound
             }
-            Media sound = new Media(Objects.requireNonNull(SoundUtils.class.getResource("sounds/erreur.wav")).toExternalForm());
+            Media sound = createMedia("/sounds/erreur.wav");
             interactions = new MediaPlayer(sound);
             interactions.setOnEndOfMedia(() -> isPlaying.set(false));
             interactions.play();
@@ -212,7 +249,7 @@ public class SoundUtils {
      * @param filepath [String] Chemin du fichier audio (.wav de préférence)
      */
     protected static void setMusic(String filepath){
-        music = new MediaPlayer(new Media(Objects.requireNonNull(SoundUtils.class.getResource(filepath)).toExternalForm()));
+        music = new MediaPlayer(createMedia(filepath));
         initMusic();
     }
 

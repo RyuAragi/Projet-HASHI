@@ -11,13 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.Screen;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * Classe utilitaire pour charger les fichiers FXML
@@ -39,8 +39,8 @@ public class FXMLUtils {
     /**
      * Charge le fichier FXML
      *
-     * @param fxmlFileName nom du fichier FXML
-     * @param scene        scène
+     * @ fxmlFileName nom du fichier FXML
+     * @ scene        scène
      */
 
     public static void loadFXML(String fxmlFileName, Scene scene) {
@@ -63,19 +63,24 @@ public class FXMLUtils {
 
             applySceneStyles(scene);
         } catch (IOException e) {
-            Logger logger = LoggerFactory.getLogger(FXMLUtils.class);
-            logger.error("Une erreur est survenue lors du chargement du fichier FXML", e);
+            Logger logger = Logger.getLogger(FXMLUtils.class.getName());
+            logger.severe("Une erreur est survenue lors du chargement du fichier FXML: " + e.getMessage());
         }
     }
 
-    public static void loadFXML(String fxml, Scene scene, String levelFileName) {
+    public static void loadFXML(String fxml, Scene scene, String levelFileName,boolean chargement) {
         try {
             FXMLLoader loader = new FXMLLoader(FXMLUtils.class.getResource(fxml));
             Parent root = loader.load();
 
             Object controller = loader.getController();
+
             if (controller instanceof GrilleControler) {
-                ((GrilleControler) controller).initData(levelFileName);
+                ((GrilleControler) controller).initData(levelFileName,chargement);
+            }
+
+            if (fxmlHistory.isEmpty() || !fxmlHistory.peek().equals(fxml)) {
+                fxmlHistory.push(fxml);
             }
 
             scene.setRoot(root);
@@ -86,7 +91,7 @@ public class FXMLUtils {
 
     /**
      * Ajoute le fichier FXML à l'historique
-     * @param fxmlFileName nom du fichier FXML
+     * @ fxmlFileName nom du fichier FXML
      */
     public static void addHistory(String fxmlFileName) {
         if (fxmlHistory.isEmpty() || !fxmlHistory.peek().equals(fxmlFileName)) {
@@ -201,4 +206,5 @@ public class FXMLUtils {
     private FXMLUtils() {
         throw new IllegalStateException("Utility class");
     }
+
 }
