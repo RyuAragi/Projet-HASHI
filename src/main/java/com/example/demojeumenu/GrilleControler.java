@@ -2,6 +2,7 @@ package com.example.demojeumenu;
 
 import com.example.demojeumenu.Technique.Technique;
 import com.example.demojeumenu.Technique.TechniqueInter;
+import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.MenuTechniqueDeb1;
 import com.example.demojeumenu.controler.PopupWindowController;
 import com.example.demojeumenu.game.GrilleJeu;
@@ -40,9 +41,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.springframework.stereotype.Controller;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -726,46 +725,94 @@ public class GrilleControler extends BaseController {
      * Méthode de chargement graphique de la grille.
      */
     private void chargeGrille(){
+        System.out.println("Chargement au front");
         List<Ile> ilesDejaVerifiees = new ArrayList<>();
         for (int i = 0; i < grille.getNbLigne(); i++) {
             for (int j = 0; j < grille.getNbColonne(); j++) {
                 Ile ile = grille.getIleGrilleJoueur(i,j);
                 if(ile!=null) {
+                    System.out.println("Ile pas nulle");
                     Button boutonIle = findButtonByCoord(j, i);
                     int valN = ile.getValPontDir("N");
                     int valS = ile.getValPontDir("S");
                     int valO = ile.getValPontDir("O");
                     int valE = ile.getValPontDir("E");
+                    System.out.println("valDir : " + valN + " - "+ valS +" - "+ valO + " - "+valE );
 
                     Ile ileNord, ileSud, ileOuest, ileEst;
 
                     if (valN > 0 && (ileNord = ile.getIleNord(grille))!=null && !ilesDejaVerifiees.contains(ileNord)) {
-                        RectPontPossible rect = creerPontPossibleNord(ile, boutonIle);
+                        System.out.println("ile au nord");
+
+
+
+                        Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
+                        int height = ile.getX() - ileNord.getX() - 1;
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestNord, ile, ileNord, "N", false );
+                        rect.addToGridPane();
+
+                        rect.activeChargement();
+
                         rect.simulerClick();
                         if (valN == 2) {
+                            System.out.println("Deuxième click Nord");
                             rect.simulerClick();
                         }
+
+                        rect.desactiveChargement();
                     }
                     if (valS > 0 && (ileSud = ile.getIleSud(grille))!=null && !ilesDejaVerifiees.contains(ileSud)) {
-                        RectPontPossible rect = creerPontPossibleSud(ile, boutonIle);
+                        System.out.println("ile au sud");
+
+                        Button buttonDestSud = findButtonByCoord(ile.getY(), ile.getX());
+                        int height = ileSud.getX() - ile.getX() - 1;
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestSud, ile, ileSud, "S" , false);
+                        rect.addToGridPane();
+
+                        rect.activeChargement();
+
                         rect.simulerClick();
                         if (valS == 2) {
+                            System.out.println("Deuxième click Sud");
                             rect.simulerClick();
                         }
+                        rect.desactiveChargement();
                     }
                     if (valO > 0 && (ileOuest = ile.getIleOuest(grille))!=null && !ilesDejaVerifiees.contains(ileOuest)) {
-                        RectPontPossible rect = creerPontPossibleOuest(ile, boutonIle);
+                        System.out.println("ile à l'ouest");
+
+                        Button buttonDestOuest = findButtonByCoord(ileOuest.getY(), ileOuest.getX());
+
+                        int width = ile.getY() - ileOuest.getY() - 1;
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestOuest, ile, ileOuest, "O", false);
+                        rect.addToGridPane();
+
+                        rect.activeChargement();
+
                         rect.simulerClick();
                         if (valO == 2) {
+                            System.out.println("Deuxième click Ouest");
                             rect.simulerClick();
                         }
+                        rect.desactiveChargement();
                     }
                     if (valE > 0 && (ileEst = ile.getIleEst(grille))!=null && !ilesDejaVerifiees.contains(ileEst)) {
-                        RectPontPossible rect = creerPontPossibleEst(ile, boutonIle);
+                        System.out.println("ile à l'est");
+
+                        Button buttonDestEst = findButtonByCoord(ileEst.getY(), ileEst.getX());
+
+                        int width = ileEst.getY() - ile.getY() - 1;
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestEst, ile, ileEst, "E", false);
+                        rect.addToGridPane();
+
+                        rect.activeChargement();
+
                         rect.simulerClick();
                         if (valE == 2) {
+                            System.out.println("Deuxième click Est");
                             rect.simulerClick();
                         }
+                        rect.desactiveChargement();
                     }
                     ilesDejaVerifiees.add(ile);
                 }
@@ -792,6 +839,11 @@ public class GrilleControler extends BaseController {
         }
     }
 
+    /**
+     * Méthode d'initialisation des données de la grille
+     * @param levelFileName Nom du fichier du niveau
+     * @param chargement booleen utilisé lorsque une grille sera chargée ou pas.
+     */
     public void initData(String levelFileName, boolean chargement) {
         System.out.println("LevelFileNameCorrected: " + levelFileName);
         this.loadedFile = levelFileName;
@@ -812,25 +864,32 @@ public class GrilleControler extends BaseController {
             initChrono();
 
             this.grille = new GrilleJeu(reader);
+            initializeGrille();
 
             if(chargement){
-                grille.charger_sauvegarde(this.loadedFile.substring(0, this.loadedFile.length()-4)+".ser");
+                File file = new File(this.loadedFile.substring(0, this.loadedFile.length()-4)+".ser");
+                this.grille = grille.charger_sauvegarde(this.loadedFile.substring(0, this.loadedFile.length()-4)+".ser");
                 chargeGrille();
             }
             System.out.println("Grille: " + this.grille);
-            initializeGrille();
 
             startChrono();
         }
     }
 
+    /**
+     * Méthode permettant de vérifier que la grille est complétée
+     */
     private void verifFinGrille(){
         if(grille.verifMatrice()){
             stopChrono();
-
+            /*A compléter*/
         }
     }
 
+    /**
+     * Méthode d'initialisation de la grille.
+     */
     public void initializeGrille() {
         System.out.print("Taille grille : " + this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
         int fontSize;

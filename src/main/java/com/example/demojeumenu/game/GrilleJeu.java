@@ -6,11 +6,9 @@
 
 package com.example.demojeumenu.game;
 
-import com.example.demojeumenu.GrilleControler;
 import com.example.demojeumenu.Sauvegarde;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.undoRedo.UndoRedo;
-import javafx.animation.Timeline;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -764,7 +762,6 @@ public class GrilleJeu implements Serializable{
         try {
             Sauvegarde save = new Sauvegarde();
             String nom_joueur = GlobalVariables.getUserInput();
-            //String[] result = nom_fichier.split("-");
 
 
             File fichier = new File(save.getPath() + "/niveau/" + nom_joueur + "/" + nom_fichier);

@@ -7,8 +7,20 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
 public class LignePont extends Line {
+
+    /**
+     * [RectPontPossible] Référence vers l'instance du pont possible parente de la LignePont.
+     */
     private final RectPontPossible pontPossible;
 
+    /**
+     * Méthode d'instanciation de la ligne LignePont
+     * @param pontPossible [RectPontPossible] Référence vers l'instance du pont possible parente de la LignePont.
+     * @param debut_x [Integer] Valeur de l'origine de la ligne sur l'axe x.
+     * @param debut_y [Integer] Valeur de l'origine de la ligne sur l'axe y.
+     * @param fin_x [Integer] Valeur de fin de la ligne sur l'axe x.
+     * @param fin_y [Integer] Valeur de fin de la ligne sur l'axe y.
+     */
     public LignePont(RectPontPossible pontPossible, double debut_x, double debut_y, double fin_x, double fin_y){
         this.setStrokeWidth(2.0);
 
@@ -23,17 +35,29 @@ public class LignePont extends Line {
         this.setOnMouseExited(getMouseOut());
     }
 
+    /**
+     * Méthode permettant d'obtenir l'action lorsque la souris entre sur la ligne LignePont
+     * @return [EventHandler<MouseEvent>] Evenement d'entrée.
+     */
     private EventHandler<MouseEvent> getMouseOn(){
         return event -> pontPossible.setFill(Paint.valueOf("#F7ECB8"));
     }
 
+    /**
+     * Méthode permettant d'obtenir l'action lorsque la souris sort de la ligne LignePont
+     * @return [EventHandler<MouseEvent>] Evenement de sortie.
+     */
     private EventHandler<MouseEvent> getMouseOut(){
         return event -> pontPossible.setFill(Color.TRANSPARENT);
     }
 
+    /**
+     * Méthode permettant d'obtenir l'action lorsque la souris clique sur la ligne LignePont
+     * @return [EventHandler<MouseEvent>] Evenement de clique.
+     */
     private EventHandler<MouseEvent> getClickedAction() {
         return event -> {
-            if (((IleJoueur) pontPossible.ileSrc).getValPontDir(pontPossible.dir) == 1) {
+            if (pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 1 || pontPossible.line2==null) {
                 if (!pontPossible.ileSrc.ileComplete() && !pontPossible.ileDest.ileComplete()) {
                     pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
                     if(pontPossible.dir.equals("N") || pontPossible.dir.equals("S")) {
@@ -69,7 +93,7 @@ public class LignePont extends Line {
                     pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
                 }
             }
-            else if (((IleJoueur) pontPossible.ileSrc).getValPontDir(pontPossible.dir) == 2) {
+            else if (pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 2) {
                 pontPossible.boutonDest.setStyle("-fx-background-color: transparent");
                 pontPossible.boutonSrc.setStyle("-fx-background-color: transparent");
                 pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
@@ -78,6 +102,9 @@ public class LignePont extends Line {
         };
     }
 
+    /**
+     * Méthode d'ajout de la ligne LignePont à l'affichage par dessus le RectPontPossible parent.
+     */
     public void addToGridPane(){
         switch (pontPossible.dir){
             case "N" -> {

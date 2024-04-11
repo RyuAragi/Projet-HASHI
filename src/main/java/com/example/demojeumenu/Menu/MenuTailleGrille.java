@@ -85,11 +85,9 @@ public class MenuTailleGrille extends BaseController {
             levelFileName = difficulty + "/" + levelName + ".txt";
             System.out.println("jouerGrille15x15Button levelFileName: " + levelFileName);
 
-            System.out.println("./JacobHashi/Sauvegarde/niveau/"+ GlobalVariables.getUserInput()+"/"+levelFileName.substring(0,levelFileName.length()-4)+".ser");
-            File fichier = new File("./JacobHashi/Sauvegarde/niveau/"+ GlobalVariables.getUserInput()+"/"+levelFileName.substring(0,levelFileName.length()-4)+".ser");
+            File fichier = new File("JacobHashi/Sauvegarde/niveau/"+ GlobalVariables.getUserInput()+"/"+levelFileName.substring(0,levelFileName.length()-4)+".ser");
             boolean chargement = false;
             if(fichier.exists() && fichier.isFile()){
-                System.out.println("chargement de la grille");
                 chargement = true;
             }
 
