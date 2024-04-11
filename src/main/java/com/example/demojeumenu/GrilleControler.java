@@ -1,9 +1,6 @@
 package com.example.demojeumenu;
 
-import com.example.demojeumenu.Technique.Technique;
 import com.example.demojeumenu.Technique.TechniqueInter;
-import com.example.demojeumenu.controler.GlobalVariables;
-import com.example.demojeumenu.controler.MenuTechniqueDeb1;
 import com.example.demojeumenu.controler.PopupWindowController;
 import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
@@ -29,8 +26,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -393,9 +388,7 @@ public class GrilleControler extends BaseController {
                 FadeTransition fadeTransition2 = new FadeTransition(Duration.seconds(2), ileCercle);
                 fadeTransition2.setFromValue(1.0);
                 fadeTransition2.setToValue(0.0);
-                fadeTransition2.setOnFinished(event -> {
-                    grillePane.getChildren().remove(ileCercle);
-                });
+                fadeTransition2.setOnFinished(event -> grillePane.getChildren().remove(ileCercle));
                 ok_button.setOnMouseClicked(getOkButtonAction(aideManager, fadeTransition2));
                 see_tech.setOnMouseClicked(getTechniqueAction(technique));
             }
@@ -867,7 +860,6 @@ public class GrilleControler extends BaseController {
             initializeGrille();
 
             if(chargement){
-                File file = new File(this.loadedFile.substring(0, this.loadedFile.length()-4)+".ser");
                 this.grille = grille.charger_sauvegarde(this.loadedFile.substring(0, this.loadedFile.length()-4)+".ser");
                 chargeGrille();
             }
