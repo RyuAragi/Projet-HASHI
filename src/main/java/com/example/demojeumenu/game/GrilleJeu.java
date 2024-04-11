@@ -286,12 +286,6 @@ public class GrilleJeu implements Serializable{
                 ajoutePont("S",(IleJoueur)i1, "N", (IleJoueur)i2, estHypothese);
             }
             nbPontTotal += 1;
-
-            if(verifMatrice()){
-                Timeline timeline = GrilleControler.getChrono();
-                timeline.stop();
-            }
-
         }
     }
 

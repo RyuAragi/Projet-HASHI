@@ -824,6 +824,13 @@ public class GrilleControler extends BaseController {
         }
     }
 
+    private void verifFinGrille(){
+        if(grille.verifMatrice()){
+            stopChrono();
+
+        }
+    }
+
     public void initializeGrille() {
         System.out.print("Taille grille : " + this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
         int fontSize;
