@@ -769,12 +769,11 @@ public class GrilleJeu implements Serializable{
     public GrilleJeu charger_sauvegarde(String nom_fichier) {
         try {
             Sauvegarde save = new Sauvegarde();
-            //String nom_joueur = GlobalVariables.getUserInput();
-            String nom_joueur = "Nathan";
-            String[] result = nom_fichier.split("-");
+            String nom_joueur = GlobalVariables.getUserInput();
+            //String[] result = nom_fichier.split("-");
 
 
-            File fichier = new File(save.getPath() + "/" + result[0] + "/" + nom_joueur + "/" + nom_fichier);
+            File fichier = new File(save.getPath() + "/niveau/" + nom_joueur + "/" + nom_fichier);
 
             // ouverture d'un flux sur un fichier
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichier));

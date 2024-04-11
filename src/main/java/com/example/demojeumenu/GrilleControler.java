@@ -814,8 +814,8 @@ public class GrilleControler extends BaseController {
             this.grille = new GrilleJeu(reader);
 
             if(chargement){
-                //grille.charger_sauvegarde("");
-                //chargeGrille();
+                grille.charger_sauvegarde(this.loadedFile.substring(0, this.loadedFile.length()-4)+".ser");
+                chargeGrille();
             }
             System.out.println("Grille: " + this.grille);
             initializeGrille();
