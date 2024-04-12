@@ -157,7 +157,7 @@ public class Parametres extends BaseController {
     /**
      * Méthode de mise à jour du son lorsque l'un des boutons agissant sur le son est cliqué.
      */
-    private void updateSoundBar() {
+    protected void updateSoundBar() {
         if (SoundUtils.getSoundLevel()>=0 && SoundUtils.getSoundLevel() < tabImgSoundbar.size()) {
             String imageName = "/images/" + tabImgSoundbar.get(SoundUtils.getSoundLevel());
             Image image = new Image(Objects.requireNonNull(getClass().getResource(imageName)).toExternalForm());
@@ -168,7 +168,7 @@ public class Parametres extends BaseController {
     /**
      * Méthode de mise à jour de l'image du bouton mute.
      */
-    private void updateSoundButton(){
+    protected void updateSoundButton(){
         String imgName;
         if(SoundUtils.getSoundLevel() == 0){
             imgName = "/images/" + tabImgSoundButton.get(1); // volume image -> pour remettre le son
@@ -184,7 +184,7 @@ public class Parametres extends BaseController {
      * Méthode d'affichage de la fenêtre d'informations du projet.
      */
     @FXML
-    private void showInfo() {
+    protected void showInfo() {
         ColorAdjust darkColorAdjust = new ColorAdjust();
         darkColorAdjust.setBrightness(-0.5);
         scene.getRoot().setEffect(darkColorAdjust);

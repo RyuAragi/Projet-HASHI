@@ -90,8 +90,8 @@ public class MenuTailleGrille extends BaseController {
             if(fichier.exists() && fichier.isFile()){
                 chargement = true;
             }
-
             FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName, chargement);
+
         } else {
             System.err.println("Invalid level name format: " + levelName);
         }

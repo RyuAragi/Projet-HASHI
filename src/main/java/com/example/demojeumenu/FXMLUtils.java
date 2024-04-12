@@ -43,7 +43,7 @@ public class FXMLUtils {
      * @param scene        scène
      */
 
-    public static void loadFXML(String fxmlFileName, Scene scene, Object... args) {
+    public static void loadFXML(String fxmlFileName, Scene scene) {
         Parent root;
         try {
             if (sceneCache.containsKey(fxmlFileName)) {
@@ -54,10 +54,6 @@ public class FXMLUtils {
                 BaseController controller = loader.getController();
                 controller.setScene(scene);
                 sceneCache.put(fxmlFileName, root);
-
-                if (controller instanceof GrilleControler && args.length == 2) {
-                    ((GrilleControler) controller).initData((String) args[0], (Boolean) args[1]);
-                }
             }
             scene.setRoot(root);
 
@@ -71,6 +67,28 @@ public class FXMLUtils {
             logger.severe("Une erreur est survenue lors du chargement du fichier FXML: " + e.getMessage());
         }
     }
+
+    public static void loadFXML(String fxml, Scene scene, String levelFileName,boolean chargement) {
+        try {
+            FXMLLoader loader = new FXMLLoader(FXMLUtils.class.getResource(fxml));
+            Parent root = loader.load();
+
+            Object controller = loader.getController();
+
+            if (controller instanceof GrilleControler) {
+                ((GrilleControler) controller).initData(levelFileName,chargement);
+            }
+
+            if (fxmlHistory.isEmpty() || !fxmlHistory.peek().equals(fxml)) {
+                fxmlHistory.push(fxml);
+            }
+
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static String topHistory(){
         return fxmlHistory.peek();
