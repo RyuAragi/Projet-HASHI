@@ -1,6 +1,7 @@
 package com.example.demojeumenu;
 
 import com.example.demojeumenu.Technique.TechniqueInter;
+import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
 import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
@@ -581,6 +582,7 @@ public class GrilleControler extends BaseController {
         });
 
         quit.setOnAction(event -> {
+            GlobalVariables.setInGame(false);
             FXMLUtils.goBack(scene);
             System.out.println("go back ?");
         });
@@ -588,6 +590,7 @@ public class GrilleControler extends BaseController {
         help.setOnAction(event -> helpMethod());
 
         quit.setOnAction(event -> {
+            GlobalVariables.setInGame(false);
             grille.creer_sauvegarde("/niveau/"+this.loadedFile);
             FXMLUtils.goBack(scene);
         });
@@ -847,6 +850,7 @@ public class GrilleControler extends BaseController {
      * @param chargement booleen utilisé lorsque une grille sera chargée ou pas.
      */
     public void initData(String levelFileName, boolean chargement) {
+        GlobalVariables.setInGame(true);
         System.out.println("LevelFileNameCorrected: " + levelFileName);
         this.loadedFile = levelFileName;
 
