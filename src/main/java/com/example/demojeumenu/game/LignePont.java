@@ -1,5 +1,6 @@
 package com.example.demojeumenu.game;
 
+import com.example.demojeumenu.GrilleControler;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -30,6 +31,13 @@ public class LignePont extends Line {
         this.setEndY(fin_y);
         this.pontPossible = pontPossible;
 
+        if(this.pontPossible.hypothese){
+            this.setStroke(Color.valueOf("#A8A8A8"));
+        }
+        else{
+            this.setStroke(Color.BLACK);
+        }
+
         this.setOnMouseClicked(getClickedAction());
         this.setOnMouseEntered(getMouseOn());
         this.setOnMouseExited(getMouseOut());
@@ -57,7 +65,7 @@ public class LignePont extends Line {
      */
     private EventHandler<MouseEvent> getClickedAction() {
         return event -> {
-            if (pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 1 || pontPossible.line2==null) {
+            if ((pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 1 || pontPossible.line2==null) && pontPossible.hypothese==GrilleControler.enModeHypothese) {
                 if (!pontPossible.ileSrc.ileComplete() && !pontPossible.ileDest.ileComplete()) {
                     pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
                     if(pontPossible.dir.equals("N") || pontPossible.dir.equals("S")) {
@@ -93,7 +101,7 @@ public class LignePont extends Line {
                     pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
                 }
             }
-            else if (pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 2) {
+            else if (pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 2 && pontPossible.hypothese==GrilleControler.enModeHypothese) {
                 pontPossible.boutonDest.setStyle("-fx-background-color: transparent");
                 pontPossible.boutonSrc.setStyle("-fx-background-color: transparent");
                 pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
