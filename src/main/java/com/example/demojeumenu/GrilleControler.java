@@ -286,13 +286,17 @@ public class GrilleControler extends BaseController {
             }
         }
         for (RectPontPossible rect: nodesToRemove) {
-            rect.removeFromGridPane(grillePane);
+            grille.poserPont(rect.ileSrc, rect.ileDest,enModeHypothese);
+            if(rect.line2==null){
+                grille.poserPont(rect.ileSrc, rect.ileDest,enModeHypothese);
+            }
             if(rect.boutonSrc.getStyle().contains("-fx-background-color: lightgrey;")){
                 rect.boutonSrc.setStyle("-fx-background-color: transparent;");
             }
             if(rect.boutonDest.getStyle().contains("-fx-background-color: lightgrey;")){
                 rect.boutonDest.setStyle("-fx-background-color: transparent;");
             }
+            rect.removeFromGridPane(grillePane);
         }
         hypotheseMethod();
     }
