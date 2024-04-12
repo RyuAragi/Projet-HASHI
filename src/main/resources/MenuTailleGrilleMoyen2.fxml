@@ -9,14 +9,16 @@
     </VBox>
 
     <VBox alignment="CENTER">
-        <Button  onAction="#jouerGrille15x15" id="Moyen-6" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="Moyen-7" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="Moyen-8" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="Moyen-9" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="Moyen-10" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="Moyen-6" styleClass="custom-buttonGrille"  text="Jouer cette grille 14 x 10" />
+        <Button  onAction="#jouerGrille15x15" id="Moyen-7" styleClass="custom-buttonGrille"  text="Jouer cette grille 14 x 10" />
+        <Button  onAction="#jouerGrille15x15" id="Moyen-8" styleClass="custom-buttonGrille"  text="Jouer cette grille 16 x 12" />
+        <Button  onAction="#jouerGrille15x15" id="Moyen-9" styleClass="custom-buttonGrille"  text="Jouer cette grille 18 x 14" />
+        <Button  onAction="#jouerGrille15x15" id="Moyen-10" styleClass="custom-buttonGrille"  text="Jouer cette grille 18 x 14" />
         <!-- Utilisation d'un HBox pour organiser les boutons "Retour" et "Suivant" -->
         <HBox alignment="CENTER">
             <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-buttonR" text="Retour" />
         </HBox>
+
     </VBox>
+    <Button onAction="#param" styleClass="param2" BorderPane.alignment="BOTTOM_RIGHT" StackPane.alignment="BOTTOM_RIGHT" />
 </StackPane>

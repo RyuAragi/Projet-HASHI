@@ -46,7 +46,7 @@ public class GrilleJeu implements Serializable{
     UndoRedo undoRedo;
 
     /** Mettre une seule liste on ne peut pas savoir l'avant dernier pont posé avec cette méthode */
-    private List<Pont> listPontPose;
+    private final List<Pont> listPontPose;
 
     /**
      * Constructeur de GrilleJeu
@@ -193,7 +193,7 @@ public class GrilleJeu implements Serializable{
         String directionSrc = src.getPontDirection(p);
         String directionDest = dest.getPontDirection(p);
 
-        if (listPontPose.isEmpty()==false){
+        if (!listPontPose.isEmpty()){
             listPontPose.remove(p);
             src.supprimePont(directionSrc, p);
             dest.supprimePont(directionDest, p);
@@ -207,7 +207,7 @@ public class GrilleJeu implements Serializable{
      */
     public void supprimePont(Pont p){
 
-        if (listPontPose.isEmpty()==false){
+        if (!listPontPose.isEmpty()){
             listPontPose.remove(p);
         }
 
@@ -407,7 +407,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; j >= 0; j-- ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 cpt++;
-                break boucle_nord;
+                break;
             }
         }
 
@@ -416,7 +416,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; j < nbColonne; j++ ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 cpt++;
-                break boucle_sud;
+                break;
             }
         }
 
@@ -425,7 +425,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; i < nbLigne; i++ ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 cpt++;
-                break boucle_est;
+                break;
             }
         }
 
@@ -434,7 +434,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; i >= 0; i-- ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 cpt++;
-                break boucle_ouest;
+                break;
             }
         }
 
@@ -503,7 +503,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; j >= 0; j-- ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 listIle.add((IleJoueur)getIleGrilleJoueur(i, j));
-                break boucle_nord;
+                break;
             }
         }
 
@@ -512,7 +512,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; j < nbColonne; j++ ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 listIle.add((IleJoueur)getIleGrilleJoueur(i, j));
-                break boucle_sud;
+                break;
             }
         }
 
@@ -521,7 +521,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; i < nbLigne; i++ ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 listIle.add((IleJoueur)getIleGrilleJoueur(i, j));
-                break boucle_est;
+                break;
             }
         }
 
@@ -530,7 +530,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; i >= 0; i-- ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 listIle.add((IleJoueur)getIleGrilleJoueur(i, j));
-                break boucle_ouest;
+                break;
             }
         }
 
@@ -557,7 +557,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; j >= 0; j-- ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 voisinPontPotentiel = getIleGrilleSolution(i, j);
-                break boucle_nord;
+                break;
             }
         }
         /**
@@ -575,7 +575,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; j < nbColonne; j++ ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 voisinPontPotentiel = getIleGrilleSolution(i, j);
-                break boucle_sud;
+                break;
             }
         }
 
@@ -594,7 +594,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; i < nbLigne; i++ ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 voisinPontPotentiel = getIleGrilleSolution(i, j);
-                break boucle_est;
+                break;
             }
         }
 
@@ -614,7 +614,7 @@ public class GrilleJeu implements Serializable{
         for(i = x,j=y; i >= 0; i-- ){
             if (getIleGrilleSolution(i, j) != null && (i!=x || j!= y)){
                 voisinPontPotentiel = getIleGrilleSolution(i, j);
-                break boucle_ouest;
+                break;
             }
         }
         /**

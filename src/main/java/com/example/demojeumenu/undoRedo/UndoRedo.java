@@ -29,7 +29,7 @@ import java.util.Stack;
   *   * Ajouter le pont dans la matrice 
   */
  public class UndoRedo implements Serializable {
-    private Stack<Pont> redo;
+    private final Stack<Pont> redo;
     
     /**
      * Constructeur de la classe

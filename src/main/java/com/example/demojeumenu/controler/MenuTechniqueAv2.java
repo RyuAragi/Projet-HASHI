@@ -21,6 +21,11 @@ public class MenuTechniqueAv2 extends BaseController {
         stage = st;
     }
 
+
+    /**
+     * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
+     */
+
     @FXML
     private void retour() {
         System.out.println("retour");
@@ -31,6 +36,10 @@ public class MenuTechniqueAv2 extends BaseController {
             FXMLUtils.goBack(scene);
         }
     }
+
+    /**
+     * Méthode d'action du bouton retour. Permet d'acceder au menu suivant.
+     */
 
     @FXML
     private void suivant() {

@@ -15,10 +15,10 @@ public class Pont implements Serializable {
         VERTICALE,HORIZONTAL
     }
 
-    private VertiHori estVertiHori;
+    private final VertiHori estVertiHori;
 
-    private IleJoueur src;
-    private IleJoueur dst;
+    private final IleJoueur src;
+    private final IleJoueur dst;
 
     /**
      * Constructeur de Pont

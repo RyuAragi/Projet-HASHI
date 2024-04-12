@@ -4,6 +4,7 @@ import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.JsonApp;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -86,4 +87,9 @@ public abstract class BaseController {
         // Montrer la fenêtre contextuelle
         popupWindow.showAndWait();
     }
+
+    public void param(ActionEvent actionEvent) {
+        FXMLUtils.loadFXML("/Parametres.fxml", scene);
+    }
+
 }

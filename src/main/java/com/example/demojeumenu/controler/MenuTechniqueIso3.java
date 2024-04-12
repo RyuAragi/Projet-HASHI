@@ -20,6 +20,9 @@ public class MenuTechniqueIso3 extends BaseController {
         stage = st;
     }
 
+    /**
+     * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
+     */
     @FXML
     private void retour() {
         System.out.println("retour");
@@ -31,10 +34,15 @@ public class MenuTechniqueIso3 extends BaseController {
         }
     }
 
+    /**
+     * Méthode d'action du bouton retour. Permet d'acceder au menu suivant.
+     */
+
     @FXML
     private void suivant() {
         FXMLUtils.loadFXML("/MenuTechniqueIso4.fxml", scene);
     }
+
 
     @FXML
     private void initialize(){
@@ -43,4 +51,5 @@ public class MenuTechniqueIso3 extends BaseController {
             bouton_suivant.setDisable(true);
         }
     }
+
 }

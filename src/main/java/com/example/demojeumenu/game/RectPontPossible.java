@@ -192,7 +192,6 @@ public class RectPontPossible extends Rectangle {
             int valPontDir =  ileSrc.getValPontDir(dir);
             System.out.println(valPontDir);
             if(valPontDir==0 || line1==null){
-                System.out.println("Placer PONT 1");
                 this.setFill(Color.TRANSPARENT);
 
                 if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
@@ -212,11 +211,8 @@ public class RectPontPossible extends Rectangle {
                 }
             }
             else if(valPontDir==1 || line2==null){
-                System.out.println("Placer PONT 2");
-                if ((!ileSrc.ileComplete() && !ileDest.ileComplete()) || this.chargement) {
-
+                if (!ileSrc.ileComplete() && !ileDest.ileComplete()) {
                     if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
-
                     if(dir.equals("N") || dir.equals("S")) {
                         line1.setTranslateX(-5);
                     }
@@ -225,7 +221,6 @@ public class RectPontPossible extends Rectangle {
                     }
 
                     line2 = new LignePont(this, line1.getStartX(), line1.getStartY(), line1.getEndX(), line1.getEndY());
-                    line2.addToGridPane();
                     if(dir.equals("N") || dir.equals("S")) {
                         line2.setTranslateX(5);
                     }
@@ -233,15 +228,15 @@ public class RectPontPossible extends Rectangle {
                         line2.setTranslateY(5);
                     }
 
+                    line2.addToGridPane();
+
                     if (ileSrc.ileComplete()) {
                         boutonSrc.setStyle("-fx-background-color: lightgrey;");
                     }
                     if (ileDest.ileComplete()) {
                         boutonDest.setStyle("-fx-background-color: lightgrey;");
                     }
-                }
-                else if(valPontDir==2 && line1!=null && line2!=null) {
-                    System.out.println("Supp PONT");
+                } else {
                     boutonDest.setStyle("-fx-background-color: transparent");
                     boutonSrc.setStyle("-fx-background-color: transparent");
                     removeFromGridPane(grillePane);
@@ -280,6 +275,7 @@ public class RectPontPossible extends Rectangle {
      * Méthode de simulation de clique sur le rectangle pour poser un pont. Cette méthode est utilisée lors du chargement d'un grille précédemment sauvegardée.
      */
     public void simulerClick(){
+        System.out.println("Coords : "+this.getX()+ " - "+this.getY());
         MouseEvent mouseEvent = new MouseEvent(
                 MouseEvent.MOUSE_CLICKED,
                 0, 0, 0, 0, MouseButton.PRIMARY, 1,

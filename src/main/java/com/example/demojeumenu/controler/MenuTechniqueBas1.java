@@ -7,6 +7,10 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class MenuTechniqueBas1 extends BaseController {
+
+    /**
+     * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
+     */
     @FXML
     public Button bouton_retour;
 
@@ -30,10 +34,15 @@ public class MenuTechniqueBas1 extends BaseController {
         }
     }
 
+    /**
+     * Méthode d'action du bouton retour. Permet d'acceder au menu suivant.
+     */
+
     @FXML
     private void suivant() {
         FXMLUtils.loadFXML("/MenuTechniqueBas2.fxml", scene);
     }
+
 
     @FXML
     private void initialize(){
