@@ -9,7 +9,7 @@ package com.example.demojeumenu.game;
 public abstract class Ile extends Case {
 
     //La valeur de l'île (le nombre de pont qu'il faut relier)
-    private int valIle;
+    private final int valIle;
 
     /**
      *

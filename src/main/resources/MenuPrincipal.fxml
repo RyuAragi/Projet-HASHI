@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <StackPane onMouseClicked="#background" styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.Menu.MenuPrincipalController">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
@@ -20,5 +18,9 @@
                 <Button fx:id="quitter" text="QUITTER" onAction="#buttonAction" styleClass="custom-button"/>
             </VBox>
         </center>
+      <bottom>
+           <Button onAction="#param" styleClass="param2" BorderPane.alignment="BOTTOM_RIGHT" />
+      </bottom>
     </BorderPane>
+
 </StackPane>

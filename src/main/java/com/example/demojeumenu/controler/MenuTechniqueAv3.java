@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class MenuTechniqueAv3 extends BaseController {
 
+
     @FXML
     public Button bouton_retour;
 
@@ -21,6 +22,11 @@ public class MenuTechniqueAv3 extends BaseController {
     }
 
 
+
+    /**
+     * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
+     */
+
     @FXML
     private void retour() {
         System.out.println("retour");
@@ -32,10 +38,15 @@ public class MenuTechniqueAv3 extends BaseController {
         }
     }
 
+    /**
+     * Méthode d'action du bouton retour. Permet d'acceder au menu suivant.
+     */
+
     @FXML
     private void suivant() {
         FXMLUtils.loadFXML("/MenuTechniqueAv4.fxml", scene);
     }
+
 
     @FXML
     private void initialize(){
@@ -44,4 +55,5 @@ public class MenuTechniqueAv3 extends BaseController {
             bouton_suivant.setDisable(true);
         }
     }
+
 }

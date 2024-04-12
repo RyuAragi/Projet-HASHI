@@ -657,7 +657,7 @@ public class GrilleControler extends BaseController {
     private RectPontPossible creerPontPossibleSud(Ile ileSrc, Button boutonSrc) {
         Ile ileSud = ileSrc.getIleSud(grille);
 
-        if (ileSud != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileSud) && !ileSud.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur) ileSrc).getValPontDir("S") == 0) {
+        if (ileSud != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileSud) && !ileSud.ileComplete() && !ileSrc.ileComplete() && ileSrc.getValPontDir("S") == 0) {
             Button buttonDestSud = findButtonByCoord(ileSud.getY(), ileSud.getX());
 
             if (buttonDestSud != null) {
@@ -679,7 +679,7 @@ public class GrilleControler extends BaseController {
     private RectPontPossible creerPontPossibleOuest(Ile ileSrc, Button boutonSrc) {
         Ile ileOuest = ileSrc.getIleOuest(grille);
 
-        if (ileOuest != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileOuest) && !ileOuest.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur) ileSrc).getValPontDir("O") == 0) {
+        if (ileOuest != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileOuest) && !ileOuest.ileComplete() && !ileSrc.ileComplete() && ileSrc.getValPontDir("O") == 0) {
             Button buttonDestOuest = findButtonByCoord(ileOuest.getY(), ileOuest.getX());
 
             if (buttonDestOuest != null) {
@@ -702,7 +702,7 @@ public class GrilleControler extends BaseController {
     private RectPontPossible creerPontPossibleEst(Ile ileSrc, Button boutonSrc) {
         Ile ileEst = ileSrc.getIleEst(grille);
 
-        if (ileEst != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileEst) && !ileEst.ileComplete() && !ileSrc.ileComplete() && ((IleJoueur) ileSrc).getValPontDir("E") == 0) {
+        if (ileEst != null && grille.pontPossibleEntre((IleJoueur) ileSrc, (IleJoueur) ileEst) && !ileEst.ileComplete() && !ileSrc.ileComplete() && ileSrc.getValPontDir("E") == 0) {
             Button buttonDestEst = findButtonByCoord(ileEst.getY(), ileEst.getX());
 
             if (buttonDestEst != null) {

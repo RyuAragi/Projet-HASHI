@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.Menu.MenuTailleGrille">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
@@ -11,11 +10,11 @@
 
     <VBox alignment="CENTER">
 
-        <Button  onAction="#jouerGrille15x15" id="Facile-1" styleClass="custom-buttonGrille"  text="Jouer cette grille 7 x 5" />
-        <Button  onAction="#jouerGrille15x15" id="Facile-2" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="Facile-3" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="Facile-4" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
-        <Button  onAction="#jouerGrille15x15" id="Facile-5" styleClass="custom-buttonGrille"  text="Jouer cette grille 15x15" />
+        <Button  onAction="#jouerGrille15x15" id="Facile-1" styleClass="custom-buttonGrille"  text="Jouer cette grille 5 x 7" />
+        <Button  onAction="#jouerGrille15x15" id="Facile-2" styleClass="custom-buttonGrille"  text="Jouer cette grille 8 x 6" />
+        <Button  onAction="#jouerGrille15x15" id="Facile-3" styleClass="custom-buttonGrille"  text="Jouer cette grille 10 x 7" />
+        <Button  onAction="#jouerGrille15x15" id="Facile-4" styleClass="custom-buttonGrille"  text="Jouer cette grille 11 x 8" />
+        <Button  onAction="#jouerGrille15x15" id="Facile-5" styleClass="custom-buttonGrille"  text="Jouer cette grille 11 x 8" />
 
         <!-- Utilisation d'un HBox pour organiser les boutons "Retour" et "Suivant" -->
         <HBox alignment="CENTER">
@@ -24,5 +23,5 @@
         </HBox>
     </VBox>
 
-
+    <Button onAction="#param" styleClass="param2" BorderPane.alignment="BOTTOM_RIGHT" StackPane.alignment="BOTTOM_RIGHT" />
 </StackPane>

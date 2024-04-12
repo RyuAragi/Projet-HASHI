@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 public class MenuTechniqueAv4 extends BaseController {
 
+
     @FXML
     public Button bouton_retour;
 
@@ -19,6 +20,11 @@ public class MenuTechniqueAv4 extends BaseController {
     public static void setStage(Stage st){
         stage = st;
     }
+
+
+    /**
+     * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
+     */
 
     @FXML
     private void retour() {
@@ -38,6 +44,10 @@ public class MenuTechniqueAv4 extends BaseController {
             bouton_quitter.setDisable(true);
         }
     }
+
+    /**
+     * Méthode d'action du bouton retour. Permet d'acceder au menu suivant.
+     */
 
     @FXML
     private void quitter() {

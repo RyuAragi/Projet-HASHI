@@ -119,13 +119,9 @@ public class MenuPrincipalController extends BaseController {
         // Ajout de l'écouteur sur la propriété text de la zone de texte
         zoneTexte.textProperty().addListener((observable, oldValue, newValue) -> {
             // Vérifie si le nouveau texte est vide ou égal au texte par défaut
-            if (newValue.isEmpty() || newValue.equals(GlobalVariables.getDefaultUserInput())) {
-                // Désactive le bouton jouer
-                jouer.setDisable(true);
-            } else {
-                // Active le bouton jouer
-                jouer.setDisable(false);
-            }
+            // Désactive le bouton jouer
+            // Active le bouton jouer
+            jouer.setDisable(newValue.isEmpty() || newValue.equals(GlobalVariables.getDefaultUserInput()));
 
             JsonApp.removeShownPopup(oldValue);
         });
@@ -135,4 +131,5 @@ public class MenuPrincipalController extends BaseController {
             jouer.setDisable(true);
         }
     }
+
 }

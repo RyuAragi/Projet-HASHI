@@ -20,9 +20,9 @@ import java.util.Iterator;
 
 public class Score {
 
-    private HashMap<String, HashMap<String, Integer>> niveaux;
+    private final HashMap<String, HashMap<String, Integer>> niveaux;
 
-    private HashMap<String, Integer> joueurs;
+    private final HashMap<String, Integer> joueurs;
     public Score() throws IOException {
         this.niveaux = new HashMap<String, HashMap<String, Integer>>();
         this.joueurs = new HashMap<String, Integer>();

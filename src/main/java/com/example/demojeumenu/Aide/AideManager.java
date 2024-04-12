@@ -13,7 +13,7 @@ import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
 
 public class AideManager implements Aide{
-    private List<TechniqueInter> listTechniqueDetecte ;
+    private final List<TechniqueInter> listTechniqueDetecte ;
     private TechniqueInter techniqueCourante;
     private Integer precision;
     static private AideManager instance = null;

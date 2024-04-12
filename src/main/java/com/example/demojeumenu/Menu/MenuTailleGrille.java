@@ -116,9 +116,6 @@ public class MenuTailleGrille extends BaseController {
     private void retour() {
         FXMLUtils.goBack(scene);
     }
-
-
-
 }
 
 

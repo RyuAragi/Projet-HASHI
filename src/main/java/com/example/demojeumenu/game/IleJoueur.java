@@ -95,13 +95,13 @@ public class IleJoueur extends Ile implements Serializable {
     void ajoutePontHypothese(String dir, Ile j){
         if(pontRelie.get(dir).size() == 3){
             for(Pont p: pontRelie.get(dir) ){
-                if (p.estHypothese() == true){
+                if (p.estHypothese()){
                     pontRelie.get(dir).remove(p);
                 }
             }
         }
         else{
-            pontRelie.get(dir).add(new Pont((IleJoueur)this,(IleJoueur) j, true));
+            pontRelie.get(dir).add(new Pont(this,(IleJoueur) j, true));
         }
     }
 
