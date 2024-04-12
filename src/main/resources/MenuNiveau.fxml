@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<StackPane styleClass="background" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.Menu.MenuNiveau">
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="1074.0" prefWidth="1635.0" styleClass="background" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.Menu.MenuNiveau">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="MODE CLASSIQUE" />
-        <Button styleClass="custom-barre" text="Compléter la grille avec les régles traditionelle " />
+        <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" pickOnBounds="false" prefHeight="123.0" prefWidth="897.0" styleClass="custom-barre" text="Grille avec les régles traditionelle " textAlignment="JUSTIFY" textOverrun="WORD_ELLIPSIS" />
     </VBox>
 
-    <VBox alignment="CENTER">
+    <VBox alignment="CENTER" prefHeight="235.0" prefWidth="361.0">
         <Button onAction="#btn1" styleClass="custom-button" text="Facile" />
         <Button onAction="#btn2" styleClass="custom-button" text="Moyen" />
         <Button onAction="#btn2" styleClass="custom-button" text="Difficile" />

@@ -1,5 +1,6 @@
 package com.example.demojeumenu;
 
+import com.example.demojeumenu.Menu.MenuTailleGrille;
 import com.example.demojeumenu.Technique.TechniqueInter;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
@@ -14,6 +15,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -42,6 +44,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 @Controller
@@ -668,6 +672,7 @@ public class GrilleControler extends BaseController {
         creerPontPossibleSud(ileSrc, buttonSrc);
         creerPontPossibleOuest(ileSrc, buttonSrc);
         creerPontPossibleEst(ileSrc, buttonSrc);
+        verifFinGrille();
     }
 
     /**
@@ -766,8 +771,14 @@ public class GrilleControler extends BaseController {
     private void verifFinGrille(){
         if(grille.getGrilleComplete()){
             stopChrono();
+            // Créer une instance de MenuTailleGrille
+            MenuTailleGrille menu = new MenuTailleGrille();
+            // Appeler la méthode leaderboard
+            menu.leaderboard();
         }
     }
+
+
 
     /**
      * Méthode de chargement graphique de la grille.
