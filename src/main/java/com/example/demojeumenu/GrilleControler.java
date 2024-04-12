@@ -264,9 +264,9 @@ public class GrilleControler extends BaseController {
     private void validation_hypotheses() {
         for (Node node: grillePane.getChildren()) {
             if(node instanceof RectPontPossible && ((RectPontPossible)node).hypothese){
-                ((RectPontPossible)node).line1.setStroke(Color.BLACK);
+                ((RectPontPossible)node).line1.toBlack();
                 if(((RectPontPossible)node).line2!=null){
-                    ((RectPontPossible)node).line2.setStroke(Color.BLACK);
+                    ((RectPontPossible)node).line2.toBlack();
                 }
                 ((RectPontPossible)node).hypothese = false;
             }

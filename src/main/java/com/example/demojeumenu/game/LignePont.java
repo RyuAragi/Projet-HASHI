@@ -32,10 +32,10 @@ public class LignePont extends Line {
         this.pontPossible = pontPossible;
 
         if(this.pontPossible.hypothese){
-            this.setStroke(Color.valueOf("#A8A8A8"));
+            toGrey();
         }
         else{
-            this.setStroke(Color.BLACK);
+            toBlack();
         }
 
         this.setOnMouseClicked(getClickedAction());
@@ -132,5 +132,18 @@ public class LignePont extends Line {
                 pontPossible.grillePane.add(this, pontPossible.ileSrc.getY() + 1, pontPossible.ileSrc.getX(), width, 1);
             }
         }
+    }
+
+
+    public void toRed(){
+        this.setStroke(Color.RED);
+    }
+
+    public void toBlack(){
+        this.setStroke(Color.BLACK);
+    }
+
+    public void toGrey(){
+        this.setStroke(Color.valueOf("#A8A8A8"));
     }
 }
