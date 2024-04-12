@@ -12,6 +12,7 @@ import com.example.demojeumenu.undoRedo.UndoRedo;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class GrilleJeu implements Serializable{
@@ -53,12 +54,12 @@ public class GrilleJeu implements Serializable{
      * @param reader le chemin vers le fichier de la grille
      */
     public GrilleJeu(InputStreamReader reader){
-        charge(reader);
         this.grilleComplete = false;
         this.nbPontTotal = 0;
         this.listPontPose = new ArrayList<>();
         this.undoRedo = new UndoRedo();
         this.erreur = false;
+        charge(reader);
     }
 
     /**
@@ -83,6 +84,7 @@ public class GrilleJeu implements Serializable{
 
             while((ligne = bufferedReader.readLine())!= null){
                 String[] data ;
+                System.out.println(ligne);
                 data = ligne.split(" ");
 
                 if (i == 0){
@@ -227,7 +229,18 @@ public class GrilleJeu implements Serializable{
      * Méthode qui détruit tous les ponts hypothèses
      */
     public void quitteHypothese(){
-        if(!listPontPose.isEmpty()) listPontPose.removeIf(Pont::estHypothese);
+        Iterator<Pont> iterator = listPontPose.iterator();
+        while (iterator.hasNext()) {
+            Pont p = iterator.next();
+            if (p.estHypothese()) {
+                IleJoueur ileSrc = p.getSrc();
+                IleJoueur ileDst = p.getDst();
+
+                ileSrc.supprimePont(p.getSrc().getPontDirection(p),p);
+                ileDst.supprimePont(p.getDst().getPontDirection(p),p);
+                iterator.remove();
+            }
+        }
     }
 
     private void copieGrille(Case[][] src, Case[][] dst){

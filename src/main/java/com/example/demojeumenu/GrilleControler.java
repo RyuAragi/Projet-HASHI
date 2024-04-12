@@ -787,7 +787,7 @@ public class GrilleControler extends BaseController {
         for (int i = 0; i < grille.getNbLigne(); i++) {
             for (int j = 0; j < grille.getNbColonne(); j++) {
                 Ile ile = grille.getIleGrilleJoueur(i,j);
-                if(ile!=null) {
+                if(ile!=null && !ilesDejaVerifiees.contains(ile)) {
                     System.out.println("Ile pas nulle");
                     Button boutonIle = findButtonByCoord(j, i);
                     int valN = ile.getValPontDir("N");
@@ -803,7 +803,7 @@ public class GrilleControler extends BaseController {
 
                         Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
                         int height = ile.getX() - ileNord.getX() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestNord, ile, ileNord, "N", false );
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestNord, ile, ileNord, "N", enModeHypothese );
                         rect.addToGridPane();
 
                         rect.activeChargement();
@@ -818,9 +818,9 @@ public class GrilleControler extends BaseController {
                     if (valS > 0 && (ileSud = ile.getIleSud(grille))!=null && !ilesDejaVerifiees.contains(ileSud)) {
                         System.out.println("ile au sud");
 
-                        Button buttonDestSud = findButtonByCoord(ile.getY(), ile.getX());
+                        Button buttonDestSud = findButtonByCoord(ileSud.getY(), ileSud.getX());
                         int height = ileSud.getX() - ile.getX() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestSud, ile, ileSud, "S" , false);
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestSud, ile, ileSud, "S" , enModeHypothese);
                         rect.addToGridPane();
 
                         rect.activeChargement();
@@ -838,7 +838,7 @@ public class GrilleControler extends BaseController {
                         Button buttonDestOuest = findButtonByCoord(ileOuest.getY(), ileOuest.getX());
 
                         int width = ile.getY() - ileOuest.getY() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestOuest, ile, ileOuest, "O", false);
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestOuest, ile, ileOuest, "O", enModeHypothese);
                         rect.addToGridPane();
 
                         rect.activeChargement();
@@ -856,7 +856,7 @@ public class GrilleControler extends BaseController {
                         Button buttonDestEst = findButtonByCoord(ileEst.getY(), ileEst.getX());
 
                         int width = ileEst.getY() - ile.getY() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestEst, ile, ileEst, "E", false);
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestEst, ile, ileEst, "E", enModeHypothese);
                         rect.addToGridPane();
 
                         rect.activeChargement();
