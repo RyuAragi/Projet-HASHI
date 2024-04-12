@@ -630,13 +630,9 @@ public class GrilleControler extends BaseController {
             hypotheseMethod();
         });
 
-        valid_hypo.setOnMouseClicked(event -> {
-            validation_hypotheses();
-        });
+        valid_hypo.setOnMouseClicked(event -> validation_hypotheses());
 
-        supp_hypo.setOnMouseClicked(event -> {
-            suppression_hypotheses();
-        });
+        supp_hypo.setOnMouseClicked(event -> suppression_hypotheses());
     }
 
     /**
