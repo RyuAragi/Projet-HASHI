@@ -27,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -75,23 +76,24 @@ public class GrilleControler extends BaseController {
      */
     private static Timeline timeline;
 
+
     /**
      * [HBox] Element graphique (Horizontal Box) contenant les boutons valider, vérifier, undo, redo, restart et hypothese.
      */
-    @FXML
-    public HBox hbox_bouton_HD;
+    //@FXML
+    //public HBox hbox_bouton_HD;
 
     /**
      * [HBox] Element graphique (Horizontal Box) contenant les boutons réglages et quitter
      */
-    @FXML
-    public HBox hbox_bouton_HG;
+    //@FXML
+    //public HBox hbox_bouton_HG;
 
     /**
      * [HBox] Element graphique (Horizontal Box) contenant les boutons zoom et dezoom
      */
-    @FXML
-    public HBox hbox_bouton_BD;
+    //@FXML
+    //public HBox hbox_bouton_BD;
 
     /**
      * [VBox] Element graphique (Vertical Box) contenant les elements d'information concernant l'aide cad le label textInfo, et les boutons de suppression de l'aide, de visualidsation de la technique et visualisation de l'aide suivante.
@@ -267,7 +269,6 @@ public class GrilleControler extends BaseController {
      */
     private Button createButton(Ile ile, int fontSize) {
         Button boutonIle = new Button(ile.getValIle() + "");
-        boutonIle.toFront();
         boutonIle.getStyleClass().add("boutonIle");
         boutonIle.getStyleClass().add("-fx-font-size: "+ fontSize +"px;");
         boutonIle.setPrefSize(this.pixelSize, this.pixelSize);
@@ -546,12 +547,6 @@ public class GrilleControler extends BaseController {
      * Méthode d'initialisation de boutons et d'éléments graphiques.
      */
     private void initButtons() {
-        //hbox_bouton_HD.toFront();
-        hbox_bouton_HD.setDisable(false);
-        hbox_bouton_BD.setDisable(false);
-        hbox_bouton_HG.toFront();
-        hbox_bouton_HG.setDisable(false);
-
         valid_hypo.setDisable(true);
         valid_hypo.setVisible(false);
 
@@ -571,6 +566,10 @@ public class GrilleControler extends BaseController {
             }
         });
 
+        zoom.setOnMouseEntered(event -> vbox_aide_info.toFront());
+
+        dezoom.setOnMouseEntered(event -> vbox_aide_info.toFront());
+
         dezoom.setOnAction(event -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);
             if(zoom_level>=-5) {
@@ -581,18 +580,43 @@ public class GrilleControler extends BaseController {
             }
         });
 
-        quit.setOnAction(event -> {
-            GlobalVariables.setInGame(false);
-            FXMLUtils.goBack(scene);
-            System.out.println("go back ?");
-        });
-
         help.setOnAction(event -> helpMethod());
 
         quit.setOnAction(event -> {
             GlobalVariables.setInGame(false);
             grille.creer_sauvegarde("/niveau/"+this.loadedFile);
             FXMLUtils.goBack(scene);
+        });
+
+        restart.setOnAction(event -> {
+            textInfo.setText("Etes-vous sûr de vouloir réinitiliser la grille ?");
+            vbox_aide_info.setVisible(true);
+            vbox_aide_info.setDisable(false);
+            vbox_aide_info.toFront();
+            ok_button.setVisible(false);
+            ok_button.setDisable(true);
+
+            see_tech.setText("Annuler");
+            see_tech.setVisible(true);
+            see_tech.setDisable(false);
+            next_clue.setText("Confirmer");
+            next_clue.setVisible(true);
+            next_clue.setDisable(false);
+
+            EventHandler<? super MouseEvent> next_clue_act = next_clue.getOnMouseClicked();
+            EventHandler<? super MouseEvent> see_tech_act = see_tech.getOnMouseClicked();
+
+            next_clue.setOnMouseClicked(event1 -> {
+                FXMLUtils.goBack(scene);
+                FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, loadedFile, false);
+            });
+
+            see_tech.setOnMouseClicked(event1 -> {
+                this.next_clue.setOnMouseClicked(next_clue_act);
+                this.see_tech.setOnMouseClicked(see_tech_act);
+                vbox_aide_info.setDisable(true);
+                vbox_aide_info.setVisible(false);
+            });
         });
     }
 
@@ -908,7 +932,6 @@ public class GrilleControler extends BaseController {
             for (int j = 0; j < this.grille.getNbColonne(); j++) {
                 if (grille.getIleGrilleJoueur(i, j) != null) {
                     Button button = createButton(this.grille.getIleGrilleJoueur(i, j), fontSize);
-                    button.toFront();
                     int J = j;
                     int I = i;
                     button.setOnMouseEntered(event -> {
