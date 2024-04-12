@@ -3,6 +3,7 @@ package com.example.demojeumenu.Menu;
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
+import com.example.demojeumenu.controler.PopupWindowControllerLB;
 import com.example.demojeumenu.utils.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +30,7 @@ public class MenuTailleGrille extends BaseController {
     private Button jouerGrille15x15Button;*/
 
     @FXML
-    private void leaderboard(){
+    public void leaderboard(){
         // Load the FXML file for the external frame
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/PopupWindowLB.fxml"));
         Parent root;
@@ -39,7 +40,7 @@ public class MenuTailleGrille extends BaseController {
             throw new RuntimeException(e);
         }
 
-        loader.getController();
+        PopupWindowControllerLB controller = loader.getController();
 
         // Create the scene for the external frame
         Scene scenePopup = new Scene(root);
@@ -68,6 +69,8 @@ public class MenuTailleGrille extends BaseController {
         ColorAdjust darkColorAdjust = new ColorAdjust();
         darkColorAdjust.setBrightness(-0.5);
         scene.getRoot().setEffect(darkColorAdjust);
+        PopupWindowControllerLB.setStage(popupWindow);
+
 
         // Show the popup window
         popupWindow.showAndWait();
@@ -76,7 +79,6 @@ public class MenuTailleGrille extends BaseController {
 
     @FXML
     private void jouerGrille15x15(ActionEvent event) {
-        //leaderboard();
         Button button = (Button) event.getSource();
         String levelName = button.getId();
         String[] parts = levelName.split("-");
