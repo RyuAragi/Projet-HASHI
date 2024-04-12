@@ -84,7 +84,6 @@ public class GrilleJeu implements Serializable{
 
             while((ligne = bufferedReader.readLine())!= null){
                 String[] data ;
-                System.out.println(ligne);
                 data = ligne.split(" ");
 
                 if (i == 0){
