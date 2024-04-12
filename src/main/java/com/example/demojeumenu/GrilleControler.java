@@ -765,6 +765,9 @@ public class GrilleControler extends BaseController {
         return null;
     }
 
+    public static String chronoTime;
+
+
     /**
      * Méthode permettant de vérifier que la grille est complétée
      */
@@ -774,6 +777,7 @@ public class GrilleControler extends BaseController {
             // Créer une instance de MenuTailleGrille
             MenuTailleGrille menu = new MenuTailleGrille();
             // Appeler la méthode leaderboard
+            chronoTime = chrono.getText();
             menu.leaderboard();
         }
     }

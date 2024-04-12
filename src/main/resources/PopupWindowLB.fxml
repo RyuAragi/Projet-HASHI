@@ -38,8 +38,7 @@
                   <children>
                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="125.0" prefWidth="308.0" styleClass="textLbl" text="Temps" textAlignment="CENTER" />
                      <Line endX="100.0" startX="-100.0" strokeMiterLimit="8.0" />
-                     <Label fx:id="usernameLabel3" alignment="CENTER" contentDisplay="CENTER" prefHeight="125.0" prefWidth="308.0" styleClass="textLbl" text="??????" textAlignment="CENTER" />
-                  </children>
+                      <Label fx:id="usernameLabel3" alignment="CENTER" contentDisplay="CENTER" prefHeight="125.0" prefWidth="308.0" styleClass="textLbl" textAlignment="CENTER" />                  </children>
                </VBox>
             </children>
          </HBox>

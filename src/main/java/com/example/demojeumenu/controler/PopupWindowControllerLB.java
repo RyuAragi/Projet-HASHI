@@ -1,5 +1,6 @@
 package com.example.demojeumenu.controler;
 
+import com.example.demojeumenu.GrilleControler;
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.SoundUtils;
 import com.example.demojeumenu.utils.BaseController;
@@ -65,5 +66,6 @@ public class PopupWindowControllerLB extends BaseController {
     public void initialize(){
         usernameLabel.setText(GlobalVariables.getUserInput());
         SoundUtils.addClickSound(continueButton, this::backButton);
+        usernameLabel3.setText(GrilleControler.chronoTime);
     }
 }
