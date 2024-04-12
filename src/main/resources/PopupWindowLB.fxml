@@ -60,7 +60,7 @@
          </TableView>
         <HBox alignment="CENTER" prefHeight="186.0" prefWidth="275.0" spacing="20.0">
             <Button alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnHome" prefHeight="60.0" prefWidth="60.0" styleClass="quit" />
-            <Button fx:id="back_button" mnemonicParsing="false" onAction="#backButton" />
+            <Button fx:id="back_button" mnemonicParsing="false"  />
             <Button fx:id="continueButton" styleClass="custom-continuerButton" />
 
         </HBox>

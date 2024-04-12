@@ -37,9 +37,12 @@ public class PopupWindowControllerLB extends BaseController {
     @FXML
     private Button back_button;
 
+
     public static void setStage(Stage st){
         stage = st;
     }
+
+
 
     public void setScene(Stage stage, Scene scene) {
         this.stage = stage;
@@ -67,5 +70,10 @@ public class PopupWindowControllerLB extends BaseController {
         usernameLabel.setText(GlobalVariables.getUserInput());
         SoundUtils.addClickSound(continueButton, this::backButton);
         usernameLabel3.setText(GrilleControler.chronoTime);
+        back_button.setOnAction(event -> {
+            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, GrilleControler.loadedFile, false);
+            Stage stage = (Stage) continueButton.getScene().getWindow();
+            stage.close();
+        });
     }
 }

@@ -53,7 +53,7 @@ public class GrilleControler extends BaseController {
     /**
      * [String] Nom (+chemin) du fichier chargé de la grille.
      */
-    private String loadedFile;
+    public static String loadedFile;
 
     /**
      * [Integer] niveau de zoom de la grille
