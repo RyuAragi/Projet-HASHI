@@ -6,16 +6,17 @@
 
 package com.example.demojeumenu.game;
 
-import com.example.demojeumenu.GrilleControler;
 import com.example.demojeumenu.Sauvegarde;
+import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.undoRedo.UndoRedo;
-import javafx.animation.Timeline;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GrilleJeu implements Serializable{
+    private boolean grilleComplete;
+
     //Représente la grille sur laquelle joue le joueur
     private Case[][] joueur;
 
@@ -53,11 +54,19 @@ public class GrilleJeu implements Serializable{
      */
     public GrilleJeu(InputStreamReader reader){
         charge(reader);
+        this.grilleComplete = false;
+        this.nbPontTotal = 0;
+        this.listPontPose= new ArrayList<>();
+        this.undoRedo = new UndoRedo();
+        this.erreur = false;
+    }
 
-        nbPontTotal = 0;
-        listPontPose= new ArrayList<>();
-        undoRedo = new UndoRedo();
-        erreur = false;
+    /**
+     * Méthode permettant de récupérer l'état de la grille.
+     * @return [Boolean] L'état de la grille. (IleComplete = True/False)
+     */
+    public boolean getGrilleComplete(){
+        return this.grilleComplete;
     }
 
     /**
@@ -285,12 +294,10 @@ public class GrilleJeu implements Serializable{
                 ajoutePont("S",(IleJoueur)i1, "N", (IleJoueur)i2, estHypothese);
             }
             nbPontTotal += 1;
+        }
 
-            if(verifMatrice()){
-                Timeline timeline = GrilleControler.getChrono();
-                timeline.stop();
-            }
-
+        if(verifMatrice()){
+            this.grilleComplete=true;
         }
     }
 
@@ -721,13 +728,37 @@ public class GrilleJeu implements Serializable{
     public void creer_sauvegarde(String path_niveau) {
         try {
             Sauvegarde save = new Sauvegarde();
-            //String nom_joueur = GlobalVariables.getUserInput();
-            String nom_joueur = "Nathan";
+            String nom_joueur = GlobalVariables.getUserInput();
             String[] result = path_niveau.split("/");
 
-            System.out.println(save.getPath() + result[1] + "/" + nom_joueur + "/" + result[2].substring(0, result[2].length()-4)+ ".ser");
+            //System.out.println(save.getPath() + result[1] + "/" + nom_joueur + "/" + result[2] + "/" + result[3].substring(0, result[3].length()-4)+ ".ser");
 
-            File fichier_save = new File(save.getPath() + result[1] + "/" + nom_joueur + "/" + result[2].substring(0, result[2].length()-4)+ ".ser");
+            File dossier = new File(save.getPath()+result[1]);
+            if (!dossier.exists() || !dossier.isDirectory()){
+                if(!dossier.mkdirs()){
+                    System.out.println("Erreur de création du dossier « niveau ».");
+                    return;
+                }
+            }
+
+            dossier = new File(save.getPath() + result[1]+"/"+nom_joueur);
+            if (!dossier.exists() || !dossier.isDirectory()){
+                if(!dossier.mkdirs()){
+                    System.out.println("Erreur de création du dossier « " + nom_joueur + " ».");
+                    return;
+                }
+            }
+
+
+            dossier = new File(save.getPath() + result[1] +"/"+ nom_joueur +"/"+ result[2]);
+            if (!dossier.exists() || !dossier.isDirectory()){
+                if(!dossier.mkdirs()){
+                    System.out.println("Erreur de création du dossier « " + result[2] + " ».");
+                    return;
+                }
+            }
+
+            File fichier_save = new File(save.getPath() + result[1] + "/" + nom_joueur + "/" + result[2] + "/" +result[3].substring(0, result[3].length()-4)+ ".ser");
 
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier_save));
             oos.writeObject(this);
@@ -744,12 +775,10 @@ public class GrilleJeu implements Serializable{
     public GrilleJeu charger_sauvegarde(String nom_fichier) {
         try {
             Sauvegarde save = new Sauvegarde();
-            //String nom_joueur = GlobalVariables.getUserInput();
-            String nom_joueur = "Nathan";
-            String[] result = nom_fichier.split("-");
+            String nom_joueur = GlobalVariables.getUserInput();
 
 
-            File fichier = new File(save.getPath() + "/" + result[0] + "/" + nom_joueur + "/" + nom_fichier);
+            File fichier = new File(save.getPath() + "/niveau/" + nom_joueur + "/" + nom_fichier);
 
             // ouverture d'un flux sur un fichier
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichier));

@@ -47,16 +47,8 @@
                     <Image url="@images/10.png" />
                 </image>
             </ImageView>
-            <VBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                <children>
-                    <Button alignment="CENTER" contentDisplay="CENTER" onAction="#retour" prefWidth="180.0" styleClass="custom-button2" text="Retour"/>
-                </children>
-            </VBox>
-            <VBox alignment="CENTER_LEFT" GridPane.columnIndex="4" GridPane.rowIndex="6">
-                <children>
-                    <Button alignment="CENTER" contentDisplay="CENTER" onAction="#quitter" prefWidth="180.0" styleClass="custom-button2" text="Suivant" />
-                </children>
-            </VBox>
+            <Button fx:id="bouton_quitter" contentDisplay="CENTER" onAction="#quitter" prefWidth="180.0" styleClass="custom-button2" text="Terminer" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <Button fx:id="bouton_retour" alignment="CENTER" contentDisplay="CENTER" onAction="#retour" prefWidth="180.0" styleClass="custom-button2" text="Retour" GridPane.columnIndex="2" GridPane.rowIndex="6" />
         </children>
     </GridPane>
 

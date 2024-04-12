@@ -36,6 +36,5 @@ abstract public class Technique implements TechniqueInter{
     public String getNomTechnique(){
         return "La technique";
     }
-
     
 }

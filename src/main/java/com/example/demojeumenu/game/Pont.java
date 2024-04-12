@@ -6,7 +6,9 @@
 
 package com.example.demojeumenu.game;
 
-public class Pont{
+import java.io.Serializable;
+
+public class Pont implements Serializable {
     private boolean estHypothese;
 
     private enum VertiHori{
