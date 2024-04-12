@@ -1,6 +1,7 @@
 package com.example.demojeumenu;
 
 import com.example.demojeumenu.Technique.TechniqueInter;
+import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
 import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
@@ -26,8 +27,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -38,9 +37,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.springframework.stereotype.Controller;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -48,6 +45,16 @@ import java.util.Objects;
 
 @Controller
 public class GrilleControler extends BaseController {
+    /**
+     * [String] Nom (+chemin) du fichier chargé de la grille.
+     */
+    private String loadedFile;
+
+    /**
+     * [Integer] niveau de zoom de la grille
+     */
+    private int zoom_level;
+
     /**
      * [GrilleJeu] Référence vers la grille actuelle.
      */
@@ -382,9 +389,7 @@ public class GrilleControler extends BaseController {
                 FadeTransition fadeTransition2 = new FadeTransition(Duration.seconds(2), ileCercle);
                 fadeTransition2.setFromValue(1.0);
                 fadeTransition2.setToValue(0.0);
-                fadeTransition2.setOnFinished(event -> {
-                    grillePane.getChildren().remove(ileCercle);
-                });
+                fadeTransition2.setOnFinished(event -> grillePane.getChildren().remove(ileCercle));
                 ok_button.setOnMouseClicked(getOkButtonAction(aideManager, fadeTransition2));
                 see_tech.setOnMouseClicked(getTechniqueAction(technique));
             }
@@ -434,7 +439,47 @@ public class GrilleControler extends BaseController {
      */
     private EventHandler<Event> getTechniqueAction(TechniqueInter technique){
         return event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/"+technique.getFichierFXML()));
+            Parent root;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
+            loader.getController();
+
+            // Create the scene for the external frame
+            Scene scenePopup = new Scene(root);
+            scenePopup.setFill(Color.TRANSPARENT);
+            scenePopup.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/styles.css")).toExternalForm());
+            scenePopup.getRoot().setEffect(new DropShadow());
+
+            // Create a new window for the external frame
+            Stage popupWindow = new Stage();
+            popupWindow.setResizable(false);
+            popupWindow.setWidth(scene.getWidth());
+            popupWindow.setHeight(scene.getHeight());
+            popupWindow.setAlwaysOnTop(true);
+            popupWindow.initStyle(StageStyle.TRANSPARENT);
+            popupWindow.initOwner(scene.getWindow());
+            popupWindow.initModality(Modality.APPLICATION_MODAL);
+            popupWindow.setUserData(false);
+
+            PopupWindowController.setStage(popupWindow);
+
+            popupWindow.setOnHidden(event1 -> scene.getRoot().setEffect(null));
+
+            popupWindow.setScene(scenePopup);
+            technique.setStage(popupWindow);
+
+            // Apply the darkening effect to the main scene
+            ColorAdjust darkColorAdjust = new ColorAdjust();
+            darkColorAdjust.setBrightness(-0.5);
+            scene.getRoot().setEffect(darkColorAdjust);
+
+            // Show the popup window
+            popupWindow.showAndWait();
         };
     }
 
@@ -501,9 +546,10 @@ public class GrilleControler extends BaseController {
      * Méthode d'initialisation de boutons et d'éléments graphiques.
      */
     private void initButtons() {
-        hbox_bouton_HD.toFront();
+        //hbox_bouton_HD.toFront();
         hbox_bouton_HD.setDisable(false);
         hbox_bouton_BD.setDisable(false);
+        hbox_bouton_HG.toFront();
         hbox_bouton_HG.setDisable(false);
 
         valid_hypo.setDisable(true);
@@ -516,37 +562,38 @@ public class GrilleControler extends BaseController {
         vbox_aide_info.setVisible(false);
 
         zoom.setOnAction(event -> {
-            /*
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);
-            if(zoom_level[0]<=5) {
-                zoom_level[0]++;
+            if(zoom_level<=5) {
+                zoom_level++;
                 st.setByX(0.1);
                 st.setByY(0.1);
                 st.play();
             }
-            */
-             System.out.println("zoom");
         });
 
         dezoom.setOnAction(event -> {
-            /*
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);
-            if(zoom_level[0]>=-5) {
-                zoom_level[0]--;
+            if(zoom_level>=-5) {
+                zoom_level--;
                 st.setByX(-0.1);
                 st.setByY(-0.1);
                 st.play();
             }
-             */
-            System.out.println("dezoom");
         });
 
         quit.setOnAction(event -> {
+            GlobalVariables.setInGame(false);
             FXMLUtils.goBack(scene);
             System.out.println("go back ?");
         });
 
         help.setOnAction(event -> helpMethod());
+
+        quit.setOnAction(event -> {
+            GlobalVariables.setInGame(false);
+            grille.creer_sauvegarde("/niveau/"+this.loadedFile);
+            FXMLUtils.goBack(scene);
+        });
     }
 
     /**
@@ -671,49 +718,103 @@ public class GrilleControler extends BaseController {
     }
 
     /**
+     * Méthode permettant de vérifier que la grille est complétée
+     */
+    private void verifFinGrille(){
+        if(grille.getGrilleComplete()){
+            stopChrono();
+        }
+    }
+
+    /**
      * Méthode de chargement graphique de la grille.
      */
     private void chargeGrille(){
+        System.out.println("Chargement au front");
         List<Ile> ilesDejaVerifiees = new ArrayList<>();
         for (int i = 0; i < grille.getNbLigne(); i++) {
             for (int j = 0; j < grille.getNbColonne(); j++) {
                 Ile ile = grille.getIleGrilleJoueur(i,j);
                 if(ile!=null) {
+                    System.out.println("Ile pas nulle");
                     Button boutonIle = findButtonByCoord(j, i);
                     int valN = ile.getValPontDir("N");
                     int valS = ile.getValPontDir("S");
                     int valO = ile.getValPontDir("O");
                     int valE = ile.getValPontDir("E");
+                    System.out.println("valDir : " + valN + " - "+ valS +" - "+ valO + " - "+valE );
 
                     Ile ileNord, ileSud, ileOuest, ileEst;
 
                     if (valN > 0 && (ileNord = ile.getIleNord(grille))!=null && !ilesDejaVerifiees.contains(ileNord)) {
-                        RectPontPossible rect = creerPontPossibleNord(ile, boutonIle);
+                        System.out.println("ile au nord");
+
+                        Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
+                        int height = ile.getX() - ileNord.getX() - 1;
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestNord, ile, ileNord, "N", false );
+                        rect.addToGridPane();
+
+                        rect.activeChargement();
+
                         rect.simulerClick();
                         if (valN == 2) {
+                            System.out.println("Deuxième click Nord");
                             rect.simulerClick();
                         }
+                        rect.desactiveChargement();
                     }
                     if (valS > 0 && (ileSud = ile.getIleSud(grille))!=null && !ilesDejaVerifiees.contains(ileSud)) {
-                        RectPontPossible rect = creerPontPossibleSud(ile, boutonIle);
+                        System.out.println("ile au sud");
+
+                        Button buttonDestSud = findButtonByCoord(ile.getY(), ile.getX());
+                        int height = ileSud.getX() - ile.getX() - 1;
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestSud, ile, ileSud, "S" , false);
+                        rect.addToGridPane();
+
+                        rect.activeChargement();
+
                         rect.simulerClick();
                         if (valS == 2) {
+                            System.out.println("Deuxième click Sud");
                             rect.simulerClick();
                         }
+                        rect.desactiveChargement();
                     }
                     if (valO > 0 && (ileOuest = ile.getIleOuest(grille))!=null && !ilesDejaVerifiees.contains(ileOuest)) {
-                        RectPontPossible rect = creerPontPossibleOuest(ile, boutonIle);
+                        System.out.println("ile à l'ouest");
+
+                        Button buttonDestOuest = findButtonByCoord(ileOuest.getY(), ileOuest.getX());
+
+                        int width = ile.getY() - ileOuest.getY() - 1;
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestOuest, ile, ileOuest, "O", false);
+                        rect.addToGridPane();
+
+                        rect.activeChargement();
+
                         rect.simulerClick();
                         if (valO == 2) {
+                            System.out.println("Deuxième click Ouest");
                             rect.simulerClick();
                         }
+                        rect.desactiveChargement();
                     }
                     if (valE > 0 && (ileEst = ile.getIleEst(grille))!=null && !ilesDejaVerifiees.contains(ileEst)) {
-                        RectPontPossible rect = creerPontPossibleEst(ile, boutonIle);
+                        System.out.println("ile à l'est");
+
+                        Button buttonDestEst = findButtonByCoord(ileEst.getY(), ileEst.getX());
+
+                        int width = ileEst.getY() - ile.getY() - 1;
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestEst, ile, ileEst, "E", false);
+                        rect.addToGridPane();
+
+                        rect.activeChargement();
+
                         rect.simulerClick();
                         if (valE == 2) {
+                            System.out.println("Deuxième click Est");
                             rect.simulerClick();
                         }
+                        rect.desactiveChargement();
                     }
                     ilesDejaVerifiees.add(ile);
                 }
@@ -740,34 +841,47 @@ public class GrilleControler extends BaseController {
         }
     }
 
+    /**
+     * Méthode d'initialisation des données de la grille
+     * @param levelFileName Nom du fichier du niveau
+     * @param chargement booleen utilisé lorsque une grille sera chargée ou pas.
+     */
     public void initData(String levelFileName, boolean chargement) {
+        GlobalVariables.setInGame(true);
         System.out.println("LevelFileNameCorrected: " + levelFileName);
+        this.loadedFile = levelFileName;
 
         // Get the resource as a stream
-        InputStream resourceStream = getClass().getResourceAsStream("/niveaux/" + levelFileName);
+        InputStream resourceStream = getClass().getResourceAsStream("/niveaux/" + this.loadedFile);
 
         if (resourceStream == null) {
-            System.err.println("Resource not found: " + levelFileName);
+            System.err.println("Resource not found: " + loadedFile);
             // Handle the error, for example by throwing an exception or returning null
         } else {
             InputStreamReader reader = new InputStreamReader(resourceStream);
             // Pass the InputStream to GrilleJeu
-            this.grille = new GrilleJeu(reader);
-            System.out.println("Grille: " + this.grille);
 
             this.enModeHypothese = false;
+            this.zoom_level = 0;
             initButtons();
             initChrono();
 
+            this.grille = new GrilleJeu(reader);
             initializeGrille();
 
             if(chargement){
+                this.grille = grille.charger_sauvegarde(this.loadedFile.substring(0, this.loadedFile.length()-4)+".ser");
                 chargeGrille();
             }
-        }
+            System.out.println("Grille: " + this.grille);
 
+            startChrono();
+        }
     }
 
+    /**
+     * Méthode d'initialisation de la grille.
+     */
     public void initializeGrille() {
         System.out.print("Taille grille : " + this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
         int fontSize;
@@ -814,7 +928,5 @@ public class GrilleControler extends BaseController {
             }
         }
         grillePane.toFront();
-
-        startChrono();
     }
 }

@@ -2,9 +2,11 @@ package com.example.demojeumenu.Technique;
 
 import java.util.List;
 
+import com.example.demojeumenu.controler.MenuTechniqueDeb1;
 import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
 import com.example.demojeumenu.game.IleJoueur;
+import javafx.stage.Stage;
 
 public class TechniqueSixSurLeCote extends Technique {
     static private TechniqueInter technique = null;
@@ -53,5 +55,10 @@ public class TechniqueSixSurLeCote extends Technique {
     @Override
     public String getFichierFXML(){
         return "MenuTechniqueDeb1.fxml";
+    }
+
+    @Override
+    public void setStage(Stage st){
+        MenuTechniqueDeb1.setStage(st);
     }
 }

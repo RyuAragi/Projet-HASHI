@@ -1,12 +1,14 @@
 package com.example.demojeumenu.Technique;
 
 
+import com.example.demojeumenu.controler.MenuTechniqueBas3;
 import com.example.demojeumenu.game.IleJoueur;
 import com.example.demojeumenu.game.Ile;
 
 import java.util.List;
 
 import com.example.demojeumenu.game.GrilleJeu;
+import javafx.stage.Stage;
 
 public class TechniqueQuatreSurLeCote extends Technique{
     static private TechniqueInter technique = null;
@@ -55,6 +57,11 @@ public class TechniqueQuatreSurLeCote extends Technique{
     @Override
     public String getFichierFXML(){
         return "MenuTechniqueBas3.fxml";
+    }
+
+    @Override
+    public void setStage(Stage st){
+        MenuTechniqueBas3.setStage(st);
     }
    
 }

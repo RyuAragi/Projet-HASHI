@@ -14,9 +14,9 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -34,41 +34,33 @@
         </rowConstraints>
         <children>
             <Text id="text" stroke="BLACK" text="2. Isoler un segment en ajoutant un pont :" textAlignment="JUSTIFY" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <ImageView id="grilleImageView" fitHeight="194.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
                 <image>
                     <Image url="@images/24.png" />
                 </image>
             </ImageView>
-            <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <ImageView id="grilleImageView" fitHeight="169.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                 <image>
                     <Image url="@images/fleche.png" />
                 </image>
             </ImageView>
-            <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <ImageView id="grilleImageView" fitHeight="208.0" fitWidth="187.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="4">
                 <image>
                     <Image url="@images/25.png" />
                 </image>
             </ImageView>
-            <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
+            <ImageView id="grilleImageView" fitHeight="175.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="4">
                 <image>
                     <Image url="@images/fleche.png" />
                 </image>
             </ImageView>
-            <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="4">
+            <ImageView id="grilleImageView" fitHeight="208.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="4">
                 <image>
                     <Image url="@images/26.png" />
                 </image>
             </ImageView>
-            <VBox alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="6">
-                <children>
-                    <Button alignment="CENTER" contentDisplay="CENTER" onAction="#retour" prefWidth="180.0" styleClass="custom-button2" text="Retour" />
-                </children>
-            </VBox>
-            <VBox alignment="CENTER_LEFT" GridPane.columnIndex="5" GridPane.rowIndex="6">
-                <children>
-                    <Button alignment="CENTER" contentDisplay="CENTER" onAction="#suivant" prefWidth="180.0" styleClass="custom-button2" text="Suivant" />
-                </children>
-            </VBox>
+            <Button fx:id="bouton_suivant" contentDisplay="CENTER" onAction="#suivant" prefWidth="180.0" styleClass="custom-button2" text="Suivant" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <Button fx:id="bouton_retour" alignment="CENTER" contentDisplay="CENTER" onAction="#retour" prefWidth="180.0" styleClass="custom-button2" text="Retour" GridPane.columnIndex="2" GridPane.rowIndex="6" />
         </children>
     </GridPane>
 

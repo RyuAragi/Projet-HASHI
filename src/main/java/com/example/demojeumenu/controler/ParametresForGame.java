@@ -1,5 +1,6 @@
 package com.example.demojeumenu.controler;
 
+import com.example.demojeumenu.Parametres;
 import com.example.demojeumenu.SoundUtils;
 import com.example.demojeumenu.utils.BaseController;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,26 +12,20 @@ import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class PopupWindowController extends BaseController {
+public class ParametresForGame extends Parametres {
 
     @FXML
     private Button continueButton;
 
     @FXML
     private Button newGameButton;
-    private final StringProperty username = new SimpleStringProperty();
 
     private static Stage stage;
-
 
     @FXML
     private Label usernameLabel;
     public static void setStage(Stage st){
         stage = st;
-    }
-
-    public void setUsername(String username) {
-        this.username.set(username);
     }
 
     @FXML
@@ -41,9 +36,17 @@ public class PopupWindowController extends BaseController {
     }
 
     @FXML
+    @Override
+    public void showInfo() {
+        super.showInfo();
+    }
+
+    @FXML
     public void initialize(){
-        usernameLabel.textProperty().bind(username);
+        updateSoundBar();
+        updateSoundButton();
         SoundUtils.addClickSound(continueButton, this::backButton);
         SoundUtils.addClickSound(newGameButton, this::backButton);
+        usernameLabel.setText(GlobalVariables.getUserInput());
     }
 }

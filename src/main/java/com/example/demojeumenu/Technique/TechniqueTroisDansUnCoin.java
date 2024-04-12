@@ -3,9 +3,12 @@ package com.example.demojeumenu.Technique;
 
 import java.util.List;
 
+import com.example.demojeumenu.controler.MenuTechniqueBas1;
+import com.example.demojeumenu.controler.MenuTechniqueDeb1;
 import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
 import com.example.demojeumenu.game.IleJoueur;
+import javafx.stage.Stage;
 
 
 public class TechniqueTroisDansUnCoin extends Technique{
@@ -54,6 +57,11 @@ public class TechniqueTroisDansUnCoin extends Technique{
     @Override
     public String getFichierFXML(){
         return "MenuTechniqueBas1.fxml";
+    }
+
+    @Override
+    public void setStage(Stage st){
+        MenuTechniqueBas1.setStage(st);
     }
     
 }
