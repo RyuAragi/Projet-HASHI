@@ -749,8 +749,6 @@ public class GrilleControler extends BaseController {
                     if (valN > 0 && (ileNord = ile.getIleNord(grille))!=null && !ilesDejaVerifiees.contains(ileNord)) {
                         System.out.println("ile au nord");
 
-
-
                         Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
                         int height = ile.getX() - ileNord.getX() - 1;
                         RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestNord, ile, ileNord, "N", false );
@@ -763,7 +761,6 @@ public class GrilleControler extends BaseController {
                             System.out.println("Deuxième click Nord");
                             rect.simulerClick();
                         }
-
                         rect.desactiveChargement();
                     }
                     if (valS > 0 && (ileSud = ile.getIleSud(grille))!=null && !ilesDejaVerifiees.contains(ileSud)) {
