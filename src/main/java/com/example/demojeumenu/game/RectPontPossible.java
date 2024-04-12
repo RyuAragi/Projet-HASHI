@@ -1,5 +1,6 @@
 package com.example.demojeumenu.game;
 
+import com.example.demojeumenu.GrilleControler;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
@@ -210,7 +211,7 @@ public class RectPontPossible extends Rectangle {
                     boutonDest.setStyle("-fx-background-color: lightgrey;");
                 }
             }
-            else if(valPontDir==1 || line2==null){
+            else if((valPontDir==1 || line2==null) && this.hypothese==GrilleControler.enModeHypothese){
                 if (!ileSrc.ileComplete() && !ileDest.ileComplete()) {
                     if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
                     if(dir.equals("N") || dir.equals("S")) {
@@ -246,7 +247,7 @@ public class RectPontPossible extends Rectangle {
                     }
                 }
             }
-            else if(valPontDir==2){
+            else if(valPontDir==2 && this.hypothese==GrilleControler.enModeHypothese){
                 boutonDest.setStyle("-fx-background-color: transparent");
                 boutonSrc.setStyle("-fx-background-color: transparent");
                 removeFromGridPane(grillePane);
