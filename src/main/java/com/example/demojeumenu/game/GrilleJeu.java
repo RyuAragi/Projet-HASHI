@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GrilleJeu implements Serializable{
+    private boolean grilleComplete;
+
     //Représente la grille sur laquelle joue le joueur
     private Case[][] joueur;
 
@@ -52,11 +54,19 @@ public class GrilleJeu implements Serializable{
      */
     public GrilleJeu(InputStreamReader reader){
         charge(reader);
+        this.grilleComplete = false;
+        this.nbPontTotal = 0;
+        this.listPontPose= new ArrayList<>();
+        this.undoRedo = new UndoRedo();
+        this.erreur = false;
+    }
 
-        nbPontTotal = 0;
-        listPontPose= new ArrayList<>();
-        undoRedo = new UndoRedo();
-        erreur = false;
+    /**
+     * Méthode permettant de récupérer l'état de la grille.
+     * @return [Boolean] L'état de la grille. (IleComplete = True/False)
+     */
+    public boolean getGrilleComplete(){
+        return this.grilleComplete;
     }
 
     /**
@@ -284,6 +294,10 @@ public class GrilleJeu implements Serializable{
                 ajoutePont("S",(IleJoueur)i1, "N", (IleJoueur)i2, estHypothese);
             }
             nbPontTotal += 1;
+        }
+
+        if(verifMatrice()){
+            this.grilleComplete=true;
         }
     }
 

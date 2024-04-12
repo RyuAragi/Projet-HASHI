@@ -715,6 +715,15 @@ public class GrilleControler extends BaseController {
     }
 
     /**
+     * Méthode permettant de vérifier que la grille est complétée
+     */
+    private void verifFinGrille(){
+        if(grille.getGrilleComplete()){
+            stopChrono();
+        }
+    }
+
+    /**
      * Méthode de chargement graphique de la grille.
      */
     private void chargeGrille(){
@@ -866,16 +875,6 @@ public class GrilleControler extends BaseController {
             System.out.println("Grille: " + this.grille);
 
             startChrono();
-        }
-    }
-
-    /**
-     * Méthode permettant de vérifier que la grille est complétée
-     */
-    private void verifFinGrille(){
-        if(grille.verifMatrice()){
-            stopChrono();
-            /*A compléter*/
         }
     }
 
