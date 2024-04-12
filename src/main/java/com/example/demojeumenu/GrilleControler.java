@@ -76,25 +76,6 @@ public class GrilleControler extends BaseController {
      */
     private static Timeline timeline;
 
-
-    /**
-     * [HBox] Element graphique (Horizontal Box) contenant les boutons valider, vérifier, undo, redo, restart et hypothese.
-     */
-    //@FXML
-    //public HBox hbox_bouton_HD;
-
-    /**
-     * [HBox] Element graphique (Horizontal Box) contenant les boutons réglages et quitter
-     */
-    //@FXML
-    //public HBox hbox_bouton_HG;
-
-    /**
-     * [HBox] Element graphique (Horizontal Box) contenant les boutons zoom et dezoom
-     */
-    //@FXML
-    //public HBox hbox_bouton_BD;
-
     /**
      * [VBox] Element graphique (Vertical Box) contenant les elements d'information concernant l'aide cad le label textInfo, et les boutons de suppression de l'aide, de visualidsation de la technique et visualisation de l'aide suivante.
      */
