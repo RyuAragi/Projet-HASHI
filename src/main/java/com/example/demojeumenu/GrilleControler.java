@@ -271,6 +271,7 @@ public class GrilleControler extends BaseController {
                 ((RectPontPossible)node).hypothese = false;
             }
         }
+        grille.valideHypothese();
         hypotheseMethod();
     }
 
@@ -285,15 +286,12 @@ public class GrilleControler extends BaseController {
                 nodesToRemove.add((RectPontPossible)node);
             }
         }
+        grille.quitteHypothese();
         for (RectPontPossible rect: nodesToRemove) {
-            grille.poserPont(rect.ileSrc, rect.ileDest,enModeHypothese);
-            if(rect.line2==null){
-                grille.poserPont(rect.ileSrc, rect.ileDest,enModeHypothese);
-            }
-            if(rect.boutonSrc.getStyle().contains("-fx-background-color: lightgrey;")){
+            if(!rect.ileSrc.ileComplete()){
                 rect.boutonSrc.setStyle("-fx-background-color: transparent;");
             }
-            if(rect.boutonDest.getStyle().contains("-fx-background-color: lightgrey;")){
+            if(!rect.ileDest.ileComplete()){
                 rect.boutonDest.setStyle("-fx-background-color: transparent;");
             }
             rect.removeFromGridPane(grillePane);
@@ -575,10 +573,6 @@ public class GrilleControler extends BaseController {
                 st.play();
             }
         });
-
-        zoom.setOnMouseEntered(event -> vbox_aide_info.toFront());
-
-        dezoom.setOnMouseEntered(event -> vbox_aide_info.toFront());
 
         dezoom.setOnAction(event -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);

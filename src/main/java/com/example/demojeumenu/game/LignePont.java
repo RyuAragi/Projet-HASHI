@@ -82,8 +82,6 @@ public class LignePont extends Line {
                     else{
                         pontPossible.line2.setTranslateY(5);
                     }
-
-
                     pontPossible.line2.addToGridPane();
 
                     if (pontPossible.ileSrc.ileComplete()) {

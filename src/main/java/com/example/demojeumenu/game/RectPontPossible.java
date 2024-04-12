@@ -190,7 +190,7 @@ public class RectPontPossible extends Rectangle {
      */
     private EventHandler<MouseEvent> getClickedAction(){
         return event -> {
-            int valPontDir =  ileSrc.getValPontDir(dir);
+            int valPontDir = ileSrc.getValPontDir(dir);
             System.out.println(valPontDir);
             if(valPontDir==0 || line1==null){
                 this.setFill(Color.TRANSPARENT);
@@ -212,7 +212,7 @@ public class RectPontPossible extends Rectangle {
                 }
             }
             else if((valPontDir==1 || line2==null) && this.hypothese==GrilleControler.enModeHypothese){
-                if (!ileSrc.ileComplete() && !ileDest.ileComplete()) {
+                if ((!ileSrc.ileComplete() && !ileDest.ileComplete()) || this.chargement) {
                     if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
                     if(dir.equals("N") || dir.equals("S")) {
                         line1.setTranslateX(-5);

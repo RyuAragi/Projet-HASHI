@@ -56,7 +56,7 @@ public class GrilleJeu implements Serializable{
         charge(reader);
         this.grilleComplete = false;
         this.nbPontTotal = 0;
-        this.listPontPose= new ArrayList<>();
+        this.listPontPose = new ArrayList<>();
         this.undoRedo = new UndoRedo();
         this.erreur = false;
     }
@@ -206,11 +206,9 @@ public class GrilleJeu implements Serializable{
      * @param p le pont a supprimer
      */
     public void supprimePont(Pont p){
-
         if (!listPontPose.isEmpty()){
             listPontPose.remove(p);
         }
-
     }
 
 
@@ -228,13 +226,8 @@ public class GrilleJeu implements Serializable{
     /**
      * Méthode qui détruit tous les ponts hypothèses
      */
-    public void quitteHypothèse(){
-        for(Pont p: listPontPose){
-            if(p.estHypothese()){
-                listPontPose.remove(p);
-            }
-        }
-
+    public void quitteHypothese(){
+        if(!listPontPose.isEmpty()) listPontPose.removeIf(Pont::estHypothese);
     }
 
     private void copieGrille(Case[][] src, Case[][] dst){
