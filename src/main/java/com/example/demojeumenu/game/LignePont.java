@@ -12,7 +12,7 @@ public class LignePont extends Line {
     /**
      * [RectPontPossible] Référence vers l'instance du pont possible parente de la LignePont.
      */
-    private final RectPontPossible pontPossible;
+    public final RectPontPossible pontPossible;
 
     /**
      * Méthode d'instanciation de la ligne LignePont

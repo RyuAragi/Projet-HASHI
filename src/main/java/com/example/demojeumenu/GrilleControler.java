@@ -4,10 +4,7 @@ import com.example.demojeumenu.Menu.MenuTailleGrille;
 import com.example.demojeumenu.Technique.TechniqueInter;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
-import com.example.demojeumenu.game.GrilleJeu;
-import com.example.demojeumenu.game.Ile;
-import com.example.demojeumenu.game.IleJoueur;
-import com.example.demojeumenu.game.RectPontPossible;
+import com.example.demojeumenu.game.*;
 import com.example.demojeumenu.utils.BaseController;
 import com.example.demojeumenu.Aide.AideManager;
 
@@ -38,9 +35,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.springframework.stereotype.Controller;
+import org.w3c.dom.css.Rect;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -257,10 +256,90 @@ public class GrilleControler extends BaseController {
         return boutonIle;
     }
 
+    private void verification_grille(){
+        ArrayList<List<Pont>> pontsInccorects = grille.getPontsIncorrects();
+        vbox_aide_info.setVisible(true);
+        vbox_aide_info.setDisable(false);
+        if(pontsInccorects.isEmpty()){
+            textInfo.setText("Aucune erreur trouvé ! Félicitation vous tenez le bon bout !");
+            ok_button.setVisible(true);
+            ok_button.setDisable(false);
+            see_tech.setVisible(false);
+            next_clue.setVisible(false);
+        }
+        else{
+            for (List<Pont> lp: pontsInccorects) {
+                for (Node node : grillePane.getChildren()) {
+                    if (node instanceof RectPontPossible && ((RectPontPossible) node).ileSrc == lp.get(0).getSrc() && ((RectPontPossible) node).ileDest == lp.get(0).getDst()) {
+                        RectPontPossible rect = (RectPontPossible) node;
+                        rect.line1.toRed();
+                        if (rect.line2 != null) {
+                            rect.line2.toRed();
+                        }
+                    }
+                }
+            }
+            textInfo.setText(pontsInccorects.size()+" pont erronés ! Souhaitez-vous les supprimer ?");
+            ok_button.setVisible(false);
+            ok_button.setDisable(true);
+            see_tech.setVisible(true);
+            see_tech.setDisable(false);
+            next_clue.setVisible(true);
+            next_clue.setDisable(false);
+
+            see_tech.setText("Non");
+            next_clue.setText("Oui");
+
+            EventHandler<? super MouseEvent> see_tech_act = see_tech.getOnMouseClicked();
+            see_tech.setOnMouseClicked(event -> {
+                vbox_aide_info.setVisible(false);
+                vbox_aide_info.setDisable(true);
+
+                for (Node node: grillePane.getChildren()) {
+                    if(node instanceof LignePont){
+                        ((LignePont)node).toBlack();
+                    }
+                }
+                see_tech.setOnMouseClicked(see_tech_act);
+            });
+
+            EventHandler<? super MouseEvent> next_clue_act = next_clue.getOnMouseClicked();
+            next_clue.setOnMouseClicked(event -> {
+                vbox_aide_info.setVisible(false);
+                vbox_aide_info.setDisable(true);
+
+                for (List<Pont> lp :pontsInccorects) {
+                    IleJoueur ileSrc = lp.get(0).getSrc();
+                    IleJoueur ileDest = lp.get(0).getDst();
+
+                    ileSrc.reinitPont(ileSrc.getPontDirection(lp.get(0)));
+                    ileDest.reinitPont(ileDest.getPontDirection(lp.get(0)));
+
+                    grille.supprimePont(lp);
+                }
+
+
+                ArrayList<RectPontPossible> rectToRemove = new ArrayList<>();
+                for (Node node:grillePane.getChildren()) {
+                    if(node instanceof LignePont && ((LignePont)node).getStroke()==Color.RED){
+                        rectToRemove.add(((LignePont)node).pontPossible);
+                    }
+                }
+                for (RectPontPossible rect:rectToRemove) {
+                    rect.removeFromGridPane(grillePane);
+                }
+
+                next_clue.setOnMouseClicked(next_clue_act);
+            });
+
+        }
+    }
+
+
+
     /**
      * Méthode de validation d'hypothèses.
      */
-    @FXML
     private void validation_hypotheses() {
         for (Node node: grillePane.getChildren()) {
             if(node instanceof RectPontPossible && ((RectPontPossible)node).hypothese){
@@ -278,7 +357,6 @@ public class GrilleControler extends BaseController {
     /**
      * Méthode de suppression des hypothèses.
      */
-    @FXML
     private void suppression_hypotheses() {
         ArrayList<RectPontPossible> nodesToRemove = new ArrayList<>();
         for (Node node: grillePane.getChildren()) {
@@ -302,7 +380,6 @@ public class GrilleControler extends BaseController {
     /**
      * Méthode d'affichage de l'aide au joueur.
      */
-    @FXML
     private void helpMethod() {
         Rectangle zoneSolution;
         AideManager aideManager = AideManager.getInstance();
@@ -498,6 +575,7 @@ public class GrilleControler extends BaseController {
     private void hypotheseMethod() {
         if (enModeHypothese) {
             enModeHypothese = false;
+            grillePane.getParent().setStyle("-fx-background-image: url('images/background.png')");
 
             valid_hypo.setDisable(true);
             valid_hypo.setVisible(false);
@@ -524,6 +602,7 @@ public class GrilleControler extends BaseController {
             restart.setVisible(true);
         } else {
             enModeHypothese = true;
+            grillePane.getParent().setStyle("-fx-background-image: url('images/background_blur.png')");
 
             valid_hypo.setDisable(false);
             valid_hypo.setVisible(true);
@@ -631,6 +710,8 @@ public class GrilleControler extends BaseController {
         valid_hypo.setOnMouseClicked(event -> validation_hypotheses());
 
         supp_hypo.setOnMouseClicked(event -> suppression_hypotheses());
+
+        check.setOnMouseClicked(event -> verification_grille());
     }
 
     /**
@@ -662,7 +743,7 @@ public class GrilleControler extends BaseController {
         creerPontPossibleSud(ileSrc, buttonSrc);
         creerPontPossibleOuest(ileSrc, buttonSrc);
         creerPontPossibleEst(ileSrc, buttonSrc);
-        verifFinGrille();
+        //verifFinGrille();
     }
 
     /**
@@ -897,7 +978,7 @@ public class GrilleControler extends BaseController {
     public void initData(String levelFileName, boolean chargement) {
         GlobalVariables.setInGame(true);
         System.out.println("LevelFileNameCorrected: " + levelFileName);
-        this.loadedFile = levelFileName;
+        loadedFile = levelFileName;
 
         // Get the resource as a stream
         InputStream resourceStream = getClass().getResourceAsStream("/niveaux/" + this.loadedFile);
@@ -918,7 +999,7 @@ public class GrilleControler extends BaseController {
             initializeGrille();
 
             if(chargement){
-                this.grille = grille.charger_sauvegarde(this.loadedFile.substring(0, this.loadedFile.length()-4)+".ser");
+                this.grille = grille.charger_sauvegarde(loadedFile.substring(0, loadedFile.length()-4)+".ser");
                 chargeGrille();
             }
             System.out.println("Grille: " + this.grille);

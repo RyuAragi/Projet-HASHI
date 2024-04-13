@@ -213,6 +213,28 @@ public class GrilleJeu implements Serializable{
         }
     }
 
+    public void supprimePont(List<Pont> lp){
+        for (Pont p: lp) {
+            supprimePont(p);
+        }
+    }
+
+
+    public void supprimerPonts(List<Pont> lp){
+        Iterator<Pont> iterator = lp.iterator();
+        while (iterator.hasNext()) {
+            Pont p = iterator.next();
+            if (p.estHypothese()) {
+                IleJoueur ileSrc = p.getSrc();
+                IleJoueur ileDst = p.getDst();
+
+                ileSrc.supprimePont(p.getSrc().getPontDirection(p),p);
+                ileDst.supprimePont(p.getDst().getPontDirection(p),p);
+                iterator.remove();
+            }
+        }
+    }
+
 
     /**
      * Méthode qui remplace tous les ponts hypothèses en pont non hypothèse
@@ -384,8 +406,20 @@ public class GrilleJeu implements Serializable{
     public boolean verifMatrice(){
         for (int i = 0; i< nbLigne; i++){
             for(int j = 0; j < nbColonne; j++){
-                if(getIleGrilleJoueur(i,j)!=null && !getIleGrilleJoueur(i,j).ileComplete()){
-                    return false;
+                IleJoueur ile;
+                if(getIleGrilleJoueur(i,j)!=null && !(ile=(IleJoueur)getIleGrilleJoueur(i,j)).ileComplete()){
+                    for (Pont p: ile.getPontDir("N")) {
+                        if(p.estHypothese()) return false;
+                    }
+                    for (Pont p: ile.getPontDir("S")) {
+                        if(p.estHypothese()) return false;
+                    }
+                    for (Pont p: ile.getPontDir("O")) {
+                        if(p.estHypothese()) return false;
+                    }
+                    for (Pont p: ile.getPontDir("E")) {
+                        if(p.estHypothese()) return false;
+                    }
                 }
             }
         }
@@ -807,16 +841,16 @@ public class GrilleJeu implements Serializable{
             for (int j = 0; j < getNbColonne(); j++) {
                 Ile ile, ileSolution;
                 if((ile = getIleGrilleJoueur(i, j))!=null && (ileSolution = getIleGrilleSolution(i, j))!=null){
-                    if(ile.getValPontDir("N")>ileSolution.getValPontDir("N")){
+                    if(ile.getValPontDir("N")>ileSolution.getValPontDir("N") && !pontsIncorrects.contains(((IleJoueur)ile).getPontDir("N"))){
                         pontsIncorrects.add(((IleJoueur)ile).getPontDir("N"));
                     }
-                    if(ile.getValPontDir("S")>ileSolution.getValPontDir("S")){
+                    if(ile.getValPontDir("S")>ileSolution.getValPontDir("S") && !pontsIncorrects.contains(((IleJoueur)ile).getPontDir("S"))){
                         pontsIncorrects.add(((IleJoueur)ile).getPontDir("S"));
                     }
-                    if(ile.getValPontDir("O")>ileSolution.getValPontDir("O")){
+                    if(ile.getValPontDir("O")>ileSolution.getValPontDir("O") && !pontsIncorrects.contains(((IleJoueur)ile).getPontDir("O"))){
                         pontsIncorrects.add(((IleJoueur)ile).getPontDir("O"));
                     }
-                    if(ile.getValPontDir("E")>ileSolution.getValPontDir("E")){
+                    if(ile.getValPontDir("E")>ileSolution.getValPontDir("E") && !pontsIncorrects.contains(((IleJoueur)ile).getPontDir("E"))){
                         pontsIncorrects.add(((IleJoueur)ile).getPontDir("E"));
                     }
                 }
