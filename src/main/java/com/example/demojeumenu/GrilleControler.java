@@ -35,11 +35,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.springframework.stereotype.Controller;
-import org.w3c.dom.css.Rect;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
@@ -222,24 +220,22 @@ public class GrilleControler extends BaseController {
     /**
      * Méthode de démarrage du chrono
      */
-    private void startChrono() {
+    public static void startChrono() {
         timeline.play();
     }
 
     /**
      * Méthode d'arrêt du chrono.
      */
-    private void stopChrono() {
+    public static void stopChrono() {
         timeline.stop();
     }
 
     /**
-     * Méthode retournant le chrono actuel.
-     * @return [Timeline] le chronomètre.
+     * Méthode de récupération du temps du chrono
      */
-    public static Timeline getChrono() {
-        return timeline;
-    }
+    public static String getChronoTime(){return timeline.toString();}
+
 
     /**
      * Méthode création d'un bouton ile qui sera inséré dans la grille visuelle.
@@ -270,8 +266,7 @@ public class GrilleControler extends BaseController {
         else{
             for (List<Pont> lp: pontsInccorects) {
                 for (Node node : grillePane.getChildren()) {
-                    if (node instanceof RectPontPossible && ((RectPontPossible) node).ileSrc == lp.get(0).getSrc() && ((RectPontPossible) node).ileDest == lp.get(0).getDst()) {
-                        RectPontPossible rect = (RectPontPossible) node;
+                    if (node instanceof RectPontPossible rect && rect.ileSrc == lp.get(0).getSrc() && rect.ileDest == lp.get(0).getDst()) {
                         rect.line1.toRed();
                         if (rect.line2 != null) {
                             rect.line2.toRed();
@@ -667,7 +662,7 @@ public class GrilleControler extends BaseController {
 
         quit.setOnAction(event -> {
             GlobalVariables.setInGame(false);
-            grille.creer_sauvegarde("/niveau/"+this.loadedFile);
+            grille.creer_sauvegarde("/niveau/"+loadedFile);
             FXMLUtils.goBack(scene);
         });
 
@@ -703,9 +698,7 @@ public class GrilleControler extends BaseController {
         });
 
 
-        hypothese.setOnMouseClicked(event -> {
-            hypotheseMethod();
-        });
+        hypothese.setOnMouseClicked(event -> hypotheseMethod());
 
         valid_hypo.setOnMouseClicked(event -> validation_hypotheses());
 
@@ -838,23 +831,6 @@ public class GrilleControler extends BaseController {
 
     public static String chronoTime;
 
-
-    /**
-     * Méthode permettant de vérifier que la grille est complétée
-     */
-    private void verifFinGrille(){
-        if(grille.getGrilleComplete()){
-            stopChrono();
-            // Créer une instance de MenuTailleGrille
-            MenuTailleGrille menu = new MenuTailleGrille();
-            // Appeler la méthode leaderboard
-            chronoTime = chrono.getText();
-            menu.leaderboard();
-        }
-    }
-
-
-
     /**
      * Méthode de chargement graphique de la grille.
      */
@@ -981,7 +957,7 @@ public class GrilleControler extends BaseController {
         loadedFile = levelFileName;
 
         // Get the resource as a stream
-        InputStream resourceStream = getClass().getResourceAsStream("/niveaux/" + this.loadedFile);
+        InputStream resourceStream = getClass().getResourceAsStream("/niveaux/" + loadedFile);
 
         if (resourceStream == null) {
             System.err.println("Resource not found: " + loadedFile);

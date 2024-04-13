@@ -6,18 +6,18 @@
 
 package com.example.demojeumenu.game;
 
+import com.example.demojeumenu.GrilleControler;
+import com.example.demojeumenu.Menu.MenuTailleGrille;
 import com.example.demojeumenu.Sauvegarde;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.undoRedo.UndoRedo;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class GrilleJeu implements Serializable{
-    private boolean grilleComplete;
 
     //Représente la grille sur laquelle joue le joueur
     private Case[][] joueur;
@@ -55,7 +55,6 @@ public class GrilleJeu implements Serializable{
      * @param reader le chemin vers le fichier de la grille
      */
     public GrilleJeu(InputStreamReader reader){
-        this.grilleComplete = false;
         this.nbPontTotal = 0;
         this.listPontPose = new ArrayList<>();
         this.undoRedo = new UndoRedo();
@@ -63,12 +62,17 @@ public class GrilleJeu implements Serializable{
         charge(reader);
     }
 
+
     /**
-     * Méthode permettant de récupérer l'état de la grille.
-     * @return [Boolean] L'état de la grille. (IleComplete = True/False)
+     * Méthode permettant de vérifier que la grille est complétée
      */
-    public boolean getGrilleComplete(){
-        return this.grilleComplete;
+    public void actionsFinGrille(){
+        GrilleControler.stopChrono();
+        // Créer une instance de MenuTailleGrille
+        MenuTailleGrille menu = new MenuTailleGrille();
+        // Appeler la méthode leaderboard
+        String chronoTime = GrilleControler.getChronoTime();
+        menu.leaderboard();
     }
 
     /**
@@ -220,22 +224,6 @@ public class GrilleJeu implements Serializable{
     }
 
 
-    public void supprimerPonts(List<Pont> lp){
-        Iterator<Pont> iterator = lp.iterator();
-        while (iterator.hasNext()) {
-            Pont p = iterator.next();
-            if (p.estHypothese()) {
-                IleJoueur ileSrc = p.getSrc();
-                IleJoueur ileDst = p.getDst();
-
-                ileSrc.supprimePont(p.getSrc().getPontDirection(p),p);
-                ileDst.supprimePont(p.getDst().getPontDirection(p),p);
-                iterator.remove();
-            }
-        }
-    }
-
-
     /**
      * Méthode qui remplace tous les ponts hypothèses en pont non hypothèse
      */
@@ -325,7 +313,8 @@ public class GrilleJeu implements Serializable{
         }
 
         if(verifMatrice()){
-            this.grilleComplete=true;
+
+            actionsFinGrille();
         }
     }
 
@@ -407,7 +396,10 @@ public class GrilleJeu implements Serializable{
         for (int i = 0; i< nbLigne; i++){
             for(int j = 0; j < nbColonne; j++){
                 IleJoueur ile;
-                if(getIleGrilleJoueur(i,j)!=null && !(ile=(IleJoueur)getIleGrilleJoueur(i,j)).ileComplete()){
+                if(getIleGrilleJoueur(i,j)!=null && !((IleJoueur)getIleGrilleJoueur(i,j)).ileComplete()){
+                    return false;
+                }
+                else if(getIleGrilleJoueur(i,j)!=null && (ile=(IleJoueur)getIleGrilleJoueur(i,j)).ileComplete()){
                     for (Pont p: ile.getPontDir("N")) {
                         if(p.estHypothese()) return false;
                     }
@@ -423,7 +415,6 @@ public class GrilleJeu implements Serializable{
                 }
             }
         }
-
         return true;
     }
 
