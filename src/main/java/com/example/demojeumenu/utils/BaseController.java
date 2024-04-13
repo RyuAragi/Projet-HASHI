@@ -91,4 +91,5 @@ public abstract class BaseController {
     public void param(ActionEvent actionEvent) {
         FXMLUtils.loadFXML("/Parametres.fxml", scene);
     }
+
 }

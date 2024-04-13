@@ -11,7 +11,9 @@ import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.undoRedo.UndoRedo;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class GrilleJeu implements Serializable{
@@ -53,12 +55,12 @@ public class GrilleJeu implements Serializable{
      * @param reader le chemin vers le fichier de la grille
      */
     public GrilleJeu(InputStreamReader reader){
-        charge(reader);
         this.grilleComplete = false;
         this.nbPontTotal = 0;
-        this.listPontPose= new ArrayList<>();
+        this.listPontPose = new ArrayList<>();
         this.undoRedo = new UndoRedo();
         this.erreur = false;
+        charge(reader);
     }
 
     /**
@@ -206,11 +208,9 @@ public class GrilleJeu implements Serializable{
      * @param p le pont a supprimer
      */
     public void supprimePont(Pont p){
-
         if (!listPontPose.isEmpty()){
             listPontPose.remove(p);
         }
-
     }
 
 
@@ -228,13 +228,19 @@ public class GrilleJeu implements Serializable{
     /**
      * Méthode qui détruit tous les ponts hypothèses
      */
-    public void quitteHypothèse(){
-        for(Pont p: listPontPose){
-            if(p.estHypothese()){
-                listPontPose.remove(p);
+    public void quitteHypothese(){
+        Iterator<Pont> iterator = listPontPose.iterator();
+        while (iterator.hasNext()) {
+            Pont p = iterator.next();
+            if (p.estHypothese()) {
+                IleJoueur ileSrc = p.getSrc();
+                IleJoueur ileDst = p.getDst();
+
+                ileSrc.supprimePont(p.getSrc().getPontDirection(p),p);
+                ileDst.supprimePont(p.getDst().getPontDirection(p),p);
+                iterator.remove();
             }
         }
-
     }
 
     private void copieGrille(Case[][] src, Case[][] dst){
@@ -793,6 +799,30 @@ public class GrilleJeu implements Serializable{
             e.printStackTrace();
             return null;
         }
+    }
+
+    public ArrayList<List<Pont>> getPontsIncorrects(){
+        ArrayList<List<Pont>> pontsIncorrects = new ArrayList<>();
+        for (int i = 0; i < getNbLigne(); i++) {
+            for (int j = 0; j < getNbColonne(); j++) {
+                Ile ile, ileSolution;
+                if((ile = getIleGrilleJoueur(i, j))!=null && (ileSolution = getIleGrilleSolution(i, j))!=null){
+                    if(ile.getValPontDir("N")>ileSolution.getValPontDir("N")){
+                        pontsIncorrects.add(((IleJoueur)ile).getPontDir("N"));
+                    }
+                    if(ile.getValPontDir("S")>ileSolution.getValPontDir("S")){
+                        pontsIncorrects.add(((IleJoueur)ile).getPontDir("S"));
+                    }
+                    if(ile.getValPontDir("O")>ileSolution.getValPontDir("O")){
+                        pontsIncorrects.add(((IleJoueur)ile).getPontDir("O"));
+                    }
+                    if(ile.getValPontDir("E")>ileSolution.getValPontDir("E")){
+                        pontsIncorrects.add(((IleJoueur)ile).getPontDir("E"));
+                    }
+                }
+            }
+        }
+        return pontsIncorrects;
     }
  
  /*

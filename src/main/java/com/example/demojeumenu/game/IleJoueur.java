@@ -32,7 +32,6 @@ public class IleJoueur extends Ile implements Serializable {
      */
     public int getSommeVoisins(){
         int cpt = 0;
-
         for(Map.Entry<String, List<Pont>> ile : pontRelie.entrySet()){
             cpt += ile.getValue().size();
         }
@@ -46,6 +45,10 @@ public class IleJoueur extends Ile implements Serializable {
      */
     public int getValPontDir(String dir){
         return pontRelie.get(dir).size();
+    }
+
+    public List<Pont> getPontDir(String dir){
+        return pontRelie.get(dir);
     }
 
     /**
