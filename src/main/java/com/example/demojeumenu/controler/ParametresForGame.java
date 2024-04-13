@@ -1,5 +1,6 @@
 package com.example.demojeumenu.controler;
 
+import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.Parametres;
 import com.example.demojeumenu.SoundUtils;
 import com.example.demojeumenu.utils.BaseController;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
+import com.example.demojeumenu.GrilleControler;
 
 @Controller
 public class ParametresForGame extends Parametres {
@@ -48,5 +50,10 @@ public class ParametresForGame extends Parametres {
         SoundUtils.addClickSound(continueButton, this::backButton);
         SoundUtils.addClickSound(newGameButton, this::backButton);
         usernameLabel.setText(GlobalVariables.getUserInput());
+        newGameButton.setOnAction(event -> {
+            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, GrilleControler.loadedFile, false);
+            Stage stage = (Stage) continueButton.getScene().getWindow();
+            stage.close();
+        });
     }
 }
