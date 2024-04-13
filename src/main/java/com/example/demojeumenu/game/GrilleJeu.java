@@ -11,6 +11,7 @@ import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.undoRedo.UndoRedo;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -798,6 +799,30 @@ public class GrilleJeu implements Serializable{
             e.printStackTrace();
             return null;
         }
+    }
+
+    public ArrayList<List<Pont>> getPontsIncorrects(){
+        ArrayList<List<Pont>> pontsIncorrects = new ArrayList<>();
+        for (int i = 0; i < getNbLigne(); i++) {
+            for (int j = 0; j < getNbColonne(); j++) {
+                Ile ile, ileSolution;
+                if((ile = getIleGrilleJoueur(i, j))!=null && (ileSolution = getIleGrilleSolution(i, j))!=null){
+                    if(ile.getValPontDir("N")>ileSolution.getValPontDir("N")){
+                        pontsIncorrects.add(((IleJoueur)ile).getPontDir("N"));
+                    }
+                    if(ile.getValPontDir("S")>ileSolution.getValPontDir("S")){
+                        pontsIncorrects.add(((IleJoueur)ile).getPontDir("S"));
+                    }
+                    if(ile.getValPontDir("O")>ileSolution.getValPontDir("O")){
+                        pontsIncorrects.add(((IleJoueur)ile).getPontDir("O"));
+                    }
+                    if(ile.getValPontDir("E")>ileSolution.getValPontDir("E")){
+                        pontsIncorrects.add(((IleJoueur)ile).getPontDir("E"));
+                    }
+                }
+            }
+        }
+        return pontsIncorrects;
     }
  
  /*
