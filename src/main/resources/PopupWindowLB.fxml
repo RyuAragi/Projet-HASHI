@@ -38,8 +38,7 @@
                   <children>
                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="125.0" prefWidth="308.0" styleClass="textLbl" text="Temps" textAlignment="CENTER" />
                      <Line endX="100.0" startX="-100.0" strokeMiterLimit="8.0" />
-                     <Label fx:id="usernameLabel3" alignment="CENTER" contentDisplay="CENTER" prefHeight="125.0" prefWidth="308.0" styleClass="textLbl" text="??????" textAlignment="CENTER" />
-                  </children>
+                      <Label fx:id="usernameLabel3" alignment="CENTER" contentDisplay="CENTER" prefHeight="125.0" prefWidth="308.0" styleClass="textLbl" textAlignment="CENTER" />                  </children>
                </VBox>
             </children>
          </HBox>
@@ -61,7 +60,7 @@
          </TableView>
         <HBox alignment="CENTER" prefHeight="186.0" prefWidth="275.0" spacing="20.0">
             <Button alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnHome" prefHeight="60.0" prefWidth="60.0" styleClass="quit" />
-            <Button fx:id="back_button" mnemonicParsing="false" onAction="#backButton" />
+            <Button fx:id="back_button" mnemonicParsing="false"  />
             <Button fx:id="continueButton" styleClass="custom-continuerButton" />
 
         </HBox>

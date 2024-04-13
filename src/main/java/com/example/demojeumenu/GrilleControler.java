@@ -15,7 +15,6 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -44,16 +43,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 
 @Controller
 public class GrilleControler extends BaseController {
     /**
      * [String] Nom (+chemin) du fichier chargé de la grille.
      */
-    private String loadedFile;
+    public static String loadedFile;
 
     /**
      * [Integer] niveau de zoom de la grille
@@ -275,6 +271,7 @@ public class GrilleControler extends BaseController {
                 ((RectPontPossible)node).hypothese = false;
             }
         }
+        grille.valideHypothese();
         hypotheseMethod();
     }
 
@@ -289,15 +286,12 @@ public class GrilleControler extends BaseController {
                 nodesToRemove.add((RectPontPossible)node);
             }
         }
+        grille.quitteHypothese();
         for (RectPontPossible rect: nodesToRemove) {
-            grille.poserPont(rect.ileSrc, rect.ileDest,enModeHypothese);
-            if(rect.line2==null){
-                grille.poserPont(rect.ileSrc, rect.ileDest,enModeHypothese);
-            }
-            if(rect.boutonSrc.getStyle().contains("-fx-background-color: lightgrey;")){
+            if(!rect.ileSrc.ileComplete()){
                 rect.boutonSrc.setStyle("-fx-background-color: transparent;");
             }
-            if(rect.boutonDest.getStyle().contains("-fx-background-color: lightgrey;")){
+            if(!rect.ileDest.ileComplete()){
                 rect.boutonDest.setStyle("-fx-background-color: transparent;");
             }
             rect.removeFromGridPane(grillePane);
@@ -580,10 +574,6 @@ public class GrilleControler extends BaseController {
             }
         });
 
-        zoom.setOnMouseEntered(event -> vbox_aide_info.toFront());
-
-        dezoom.setOnMouseEntered(event -> vbox_aide_info.toFront());
-
         dezoom.setOnAction(event -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);
             if(zoom_level>=-5) {
@@ -765,6 +755,9 @@ public class GrilleControler extends BaseController {
         return null;
     }
 
+    public static String chronoTime;
+
+
     /**
      * Méthode permettant de vérifier que la grille est complétée
      */
@@ -774,6 +767,7 @@ public class GrilleControler extends BaseController {
             // Créer une instance de MenuTailleGrille
             MenuTailleGrille menu = new MenuTailleGrille();
             // Appeler la méthode leaderboard
+            chronoTime = chrono.getText();
             menu.leaderboard();
         }
     }
@@ -789,7 +783,7 @@ public class GrilleControler extends BaseController {
         for (int i = 0; i < grille.getNbLigne(); i++) {
             for (int j = 0; j < grille.getNbColonne(); j++) {
                 Ile ile = grille.getIleGrilleJoueur(i,j);
-                if(ile!=null) {
+                if(ile!=null && !ilesDejaVerifiees.contains(ile)) {
                     System.out.println("Ile pas nulle");
                     Button boutonIle = findButtonByCoord(j, i);
                     int valN = ile.getValPontDir("N");
@@ -805,7 +799,7 @@ public class GrilleControler extends BaseController {
 
                         Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
                         int height = ile.getX() - ileNord.getX() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestNord, ile, ileNord, "N", false );
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestNord, ile, ileNord, "N", enModeHypothese );
                         rect.addToGridPane();
 
                         rect.activeChargement();
@@ -820,9 +814,9 @@ public class GrilleControler extends BaseController {
                     if (valS > 0 && (ileSud = ile.getIleSud(grille))!=null && !ilesDejaVerifiees.contains(ileSud)) {
                         System.out.println("ile au sud");
 
-                        Button buttonDestSud = findButtonByCoord(ile.getY(), ile.getX());
+                        Button buttonDestSud = findButtonByCoord(ileSud.getY(), ileSud.getX());
                         int height = ileSud.getX() - ile.getX() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestSud, ile, ileSud, "S" , false);
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestSud, ile, ileSud, "S" , enModeHypothese);
                         rect.addToGridPane();
 
                         rect.activeChargement();
@@ -840,7 +834,7 @@ public class GrilleControler extends BaseController {
                         Button buttonDestOuest = findButtonByCoord(ileOuest.getY(), ileOuest.getX());
 
                         int width = ile.getY() - ileOuest.getY() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestOuest, ile, ileOuest, "O", false);
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestOuest, ile, ileOuest, "O", enModeHypothese);
                         rect.addToGridPane();
 
                         rect.activeChargement();
@@ -858,7 +852,7 @@ public class GrilleControler extends BaseController {
                         Button buttonDestEst = findButtonByCoord(ileEst.getY(), ileEst.getX());
 
                         int width = ileEst.getY() - ile.getY() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestEst, ile, ileEst, "E", false);
+                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestEst, ile, ileEst, "E", enModeHypothese);
                         rect.addToGridPane();
 
                         rect.activeChargement();

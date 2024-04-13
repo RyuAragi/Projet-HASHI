@@ -1,5 +1,6 @@
 package com.example.demojeumenu.controler;
 
+import com.example.demojeumenu.GrilleControler;
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.SoundUtils;
 import com.example.demojeumenu.utils.BaseController;
@@ -36,9 +37,12 @@ public class PopupWindowControllerLB extends BaseController {
     @FXML
     private Button back_button;
 
+
     public static void setStage(Stage st){
         stage = st;
     }
+
+
 
     public void setScene(Stage stage, Scene scene) {
         this.stage = stage;
@@ -65,5 +69,11 @@ public class PopupWindowControllerLB extends BaseController {
     public void initialize(){
         usernameLabel.setText(GlobalVariables.getUserInput());
         SoundUtils.addClickSound(continueButton, this::backButton);
+        usernameLabel3.setText(GrilleControler.chronoTime);
+        back_button.setOnAction(event -> {
+            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, GrilleControler.loadedFile, false);
+            Stage stage = (Stage) continueButton.getScene().getWindow();
+            stage.close();
+        });
     }
 }
