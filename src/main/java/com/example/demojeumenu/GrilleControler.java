@@ -1,13 +1,10 @@
 package com.example.demojeumenu;
 
-import com.example.demojeumenu.Menu.MenuTailleGrille;
 import com.example.demojeumenu.Technique.TechniqueInter;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
-import com.example.demojeumenu.game.GrilleJeu;
-import com.example.demojeumenu.game.Ile;
-import com.example.demojeumenu.game.IleJoueur;
-import com.example.demojeumenu.game.RectPontPossible;
+import com.example.demojeumenu.game.*;
+import com.example.demojeumenu.undoRedo.UndoRedo;
 import com.example.demojeumenu.utils.BaseController;
 import com.example.demojeumenu.Aide.AideManager;
 
@@ -40,12 +37,11 @@ import javafx.util.Duration;
 import org.springframework.stereotype.Controller;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Controller
 public class GrilleControler extends BaseController {
+
     /**
      * [String] Nom (+chemin) du fichier chargé de la grille.
      */
@@ -190,6 +186,11 @@ public class GrilleControler extends BaseController {
     @FXML
     private GridPane grillePane;
 
+
+
+    private static Duration duration;
+
+
     /**
      * Méthode d'incrémentation du chrono et change l'affichage de celui-ci
      */
@@ -212,8 +213,10 @@ public class GrilleControler extends BaseController {
      * Méthode d'initialisation du chrono
      */
     private void initChrono() {
+        duration = Duration.ZERO;
         chrono.setText("00:00");
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            duration = duration.add(Duration.seconds(1));
             // Appeler la méthode pour incrémenter le chrono chaque seconde
             incrementeChrono();
         }));
@@ -223,23 +226,25 @@ public class GrilleControler extends BaseController {
     /**
      * Méthode de démarrage du chrono
      */
-    private void startChrono() {
+    public static void startChrono() {
         timeline.play();
     }
 
     /**
      * Méthode d'arrêt du chrono.
      */
-    private void stopChrono() {
+    public static void stopChrono() {
         timeline.stop();
     }
 
     /**
-     * Méthode retournant le chrono actuel.
-     * @return [Timeline] le chronomètre.
+     * Méthode de récupération du temps du chrono
      */
-    public static Timeline getChrono() {
-        return timeline;
+    public static String getChronoTime() {
+        long seconds = (long) duration.toSeconds();
+        long minutes = seconds / 60;
+        seconds = seconds % 60;
+        return String.format("%02d:%02d", minutes, seconds);
     }
 
     /**
@@ -257,10 +262,163 @@ public class GrilleControler extends BaseController {
         return boutonIle;
     }
 
+    private void verification_grille(){
+        ArrayList<List<Pont>> pontsInccorects = grille.getPontsIncorrects();
+        vbox_aide_info.setVisible(true);
+        vbox_aide_info.setDisable(false);
+        if(pontsInccorects.isEmpty()){
+            textInfo.setText("Aucune erreur trouvé ! Félicitation vous tenez le bon bout !");
+            ok_button.setVisible(true);
+            ok_button.setDisable(false);
+            see_tech.setVisible(false);
+            next_clue.setVisible(false);
+        }
+        else{
+            for (List<Pont> lp: pontsInccorects) {
+                for (Node node : grillePane.getChildren()) {
+                    if (node instanceof RectPontPossible rect && rect.ileSrc == lp.get(0).getSrc() && rect.ileDest == lp.get(0).getDst()) {
+                        rect.line1.toRed();
+                        if (rect.line2 != null) {
+                            rect.line2.toRed();
+                        }
+                    }
+                }
+            }
+            textInfo.setText(pontsInccorects.size()+" pont erronés ! Souhaitez-vous les supprimer ?");
+            ok_button.setVisible(false);
+            ok_button.setDisable(true);
+            see_tech.setVisible(true);
+            see_tech.setDisable(false);
+            next_clue.setVisible(true);
+            next_clue.setDisable(false);
+
+            see_tech.setText("Non");
+            next_clue.setText("Oui");
+
+            EventHandler<? super MouseEvent> see_tech_act = see_tech.getOnMouseClicked();
+            see_tech.setOnMouseClicked(event -> {
+                vbox_aide_info.setVisible(false);
+                vbox_aide_info.setDisable(true);
+
+                for (Node node: grillePane.getChildren()) {
+                    if(node instanceof LignePont){
+                        ((LignePont)node).toBlack();
+                    }
+                }
+                see_tech.setOnMouseClicked(see_tech_act);
+            });
+
+            EventHandler<? super MouseEvent> next_clue_act = next_clue.getOnMouseClicked();
+            next_clue.setOnMouseClicked(event -> {
+                vbox_aide_info.setVisible(false);
+                vbox_aide_info.setDisable(true);
+
+                for (List<Pont> lp :pontsInccorects) {
+                    IleJoueur ileSrc = lp.get(0).getSrc();
+                    IleJoueur ileDest = lp.get(0).getDst();
+
+                    ileSrc.reinitPont(ileSrc.getPontDirection(lp.get(0)));
+                    ileDest.reinitPont(ileDest.getPontDirection(lp.get(0)));
+
+                    grille.supprimePont(lp);
+                }
+
+
+                ArrayList<RectPontPossible> rectToRemove = new ArrayList<>();
+                for (Node node:grillePane.getChildren()) {
+                    if(node instanceof LignePont && ((LignePont)node).getStroke()==Color.RED){
+                        rectToRemove.add(((LignePont)node).pontPossible);
+                    }
+                }
+                for (RectPontPossible rect:rectToRemove) {
+                    rect.removeFromGridPane(grillePane);
+                }
+
+                next_clue.setOnMouseClicked(next_clue_act);
+            });
+
+        }
+    }
+
+    private void undoMethod(){
+        UndoRedo undoRedo = grille.getUndoRedo();
+        Pont pont = undoRedo.actionUndo(grille);
+        if(pont!=null) {
+            IleJoueur src = pont.getSrc();
+            IleJoueur dest = pont.getDst();
+            RectPontPossible rect = getPontParIles(src, dest);
+            if(src.getValIle() != 1 && dest.getValIle() != 1) {
+                if (rect.estDoublePont()) {
+                    rect.simulerClick();
+                    RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.boutonSrc, rect.boutonDest, rect.ileSrc, rect.ileDest, rect.dir, rect.hypothese);
+                    rect1.addToGridPane();
+                    rect1.simulerClick();
+                } else {
+                    rect.simulerClick();
+                    rect.simulerClick();
+                }
+            }
+
+            else {
+                if (rect == null) {
+                    RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.boutonSrc, rect.boutonDest, rect.ileSrc, rect.ileDest, rect.dir, rect.hypothese);
+                    rect1.addToGridPane();
+                    rect1.simulerClick();
+                }
+                else {
+                    rect.simulerClick();
+                }
+            }
+        }
+    }
+
+    public void redoMethod() {
+        UndoRedo undoRedo = grille.getUndoRedo();
+        Pont pont = undoRedo.actionRedo(grille);
+        if(pont!=null) {
+            IleJoueur src = pont.getSrc();
+            IleJoueur dest = pont.getDst();
+
+            RectPontPossible rect = getPontParIles(src, dest);
+            if (rect != null) {
+                rect.simulerClick();
+            }
+            else{
+                RectPontPossible rect1 = null;
+                if(src.getIleNord(grille) == dest){
+                    rect1 = creerPontPossibleNord(src, findButtonByCoord(src.getX(),src.getY()));
+                }
+                else if(src.getIleSud(grille) == dest){
+                    rect1 = creerPontPossibleSud(src, findButtonByCoord(src.getX(),src.getY()));
+                }
+                else if(src.getIleOuest(grille) == dest){
+                    rect1 = creerPontPossibleOuest(src, findButtonByCoord(src.getX(),src.getY()));
+                }
+                else if(src.getIleEst(grille) == dest){
+                    rect1 = creerPontPossibleEst(src, findButtonByCoord(src.getX(),src.getY()));
+                }
+                if(rect1!=null) {
+                    rect1.simulerClick();
+                }
+            }
+        }
+    }
+
+
+
+    public RectPontPossible getPontParIles(Ile ileSrc, Ile ileDest){
+        for (Node node: grillePane.getChildren()) {
+            if(node instanceof RectPontPossible rect && ((rect.ileSrc==ileSrc && rect.ileDest==ileDest) || (rect.ileSrc==ileDest && ileDest==ileSrc))){
+                return rect;
+            }
+        }
+        return null;
+    }
+
+
     /**
      * Méthode de validation d'hypothèses.
      */
-    @FXML
     private void validation_hypotheses() {
         for (Node node: grillePane.getChildren()) {
             if(node instanceof RectPontPossible && ((RectPontPossible)node).hypothese){
@@ -278,7 +436,6 @@ public class GrilleControler extends BaseController {
     /**
      * Méthode de suppression des hypothèses.
      */
-    @FXML
     private void suppression_hypotheses() {
         ArrayList<RectPontPossible> nodesToRemove = new ArrayList<>();
         for (Node node: grillePane.getChildren()) {
@@ -302,7 +459,6 @@ public class GrilleControler extends BaseController {
     /**
      * Méthode d'affichage de l'aide au joueur.
      */
-    @FXML
     private void helpMethod() {
         Rectangle zoneSolution;
         AideManager aideManager = AideManager.getInstance();
@@ -498,6 +654,7 @@ public class GrilleControler extends BaseController {
     private void hypotheseMethod() {
         if (enModeHypothese) {
             enModeHypothese = false;
+            grillePane.getParent().setStyle("-fx-background-image: url('images/background.png')");
 
             valid_hypo.setDisable(true);
             valid_hypo.setVisible(false);
@@ -524,6 +681,7 @@ public class GrilleControler extends BaseController {
             restart.setVisible(true);
         } else {
             enModeHypothese = true;
+            grillePane.getParent().setStyle("-fx-background-image: url('images/background_blur.png')");
 
             valid_hypo.setDisable(false);
             valid_hypo.setVisible(true);
@@ -588,7 +746,7 @@ public class GrilleControler extends BaseController {
 
         quit.setOnAction(event -> {
             GlobalVariables.setInGame(false);
-            grille.creer_sauvegarde("/niveau/"+this.loadedFile);
+            grille.creer_sauvegarde("/niveau/"+loadedFile);
             FXMLUtils.goBack(scene);
         });
 
@@ -624,13 +782,17 @@ public class GrilleControler extends BaseController {
         });
 
 
-        hypothese.setOnMouseClicked(event -> {
-            hypotheseMethod();
-        });
+        hypothese.setOnMouseClicked(event -> hypotheseMethod());
 
         valid_hypo.setOnMouseClicked(event -> validation_hypotheses());
 
         supp_hypo.setOnMouseClicked(event -> suppression_hypotheses());
+
+        check.setOnMouseClicked(event -> verification_grille());
+
+        undo.setOnMouseClicked(event -> undoMethod());
+
+        redo.setOnMouseClicked(event -> redoMethod());
     }
 
     /**
@@ -662,7 +824,7 @@ public class GrilleControler extends BaseController {
         creerPontPossibleSud(ileSrc, buttonSrc);
         creerPontPossibleOuest(ileSrc, buttonSrc);
         creerPontPossibleEst(ileSrc, buttonSrc);
-        verifFinGrille();
+        //verifFinGrille();
     }
 
     /**
@@ -754,24 +916,6 @@ public class GrilleControler extends BaseController {
         }
         return null;
     }
-
-    public static String chronoTime;
-
-
-    /**
-     * Méthode permettant de vérifier que la grille est complétée
-     */
-    private void verifFinGrille(){
-        if(grille.getGrilleComplete()){
-            stopChrono();
-            // Créer une instance de MenuTailleGrille
-            MenuTailleGrille menu = new MenuTailleGrille();
-            // Appeler la méthode leaderboard
-            chronoTime = chrono.getText();
-            menu.leaderboard();
-        }
-    }
-
 
 
     /**
@@ -897,10 +1041,10 @@ public class GrilleControler extends BaseController {
     public void initData(String levelFileName, boolean chargement) {
         GlobalVariables.setInGame(true);
         System.out.println("LevelFileNameCorrected: " + levelFileName);
-        this.loadedFile = levelFileName;
+        loadedFile = levelFileName;
 
         // Get the resource as a stream
-        InputStream resourceStream = getClass().getResourceAsStream("/niveaux/" + this.loadedFile);
+        InputStream resourceStream = getClass().getResourceAsStream("/niveaux/" + loadedFile);
 
         if (resourceStream == null) {
             System.err.println("Resource not found: " + loadedFile);
@@ -910,6 +1054,7 @@ public class GrilleControler extends BaseController {
             // Pass the InputStream to GrilleJeu
 
             enModeHypothese=false;
+
             this.zoom_level = 0;
             initButtons();
             initChrono();
@@ -918,7 +1063,8 @@ public class GrilleControler extends BaseController {
             initializeGrille();
 
             if(chargement){
-                this.grille = grille.charger_sauvegarde(this.loadedFile.substring(0, this.loadedFile.length()-4)+".ser");
+                System.out.println("Chargement de la grille depuis un fichier de sauvegarde");
+                this.grille = grille.charger_sauvegarde(loadedFile.substring(0, loadedFile.length()-4)+".ser");
                 chargeGrille();
             }
             System.out.println("Grille: " + this.grille);

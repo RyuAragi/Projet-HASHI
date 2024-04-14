@@ -115,7 +115,7 @@ public class IleJoueur extends Ile implements Serializable {
      * @return La direction
      * @throws NoSuchElementException
      */
-    String getPontDirection(Pont p) throws NoSuchElementException{
+    public String getPontDirection(Pont p) throws NoSuchElementException{
         for(Map.Entry<String, List<Pont>> elem : this.pontRelie.entrySet()) {
             if(elem.getValue().contains(p)) {
                 return elem.getKey();

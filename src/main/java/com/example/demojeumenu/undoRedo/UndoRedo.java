@@ -65,19 +65,23 @@ import java.util.Stack;
      * Methode permettant de faire une action undo -> Revenir en arriere 
      * @param jeu
      */
-    public void actionUndo(GrilleJeu jeu) {
+    public Pont actionUndo(GrilleJeu jeu) {
        Pont p = jeu.getDernierPontAjouter();
-       jeu.supprimePont(p);
        this.pushRedo(p);
+       return p;
     }
 
     /**
      * Methode permettant de faire une action redo -> Revenir a l'état avant le retour en arrière
      * @param jeu
      */
-    void actionRedo(GrilleJeu jeu) {
-        Pont pont = this.popRedo();
-        jeu.poserPont(pont.getSrc(), pont.getDst(), pont.estHypothese());
+    public Pont actionRedo(GrilleJeu jeu){
+        if(!redo.isEmpty()) {
+            Pont p = this.popRedo();
+            return p;
+        }
+        System.out.println("Plus de ponts !");
+        return null;
     }
 
     /**

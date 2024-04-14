@@ -6,18 +6,24 @@
 
 package com.example.demojeumenu.game;
 
+import com.example.demojeumenu.GrilleControler;
+import com.example.demojeumenu.Menu.MenuTailleGrille;
 import com.example.demojeumenu.Sauvegarde;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.undoRedo.UndoRedo;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class GrilleJeu implements Serializable{
-    private boolean grilleComplete;
 
     //Représente la grille sur laquelle joue le joueur
     private Case[][] joueur;
@@ -34,7 +40,7 @@ public class GrilleJeu implements Serializable{
     private int nbLigne;
     //Le nombre de colonne de la grille
     private int nbColonne;
-
+    public static String chronoTime;
 
 
     //Le score du joueur
@@ -55,7 +61,6 @@ public class GrilleJeu implements Serializable{
      * @param reader le chemin vers le fichier de la grille
      */
     public GrilleJeu(InputStreamReader reader){
-        this.grilleComplete = false;
         this.nbPontTotal = 0;
         this.listPontPose = new ArrayList<>();
         this.undoRedo = new UndoRedo();
@@ -63,12 +68,74 @@ public class GrilleJeu implements Serializable{
         charge(reader);
     }
 
+
     /**
-     * Méthode permettant de récupérer l'état de la grille.
-     * @return [Boolean] L'état de la grille. (IleComplete = True/False)
+     * Méthode permettant de vérifier que la grille est complétée
      */
-    public boolean getGrilleComplete(){
-        return this.grilleComplete;
+    public void actionsFinGrille(){
+
+        //fonction de verification si l'arborecence est créée
+
+
+        GrilleControler.stopChrono();
+        // Créer une instance de MenuTailleGrille
+        MenuTailleGrille menu = new MenuTailleGrille();
+        // Appeler la méthode leaderboard
+        chronoTime = GrilleControler.getChronoTime();
+        System.out.println(chronoTime);
+
+        int playerScore = calculatePlayerScore(); // replace this with your score calculation logic
+        // Save the score to the leaderboard
+        String leaderboardPath = "JacobHashi/Sauvegarde/Leaderboard.json";
+
+        //verifie si le JacobHashi/Sauvegarde/Leaderboard.json existe
+
+        changer_score(playerScore, leaderboardPath,MenuTailleGrille.level_info ,GlobalVariables.getUserInput());
+
+        menu.leaderboard();
+    }
+
+    private void changer_score(int playerScore, String leaderboardPath, String level, String userInput) {
+        // Assuming the leaderboard is a JSON file
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File(leaderboardPath);
+
+        try {
+            // Read the existing leaderboard
+            Map<String, JsonNode> leaderboard = objectMapper.readValue(file, new TypeReference<Map<String, JsonNode>>() {});
+
+            // Create a new JSON object to represent the player's data
+            ObjectNode playerData = objectMapper.createObjectNode();
+            playerData.put("name", userInput);
+            playerData.put("score", playerScore);
+            playerData.put("time", chronoTime);
+
+            // Get the specific level data
+            JsonNode levelData = leaderboard.get(level);
+            if (levelData == null) {
+                levelData = objectMapper.createObjectNode();
+            }
+
+            // Get the user's data
+            JsonNode userData = ((ObjectNode) levelData).get(userInput);
+            if (userData == null) {
+                userData = objectMapper.createArrayNode();
+            }
+
+            // Add the new score to the user's data
+            ((ArrayNode) userData).add(playerData);
+            ((ObjectNode) levelData).set(userInput, userData);
+            leaderboard.put(level, levelData);
+
+            // Write the updated leaderboard back to the file
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, leaderboard);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int calculatePlayerScore() {
+        return 100;
     }
 
     /**
@@ -213,6 +280,12 @@ public class GrilleJeu implements Serializable{
         }
     }
 
+    public void supprimePont(List<Pont> lp){
+        for (Pont p: lp) {
+            supprimePont(p);
+        }
+    }
+
 
     /**
      * Méthode qui remplace tous les ponts hypothèses en pont non hypothèse
@@ -303,7 +376,7 @@ public class GrilleJeu implements Serializable{
         }
 
         if(verifMatrice()){
-            this.grilleComplete=true;
+            actionsFinGrille();
         }
     }
 
@@ -315,6 +388,7 @@ public class GrilleJeu implements Serializable{
         if (!listPontPose.isEmpty()){
             return listPontPose.get(listPontPose.size()-1);
         }
+        System.out.println("Pas de pont ajoutés");
         return null;
     }
     /**
@@ -341,7 +415,7 @@ public class GrilleJeu implements Serializable{
         }else{
             Pont p = new Pont(j1,j2, estHypothese);
             j1.ajoutePontList(dir1,p);
-            j2.ajoutePontList(dir2, p);
+            j2.ajoutePontList(dir2,p);
             enregistrePont(p);
 
             //A chaque pont posé entre deux îles, on le vérifie
@@ -384,12 +458,26 @@ public class GrilleJeu implements Serializable{
     public boolean verifMatrice(){
         for (int i = 0; i< nbLigne; i++){
             for(int j = 0; j < nbColonne; j++){
-                if(getIleGrilleJoueur(i,j)!=null && !getIleGrilleJoueur(i,j).ileComplete()){
+                IleJoueur ile;
+                if(getIleGrilleJoueur(i,j)!=null && !((IleJoueur)getIleGrilleJoueur(i,j)).ileComplete()){
                     return false;
+                }
+                else if(getIleGrilleJoueur(i,j)!=null && (ile=(IleJoueur)getIleGrilleJoueur(i,j)).ileComplete()){
+                    for (Pont p: ile.getPontDir("N")) {
+                        if(p.estHypothese()) return false;
+                    }
+                    for (Pont p: ile.getPontDir("S")) {
+                        if(p.estHypothese()) return false;
+                    }
+                    for (Pont p: ile.getPontDir("O")) {
+                        if(p.estHypothese()) return false;
+                    }
+                    for (Pont p: ile.getPontDir("E")) {
+                        if(p.estHypothese()) return false;
+                    }
                 }
             }
         }
-
         return true;
     }
 
@@ -767,6 +855,7 @@ public class GrilleJeu implements Serializable{
             File fichier_save = new File(save.getPath() + result[1] + "/" + nom_joueur + "/" + result[2] + "/" +result[3].substring(0, result[3].length()-4)+ ".ser");
 
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier_save));
+            save.creer_fichier_leaderboard();
             oos.writeObject(this);
             oos.close();
         } catch (Exception e) {
@@ -783,7 +872,7 @@ public class GrilleJeu implements Serializable{
             Sauvegarde save = new Sauvegarde();
             String nom_joueur = GlobalVariables.getUserInput();
 
-
+            System.out.println("je suis la !");
             File fichier = new File(save.getPath() + "/niveau/" + nom_joueur + "/" + nom_fichier);
 
             // ouverture d'un flux sur un fichier
@@ -807,16 +896,16 @@ public class GrilleJeu implements Serializable{
             for (int j = 0; j < getNbColonne(); j++) {
                 Ile ile, ileSolution;
                 if((ile = getIleGrilleJoueur(i, j))!=null && (ileSolution = getIleGrilleSolution(i, j))!=null){
-                    if(ile.getValPontDir("N")>ileSolution.getValPontDir("N")){
+                    if(ile.getValPontDir("N")>ileSolution.getValPontDir("N") && !pontsIncorrects.contains(((IleJoueur)ile).getPontDir("N"))){
                         pontsIncorrects.add(((IleJoueur)ile).getPontDir("N"));
                     }
-                    if(ile.getValPontDir("S")>ileSolution.getValPontDir("S")){
+                    if(ile.getValPontDir("S")>ileSolution.getValPontDir("S") && !pontsIncorrects.contains(((IleJoueur)ile).getPontDir("S"))){
                         pontsIncorrects.add(((IleJoueur)ile).getPontDir("S"));
                     }
-                    if(ile.getValPontDir("O")>ileSolution.getValPontDir("O")){
+                    if(ile.getValPontDir("O")>ileSolution.getValPontDir("O") && !pontsIncorrects.contains(((IleJoueur)ile).getPontDir("O"))){
                         pontsIncorrects.add(((IleJoueur)ile).getPontDir("O"));
                     }
-                    if(ile.getValPontDir("E")>ileSolution.getValPontDir("E")){
+                    if(ile.getValPontDir("E")>ileSolution.getValPontDir("E") && !pontsIncorrects.contains(((IleJoueur)ile).getPontDir("E"))){
                         pontsIncorrects.add(((IleJoueur)ile).getPontDir("E"));
                     }
                 }
@@ -824,7 +913,11 @@ public class GrilleJeu implements Serializable{
         }
         return pontsIncorrects;
     }
- 
+
+    public UndoRedo getUndoRedo() {
+        return this.undoRedo;
+    }
+
  /*
      public static void main(String[] args) {
          GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Facile-5.txt");
