@@ -17,7 +17,10 @@ jobs:
           java-version: 21
           java-package: jdk+fx
       - name: Generate Javadoc
-        run: ./gradlew javaDoc 
+        run: |
+          mvn javadoc:javadoc
+          mkdir -p agent/build/docs/javadoc
+          cp -r target/site/apidocs/* agent/build/docs/javadoc
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.4
         with:
