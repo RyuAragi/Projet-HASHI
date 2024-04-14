@@ -14,8 +14,8 @@
     <name>JacoBhashi</name>
     <description>JacoBhashi</description>
     <properties>
-        <java.version>22</java.version>
-        <javafx.version>22</javafx.version>
+        <java.version>21</java.version>
+        <javafx.version>21</javafx.version>
         <start-class>com.example.demojeumenu.Launcher</start-class>
     </properties>
     <dependencies>
