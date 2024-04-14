@@ -336,7 +336,7 @@ public class GrilleControler extends BaseController {
             IleJoueur src = pont.getSrc();
             IleJoueur dest = pont.getDst();
             RectPontPossible rect = getPontParIles(src, dest);
-            if (rect != null) {
+            if(src.getValIle() != 1 && dest.getValIle() != 1) {
                 if (rect.estDoublePont()) {
                     rect.simulerClick();
                     RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.boutonSrc, rect.boutonDest, rect.ileSrc, rect.ileDest, rect.dir, rect.hypothese);
@@ -344,6 +344,17 @@ public class GrilleControler extends BaseController {
                     rect1.simulerClick();
                 } else {
                     rect.simulerClick();
+                    rect.simulerClick();
+                }
+            }
+
+            else {
+                if (rect == null) {
+                    RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.boutonSrc, rect.boutonDest, rect.ileSrc, rect.ileDest, rect.dir, rect.hypothese);
+                    rect1.addToGridPane();
+                    rect1.simulerClick();
+                }
+                else {
                     rect.simulerClick();
                 }
             }
