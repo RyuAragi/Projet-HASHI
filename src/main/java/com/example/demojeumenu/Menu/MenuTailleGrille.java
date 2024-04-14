@@ -29,6 +29,8 @@ public class MenuTailleGrille extends BaseController {
    /* @FXML
     private Button jouerGrille15x15Button;*/
 
+    public static String level_info;
+
     @FXML
     public void leaderboard(){
         // Load the FXML file for the external frame
@@ -86,7 +88,7 @@ public class MenuTailleGrille extends BaseController {
             String difficulty = parts[0].toLowerCase();
             levelFileName = difficulty + "/" + levelName + ".txt";
             System.out.println("jouerGrille15x15Button levelFileName: " + levelFileName);
-
+            level_info = levelName;
             File fichier = new File("JacobHashi/Sauvegarde/niveau/"+ GlobalVariables.getUserInput()+"/"+levelFileName.substring(0,levelFileName.length()-4)+".ser");
             boolean chargement = false;
             if(fichier.exists() && fichier.isFile()){

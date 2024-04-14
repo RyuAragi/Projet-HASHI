@@ -186,6 +186,11 @@ public class GrilleControler extends BaseController {
     @FXML
     private GridPane grillePane;
 
+
+
+    private static Duration duration;
+
+
     /**
      * Méthode d'incrémentation du chrono et change l'affichage de celui-ci
      */
@@ -208,8 +213,10 @@ public class GrilleControler extends BaseController {
      * Méthode d'initialisation du chrono
      */
     private void initChrono() {
+        duration = Duration.ZERO;
         chrono.setText("00:00");
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            duration = duration.add(Duration.seconds(1));
             // Appeler la méthode pour incrémenter le chrono chaque seconde
             incrementeChrono();
         }));
@@ -233,8 +240,12 @@ public class GrilleControler extends BaseController {
     /**
      * Méthode de récupération du temps du chrono
      */
-    public static String getChronoTime(){return timeline.toString();}
-
+    public static String getChronoTime() {
+        long seconds = (long) duration.toSeconds();
+        long minutes = seconds / 60;
+        seconds = seconds % 60;
+        return String.format("%02d:%02d", minutes, seconds);
+    }
 
     /**
      * Méthode création d'un bouton ile qui sera inséré dans la grille visuelle.
@@ -906,7 +917,6 @@ public class GrilleControler extends BaseController {
         return null;
     }
 
-    public static String chronoTime;
 
     /**
      * Méthode de chargement graphique de la grille.
@@ -1053,6 +1063,7 @@ public class GrilleControler extends BaseController {
             initializeGrille();
 
             if(chargement){
+                System.out.println("Chargement de la grille depuis un fichier de sauvegarde");
                 this.grille = grille.charger_sauvegarde(loadedFile.substring(0, loadedFile.length()-4)+".ser");
                 chargeGrille();
             }

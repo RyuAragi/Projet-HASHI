@@ -92,7 +92,7 @@ public class Score {
      * Elle est utilisable dans le cas ou le joueur n'est pas renseigné, c'est-à-dire que c'est un nouveau joueur.
      * @throws IOException
      */
-    public void ajouter_joueur(String nom_joueur) throws IOException {
+    public void ajouter_joueur(String nom_joueur) throws IOException{
         JsonNode node = getNode();
         ObjectMapper mapper = new ObjectMapper();
         File f = new File(Score.class.getResource("Sauvegarde/Leaderboard.json").getPath());

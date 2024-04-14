@@ -11,10 +11,17 @@ import com.example.demojeumenu.Menu.MenuTailleGrille;
 import com.example.demojeumenu.Sauvegarde;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.undoRedo.UndoRedo;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class GrilleJeu implements Serializable{
 
@@ -33,7 +40,7 @@ public class GrilleJeu implements Serializable{
     private int nbLigne;
     //Le nombre de colonne de la grille
     private int nbColonne;
-
+    public static String chronoTime;
 
 
     //Le score du joueur
@@ -66,12 +73,69 @@ public class GrilleJeu implements Serializable{
      * Méthode permettant de vérifier que la grille est complétée
      */
     public void actionsFinGrille(){
+
+        //fonction de verification si l'arborecence est créée
+
+
         GrilleControler.stopChrono();
         // Créer une instance de MenuTailleGrille
         MenuTailleGrille menu = new MenuTailleGrille();
         // Appeler la méthode leaderboard
-        String chronoTime = GrilleControler.getChronoTime();
+        chronoTime = GrilleControler.getChronoTime();
+        System.out.println(chronoTime);
+
+        int playerScore = calculatePlayerScore(); // replace this with your score calculation logic
+        // Save the score to the leaderboard
+        String leaderboardPath = "JacobHashi/Sauvegarde/Leaderboard.json";
+
+        //verifie si le JacobHashi/Sauvegarde/Leaderboard.json existe
+
+        changer_score(playerScore, leaderboardPath,MenuTailleGrille.level_info ,GlobalVariables.getUserInput());
+
         menu.leaderboard();
+    }
+
+    private void changer_score(int playerScore, String leaderboardPath, String level, String userInput) {
+        // Assuming the leaderboard is a JSON file
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File(leaderboardPath);
+
+        try {
+            // Read the existing leaderboard
+            Map<String, JsonNode> leaderboard = objectMapper.readValue(file, new TypeReference<Map<String, JsonNode>>() {});
+
+            // Create a new JSON object to represent the player's data
+            ObjectNode playerData = objectMapper.createObjectNode();
+            playerData.put("name", userInput);
+            playerData.put("score", playerScore);
+            playerData.put("time", chronoTime);
+
+            // Get the specific level data
+            JsonNode levelData = leaderboard.get(level);
+            if (levelData == null) {
+                levelData = objectMapper.createObjectNode();
+            }
+
+            // Get the user's data
+            JsonNode userData = ((ObjectNode) levelData).get(userInput);
+            if (userData == null) {
+                userData = objectMapper.createArrayNode();
+            }
+
+            // Add the new score to the user's data
+            ((ArrayNode) userData).add(playerData);
+            ((ObjectNode) levelData).set(userInput, userData);
+            leaderboard.put(level, levelData);
+
+            // Write the updated leaderboard back to the file
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, leaderboard);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int calculatePlayerScore() {
+        return 100;
     }
 
     /**
@@ -361,6 +425,7 @@ public class GrilleJeu implements Serializable{
                 if (premiereErreur > listPontPose.size()) erreur = false;
             }
             return p;
+
         }
         return null;
     }
@@ -790,6 +855,7 @@ public class GrilleJeu implements Serializable{
             File fichier_save = new File(save.getPath() + result[1] + "/" + nom_joueur + "/" + result[2] + "/" +result[3].substring(0, result[3].length()-4)+ ".ser");
 
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichier_save));
+            save.creer_fichier_leaderboard();
             oos.writeObject(this);
             oos.close();
         } catch (Exception e) {
@@ -806,7 +872,7 @@ public class GrilleJeu implements Serializable{
             Sauvegarde save = new Sauvegarde();
             String nom_joueur = GlobalVariables.getUserInput();
 
-
+            System.out.println("je suis la !");
             File fichier = new File(save.getPath() + "/niveau/" + nom_joueur + "/" + nom_fichier);
 
             // ouverture d'un flux sur un fichier
@@ -851,7 +917,7 @@ public class GrilleJeu implements Serializable{
     public UndoRedo getUndoRedo() {
         return this.undoRedo;
     }
- 
+
  /*
      public static void main(String[] args) {
          GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Facile-5.txt");
