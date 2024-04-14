@@ -1084,10 +1084,10 @@ public class GrilleControler extends BaseController {
         int fontSize;
         if (this.grille.getNbColonne() < 10 && this.grille.getNbLigne() < 10) {
             fontSize = 15;
-            this.pixelSize = 50;
+            this.pixelSize = 100;
         } else {
             fontSize = 7;
-            this.pixelSize = 25;
+            this.pixelSize = 50;
         }
         grillePane.setPrefSize(this.pixelSize * grille.getNbColonne(), this.pixelSize * grille.getNbLigne());
         for (int i = 0; i < this.grille.getNbLigne(); i++) {
