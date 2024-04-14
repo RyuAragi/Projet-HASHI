@@ -1,50 +1,31 @@
-# Nom de notre workflow
-name: "Build and deploy Github pages"
+name: Deploy Javadoc
 
-# Événements sur lesquels il doit être déclenché
 on:
-  push:         # <- Déclenché lorsque l'on pousse du code...
+  push:
     branches:
-      - master  # <- ... mais seulement sur la branche "master"
+      - main
 
 jobs:
-
-  # Notre job
-  build-and-deploy:
+  publish:
     runs-on: ubuntu-latest
-
-    # Tâches à effectuer, comme expliquées ci-dessus
     steps:
-
-      # 1. On récupère le contenu du dépôt
-
-      - name: "Checkout"
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
-          persist-credentials: false
-
-      # 2. Partie spécifique à Sphinx (installation des
-      #    dépendances et génération de la doc)
-
-      - name: "Set up Python"
-        uses: actions/setup-python@v1
+          fetch-depth: 0
+      - uses: actions/setup-java@v1
         with:
-          python-version: 3.8
-
-      - name: "Install Python dependencies"
+          java-version: 21
+          java-package: jdk+fx
+      - name: Generate Javadoc
         run: |
-          pip3 install setuptools
-          pip3 install sphinx sphinx-rtd-theme
-
-      - name: "Build Sphinx Doc"
-        run: |
-          make html
-
-      # 3. Déploiement sur les Github Pages
-
-      - name: "Deploy Github Pages"
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+          mvn javadoc:javadoc
+          mkdir -p agent/build/docs/javadoc
+          cp -r target/site/apidocs/* agent/build/docs/javadoc
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages     # <- Branche sur laquelle seront commités les fichiers
-          FOLDER: build/html/  # <- Dossier contenant notre documentation générée
+          GITHUB_TOKEN: ${{ secrets.GH_PAGES_PAT }}
+          BRANCH: gh-pages
+          CLEAN: true
+          FOLDER: agent/build/docs/javadoc
+          TARGET_FOLDER: javadoc
