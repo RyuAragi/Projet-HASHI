@@ -795,6 +795,7 @@ public class GrilleControler extends BaseController {
         redo.setOnMouseClicked(event -> redoMethod());
 
         param.setOnAction(event -> BaseController.ParametreForGame());
+
     }
 
     /**
