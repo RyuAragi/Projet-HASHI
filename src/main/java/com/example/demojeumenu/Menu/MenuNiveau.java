@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class MenuNiveau extends BaseController {
+    // Méthodes pour naviguer vers différents menus de niveaux de grille.
 
     @FXML
     private void btn1() {
@@ -22,6 +23,7 @@ public class MenuNiveau extends BaseController {
     private void btn3() {
         FXMLUtils.loadFXML("/MenuTailleGrilleDif.fxml", scene);
     }
+    // Méthode pour retourner en arrière.
 
     @FXML
     private void retour() {

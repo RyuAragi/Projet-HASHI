@@ -27,7 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
+//just pour vérifier
 @Controller
 public class PopupWindowControllerLB extends BaseController {
 
@@ -61,24 +61,28 @@ public class PopupWindowControllerLB extends BaseController {
     @FXML
     private Button back_button;
 
+    // Méthode pour définir la fenêtre de l'application.
 
     public static void setStage(Stage st){
         stage = st;
     }
 
 
+    // Méthode pour définir la scène.
 
     public void setScene(Stage stage, Scene scene) {
         this.stage = stage;
         this.scene = scene;
     }
 
+    // Méthode pour revenir à l'écran d'accueil.
 
     @FXML
     private void btnHome() {
         stage.close();
         FXMLUtils.loadFXML("/MenuPrincipal.fxml", scene);
     }
+    // Méthode pour gérer le clic sur le bouton de retour.
 
     @FXML
     private void backButton() {
