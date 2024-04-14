@@ -31,7 +31,7 @@ public class Score {
 
     /**
      * Getter du HashMap des niveaux
-     * @return HashMap<String, HashMap<String, Integer>>
+     * @return HashMap&lt;String, HashMap&lt;String, Integer&gt;&gt;
      */
     public HashMap<String, HashMap<String, Integer>> getNiveaux() {
         return niveaux;
@@ -44,7 +44,6 @@ public class Score {
     /**
      * Methode permettant d'avoir le json sous forme de node
      * @return JsonNode
-     * @throws IOException
      */
     private JsonNode getNode() throws IOException {
         InputStream input = Score.class.getResourceAsStream("Sauvegarde/Leaderboard.json");
@@ -56,7 +55,6 @@ public class Score {
     /**
      * Methode permettant de remplir le hashmap.
      * Elle charge le fichier json et convertit toutes les valeurs dans le hashmap
-     * @throws IOException
      */
     private void remplir_hashmap() throws IOException {
 
@@ -90,9 +88,9 @@ public class Score {
      * Methode permttant d'ajouter un joueur au leaderboard général
      * La methode ajoute pour chaque niveau le nom du joueur en clé ainsi qu'un score de -1.
      * Elle est utilisable dans le cas ou le joueur n'est pas renseigné, c'est-à-dire que c'est un nouveau joueur.
-     * @throws IOException
+     * @param nom_joueur Nom du joueur à ajouter
      */
-    public void ajouter_joueur(String nom_joueur) throws IOException {
+    public void ajouter_joueur(String nom_joueur) throws IOException{
         JsonNode node = getNode();
         ObjectMapper mapper = new ObjectMapper();
         File f = new File(Score.class.getResource("Sauvegarde/Leaderboard.json").getPath());

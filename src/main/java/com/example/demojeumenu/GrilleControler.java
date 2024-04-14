@@ -186,6 +186,11 @@ public class GrilleControler extends BaseController {
     @FXML
     private GridPane grillePane;
 
+
+
+    private static Duration duration;
+
+
     /**
      * Méthode d'incrémentation du chrono et change l'affichage de celui-ci
      */
@@ -208,8 +213,10 @@ public class GrilleControler extends BaseController {
      * Méthode d'initialisation du chrono
      */
     private void initChrono() {
+        duration = Duration.ZERO;
         chrono.setText("00:00");
         timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            duration = duration.add(Duration.seconds(1));
             // Appeler la méthode pour incrémenter le chrono chaque seconde
             incrementeChrono();
         }));
@@ -233,8 +240,12 @@ public class GrilleControler extends BaseController {
     /**
      * Méthode de récupération du temps du chrono
      */
-    public static String getChronoTime(){return timeline.toString();}
-
+    public static String getChronoTime() {
+        long seconds = (long) duration.toSeconds();
+        long minutes = seconds / 60;
+        seconds = seconds % 60;
+        return String.format("%02d:%02d", minutes, seconds);
+    }
 
     /**
      * Méthode création d'un bouton ile qui sera inséré dans la grille visuelle.
@@ -336,7 +347,7 @@ public class GrilleControler extends BaseController {
             IleJoueur src = pont.getSrc();
             IleJoueur dest = pont.getDst();
             RectPontPossible rect = getPontParIles(src, dest);
-            if (rect != null) {
+            if(src.getValIle() != 1 && dest.getValIle() != 1) {
                 if (rect.estDoublePont()) {
                     rect.simulerClick();
                     RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.getBoutonSrc(), rect.getBoutonDest(), rect.getIleSrc(), rect.getIleDest(), rect.getDir(), rect.estHypothese());
@@ -344,6 +355,17 @@ public class GrilleControler extends BaseController {
                     rect1.simulerClick();
                 } else {
                     rect.simulerClick();
+                    rect.simulerClick();
+                }
+            }
+
+            else {
+                if (rect == null) {
+                    RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.boutonSrc, rect.boutonDest, rect.ileSrc, rect.ileDest, rect.dir, rect.hypothese);
+                    rect1.addToGridPane();
+                    rect1.simulerClick();
+                }
+                else {
                     rect.simulerClick();
                 }
             }
@@ -771,6 +793,9 @@ public class GrilleControler extends BaseController {
         undo.setOnMouseClicked(event -> undoMethod());
 
         redo.setOnMouseClicked(event -> redoMethod());
+
+        param.setOnAction(event -> BaseController.ParametreForGame());
+
     }
 
     /**
@@ -895,7 +920,6 @@ public class GrilleControler extends BaseController {
         return null;
     }
 
-    public static String chronoTime;
 
     /**
      * Méthode de chargement graphique de la grille.
@@ -1042,6 +1066,7 @@ public class GrilleControler extends BaseController {
             initializeGrille();
 
             if(chargement){
+                System.out.println("Chargement de la grille depuis un fichier de sauvegarde");
                 this.grille = grille.charger_sauvegarde(loadedFile.substring(0, loadedFile.length()-4)+".ser");
                 chargeGrille();
             }
@@ -1059,10 +1084,10 @@ public class GrilleControler extends BaseController {
         int fontSize;
         if (this.grille.getNbColonne() < 10 && this.grille.getNbLigne() < 10) {
             fontSize = 15;
-            this.pixelSize = 50;
+            this.pixelSize = 100;
         } else {
             fontSize = 7;
-            this.pixelSize = 25;
+            this.pixelSize = 50;
         }
         grillePane.setPrefSize(this.pixelSize * grille.getNbColonne(), this.pixelSize * grille.getNbLigne());
         for (int i = 0; i < this.grille.getNbLigne(); i++) {

@@ -13,8 +13,9 @@ public class MenuModeDuJeu extends BaseController {
     private void retour() {
         FXMLUtils.goBack(scene);
     }
-    public void btn2(ActionEvent actionEvent) {
-    }
+
+    // Méthode pour charger les diff niveau.
+
     @FXML
     private void btn1() {
         FXMLUtils.loadFXML("/MenuNiveau.fxml", scene);
