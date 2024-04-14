@@ -39,8 +39,8 @@ public class FXMLUtils {
     /**
      * Charge le fichier FXML
      *
-     * @ fxmlFileName nom du fichier FXML
-     * @ scene        scène
+     * @param fxmlFileName nom du fichier FXML
+     * @param scene scène
      */
 
     public static void loadFXML(String fxmlFileName, Scene scene) {
@@ -96,7 +96,8 @@ public class FXMLUtils {
 
     /**
      * Ajoute le fichier FXML à l'historique
-     * @ fxmlFileName nom du fichier FXML
+     *
+     * @param fxmlFileName nom du fichier FXML
      */
     public static void addHistory(String fxmlFileName) {
         if (fxmlHistory.isEmpty() || !fxmlHistory.peek().equals(fxmlFileName)) {

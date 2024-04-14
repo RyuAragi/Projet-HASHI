@@ -30,10 +30,11 @@ public class MenuTailleGrille extends BaseController {
     private Button jouerGrille15x15Button;*/
 
     public static String level_info;
+    // Méthode pour afficher le leaderboard.
 
     @FXML
     public void leaderboard(){
-        // Load the FXML file for the external frame
+        // Charger le fichier FXML pour la fenêtre externe.
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/PopupWindowLB.fxml"));
         Parent root;
         try {
@@ -44,13 +45,13 @@ public class MenuTailleGrille extends BaseController {
 
         PopupWindowControllerLB controller = loader.getController();
 
-        // Create the scene for the external frame
+        // Créer la scène pour la fenêtre externe.
         Scene scenePopup = new Scene(root);
         scenePopup.setFill(Color.TRANSPARENT);
         scenePopup.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/styles.css")).toExternalForm());
         scenePopup.getRoot().setEffect(new DropShadow());
 
-        // Create a new window for the external frame
+        // Créer une nouvelle fenêtre pour la fenêtre externe.
         Stage popupWindow = new Stage();
         popupWindow.setResizable(false);
         popupWindow.setWidth(800);
@@ -67,14 +68,14 @@ public class MenuTailleGrille extends BaseController {
 
         popupWindow.setScene(scenePopup);
 
-        // Apply the darkening effect to the main scene
+        // Appliquer l'effet d'assombrissement à la scène principale.
         ColorAdjust darkColorAdjust = new ColorAdjust();
         darkColorAdjust.setBrightness(-0.5);
         scene.getRoot().setEffect(darkColorAdjust);
         PopupWindowControllerLB.setStage(popupWindow);
 
 
-        // Show the popup window
+        // Afficher la fenêtre popup.
         popupWindow.showAndWait();
     }
 
@@ -102,6 +103,7 @@ public class MenuTailleGrille extends BaseController {
     }
 
 
+    // Méthodes pour naviguer vers d'autres menus de taille de grille.
 
     @FXML
     private void btnS() {
@@ -115,7 +117,7 @@ public class MenuTailleGrille extends BaseController {
     private void btn3() {
         FXMLUtils.loadFXML("/MenuTailleGrilleDif2.fxml", scene);
     }
-
+    // Méthode pour retourner en arrière.
     @FXML
     private void retour() {
         FXMLUtils.goBack(scene);

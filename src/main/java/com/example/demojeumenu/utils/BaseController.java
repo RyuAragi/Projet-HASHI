@@ -44,7 +44,7 @@ public abstract class BaseController {
         });
     }
 
-    private static void ParametreForGame() {
+    protected static void ParametreForGame() {
         // Charger le fichier FXML de l'external frame
         FXMLLoader loader = new FXMLLoader(JsonApp.class.getResource("/ParametresForGrille.fxml"));
         Parent root;

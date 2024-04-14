@@ -439,8 +439,8 @@ public class GrilleJeu implements Serializable{
     }
     /**
      * Vérifie la grille et modifie la liste de Pont en conséquence
-     * @return vrai si la grille est correct, faux sinon
      */
+
     public void corrigeList(){
         int taille = listPontPose.size();
         while(taille > premiereErreur){
