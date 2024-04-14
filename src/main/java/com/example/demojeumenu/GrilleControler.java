@@ -793,6 +793,8 @@ public class GrilleControler extends BaseController {
         undo.setOnMouseClicked(event -> undoMethod());
 
         redo.setOnMouseClicked(event -> redoMethod());
+
+        param.setOnAction(event -> BaseController.ParametreForGame());
     }
 
     /**
