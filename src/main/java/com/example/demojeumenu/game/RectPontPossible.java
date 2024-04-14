@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import org.w3c.dom.css.Rect;
 
 public class RectPontPossible extends Rectangle {
 
@@ -108,6 +109,11 @@ public class RectPontPossible extends Rectangle {
         this.setOnMouseExited(getMouseOut());
     }
 
+
+    public boolean estDoublePont(){
+        return (line1!=null && line2!=null);
+    }
+
     /**
      * Méthode de désactivation du chargement. Autorise la pose de pont sur la grille du backend.
      */
@@ -193,9 +199,10 @@ public class RectPontPossible extends Rectangle {
             int valPontDir = ileSrc.getValPontDir(dir);
             System.out.println(valPontDir);
             if(valPontDir==0 || line1==null){
-                this.setFill(Color.TRANSPARENT);
+                boutonSrc.setStyle("-fx-background-color: transparent");
+                boutonDest.setStyle("-fx-background-color: transparent");
 
-                if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
+                this.setFill(Color.TRANSPARENT);
                 if(dir.equals("N") || dir.equals("S")) {
                     line1 = new LignePont(this, (int) (this.getX() + this.getWidth() / 2), (int) this.getY(), (int) (this.getX() + this.getWidth() / 2), (int) (this.getY() + this.getHeight()));
                 }
@@ -203,6 +210,7 @@ public class RectPontPossible extends Rectangle {
                     line1 = new LignePont(this, (int) this.getX(), (int) (this.getY() + this.getHeight()/2), (int) (this.getX() + this.getWidth()), (int) (this.getY()+ this.getHeight()/2));
                 }
                 line1.addToGridPane();
+                if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
 
                 if (ileSrc.ileComplete()) {
                     boutonSrc.setStyle("-fx-background-color: lightgrey;");
@@ -213,7 +221,6 @@ public class RectPontPossible extends Rectangle {
             }
             else if((valPontDir==1 || line2==null) && this.hypothese==GrilleControler.enModeHypothese){
                 if ((!ileSrc.ileComplete() && !ileDest.ileComplete()) || this.chargement) {
-                    if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
                     if(dir.equals("N") || dir.equals("S")) {
                         line1.setTranslateX(-5);
                     }
@@ -228,8 +235,8 @@ public class RectPontPossible extends Rectangle {
                     else{
                         line2.setTranslateY(5);
                     }
-
                     line2.addToGridPane();
+                    if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
 
                     if (ileSrc.ileComplete()) {
                         boutonSrc.setStyle("-fx-background-color: lightgrey;");
@@ -270,7 +277,6 @@ public class RectPontPossible extends Rectangle {
                 }
         };
     }
-
 
     /**
      * Méthode de simulation de clique sur le rectangle pour poser un pont. Cette méthode est utilisée lors du chargement d'un grille précédemment sauvegardée.

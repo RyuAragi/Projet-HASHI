@@ -1,10 +1,10 @@
 package com.example.demojeumenu;
 
-import com.example.demojeumenu.Menu.MenuTailleGrille;
 import com.example.demojeumenu.Technique.TechniqueInter;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
 import com.example.demojeumenu.game.*;
+import com.example.demojeumenu.undoRedo.UndoRedo;
 import com.example.demojeumenu.utils.BaseController;
 import com.example.demojeumenu.Aide.AideManager;
 
@@ -37,12 +37,11 @@ import javafx.util.Duration;
 import org.springframework.stereotype.Controller;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Controller
 public class GrilleControler extends BaseController {
+
     /**
      * [String] Nom (+chemin) du fichier chargé de la grille.
      */
@@ -330,6 +329,69 @@ public class GrilleControler extends BaseController {
         }
     }
 
+    private void undoMethod(){
+        UndoRedo undoRedo = grille.getUndoRedo();
+        Pont pont = undoRedo.actionUndo(grille);
+        if(pont!=null) {
+            IleJoueur src = pont.getSrc();
+            IleJoueur dest = pont.getDst();
+            RectPontPossible rect = getPontParIles(src, dest);
+            if (rect != null) {
+                if (rect.estDoublePont()) {
+                    rect.simulerClick();
+                    RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.boutonSrc, rect.boutonDest, rect.ileSrc, rect.ileDest, rect.dir, rect.hypothese);
+                    rect1.addToGridPane();
+                    rect1.simulerClick();
+                } else {
+                    rect.simulerClick();
+                    rect.simulerClick();
+                }
+            }
+        }
+    }
+
+    public void redoMethod() {
+        UndoRedo undoRedo = grille.getUndoRedo();
+        Pont pont = undoRedo.actionRedo(grille);
+        if(pont!=null) {
+            IleJoueur src = pont.getSrc();
+            IleJoueur dest = pont.getDst();
+
+            RectPontPossible rect = getPontParIles(src, dest);
+            if (rect != null) {
+                rect.simulerClick();
+            }
+            else{
+                RectPontPossible rect1 = null;
+                if(src.getIleNord(grille) == dest){
+                    rect1 = creerPontPossibleNord(src, findButtonByCoord(src.getX(),src.getY()));
+                }
+                else if(src.getIleSud(grille) == dest){
+                    rect1 = creerPontPossibleSud(src, findButtonByCoord(src.getX(),src.getY()));
+                }
+                else if(src.getIleOuest(grille) == dest){
+                    rect1 = creerPontPossibleOuest(src, findButtonByCoord(src.getX(),src.getY()));
+                }
+                else if(src.getIleEst(grille) == dest){
+                    rect1 = creerPontPossibleEst(src, findButtonByCoord(src.getX(),src.getY()));
+                }
+                if(rect1!=null) {
+                    rect1.simulerClick();
+                }
+            }
+        }
+    }
+
+
+
+    public RectPontPossible getPontParIles(Ile ileSrc, Ile ileDest){
+        for (Node node: grillePane.getChildren()) {
+            if(node instanceof RectPontPossible rect && ((rect.ileSrc==ileSrc && rect.ileDest==ileDest) || (rect.ileSrc==ileDest && ileDest==ileSrc))){
+                return rect;
+            }
+        }
+        return null;
+    }
 
 
     /**
@@ -705,6 +767,10 @@ public class GrilleControler extends BaseController {
         supp_hypo.setOnMouseClicked(event -> suppression_hypotheses());
 
         check.setOnMouseClicked(event -> verification_grille());
+
+        undo.setOnMouseClicked(event -> undoMethod());
+
+        redo.setOnMouseClicked(event -> redoMethod());
     }
 
     /**
@@ -967,6 +1033,7 @@ public class GrilleControler extends BaseController {
             // Pass the InputStream to GrilleJeu
 
             enModeHypothese=false;
+
             this.zoom_level = 0;
             initButtons();
             initChrono();

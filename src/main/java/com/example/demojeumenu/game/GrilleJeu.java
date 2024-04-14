@@ -11,7 +11,6 @@ import com.example.demojeumenu.Menu.MenuTailleGrille;
 import com.example.demojeumenu.Sauvegarde;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.undoRedo.UndoRedo;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -313,7 +312,6 @@ public class GrilleJeu implements Serializable{
         }
 
         if(verifMatrice()){
-
             actionsFinGrille();
         }
     }
@@ -326,6 +324,7 @@ public class GrilleJeu implements Serializable{
         if (!listPontPose.isEmpty()){
             return listPontPose.get(listPontPose.size()-1);
         }
+        System.out.println("Pas de pont ajoutés");
         return null;
     }
     /**
@@ -352,7 +351,7 @@ public class GrilleJeu implements Serializable{
         }else{
             Pont p = new Pont(j1,j2, estHypothese);
             j1.ajoutePontList(dir1,p);
-            j2.ajoutePontList(dir2, p);
+            j2.ajoutePontList(dir2,p);
             enregistrePont(p);
 
             //A chaque pont posé entre deux îles, on le vérifie
@@ -362,7 +361,6 @@ public class GrilleJeu implements Serializable{
                 if (premiereErreur > listPontPose.size()) erreur = false;
             }
             return p;
-
         }
         return null;
     }
@@ -848,6 +846,10 @@ public class GrilleJeu implements Serializable{
             }
         }
         return pontsIncorrects;
+    }
+
+    public UndoRedo getUndoRedo() {
+        return this.undoRedo;
     }
  
  /*

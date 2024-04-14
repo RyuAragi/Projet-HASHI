@@ -67,7 +67,6 @@ public class LignePont extends Line {
         return event -> {
             if ((pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 1 || pontPossible.line2==null) && pontPossible.hypothese==GrilleControler.enModeHypothese) {
                 if (!pontPossible.ileSrc.ileComplete() && !pontPossible.ileDest.ileComplete()) {
-                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
                     if(pontPossible.dir.equals("N") || pontPossible.dir.equals("S")) {
                         this.setTranslateX(-5);
                     }
@@ -83,6 +82,7 @@ public class LignePont extends Line {
                         pontPossible.line2.setTranslateY(5);
                     }
                     pontPossible.line2.addToGridPane();
+                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
 
                     if (pontPossible.ileSrc.ileComplete()) {
                         pontPossible.boutonSrc.setStyle("-fx-background-color: lightgrey;");
