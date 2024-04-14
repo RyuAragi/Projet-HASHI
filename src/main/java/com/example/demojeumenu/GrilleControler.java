@@ -265,10 +265,10 @@ public class GrilleControler extends BaseController {
         else{
             for (List<Pont> lp: pontsInccorects) {
                 for (Node node : grillePane.getChildren()) {
-                    if (node instanceof RectPontPossible rect && rect.ileSrc == lp.get(0).getSrc() && rect.ileDest == lp.get(0).getDst()) {
-                        rect.line1.toRed();
-                        if (rect.line2 != null) {
-                            rect.line2.toRed();
+                    if (node instanceof RectPontPossible rect && rect.getIleSrc() == lp.get(0).getSrc() && rect.getIleDest() == lp.get(0).getDst()) {
+                        rect.getLine1().toRed();
+                        if (rect.getLine2() != null) {
+                            rect.getLine2().toRed();
                         }
                     }
                 }
@@ -339,7 +339,7 @@ public class GrilleControler extends BaseController {
             if (rect != null) {
                 if (rect.estDoublePont()) {
                     rect.simulerClick();
-                    RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.boutonSrc, rect.boutonDest, rect.ileSrc, rect.ileDest, rect.dir, rect.hypothese);
+                    RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.getBoutonSrc(), rect.getBoutonDest(), rect.getIleSrc(), rect.getIleDest(), rect.getDir(), rect.estHypothese());
                     rect1.addToGridPane();
                     rect1.simulerClick();
                 } else {
@@ -386,7 +386,7 @@ public class GrilleControler extends BaseController {
 
     public RectPontPossible getPontParIles(Ile ileSrc, Ile ileDest){
         for (Node node: grillePane.getChildren()) {
-            if(node instanceof RectPontPossible rect && ((rect.ileSrc==ileSrc && rect.ileDest==ileDest) || (rect.ileSrc==ileDest && ileDest==ileSrc))){
+            if(node instanceof RectPontPossible rect && rect.getIleSrc()==ileSrc && rect.getIleDest()==ileDest){
                 return rect;
             }
         }
@@ -399,12 +399,12 @@ public class GrilleControler extends BaseController {
      */
     private void validation_hypotheses() {
         for (Node node: grillePane.getChildren()) {
-            if(node instanceof RectPontPossible && ((RectPontPossible)node).hypothese){
-                ((RectPontPossible)node).line1.toBlack();
-                if(((RectPontPossible)node).line2!=null){
-                    ((RectPontPossible)node).line2.toBlack();
+            if(node instanceof RectPontPossible && ((RectPontPossible)node).estHypothese()){
+                ((RectPontPossible)node).getLine1().toBlack();
+                if(((RectPontPossible)node).getLine2()!=null){
+                    ((RectPontPossible)node).getLine2().toBlack();
                 }
-                ((RectPontPossible)node).hypothese = false;
+                ((RectPontPossible)node).setHypothese(false);
             }
         }
         grille.valideHypothese();
@@ -417,17 +417,17 @@ public class GrilleControler extends BaseController {
     private void suppression_hypotheses() {
         ArrayList<RectPontPossible> nodesToRemove = new ArrayList<>();
         for (Node node: grillePane.getChildren()) {
-            if(node instanceof RectPontPossible && ((RectPontPossible)node).hypothese){
+            if(node instanceof RectPontPossible && ((RectPontPossible)node).estHypothese()){
                 nodesToRemove.add((RectPontPossible)node);
             }
         }
         grille.quitteHypothese();
         for (RectPontPossible rect: nodesToRemove) {
-            if(!rect.ileSrc.ileComplete()){
-                rect.boutonSrc.setStyle("-fx-background-color: transparent;");
+            if(!rect.getIleSrc().ileComplete()){
+                rect.getBoutonSrc().setStyle("-fx-background-color: transparent;");
             }
-            if(!rect.ileDest.ileComplete()){
-                rect.boutonDest.setStyle("-fx-background-color: transparent;");
+            if(!rect.getIleDest().ileComplete()){
+                rect.getBoutonDest().setStyle("-fx-background-color: transparent;");
             }
             rect.removeFromGridPane(grillePane);
         }
@@ -1000,7 +1000,7 @@ public class GrilleControler extends BaseController {
     private void deleteBridges(){
         List<RectPontPossible> nodesToRemove = new ArrayList<>();
         for (Node node: grillePane.getChildren()) {
-            if(node instanceof RectPontPossible && ((RectPontPossible)node).line1==null ){
+            if(node instanceof RectPontPossible && ((RectPontPossible)node).getLine1()==null ){
                 nodesToRemove.add((RectPontPossible)node);
             } else if (node instanceof Button && !node.getStyle().contains("-fx-background-color: lightgrey;")) {
                 node.setStyle("-fx-background-color: transparent");
