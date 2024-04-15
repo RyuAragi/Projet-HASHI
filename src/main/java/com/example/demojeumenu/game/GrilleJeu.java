@@ -57,9 +57,9 @@ public class GrilleJeu implements Serializable{
     //Le score du joueur
     private double score ;
     //Le nombre de pont total de posés
-    private int nbCheck;
+    private static int nbCheck;
     //Le nombre total d'aide utilisé
-    private int nbAide;
+    private static int nbAide;
 
     // Objet undo redo permettant d'effectuer les actions undo/redo
     UndoRedo undoRedo;
@@ -172,7 +172,7 @@ public class GrilleJeu implements Serializable{
         }
     }
 
-    private int calculatePlayerScore() {
+    public static int calculatePlayerScore() {
         int pt = 100;
         pt += (int) (500-(((float)nbCheck)/(nbCheck+1))*300);
         pt += (int) (nbAide/(Math.exp(nbAide))*300);

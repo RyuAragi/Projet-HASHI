@@ -138,7 +138,8 @@ public class PopupWindowControllerLB extends BaseController {
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
 
         scoreTable.setItems(data);
-
+        int score = GrilleJeu.calculatePlayerScore();
+        usernameLabel2.setText(Integer.toString(score));
         usernameLabel.setText(GlobalVariables.getUserInput());
         SoundUtils.addClickSound(continueButton, this::backButton);
         usernameLabel3.setText(GrilleJeu.getChronoTime());
