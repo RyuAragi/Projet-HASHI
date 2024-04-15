@@ -72,11 +72,6 @@ public class GrilleControler extends BaseController {
     public static boolean enModeHypothese;
 
     /**
-     * [Timeline] Timer du jeu
-     */
-    private static Timeline timeline;
-
-    /**
      * [VBox] Element graphique (Vertical Box) contenant les elements d'information concernant l'aide cad le label textInfo, et les boutons de suppression de l'aide, de visualidsation de la technique et visualisation de l'aide suivante.
      */
     @FXML
@@ -191,48 +186,12 @@ public class GrilleControler extends BaseController {
     private GridPane grillePane;
 
 
-
-    private static Duration duration;
-
-
     /**
-     * Méthode d'incrémentation du chrono et change l'affichage de celui-ci
+     * [Timeline] Timer du jeu
      */
-    private void incrementeChrono() {
-        String text = chrono.getText();
-        String[] sepChrono = text.split(":");
+    private static Timeline timeline;
 
-        int secondes = Integer.parseInt(sepChrono[1]);
-        int minutes = Integer.parseInt(sepChrono[0]);
 
-        secondes += 1;
-        if (secondes == 60) {
-            secondes = 0;
-            minutes += 1;
-        }
-        chrono.setText(String.format("%02d", minutes) + ":" + String.format("%02d", secondes));
-    }
-
-    /**
-     * Méthode d'initialisation du chrono
-     */
-    private void initChrono() {
-        duration = Duration.ZERO;
-        chrono.setText("00:00");
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            duration = duration.add(Duration.seconds(1));
-            // Appeler la méthode pour incrémenter le chrono chaque seconde
-            incrementeChrono();
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE); // Pour répéter indéfiniment
-    }
-
-    /**
-     * Méthode de démarrage du chrono
-     */
-    public static void startChrono() {
-        timeline.play();
-    }
 
     /**
      * Méthode d'arrêt du chrono.
@@ -241,14 +200,8 @@ public class GrilleControler extends BaseController {
         timeline.stop();
     }
 
-    /**
-     * Méthode de récupération du temps du chrono
-     */
-    public static String getChronoTime() {
-        long seconds = (long) duration.toSeconds();
-        long minutes = seconds / 60;
-        seconds = seconds % 60;
-        return String.format("%02d:%02d", minutes, seconds);
+    private void updateTiming(){
+        this.chrono.setText(GrilleJeu.getChronoTime());
     }
 
     /**
@@ -267,13 +220,24 @@ public class GrilleControler extends BaseController {
     }
 
     private void verification_grille(){
+        grille.incrementCheck();
         ArrayList<List<Pont>> pontsInccorects = grille.getPontsIncorrects();
         vbox_aide_info.setVisible(true);
         vbox_aide_info.setDisable(false);
+
+        textInfo.setWrapText(true);
         if(pontsInccorects.isEmpty()){
             textInfo.setText("Aucune erreur trouvé ! Félicitation vous tenez le bon bout !");
+
+            EventHandler<? super MouseEvent> ok_act = ok_button.getOnMouseClicked();
             ok_button.setVisible(true);
             ok_button.setDisable(false);
+            ok_button.setOnMouseClicked(event -> {
+                vbox_aide_info.setVisible(false);
+                vbox_aide_info.setDisable(true);
+                ok_button.setOnMouseClicked(ok_act);
+            });
+
             see_tech.setVisible(false);
             next_clue.setVisible(false);
         }
@@ -288,7 +252,10 @@ public class GrilleControler extends BaseController {
                     }
                 }
             }
-            textInfo.setText(pontsInccorects.size()+" pont erronés ! Souhaitez-vous les supprimer ?");
+            int nbPont = pontsInccorects.size();
+            if(nbPont>1) textInfo.setText(nbPont+" ponts erronés ! Souhaitez-vous les supprimer ?");
+            else textInfo.setText(nbPont+" pont erroné ! Souhaitez-vous le supprimer ?");
+
             ok_button.setVisible(false);
             ok_button.setDisable(true);
             see_tech.setVisible(true);
@@ -309,6 +276,7 @@ public class GrilleControler extends BaseController {
                         ((LignePont)node).toBlack();
                     }
                 }
+
                 see_tech.setOnMouseClicked(see_tech_act);
             });
 
@@ -480,11 +448,15 @@ public class GrilleControler extends BaseController {
             vbox_aide_info.setDisable(false);
             vbox_aide_info.toFront();
 
+            see_tech.setText("Voir technique");
+            next_clue.setText("Indice suivant");
+            ok_button.setText("OK!");
+            ok_button.setVisible(true);
+            ok_button.setDisable(false);
+
             if (niveau_aide == 1 || niveau_aide == 2) {
                 int mid_X = grille.getNbLigne() / 2;
                 int mid_Y = grille.getNbColonne() / 2;
-                System.out.println("mid : " + mid_X + " - " + mid_Y);
-
 
                 zoneSolution = new Rectangle();
                 zoneSolution.setArcWidth(20);
@@ -529,12 +501,14 @@ public class GrilleControler extends BaseController {
                 next_clue.setVisible(true);
                 next_clue.setDisable(false);
                 if (niveau_aide == 1) {
+                    grille.incrementAide1();
                     textInfo.setText("Une technique peut être appliquée dans cette zone !");
                     textInfo.setWrapText(true);
                     see_tech.setVisible(false);
                     see_tech.setDisable(true);
                 }
                 if (niveau_aide == 2) {
+                    grille.incrementAide2();
                     textInfo.setText(technique.getNomTechnique() + " est applicable dans cette zone !");
                     see_tech.setVisible(true);
                     see_tech.setDisable(false);
@@ -543,6 +517,7 @@ public class GrilleControler extends BaseController {
                 next_clue.setOnMouseClicked(getNextClueAction(zoneSolution));
                 see_tech.setOnMouseClicked(getTechniqueAction(technique));
             } else if (niveau_aide == 3) {
+                grille.incrementAide3();
                 textInfo.setText(technique.getNomTechnique() + " est applicable dans cette ile !");
                 next_clue.setDisable(true);
                 next_clue.setVisible(false);
@@ -665,6 +640,8 @@ public class GrilleControler extends BaseController {
             supp_hypo.setDisable(true);
             supp_hypo.setVisible(false);
 
+            param.setVisible(true);
+            param.setDisable(false);
             hypothese.setVisible(true);
             hypothese.setDisable(false);
             dezoom.setDisable(false);
@@ -692,6 +669,8 @@ public class GrilleControler extends BaseController {
             supp_hypo.setDisable(false);
             supp_hypo.setVisible(true);
 
+            param.setVisible(false);
+            param.setDisable(true);
             hypothese.setVisible(false);
             hypothese.setDisable(true);
             dezoom.setDisable(true);
@@ -750,6 +729,7 @@ public class GrilleControler extends BaseController {
 
         quit.setOnAction(event -> {
             GlobalVariables.setInGame(false);
+            timeline.stop();
             grille.creer_sauvegarde("/niveau/"+loadedFile);
             FXMLUtils.goBack(scene);
         });
@@ -1071,8 +1051,9 @@ public class GrilleControler extends BaseController {
             enModeHypothese=false;
             typePont = type;
             this.zoom_level = 0;
+            this.chrono = new Label();
+            this.chrono.toFront();
             initButtons();
-            initChrono();
 
             this.grille = new GrilleJeu(reader);
             initializeGrille();
@@ -1087,7 +1068,13 @@ public class GrilleControler extends BaseController {
             }
             System.out.println("Grille: " + this.grille);
 
-            startChrono();
+            timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                System.out.println(grille.getChronoTime());
+                updateTiming();
+                grille.incrementeChrono();
+            }));
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.play();
         }
     }
 
@@ -1099,7 +1086,7 @@ public class GrilleControler extends BaseController {
         int fontSize;
         if (this.grille.getNbColonne() < 10 && this.grille.getNbLigne() < 10) {
             fontSize = 15;
-            this.pixelSize = 100;
+            this.pixelSize = 75;
         } else {
             fontSize = 7;
             this.pixelSize = 50;

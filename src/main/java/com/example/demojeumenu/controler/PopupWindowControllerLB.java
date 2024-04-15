@@ -141,7 +141,7 @@ public class PopupWindowControllerLB extends BaseController {
 
         usernameLabel.setText(GlobalVariables.getUserInput());
         SoundUtils.addClickSound(continueButton, this::backButton);
-        usernameLabel3.setText(GrilleJeu.chronoTime);
+        usernameLabel3.setText(GrilleJeu.getChronoTime());
         back_button.setOnAction(event -> {
             FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, GrilleControler.loadedFile, GrilleControler.typePont,false);
             Stage stage = (Stage) continueButton.getScene().getWindow();
