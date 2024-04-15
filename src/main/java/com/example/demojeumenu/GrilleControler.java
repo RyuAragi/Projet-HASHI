@@ -192,7 +192,6 @@ public class GrilleControler extends BaseController {
     private static Timeline timeline;
 
 
-
     /**
      * Méthode d'arrêt du chrono.
      */
@@ -330,17 +329,8 @@ public class GrilleControler extends BaseController {
                     rect.simulerClick();
                 }
             }
-
             else {
-                if (rect == null) {
-                    System.out.println("BIZARRREEEEEEEE");
-                    RectPontPossible rect1 = creerPontType(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.getBoutonSrc(), rect.getBoutonDest(), rect.getIleSrc(), rect.getIleDest(), rect.getDir(), rect.estHypothese());
-                    rect1.addToGridPane();
-                    rect1.simulerClick();
-                }
-                else {
-                    rect.simulerClick();
-                }
+                rect.simulerClick();
             }
         }
     }
@@ -707,7 +697,7 @@ public class GrilleControler extends BaseController {
 
         zoom.setOnAction(event -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);
-            if(zoom_level<=5) {
+            if(zoom_level<5) {
                 zoom_level++;
                 st.setByX(0.1);
                 st.setByY(0.1);
@@ -717,7 +707,7 @@ public class GrilleControler extends BaseController {
 
         dezoom.setOnAction(event -> {
             ScaleTransition st = new ScaleTransition(Duration.millis(100), grillePane);
-            if(zoom_level>=-5) {
+            if(zoom_level>-5) {
                 zoom_level--;
                 st.setByX(-0.1);
                 st.setByY(-0.1);
@@ -1051,8 +1041,6 @@ public class GrilleControler extends BaseController {
             enModeHypothese=false;
             typePont = type;
             this.zoom_level = 0;
-            this.chrono = new Label();
-            this.chrono.toFront();
             initButtons();
 
             this.grille = new GrilleJeu(reader);
@@ -1066,12 +1054,10 @@ public class GrilleControler extends BaseController {
             else {
                 grille.creer_sauvegarde("/niveau/"+loadedFile);
             }
-            System.out.println("Grille: " + this.grille);
-
+            updateTiming();
             timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-                System.out.println(grille.getChronoTime());
-                updateTiming();
                 grille.incrementeChrono();
+                updateTiming();
             }));
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
@@ -1084,10 +1070,15 @@ public class GrilleControler extends BaseController {
     public void initializeGrille() {
         System.out.print("Taille grille : " + this.grille.getNbColonne() + " - " + this.grille.getNbLigne());
         int fontSize;
-        if (this.grille.getNbColonne() < 10 && this.grille.getNbLigne() < 10) {
-            fontSize = 15;
-            this.pixelSize = 75;
-        } else {
+        if(this.grille.getNbLigne() >= 15 || this.grille.getNbColonne() >= 15){
+            this.pixelSize = 33;
+            fontSize = 1;
+        }
+        else if (this.grille.getNbColonne() >= 10 || this.grille.getNbLigne() >= 10) {
+            fontSize = 3;
+            this.pixelSize = 40;
+        }
+        else {
             fontSize = 7;
             this.pixelSize = 50;
         }
@@ -1111,7 +1102,6 @@ public class GrilleControler extends BaseController {
                     int I = i;
                     button.setOnMouseEntered(event -> {
                         createBridges(button, I, J);
-                        System.out.println("Sur ile!");
                     });
 
                     button.setOnMouseExited(event -> {
