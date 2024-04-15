@@ -10,6 +10,7 @@ import com.example.demojeumenu.GrilleControler;
 import com.example.demojeumenu.Menu.MenuTailleGrille;
 import com.example.demojeumenu.Sauvegarde;
 import com.example.demojeumenu.controler.GlobalVariables;
+import com.example.demojeumenu.controler.PopupWindowControllerLB;
 import com.example.demojeumenu.undoRedo.UndoRedo;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -42,10 +43,9 @@ public class GrilleJeu implements Serializable{
     private int nbColonne;
     public String chronoTime;
 
-    private static int minute;
+    private int minute;
 
-    private static int seconde;
-
+    private int seconde;
 
     private boolean aide1Seen;
 
@@ -72,13 +72,12 @@ public class GrilleJeu implements Serializable{
      * @param reader le chemin vers le fichier de la grille
      */
     public GrilleJeu(InputStreamReader reader){
-        this.nbCheck = 0;
-        this.nbAide = 0;
+        nbCheck = 0;
+        nbAide = 0;
         this.listPontPose = new ArrayList<>();
         this.undoRedo = new UndoRedo();
         this.erreur = false;
         this.charge(reader);
-        initChrono();
     }
 
     /**
@@ -96,7 +95,7 @@ public class GrilleJeu implements Serializable{
     /**
      * Méthode d'initialisation du chrono
      */
-    private void initChrono() {
+    public void initChrono() {
         seconde = 0;
         minute = 0;
     }
@@ -104,8 +103,8 @@ public class GrilleJeu implements Serializable{
     /**
      * Méthode de récupération du temps du chrono
      */
-    public static String getChronoTime() {
-        return String.format("%02d:%02d", minute, seconde);
+    public String getChronoTime() {
+        return String.format("%02d:%02d", this.minute, this.seconde);
     }
 
 
@@ -116,13 +115,15 @@ public class GrilleJeu implements Serializable{
     public void actionsFinGrille(){
         //fonction de verification si l'arborecence est créée
         GrilleControler.stopChrono();
+
+        chronoTime = getChronoTime();
+        int playerScore = calculatePlayerScore(); // replace this with your score calculation logic
+        PopupWindowControllerLB.setChrono(chronoTime);
+        PopupWindowControllerLB.setScore(playerScore);
+
         // Créer une instance de MenuTailleGrille
         MenuTailleGrille menu = new MenuTailleGrille();
         // Appeler la méthode leaderboard
-        chronoTime = getChronoTime();
-        System.out.println(chronoTime);
-
-        int playerScore = calculatePlayerScore(); // replace this with your score calculation logic
         // Save the score to the leaderboard
         String leaderboardPath = "JacobHashi/Sauvegarde/Leaderboard.json";
 
@@ -172,7 +173,11 @@ public class GrilleJeu implements Serializable{
         }
     }
 
-    public static int calculatePlayerScore() {
+    /**
+     * Méthode de calcul du score du joueur en fonction du nombre de check, help demandés et du temps mis.
+     * @return [Integer] le nombre de points attribués au joueur.
+     */
+    public int calculatePlayerScore() {
         int pt = 100;
         pt += (int) (500-(((float)nbCheck)/(nbCheck+1))*300);
         pt += (int) (nbAide/(Math.exp(nbAide))*300);
@@ -183,7 +188,12 @@ public class GrilleJeu implements Serializable{
         return pt;
     }
 
-    public static int getFactorial(int f) {
+    /**
+     * Méthode de calcul du factoriel d'un nombre passé en paramètre.
+     * @param f Nombre passé en paramètre dont on doit calculer le factoriel
+     * @return [Integer] Résultat de la factoriel
+     */
+    public int getFactorial(int f) {
         int result = 1;
         for (int i = 1; i <= f; i++) {
             result = result * i;

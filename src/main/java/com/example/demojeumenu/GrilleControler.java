@@ -200,7 +200,7 @@ public class GrilleControler extends BaseController {
     }
 
     private void updateTiming(){
-        this.chrono.setText(GrilleJeu.getChronoTime());
+        this.chrono.setText(grille.getChronoTime());
     }
 
     /**
@@ -1058,6 +1058,7 @@ public class GrilleControler extends BaseController {
             }
             else {
                 grille.creer_sauvegarde("/niveau/"+loadedFile);
+                grille.initChrono();
             }
             updateTiming();
             timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
