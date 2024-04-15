@@ -284,17 +284,6 @@ public class GrilleControler extends BaseController {
                 vbox_aide_info.setVisible(false);
                 vbox_aide_info.setDisable(true);
 
-                for (List<Pont> lp :pontsInccorects) {
-                    IleJoueur ileSrc = lp.get(0).getSrc();
-                    IleJoueur ileDest = lp.get(0).getDst();
-
-                    ileSrc.reinitPont(ileSrc.getPontDirection(lp.get(0)));
-                    ileDest.reinitPont(ileDest.getPontDirection(lp.get(0)));
-
-                    grille.supprimePont(lp);
-                }
-
-
                 ArrayList<RectPontPossible> rectToRemove = new ArrayList<>();
                 for (Node node:grillePane.getChildren()) {
                     if(node instanceof LignePont && ((LignePont)node).getStroke()==Color.RED){
@@ -309,6 +298,16 @@ public class GrilleControler extends BaseController {
                         rect.getBoutonDest().setStyle("-fx-background-color: transparent");
                     }
                     rect.removeFromGridPane(grillePane);
+                }
+
+                for (List<Pont> lp :pontsInccorects) {
+                    IleJoueur ileSrc = lp.get(0).getSrc();
+                    IleJoueur ileDest = lp.get(0).getDst();
+
+                    ileSrc.reinitPont(ileSrc.getPontDirection(lp.get(0)));
+                    ileDest.reinitPont(ileDest.getPontDirection(lp.get(0)));
+
+                    grille.supprimePont(lp);
                 }
 
                 next_clue.setOnMouseClicked(next_clue_act);
@@ -407,18 +406,18 @@ public class GrilleControler extends BaseController {
     private void suppression_hypotheses() {
         ArrayList<RectPontPossible> nodesToRemove = new ArrayList<>();
         for (Node node: grillePane.getChildren()) {
-            if(node instanceof RectPontPossible && ((RectPontPossible)node).estHypothese()){
-                nodesToRemove.add((RectPontPossible)node);
+            if(node instanceof RectPontPossible rect && rect.estHypothese()){
+                nodesToRemove.add(rect);
+                if(!rect.getIleSrc().ileComplete()){
+                    rect.getBoutonSrc().setStyle("-fx-background-color: transparent;");
+                }
+                if(!rect.getIleDest().ileComplete()){
+                    rect.getBoutonDest().setStyle("-fx-background-color: transparent;");
+                }
             }
         }
         grille.quitteHypothese();
         for (RectPontPossible rect: nodesToRemove) {
-            if(!rect.getIleSrc().ileComplete()){
-                rect.getBoutonSrc().setStyle("-fx-background-color: transparent;");
-            }
-            if(!rect.getIleDest().ileComplete()){
-                rect.getBoutonDest().setStyle("-fx-background-color: transparent;");
-            }
             rect.removeFromGridPane(grillePane);
         }
         hypotheseMethod();
