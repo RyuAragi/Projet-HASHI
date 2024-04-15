@@ -8,7 +8,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import org.w3c.dom.css.Rect;
 
+/**
+ * Classe implémentant la création et les actions d'un RectPontPossible qui est inséré dans le GridPane de l'interface graphique.
+ */
 public class RectPontPossible extends Rectangle {
 
     /**
@@ -19,57 +23,57 @@ public class RectPontPossible extends Rectangle {
     /**
      * [Boolean] Indicateur de présence de la souris sur le rectangle
      */
-    public boolean mouseOn;
+    private boolean mouseOn;
 
     /**
      * [LignePont] Référence vers la 1e ligne symbolisant un pont simple
      */
-    public LignePont line1;
+    protected LignePont line1;
 
     /**
      * [LignePont] Référence vers la deuxième ligne qui, accompagnée de la première, forme un pont double.
      */
-    public LignePont line2;
+    protected LignePont line2;
 
     /**
      * [String] Chaine de caractère représentant la direction du pont parmi N, S, E et O.
      */
-    public String dir;
+    private final String dir;
 
     /**
      * [Ile] Ile source du pont
      */
-    public Ile ileSrc;
+    protected final Ile ileSrc;
 
     /**
      * [Ile] Ile destination du pont
      */
-    public Ile ileDest;
+    protected final Ile ileDest;
 
     /**
      * [Bouton] Bouton de l'ile source dans le grillePane
      */
-    public Button boutonSrc;
+    protected final Button boutonSrc;
 
     /**
      * [Bouton] Bouton de l'ile destination dans le grillePane
      */
-    public Button boutonDest;
+    protected final Button boutonDest;
 
     /**
      * [GrilleJeu] Référence vers la grille du backend.
      */
-    public GrilleJeu grille;
+    protected final GrilleJeu grille;
 
     /**
      * [GridPane] Référence vers la grillePane c'est-à-dire la grille du frontend.
      */
-    public GridPane grillePane;
+    protected final GridPane grillePane;
 
     /**
      * [Boolean] Booléen vérifiant s'il s'agit d'un pont hypothèse ou pas.
      */
-    public boolean hypothese;
+    private boolean hypothese;
 
 
     /**
@@ -106,6 +110,111 @@ public class RectPontPossible extends Rectangle {
         this.setOnMouseEntered(getMouseOn(boutonDest));
         this.setOnMouseClicked(getClickedAction());
         this.setOnMouseExited(getMouseOut());
+    }
+
+
+    /**
+     * Méthode de récupération du bouton de l'ile source.
+     * @return [Button] Bouton de l'ile source.
+     */
+    public Button getBoutonSrc() {
+        return boutonSrc;
+    }
+
+    /**
+     * Méthode de récupération du bouton de l'ile destination.
+     * @return [Button] Bouton de l'ile destination.
+     */
+    public Button getBoutonDest() {
+        return boutonDest;
+    }
+
+    /**
+     * Méthode de récupération de l'ile source.
+     * @return [Ile] Ile source du rectangle.
+     */
+    public Ile getIleSrc() {
+        return ileSrc;
+    }
+
+    /**
+     * Méthode de récupération de l'ile destination.
+     * @return [Ile] Ile destination du rectangle.
+     */
+    public Ile getIleDest() {
+        return ileDest;
+    }
+
+    /**
+     * Méthode de récupération de l'instance de la ligne 1.
+     * @return [LignePont] Instance de la ligne 1.
+     */
+    public LignePont getLine1() {
+        return line1;
+    }
+
+    /**
+     * Méthode de récupération de l'instance de la ligne 2.
+     * @return [LignePont] Instance de la ligne 2.
+     */
+    public LignePont getLine2() {
+        return line2;
+    }
+
+    /**
+     * Méthode de récupération de la direction du rectPontPossible en fonction de l'ile source.
+     * @return [String] Direction du pont (N,S,E,O)
+     */
+    public String getDir() {
+        return dir;
+    }
+
+    /**
+     * Méthode permettant de modifier la valeur de l'hypothèse d'un pont.
+     * @param hypo [Boolean] Nouvel indicateur d'hypothèse.
+     */
+     public void setHypothese(Boolean hypo){
+        this.hypothese = hypo;
+     }
+
+    /**
+     * Méthode de récupération de l'indicateur d'hypothèse d'un pont.
+     * @return [Boolean] Indicateur d'hypothèse.
+     */
+    public boolean estHypothese() {
+        return hypothese;
+    }
+
+    /**
+     * Méthode vérifiant si un pont est double (=true) ou simple (=false).
+     * @return Indicateur du niveau de pont.
+     */
+    public boolean estDoublePont(){
+        return (line1!=null && line2!=null);
+    }
+
+    /**
+     * Méthode d'affectation de la ligne 2 à une instance passé en paramètre.
+     * @param ligne [LignePont] Instance de LignePont
+     */
+    public void setLine2(LignePont ligne){
+        this.line2 = ligne;
+    }
+
+    /**
+     * Méthode de récupération de la grille du backend.
+     * @return [GrilleJeu] Grille du backend.
+     */
+    public GrilleJeu getGrille() {
+        return grille;
+    }
+
+    /**
+     * Méthode de récupération de la grille du frontend.
+     * @return [GridPane] Grille du frontend.
+     */
+    public GridPane getGrillePane() {
+        return grillePane;
     }
 
     /**
@@ -193,9 +302,10 @@ public class RectPontPossible extends Rectangle {
             int valPontDir = ileSrc.getValPontDir(dir);
             System.out.println(valPontDir);
             if(valPontDir==0 || line1==null){
-                this.setFill(Color.TRANSPARENT);
+                boutonSrc.setStyle("-fx-background-color: transparent");
+                boutonDest.setStyle("-fx-background-color: transparent");
 
-                if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
+                this.setFill(Color.TRANSPARENT);
                 if(dir.equals("N") || dir.equals("S")) {
                     line1 = new LignePont(this, (int) (this.getX() + this.getWidth() / 2), (int) this.getY(), (int) (this.getX() + this.getWidth() / 2), (int) (this.getY() + this.getHeight()));
                 }
@@ -203,6 +313,7 @@ public class RectPontPossible extends Rectangle {
                     line1 = new LignePont(this, (int) this.getX(), (int) (this.getY() + this.getHeight()/2), (int) (this.getX() + this.getWidth()), (int) (this.getY()+ this.getHeight()/2));
                 }
                 line1.addToGridPane();
+                if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
 
                 if (ileSrc.ileComplete()) {
                     boutonSrc.setStyle("-fx-background-color: lightgrey;");
@@ -213,7 +324,6 @@ public class RectPontPossible extends Rectangle {
             }
             else if((valPontDir==1 || line2==null) && this.hypothese==GrilleControler.enModeHypothese){
                 if ((!ileSrc.ileComplete() && !ileDest.ileComplete()) || this.chargement) {
-                    if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
                     if(dir.equals("N") || dir.equals("S")) {
                         line1.setTranslateX(-5);
                     }
@@ -228,8 +338,8 @@ public class RectPontPossible extends Rectangle {
                     else{
                         line2.setTranslateY(5);
                     }
-
                     line2.addToGridPane();
+                    if(!this.chargement) grille.poserPont(ileSrc, ileDest, hypothese);
 
                     if (ileSrc.ileComplete()) {
                         boutonSrc.setStyle("-fx-background-color: lightgrey;");
@@ -270,7 +380,6 @@ public class RectPontPossible extends Rectangle {
                 }
         };
     }
-
 
     /**
      * Méthode de simulation de clique sur le rectangle pour poser un pont. Cette méthode est utilisée lors du chargement d'un grille précédemment sauvegardée.

@@ -9,7 +9,7 @@
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
         <Button styleClass="titre" text="MODE CLASSIQUE" />
-        <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" pickOnBounds="false" prefHeight="123.0" prefWidth="897.0" styleClass="custom-barre" text="Grille avec les régles traditionelle " textAlignment="JUSTIFY" textOverrun="WORD_ELLIPSIS" />
+        <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" pickOnBounds="false" prefHeight="123.0" prefWidth="897.0" styleClass="custom-barre" text="Grille avec les règles traditionelles" textAlignment="JUSTIFY" textOverrun="WORD_ELLIPSIS" />
     </VBox>
 
     <VBox alignment="CENTER" prefHeight="235.0" prefWidth="361.0">

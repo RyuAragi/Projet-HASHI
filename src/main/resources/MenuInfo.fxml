@@ -14,10 +14,8 @@
             <HBox alignment="CENTER" maxWidth="600.0" prefHeight="162.0" prefWidth="600.0">
                   <ImageView fitHeight="144.0" fitWidth="123.0" nodeOrientation="INHERIT" pickOnBounds="true" smooth="false" styleClass="imgLogo">
                   </ImageView>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="155.0" prefWidth="469.0" styleClass="projectText" text="Dans le cadre du Module de Génie Logiciel 2 en licence informatique à l'Université du Mans, notre projet a pour objectif de créer un application permettant la résolution d'un puzzle, le Hashi, en implémentant un système d'aide." textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-                        Dans le cadre du Module de Génie Logiciel 2 en licence informatique à l'Université du Mans, le
-                        projet a pour objectif de créer un application permettant la résolution d'un puzzle, le Hashi,
-                        en implémentant un système d'aide.
+                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="155.0" prefWidth="469.0" styleClass="projectText"  textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                        Dans le cadre du Module de Génie Logiciel 2 en L3 informatique à l'Université du Mans, le projet a pour objectif de créer un application permettant la résolution d'un puzzle donné en implémentant un système d'aide.
                   </Label>
             </HBox>
             <VBox alignment="BASELINE_CENTER" prefHeight="322.0" prefWidth="698.0">

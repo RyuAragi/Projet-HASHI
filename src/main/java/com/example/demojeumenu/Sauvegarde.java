@@ -97,13 +97,13 @@ public class Sauvegarde {
     /**
      * Methode permettant de créer le fichier de leaderboard
      */
-    private void creer_fichier_leaderboard() throws IOException {
+    public void creer_fichier_leaderboard() throws IOException {
 
         File fichier_json = new File(path + "Leaderboard.json");
         if (fichier_json.createNewFile()) {
             System.out.println("Fichier Leaderboard.json bien crée !");
 
-            InputStream input = Score.class.getResourceAsStream("Sauvegarde/Leaderboard.json");
+            InputStream input = Score.class.getResourceAsStream("/Sauvegarde/Leaderboard.json");
             String json = new String(input.readAllBytes(), StandardCharsets.UTF_8);
             ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(json);

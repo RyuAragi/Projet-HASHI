@@ -1,6 +1,7 @@
 package com.example.demojeumenu.Menu;
 
 import com.example.demojeumenu.FXMLUtils;
+import com.example.demojeumenu.GrilleControler;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
 import com.example.demojeumenu.controler.PopupWindowControllerLB;
@@ -29,9 +30,12 @@ public class MenuTailleGrille extends BaseController {
    /* @FXML
     private Button jouerGrille15x15Button;*/
 
+    public static String level_info;
+    // Méthode pour afficher le leaderboard.
+
     @FXML
     public void leaderboard(){
-        // Load the FXML file for the external frame
+        // Charger le fichier FXML pour la fenêtre externe.
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/PopupWindowLB.fxml"));
         Parent root;
         try {
@@ -42,13 +46,13 @@ public class MenuTailleGrille extends BaseController {
 
         PopupWindowControllerLB controller = loader.getController();
 
-        // Create the scene for the external frame
+        // Créer la scène pour la fenêtre externe.
         Scene scenePopup = new Scene(root);
         scenePopup.setFill(Color.TRANSPARENT);
         scenePopup.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/styles.css")).toExternalForm());
         scenePopup.getRoot().setEffect(new DropShadow());
 
-        // Create a new window for the external frame
+        // Créer une nouvelle fenêtre pour la fenêtre externe.
         Stage popupWindow = new Stage();
         popupWindow.setResizable(false);
         popupWindow.setWidth(800);
@@ -65,14 +69,14 @@ public class MenuTailleGrille extends BaseController {
 
         popupWindow.setScene(scenePopup);
 
-        // Apply the darkening effect to the main scene
+        // Appliquer l'effet d'assombrissement à la scène principale.
         ColorAdjust darkColorAdjust = new ColorAdjust();
         darkColorAdjust.setBrightness(-0.5);
         scene.getRoot().setEffect(darkColorAdjust);
         PopupWindowControllerLB.setStage(popupWindow);
 
 
-        // Show the popup window
+        // Afficher la fenêtre popup.
         popupWindow.showAndWait();
     }
 
@@ -86,13 +90,21 @@ public class MenuTailleGrille extends BaseController {
             String difficulty = parts[0].toLowerCase();
             levelFileName = difficulty + "/" + levelName + ".txt";
             System.out.println("jouerGrille15x15Button levelFileName: " + levelFileName);
+            level_info = levelName;
 
             File fichier = new File("JacobHashi/Sauvegarde/niveau/"+ GlobalVariables.getUserInput()+"/"+levelFileName.substring(0,levelFileName.length()-4)+".ser");
             boolean chargement = false;
             if(fichier.exists() && fichier.isFile()){
                 chargement = true;
             }
-            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName, chargement);
+
+            System.out.println(FXMLUtils.topHistory());
+            if(FXMLUtils.topHistory().equals("/MenuTailleGrilleCassant.fxml")){
+                FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName, GrilleControler.TypePont.CASSANT, chargement);
+            }
+            else {
+                FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName, GrilleControler.TypePont.CLASSIQUE, chargement);
+            }
 
         } else {
             System.err.println("Invalid level name format: " + levelName);
@@ -100,6 +112,7 @@ public class MenuTailleGrille extends BaseController {
     }
 
 
+    // Méthodes pour naviguer vers d'autres menus de taille de grille.
 
     @FXML
     private void btnS() {
@@ -113,7 +126,7 @@ public class MenuTailleGrille extends BaseController {
     private void btn3() {
         FXMLUtils.loadFXML("/MenuTailleGrilleDif2.fxml", scene);
     }
-
+    // Méthode pour retourner en arrière.
     @FXML
     private void retour() {
         FXMLUtils.goBack(scene);

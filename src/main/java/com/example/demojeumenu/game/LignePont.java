@@ -7,12 +7,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
+/**
+ * Classe implémentant la création et les actions d'un LignePont.
+ */
 public class LignePont extends Line {
 
     /**
      * [RectPontPossible] Référence vers l'instance du pont possible parente de la LignePont.
      */
-    private final RectPontPossible pontPossible;
+    public final RectPontPossible pontPossible;
 
     /**
      * Méthode d'instanciation de la ligne LignePont
@@ -31,7 +34,7 @@ public class LignePont extends Line {
         this.setEndY(fin_y);
         this.pontPossible = pontPossible;
 
-        if(this.pontPossible.hypothese){
+        if(this.pontPossible.estHypothese()){
             toGrey();
         }
         else{
@@ -65,45 +68,45 @@ public class LignePont extends Line {
      */
     private EventHandler<MouseEvent> getClickedAction() {
         return event -> {
-            if ((pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 1 || pontPossible.line2==null) && pontPossible.hypothese==GrilleControler.enModeHypothese) {
-                if (!pontPossible.ileSrc.ileComplete() && !pontPossible.ileDest.ileComplete()) {
-                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
-                    if(pontPossible.dir.equals("N") || pontPossible.dir.equals("S")) {
+            if ((pontPossible.getIleSrc().getValPontDir(pontPossible.getDir()) == 1 || pontPossible.getLine2()==null) && pontPossible.estHypothese()==GrilleControler.enModeHypothese) {
+                if (!pontPossible.getIleSrc().ileComplete() && !pontPossible.getIleDest().ileComplete()) {
+                    if(pontPossible.getDir().equals("N") || pontPossible.getDir().equals("S")) {
                         this.setTranslateX(-5);
                     }
                     else{
                         this.setTranslateY(-5);
                     }
 
-                    pontPossible.line2 = new LignePont(pontPossible, this.getStartX(), this.getStartY(), this.getEndX(), this.getEndY());
-                    if(pontPossible.dir.equals("N") || pontPossible.dir.equals("S")) {
-                        pontPossible.line2.setTranslateX(5);
+                    pontPossible.setLine2(new LignePont(pontPossible, this.getStartX(), this.getStartY(), this.getEndX(), this.getEndY()));
+                    if(pontPossible.getDir().equals("N") || pontPossible.getDir().equals("S")) {
+                        pontPossible.getLine2().setTranslateX(5);
                     }
                     else{
-                        pontPossible.line2.setTranslateY(5);
+                        pontPossible.getLine2().setTranslateY(5);
                     }
-                    pontPossible.line2.addToGridPane();
+                    pontPossible.getLine2().addToGridPane();
+                    pontPossible.getGrille().poserPont(pontPossible.getIleSrc(), pontPossible.getIleDest(), pontPossible.estHypothese());
 
-                    if (pontPossible.ileSrc.ileComplete()) {
-                        pontPossible.boutonSrc.setStyle("-fx-background-color: lightgrey;");
+                    if (pontPossible.getIleSrc().ileComplete()) {
+                        pontPossible.getBoutonSrc().setStyle("-fx-background-color: lightgrey;");
                     }
-                    if (pontPossible.ileDest.ileComplete()) {
-                        pontPossible.boutonDest.setStyle("-fx-background-color: lightgrey;");
+                    if (pontPossible.getIleDest().ileComplete()) {
+                        pontPossible.getBoutonDest().setStyle("-fx-background-color: lightgrey;");
                     }
                 }
                 else{
-                    pontPossible.boutonDest.setStyle("-fx-background-color: transparent");
-                    pontPossible.boutonSrc.setStyle("-fx-background-color: transparent");
-                    pontPossible.removeFromGridPane(pontPossible.grillePane);
-                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
-                    pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
+                    pontPossible.getBoutonDest().setStyle("-fx-background-color: transparent");
+                    pontPossible.getBoutonSrc().setStyle("-fx-background-color: transparent");
+                    pontPossible.removeFromGridPane(pontPossible.getGrillePane());
+                    pontPossible.getGrille().poserPont(pontPossible.getIleSrc(), pontPossible.getIleDest(), pontPossible.estHypothese());
+                    pontPossible.getGrille().poserPont(pontPossible.getIleSrc(), pontPossible.getIleDest(), pontPossible.estHypothese());
                 }
             }
-            else if (pontPossible.ileSrc.getValPontDir(pontPossible.dir) == 2 && pontPossible.hypothese==GrilleControler.enModeHypothese) {
-                pontPossible.boutonDest.setStyle("-fx-background-color: transparent");
-                pontPossible.boutonSrc.setStyle("-fx-background-color: transparent");
-                pontPossible.grille.poserPont(pontPossible.ileSrc, pontPossible.ileDest, pontPossible.hypothese);
-                pontPossible.removeFromGridPane(pontPossible.grillePane);
+            else if (pontPossible.getIleSrc().getValPontDir(pontPossible.getDir()) == 2 && pontPossible.estHypothese()==GrilleControler.enModeHypothese) {
+                pontPossible.getBoutonDest().setStyle("-fx-background-color: transparent");
+                pontPossible.getBoutonSrc().setStyle("-fx-background-color: transparent");
+                pontPossible.getGrille().poserPont(pontPossible.getIleSrc(), pontPossible.getIleDest(), pontPossible.estHypothese());
+                pontPossible.removeFromGridPane(pontPossible.getGrillePane());
             }
         };
     }
@@ -112,35 +115,44 @@ public class LignePont extends Line {
      * Méthode d'ajout de la ligne LignePont à l'affichage par dessus le RectPontPossible parent.
      */
     public void addToGridPane(){
-        switch (pontPossible.dir){
+        switch (pontPossible.getDir()){
             case "N" -> {
-                int height = pontPossible.ileSrc.getX() - pontPossible.ileDest.getX() - 1;
-                pontPossible.grillePane.add(this, pontPossible.ileDest.getY(), pontPossible.ileDest.getX() + 1, 1, height);
+                int height = pontPossible.getIleSrc().getX() - pontPossible.getIleDest().getX() - 1;
+                pontPossible.getGrillePane().add(this, pontPossible.getIleDest().getY(), pontPossible.getIleDest().getX() + 1, 1, height);
             }
             case "S" -> {
-                int height = pontPossible.ileDest.getX() - pontPossible.ileSrc.getX() - 1;
-                pontPossible.grillePane.add(this, pontPossible.ileSrc.getY(), pontPossible.ileSrc.getX() + 1, 1, height);
+                int height = pontPossible.getIleDest().getX() - pontPossible.getIleSrc().getX() - 1;
+                pontPossible.getGrillePane().add(this, pontPossible.getIleSrc().getY(), pontPossible.getIleSrc().getX() + 1, 1, height);
             }
             case "O" -> {
-                int width = pontPossible.ileSrc.getY() - pontPossible.ileDest.getY() - 1;
-                pontPossible.grillePane.add(this, pontPossible.ileDest.getY() + 1, pontPossible.ileDest.getX(), width, 1);
+                int width = pontPossible.getIleSrc().getY() - pontPossible.getIleDest().getY() - 1;
+                pontPossible.getGrillePane().add(this, pontPossible.getIleDest().getY() + 1, pontPossible.getIleDest().getX(), width, 1);
             }
             case "E" -> {
-                int width = pontPossible.ileDest.getY() - pontPossible.ileSrc.getY() - 1;
-                pontPossible.grillePane.add(this, pontPossible.ileSrc.getY() + 1, pontPossible.ileSrc.getX(), width, 1);
+                int width = pontPossible.getIleDest().getY() - pontPossible.getIleSrc().getY() - 1;
+                pontPossible.getGrillePane().add(this, pontPossible.getIleSrc().getY() + 1, pontPossible.getIleSrc().getX(), width, 1);
             }
         }
     }
 
 
+    /**
+     * Méthode de changement de couleur de la ligne pour la couleur rouge.
+     */
     public void toRed(){
         this.setStroke(Color.RED);
     }
 
+    /**
+     * Méthode de changement de couleur de la ligne pour la couleur noire.
+     */
     public void toBlack(){
         this.setStroke(Color.BLACK);
     }
 
+    /**
+     * Méthode de changement de couleur de la ligne pour la couleur grise.
+     */
     public void toGrey(){
         this.setStroke(Color.valueOf("#A8A8A8"));
     }

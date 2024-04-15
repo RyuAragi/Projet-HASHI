@@ -234,7 +234,7 @@
     -fx-alignment: center;
 }
 
-#info_button{
+.info_button{
     -fx-background-color: transparent; /* Retirer le fond par défaut du bouton */
     -fx-border-color: transparent; /* Retirer la bordure par défaut du bouton */
     -fx-background-image: url('../images/bouton_info.png');
@@ -572,7 +572,6 @@
 .boutonIle {
     -fx-font-family: 'Noteworthy';
     -fx-text-fill: black;
-    -fx-font-size: 18px;
     -fx-background-color: transparent;
     -fx-background-size: 100% 100%;
     -fx-background-repeat: no-repeat;

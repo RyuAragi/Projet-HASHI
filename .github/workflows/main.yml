@@ -1,0 +1,31 @@
+name: Deploy Javadoc
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v1
+        with:
+          java-version: 21
+          java-package: jdk+fx
+      - name: Generate Javadoc
+        run: |
+          mvn javadoc:javadoc
+          mkdir -p agent/build/docs/javadoc
+          cp -r target/site/apidocs/* agent/build/docs/javadoc
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.4
+        with:
+          GITHUB_TOKEN: ${{ secrets.GH_PAGES_PAT }}
+          BRANCH: gh-pages
+          CLEAN: true
+          FOLDER: agent/build/docs/javadoc
+          TARGET_FOLDER: javadoc
