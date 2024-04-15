@@ -8,12 +8,13 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
+/**
+ * Classe créant un pont cassant. C'est-à-dire un pont ayant une durée de vie limitée.
+ */
 public class RectPontCassant extends RectPontPossible{
 
-    private Timeline avantDestruction;
-
     /**
-     * Méthode d'instanciation d'un RectPontPossible.
+     * Méthode d'instanciation d'un RectPontCassant.
      *
      * @param grille     [GrilleJeu] La grille du backend.
      * @param grillePane [GridPane] La grille affichée à l'utilisateur (au frontend).
@@ -28,35 +29,37 @@ public class RectPontCassant extends RectPontPossible{
      */
     public RectPontCassant(GrilleJeu grille, GridPane grillePane, int width, int height, Button boutonSrc, Button boutonDest, Ile ileSrc, Ile ileDest, String dir, boolean hypothese) {
         super(grille, grillePane, width, height, boutonSrc, boutonDest, ileSrc, ileDest, dir, hypothese);
-        avantDestruction = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+        Timeline avantDestruction = new Timeline(new KeyFrame(Duration.seconds(60), event -> {
             ParallelTransition parallelTransition = new ParallelTransition();
 
             FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(3), this.getLine1());
             fadeTransition1.setFromValue(1.0);
             fadeTransition1.setToValue(0.0);
+            parallelTransition.getChildren().add(fadeTransition1);
 
-            if(this.getLine2()!=null) {
+            if (this.getLine2() != null) {
                 FadeTransition fadeTransition2 = new FadeTransition(Duration.seconds(3), this.getLine2());
                 fadeTransition2.setFromValue(1.0);
                 fadeTransition2.setToValue(0.0);
-                parallelTransition.getChildren().addAll(fadeTransition1, fadeTransition2);
-            }
-            else{
-                parallelTransition.getChildren().addAll(fadeTransition1);
+                parallelTransition.getChildren().add(fadeTransition2);
             }
 
             parallelTransition.setOnFinished(event1 -> {
-                if(this.ileSrc.ileComplete()){
+                if (this.ileSrc.ileComplete()) {
                     this.boutonSrc.setStyle("-fx-background-color: transparent");
                 }
-                if(this.ileDest.ileComplete()){
+                if (this.getIleDest().ileComplete()) {
                     this.boutonDest.setStyle("-fx-background-color: transparent");
                 }
-                removeFromGridPane(this.grillePane);
-                this.grille.poserPont(this.ileSrc, this.ileDest, this.estHypothese());
-                if(getLine2() == null){
+
+                if (getLine2() != null || this.getIleSrc().getValIle() != 1 || this.getIleDest().getValIle() != 1) {
+                    this.grille.poserPont(this.ileSrc, this.ileDest, this.estHypothese());
+                } else {
+                    this.grille.poserPont(this.ileSrc, this.ileDest, this.estHypothese());
                     this.grille.poserPont(this.ileSrc, this.ileDest, this.estHypothese());
                 }
+                removeFromGridPane(this.grillePane);
+                parallelTransition.stop();
             });
 
             parallelTransition.play();

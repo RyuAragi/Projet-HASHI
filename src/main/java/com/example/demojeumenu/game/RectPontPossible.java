@@ -10,6 +10,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import org.w3c.dom.css.Rect;
 
+/**
+ * Classe implémentant la création et les actions d'un RectPontPossible qui est inséré dans le GridPane de l'interface graphique.
+ */
 public class RectPontPossible extends Rectangle {
 
     /**
@@ -110,54 +113,106 @@ public class RectPontPossible extends Rectangle {
     }
 
 
+    /**
+     * Méthode de récupération du bouton de l'ile source.
+     * @return [Button] Bouton de l'ile source.
+     */
     public Button getBoutonSrc() {
         return boutonSrc;
     }
 
+    /**
+     * Méthode de récupération du bouton de l'ile destination.
+     * @return [Button] Bouton de l'ile destination.
+     */
     public Button getBoutonDest() {
         return boutonDest;
     }
 
+    /**
+     * Méthode de récupération de l'ile source.
+     * @return [Ile] Ile source du rectangle.
+     */
     public Ile getIleSrc() {
         return ileSrc;
     }
 
+    /**
+     * Méthode de récupération de l'ile destination.
+     * @return [Ile] Ile destination du rectangle.
+     */
     public Ile getIleDest() {
         return ileDest;
     }
 
+    /**
+     * Méthode de récupération de l'instance de la ligne 1.
+     * @return [LignePont] Instance de la ligne 1.
+     */
     public LignePont getLine1() {
         return line1;
     }
 
+    /**
+     * Méthode de récupération de l'instance de la ligne 2.
+     * @return [LignePont] Instance de la ligne 2.
+     */
     public LignePont getLine2() {
         return line2;
     }
 
+    /**
+     * Méthode de récupération de la direction du rectPontPossible en fonction de l'ile source.
+     * @return [String] Direction du pont (N,S,E,O)
+     */
     public String getDir() {
         return dir;
     }
 
+    /**
+     * Méthode permettant de modifier la valeur de l'hypothèse d'un pont.
+     * @param hypo [Boolean] Nouvel indicateur d'hypothèse.
+     */
      public void setHypothese(Boolean hypo){
         this.hypothese = hypo;
      }
 
+    /**
+     * Méthode de récupération de l'indicateur d'hypothèse d'un pont.
+     * @return [Boolean] Indicateur d'hypothèse.
+     */
     public boolean estHypothese() {
         return hypothese;
     }
 
+    /**
+     * Méthode vérifiant si un pont est double (=true) ou simple (=false).
+     * @return Indicateur du niveau de pont.
+     */
     public boolean estDoublePont(){
         return (line1!=null && line2!=null);
     }
 
+    /**
+     * Méthode d'affectation de la ligne 2 à une instance passé en paramètre.
+     * @param ligne [LignePont] Instance de LignePont
+     */
     public void setLine2(LignePont ligne){
         this.line2 = ligne;
     }
 
+    /**
+     * Méthode de récupération de la grille du backend.
+     * @return [GrilleJeu] Grille du backend.
+     */
     public GrilleJeu getGrille() {
         return grille;
     }
 
+    /**
+     * Méthode de récupération de la grille du frontend.
+     * @return [GridPane] Grille du frontend.
+     */
     public GridPane getGrillePane() {
         return grillePane;
     }

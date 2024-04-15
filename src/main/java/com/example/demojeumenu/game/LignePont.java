@@ -7,6 +7,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
+/**
+ * Classe implémentant la création et les actions d'un LignePont.
+ */
 public class LignePont extends Line {
 
     /**
