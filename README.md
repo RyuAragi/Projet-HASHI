@@ -36,7 +36,7 @@ Voici une liste des membres actifs du projet :
 - [@KirZaping](https://github.com/KirZaping) - Wandrille BALLEREAU
 - [@Theo-dlrd](https://github.com/Theo-dlrd) - Théo Duluard
 - [@thibcour](https://github.com/thibcour) - Thibault Courcol
-- [@Medvil03](https://github.com/Medvil03) - Rémy
+- [@Medvil03](https://github.com/Medvil03) - Rémy Georget
 - [@XavierCoupe](https://github.com/XavierCoupe) - Xavier Coupe
 - [@sedraalhallak](https://github.com/sedraalhallak) - Sedra Alhallak
 - [@ElGhoumari](https://github.com/ElGhoumari) - Soumia ElGhoumari
