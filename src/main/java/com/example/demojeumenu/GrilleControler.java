@@ -39,11 +39,21 @@ import org.springframework.stereotype.Controller;
 import java.io.*;
 import java.util.*;
 
+
+/**
+ * Classe implémentant les action sur le grille affichée au joueur et autres élements qui l'entour (page, boutons, textes...)
+ */
 @Controller
 public class GrilleControler extends BaseController {
 
+    /**
+     * Enumérateur des types de ponts possibles dans les différents modes de jeu
+     */
     public enum TypePont{ CLASSIQUE, CASSANT, REVERSE }
 
+    /**
+     * Type de pont du mode de jeu actuel
+     */
     public static TypePont typePont;
 
     /**
@@ -199,6 +209,10 @@ public class GrilleControler extends BaseController {
         timeline.stop();
     }
 
+
+    /**
+     * Méthode permettant de mettre la jour le chrono affiché.
+     */
     private void updateTiming(){
         this.chrono.setText(grille.getChronoTime());
     }
@@ -218,6 +232,9 @@ public class GrilleControler extends BaseController {
         return boutonIle;
     }
 
+    /**
+     * Méthode de vérification de la grille. Est appelé lorsque le joueur clique sur le bouton "check".
+     */
     private void verification_grille(){
         grille.incrementCheck();
         ArrayList<List<Pont>> pontsInccorects = grille.getPontsIncorrects();
@@ -279,6 +296,7 @@ public class GrilleControler extends BaseController {
                 see_tech.setOnMouseClicked(see_tech_act);
             });
 
+
             EventHandler<? super MouseEvent> next_clue_act = next_clue.getOnMouseClicked();
             next_clue.setOnMouseClicked(event -> {
                 vbox_aide_info.setVisible(false);
@@ -316,6 +334,9 @@ public class GrilleControler extends BaseController {
         }
     }
 
+    /**
+     * Méthode pour supprimer le dernier pont posé. Est appelé lorsque le joueur clique sur le bouton "Undo".
+     */
     private void undoMethod(){
         UndoRedo undoRedo = grille.getUndoRedo();
         Pont pont = undoRedo.actionUndo(grille);
@@ -340,6 +361,9 @@ public class GrilleControler extends BaseController {
         }
     }
 
+    /**
+     * Méthode pour réabiliter le pont supprimé par le Undo. Est appelé lorsque le joueur clique sur le bouton "Redo".
+     */
     public void redoMethod() {
         UndoRedo undoRedo = grille.getUndoRedo();
         Pont pont = undoRedo.actionRedo(grille);
@@ -373,6 +397,12 @@ public class GrilleControler extends BaseController {
     }
 
 
+    /**
+     * Récupère l'instance de RectPontPossible en fonction d'une ile cource et d'une ile destination.
+     * @param ileSrc [Ile] Ile source du pont.
+     * @param ileDest [Ile] Ile destination du pont.
+     * @return [rectPontPossible] Le rectangle du pont ajouté au grillePane.
+     */
     public RectPontPossible getPontParIles(Ile ileSrc, Ile ileDest){
         for (Node node: grillePane.getChildren()) {
             if(node instanceof RectPontPossible rect && rect.getIleSrc()==ileSrc && rect.getIleDest()==ileDest){
@@ -691,6 +721,17 @@ public class GrilleControler extends BaseController {
      * Méthode d'initialisation de boutons et d'éléments graphiques.
      */
     private void initButtons() {
+        if (typePont==TypePont.CASSANT) {
+            hypothese.setVisible(false);
+            hypothese.setDisable(true);
+
+            undo.setVisible(false);
+            undo.setDisable(true);
+
+            redo.setVisible(false);
+            redo.setDisable(true);
+        }
+
         valid_hypo.setDisable(true);
         valid_hypo.setVisible(false);
 
@@ -810,6 +851,20 @@ public class GrilleControler extends BaseController {
     }
 
 
+    /**
+     * Méthode de création du type de pont en fonction du mode de jeu choisi.
+     * @param grille     [GrilleJeu] La grille du backend.
+     * @param grillePane [GridPane] La grille affichée à l'utilisateur (au frontend).
+     * @param width      [Integer] Longueur du rectangle.
+     * @param height     [Integer] Largeur du rectangle.
+     * @param boutonSrc  [Button] Bouton de l'ile source inclu dans grillePane.
+     * @param boutonDest [Button] Bouton de l'ile destination inclu dans grillePane.
+     * @param ileSrc     [Ile] Ile source du RectPontPossible.
+     * @param ileDest    [Ile] Ile destination du RectPontPossible.
+     * @param dir        [String] Direction du pont.
+     * @param hypothese  [Boolean] Indicateur vérifiant s'il s'agit d'un pont hypothèse ou pas.
+     * @return [RectPontPossible] Pont créé par l'appel de cette fonction.
+     */
     private RectPontPossible creerPontType(GrilleJeu grille, GridPane grillePane, int width, int height, Button boutonSrc, Button boutonDest, Ile ileSrc, Ile ileDest, String dir, boolean hypothese){
         if(typePont == TypePont.CASSANT){
             return new RectPontCassant(grille, grillePane, width , height, boutonSrc, boutonDest, ileSrc, ileDest, dir, hypothese );
