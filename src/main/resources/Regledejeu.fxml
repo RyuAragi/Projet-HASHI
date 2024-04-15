@@ -13,7 +13,7 @@
 <StackPane cache="true" maxHeight="725.0" maxWidth="700.0" minHeight="700.0" minWidth="700.0" prefHeight="725.0" prefWidth="700.0" styleClass="boardBg" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.Menu.MenuInfoController">
          <Button alignment="TOP_CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="430.0" styleClass="titreInfo" text="Règles du jeu" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" StackPane.alignment="TOP_CENTER" />
       <VBox alignment="CENTER" prefHeight="735.0" prefWidth="698.0" StackPane.alignment="CENTER">
-      <Pane prefHeight="267.0" prefWidth="698.0">
+      <Pane nodeOrientation="LEFT_TO_RIGHT" prefHeight="270.0" prefWidth="698.0">
          <children>
             <Label layoutX="60.0" layoutY="14.0" prefHeight="25.0" prefWidth="590.0" text="Le jeu du Hashi se déroule sur une grille rectangulaire de taille variable," textAlignment="JUSTIFY" textFill="WHITE">
                <font>
@@ -40,22 +40,22 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="78.0" layoutY="146.0" prefHeight="25.0" prefWidth="590.0" text="- Aucun pont ne peut croiser un autre." textFill="WHITE">
+            <Label layoutX="78.0" layoutY="150.0" prefHeight="25.0" prefWidth="590.0" text="- Aucun pont ne peut croiser un autre." textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="78.0" layoutY="171.0" prefHeight="25.0" prefWidth="590.0" text="- Tous les ponts sont droits et peuvent être horizontaux ou verticaux." textFill="WHITE">
+            <Label layoutX="78.0" layoutY="175.0" prefHeight="25.0" prefWidth="590.0" text="- Tous les ponts sont droits et peuvent être horizontaux ou verticaux." textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="78.0" layoutY="196.0" prefHeight="25.0" prefWidth="590.0" text="- Le nombre de ponts correspond au nombre indiqué sur cette île." textFill="WHITE">
+            <Label layoutX="78.0" layoutY="200.0" prefHeight="25.0" prefWidth="590.0" text="- Le nombre de ponts correspond au nombre indiqué sur cette île." textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="78.0" layoutY="221.0" prefHeight="25.0" prefWidth="590.0" text="- Toutes les îles doivent être connectées entre elles pour compléter le jeu." textFill="WHITE">
+            <Label layoutX="78.0" layoutY="225.0" prefHeight="25.0" prefWidth="590.0" text="- Toutes les îles doivent être connectées entre elles pour compléter le jeu." textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
