@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<StackPane styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.example.demojeumenu.Menu.MenuTailleGrille">
+    <fx:include source="Logo.fxml" />
+    <VBox alignment="BASELINE_CENTER">
+        <Button styleClass="titre" text="MODE PONT CASSANT" />
+        <Button alignment="CENTER" contentDisplay="CENTER" ellipsisString="" pickOnBounds="false" prefHeight="123.0" prefWidth="897.0" styleClass="custom-barre" text="Pont détruits au bout d'un certain délai" textAlignment="JUSTIFY" textOverrun="WORD_ELLIPSIS" />
+    </VBox>
+
+    <VBox alignment="CENTER">
+
+        <Button  onAction="#jouerGrille15x15" id="Cassant-1" styleClass="custom-buttonGrille"  text="Jouer cette grille 5 x 7" />
+        <Button  onAction="#jouerGrille15x15" id="Cassant-2" styleClass="custom-buttonGrille"  text="Jouer cette grille 8 x 6" />
+        <Button  onAction="#jouerGrille15x15" id="Cassant-3" styleClass="custom-buttonGrille"  text="Jouer cette grille 10 x 7" />
+        <Button  onAction="#jouerGrille15x15" id="Cassant-4" styleClass="custom-buttonGrille"  text="Jouer cette grille 11 x 8" />
+        <Button  onAction="#jouerGrille15x15" id="Cassant-5" styleClass="custom-buttonGrille"  text="Jouer cette grille 11 x 8" />
+
+        <!-- Utilisation d'un HBox pour organiser les boutons "Retour" et "Suivant" -->
+        <HBox alignment="CENTER">
+            <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-buttonR" text="Retour" />
+        </HBox>
+    </VBox>
+
+    <Button onAction="#param" styleClass="param2" BorderPane.alignment="BOTTOM_RIGHT" StackPane.alignment="BOTTOM_RIGHT" />
+</StackPane>

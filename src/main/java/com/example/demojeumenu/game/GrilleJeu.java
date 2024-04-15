@@ -920,7 +920,7 @@ public class GrilleJeu implements Serializable{
 
  /*
      public static void main(String[] args) {
-         GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Facile-5.txt");
+         GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Cassant-5.txt");
          testJeu.afficher_mat_out();
  
          testJeu.poserPont(testJeu.getIleGrilleJoueur(0,0), testJeu.getIleGrilleJoueur(0,2));

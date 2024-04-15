@@ -51,7 +51,7 @@ public class ParametresForGame extends Parametres {
         SoundUtils.addClickSound(newGameButton, this::backButton);
         usernameLabel.setText(GlobalVariables.getUserInput());
         newGameButton.setOnAction(event -> {
-            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, GrilleControler.loadedFile, false);
+            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, GrilleControler.loadedFile, GrilleControler.typePont,false);
             Stage stage = (Stage) continueButton.getScene().getWindow();
             stage.close();
         });

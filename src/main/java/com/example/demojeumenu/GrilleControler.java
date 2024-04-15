@@ -42,6 +42,10 @@ import java.util.*;
 @Controller
 public class GrilleControler extends BaseController {
 
+    public static enum TypePont{ CLASSIQUE, CASSANT, REVERSE }
+
+    public static TypePont typePont;
+
     /**
      * [String] Nom (+chemin) du fichier chargé de la grille.
      */
@@ -350,7 +354,7 @@ public class GrilleControler extends BaseController {
             if(src.getValIle() != 1 && dest.getValIle() != 1) {
                 if (rect.estDoublePont()) {
                     rect.simulerClick();
-                    RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.getBoutonSrc(), rect.getBoutonDest(), rect.getIleSrc(), rect.getIleDest(), rect.getDir(), rect.estHypothese());
+                    RectPontPossible rect1 = creerPontType(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.getBoutonSrc(), rect.getBoutonDest(), rect.getIleSrc(), rect.getIleDest(), rect.getDir(), rect.estHypothese());
                     rect1.addToGridPane();
                     rect1.simulerClick();
                 } else {
@@ -361,7 +365,8 @@ public class GrilleControler extends BaseController {
 
             else {
                 if (rect == null) {
-                    RectPontPossible rect1 = new RectPontPossible(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.boutonSrc, rect.boutonDest, rect.ileSrc, rect.ileDest, rect.dir, rect.hypothese);
+                    System.out.println("BIZARRREEEEEEEE");
+                    RectPontPossible rect1 = creerPontType(grille, grillePane, (int) rect.getWidth(), (int) rect.getHeight(), rect.getBoutonSrc(), rect.getBoutonDest(), rect.getIleSrc(), rect.getIleDest(), rect.getDir(), rect.estHypothese());
                     rect1.addToGridPane();
                     rect1.simulerClick();
                 }
@@ -403,7 +408,6 @@ public class GrilleControler extends BaseController {
             }
         }
     }
-
 
 
     public RectPontPossible getPontParIles(Ile ileSrc, Ile ileDest){
@@ -770,7 +774,7 @@ public class GrilleControler extends BaseController {
 
             next_clue.setOnMouseClicked(event1 -> {
                 FXMLUtils.goBack(scene);
-                FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, loadedFile, false);
+                FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, loadedFile, typePont,false);
             });
 
             see_tech.setOnMouseClicked(event1 -> {
@@ -830,6 +834,12 @@ public class GrilleControler extends BaseController {
         //verifFinGrille();
     }
 
+
+    private RectPontPossible creerPontType(GrilleJeu grille, GridPane grillePane, int width, int height, Button boutonSrc, Button boutonDest, Ile ileSrc, Ile ileDest, String dir, boolean hypothese){
+        if(this.typePont == TypePont.CASSANT) return new RectPontCassant(grille, grillePane, width , height, boutonSrc, boutonDest, ileSrc, ileDest, dir, hypothese );
+        else return new RectPontPossible(grille, grillePane, width , height, boutonSrc, boutonDest, ileSrc, ileDest, dir, hypothese );
+    }
+
     /**
      * Méthode de création d'un rectangle de pontPossible au nord du bouton courant
      * @param ileSrc Ile courante
@@ -844,7 +854,7 @@ public class GrilleControler extends BaseController {
             if (buttonDestNord != null) {
                 buttonDestNord.setStyle("-fx-background-color: #F7ECB8;");
                 int height = ileSrc.getX() - ileNord.getX() - 1;
-                RectPontPossible pontNord = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonSrc, buttonDestNord, ileSrc, ileNord, "N", enModeHypothese );
+                RectPontPossible pontNord = creerPontType(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonSrc, buttonDestNord, ileSrc, ileNord, "N", enModeHypothese );
                 pontNord.addToGridPane();
                 return pontNord;
             }
@@ -866,7 +876,7 @@ public class GrilleControler extends BaseController {
             if (buttonDestSud != null) {
                 buttonDestSud.setStyle("-fx-background-color: #F7ECB8;");
                 int height = ileSud.getX() - ileSrc.getX() - 1;
-                RectPontPossible pontSud = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonSrc, buttonDestSud, ileSrc, ileSud, "S" , enModeHypothese);
+                RectPontPossible pontSud = creerPontType(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonSrc, buttonDestSud, ileSrc, ileSud, "S" , enModeHypothese);
                 pontSud.addToGridPane();
                 return pontSud;
             }
@@ -888,7 +898,7 @@ public class GrilleControler extends BaseController {
             if (buttonDestOuest != null) {
                 buttonDestOuest.setStyle("-fx-background-color: #F7ECB8;");
                 int width = ileSrc.getY() - ileOuest.getY() - 1;
-                RectPontPossible pontOuest = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonSrc, buttonDestOuest, ileSrc, ileOuest, "O", enModeHypothese);
+                RectPontPossible pontOuest = creerPontType(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonSrc, buttonDestOuest, ileSrc, ileOuest, "O", enModeHypothese);
                 pontOuest.addToGridPane();
 
                 return pontOuest;
@@ -911,7 +921,7 @@ public class GrilleControler extends BaseController {
             if (buttonDestEst != null) {
                 buttonDestEst.setStyle("-fx-background-color: #F7ECB8;");
                 int width = ileEst.getY() - ileSrc.getY() - 1;
-                RectPontPossible pontEst = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonSrc, buttonDestEst, ileSrc, ileEst, "E", enModeHypothese);
+                RectPontPossible pontEst = creerPontType(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonSrc, buttonDestEst, ileSrc, ileEst, "E", enModeHypothese);
                 pontEst.addToGridPane();
 
                 return pontEst;
@@ -946,7 +956,7 @@ public class GrilleControler extends BaseController {
 
                         Button buttonDestNord = findButtonByCoord(ileNord.getY(), ileNord.getX());
                         int height = ile.getX() - ileNord.getX() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestNord, ile, ileNord, "N", enModeHypothese );
+                        RectPontPossible rect = creerPontType(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestNord, ile, ileNord, "N", enModeHypothese );
                         rect.addToGridPane();
 
                         rect.activeChargement();
@@ -963,7 +973,7 @@ public class GrilleControler extends BaseController {
 
                         Button buttonDestSud = findButtonByCoord(ileSud.getY(), ileSud.getX());
                         int height = ileSud.getX() - ile.getX() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestSud, ile, ileSud, "S" , enModeHypothese);
+                        RectPontPossible rect = creerPontType(grille, grillePane,this.pixelSize / 2 , this.pixelSize * height, boutonIle, buttonDestSud, ile, ileSud, "S" , enModeHypothese);
                         rect.addToGridPane();
 
                         rect.activeChargement();
@@ -981,7 +991,7 @@ public class GrilleControler extends BaseController {
                         Button buttonDestOuest = findButtonByCoord(ileOuest.getY(), ileOuest.getX());
 
                         int width = ile.getY() - ileOuest.getY() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestOuest, ile, ileOuest, "O", enModeHypothese);
+                        RectPontPossible rect = creerPontType(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestOuest, ile, ileOuest, "O", enModeHypothese);
                         rect.addToGridPane();
 
                         rect.activeChargement();
@@ -999,7 +1009,7 @@ public class GrilleControler extends BaseController {
                         Button buttonDestEst = findButtonByCoord(ileEst.getY(), ileEst.getX());
 
                         int width = ileEst.getY() - ile.getY() - 1;
-                        RectPontPossible rect = new RectPontPossible(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestEst, ile, ileEst, "E", enModeHypothese);
+                        RectPontPossible rect = creerPontType(grille, grillePane, this.pixelSize*width,this.pixelSize / 2 , boutonIle, buttonDestEst, ile, ileEst, "E", enModeHypothese);
                         rect.addToGridPane();
 
                         rect.activeChargement();
@@ -1041,7 +1051,7 @@ public class GrilleControler extends BaseController {
      * @param levelFileName Nom du fichier du niveau
      * @param chargement booleen utilisé lorsque une grille sera chargée ou pas.
      */
-    public void initData(String levelFileName, boolean chargement) {
+    public void initData(String levelFileName, TypePont type, boolean chargement) {
         GlobalVariables.setInGame(true);
         System.out.println("LevelFileNameCorrected: " + levelFileName);
         loadedFile = levelFileName;
@@ -1057,7 +1067,7 @@ public class GrilleControler extends BaseController {
             // Pass the InputStream to GrilleJeu
 
             enModeHypothese=false;
-
+            typePont = type;
             this.zoom_level = 0;
             initButtons();
             initChrono();

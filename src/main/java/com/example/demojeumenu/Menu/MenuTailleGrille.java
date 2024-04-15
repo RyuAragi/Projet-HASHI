@@ -1,6 +1,7 @@
 package com.example.demojeumenu.Menu;
 
 import com.example.demojeumenu.FXMLUtils;
+import com.example.demojeumenu.GrilleControler;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
 import com.example.demojeumenu.controler.PopupWindowControllerLB;
@@ -90,12 +91,20 @@ public class MenuTailleGrille extends BaseController {
             levelFileName = difficulty + "/" + levelName + ".txt";
             System.out.println("jouerGrille15x15Button levelFileName: " + levelFileName);
             level_info = levelName;
+
             File fichier = new File("JacobHashi/Sauvegarde/niveau/"+ GlobalVariables.getUserInput()+"/"+levelFileName.substring(0,levelFileName.length()-4)+".ser");
             boolean chargement = false;
             if(fichier.exists() && fichier.isFile()){
                 chargement = true;
             }
-            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName, chargement);
+
+            System.out.println(FXMLUtils.topHistory());
+            if(FXMLUtils.topHistory().equals("MenuTailleGrilleCassant.fxml")){
+                FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName, GrilleControler.TypePont.CASSANT, chargement);
+            }
+            else {
+                FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName, GrilleControler.TypePont.CLASSIQUE, chargement);
+            }
 
         } else {
             System.err.println("Invalid level name format: " + levelName);

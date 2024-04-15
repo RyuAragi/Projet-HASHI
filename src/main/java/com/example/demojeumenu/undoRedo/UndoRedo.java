@@ -89,7 +89,7 @@ import java.util.Stack;
      * @param args
      *//*
     public static void main(String[] args) {
-        GrilleJeu grille = new GrilleJeu("../niveaux/facile/Facile-1.txt");
+        GrilleJeu grille = new GrilleJeu("../niveaux/facile/Cassant-1.txt");
         
         // Affichage de la matrice pour le test
         grille.afficher_mat_out();

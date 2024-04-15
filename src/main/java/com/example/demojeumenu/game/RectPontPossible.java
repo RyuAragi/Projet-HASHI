@@ -35,37 +35,37 @@ public class RectPontPossible extends Rectangle {
     /**
      * [String] Chaine de caractère représentant la direction du pont parmi N, S, E et O.
      */
-    private String dir;
+    private final String dir;
 
     /**
      * [Ile] Ile source du pont
      */
-    private Ile ileSrc;
+    private final Ile ileSrc;
 
     /**
      * [Ile] Ile destination du pont
      */
-    private Ile ileDest;
+    private final Ile ileDest;
 
     /**
      * [Bouton] Bouton de l'ile source dans le grillePane
      */
-    private Button boutonSrc;
+    private final Button boutonSrc;
 
     /**
      * [Bouton] Bouton de l'ile destination dans le grillePane
      */
-    private Button boutonDest;
+    private final Button boutonDest;
 
     /**
      * [GrilleJeu] Référence vers la grille du backend.
      */
-    private GrilleJeu grille;
+    private final GrilleJeu grille;
 
     /**
      * [GridPane] Référence vers la grillePane c'est-à-dire la grille du frontend.
      */
-    private GridPane grillePane;
+    private final GridPane grillePane;
 
     /**
      * [Boolean] Booléen vérifiant s'il s'agit d'un pont hypothèse ou pas.
