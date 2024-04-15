@@ -1105,9 +1105,7 @@ public class GrilleControler extends BaseController {
                     Button button = createButton(this.grille.getIleGrilleJoueur(i, j), fontSize);
                     int J = j;
                     int I = i;
-                    button.setOnMouseEntered(event -> {
-                        createBridges(button, I, J);
-                    });
+                    button.setOnMouseEntered(event -> createBridges(button, I, J););
 
                     button.setOnMouseExited(event -> {
                         Timeline timelineDel = new Timeline(new KeyFrame(Duration.seconds(0.05), eventDel -> deleteBridges()));
