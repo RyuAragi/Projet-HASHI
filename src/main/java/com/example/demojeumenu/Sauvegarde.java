@@ -13,11 +13,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-
+/**
+ * Classe permettant de gérer la sauvegarde des niveaux et du leaderboard
+ */
 public class Sauvegarde {
-
+    /**
+     * Chemin du dossier de sauvegarde
+     */
     private final String path = System.getProperty("user.dir") + "/JacobHashi/Sauvegarde/";
-
+    /**
+     * Liste des difficultés
+     */
     private final ArrayList<String> liste_difficultes;
     /**
      * Constructeur de la classe
@@ -42,24 +48,24 @@ public class Sauvegarde {
      * → Les dossiers qui stockent la Sauvegarde des Niveaux
      * → Le dossier qui stocke le Leaderboard
      * Arborescence crée (Les dossiers des joueurs sont créé par la méthode creer_dossier_joueur())
-     * |-> JacobHashi
-     *          |-> Sauvegarde
-     *              |-> Leaderboard.json
-     *              |-> Facile
-     *                  |-> Joueur1
-     *                      |-> Facile-1.ser
-     *                      |-> ...
-     *                      |-> Facile-10.ser
-     *              |-> Moyen
-     *                  |-> Joueur1
-     *                      |-> Moyen-1.ser
-     *                      |-> ...
-     *                      |-> Moyen-10.ser
-     *              |-> Difficile
-     *                  |-> Joueur1
-     *                      |-> Difficile-1.ser
-     *                      |-> ...
-     *                      |-> Difficile-10.ser
+     * |→ JacobHashi
+     *          |→ Sauvegarde
+     *              |→ Leaderboard.json
+     *              |→ Facile
+     *                  |→ Joueur1
+     *                      |→ Facile-1.ser
+     *                      |→ ...
+     *                      |→ Facile-10.ser
+     *              |→ Moyen
+     *                  |→ Joueur1
+     *                      |→ Moyen-1.ser
+     *                      |→ ...
+     *                      |→ Moyen-10.ser
+     *              |→ Difficile
+     *                  |→ Joueur1
+     *                      |→ Difficile-1.ser
+     *                      |→ ...
+     *                      |→ Difficile-10.ser
      */
     public void creer_arborescence() throws IOException {
         File directory = new File(path);

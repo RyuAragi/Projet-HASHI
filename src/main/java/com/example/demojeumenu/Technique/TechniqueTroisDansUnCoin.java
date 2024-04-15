@@ -10,7 +10,9 @@ import com.example.demojeumenu.game.Ile;
 import com.example.demojeumenu.game.IleJoueur;
 import javafx.stage.Stage;
 
-
+/**
+ * Classe TechniqueTroisDansUnCoin, qui hérite de Technique
+ */
 public class TechniqueTroisDansUnCoin extends Technique{
     static private TechniqueInter technique = null;
 

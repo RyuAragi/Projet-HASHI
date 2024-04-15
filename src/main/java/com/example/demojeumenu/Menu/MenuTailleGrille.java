@@ -24,14 +24,21 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Classe pour le menu de choix de la taille de la grille.
+ */
 
 @Controller
 public class MenuTailleGrille extends BaseController {
-   /* @FXML
-    private Button jouerGrille15x15Button;*/
 
+
+    // Attributs pour la scène et le nom du fichier de niveau.
     public static String level_info;
     // Méthode pour afficher le leaderboard.
+
+    /**
+     * Méthode pour afficher le leaderboard.
+     */
 
     @FXML
     public void leaderboard(){

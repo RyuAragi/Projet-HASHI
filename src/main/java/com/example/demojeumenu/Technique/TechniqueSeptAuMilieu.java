@@ -6,7 +6,9 @@ import com.example.demojeumenu.controler.MenuTechniqueBas1;
 import com.example.demojeumenu.game.Ile;
 import com.example.demojeumenu.game.GrilleJeu;
 import javafx.stage.Stage;
-
+/**
+ * Classe TechniqueSeptAuMilieu, qui hérite de Technique
+ */
 public class TechniqueSeptAuMilieu extends Technique {
     static private TechniqueInter technique = null;
 

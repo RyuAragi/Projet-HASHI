@@ -6,16 +6,33 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * Controler du menu technique avancé 1.
+ */
 public class MenuTechniqueAv1 extends BaseController {
 
+
+    /**
+     * Bouton de retour.
+    */
     @FXML
     public Button bouton_retour;
 
+    /**
+     * Bouton suivant.
+     */
     @FXML
     public Button bouton_suivant;
 
+    /**
+     * Stage.
+     */
     public static Stage stage = null;
 
+    /**
+     * Méthode permettant de définir la scène.
+     * @param st la scène à définir.
+     */
     public static void setStage(Stage st){
         stage = st;
     }
@@ -24,7 +41,6 @@ public class MenuTechniqueAv1 extends BaseController {
     /**
      * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
      */
-
     @FXML
     private void retour() {
         System.out.println("retour");
@@ -44,7 +60,9 @@ public class MenuTechniqueAv1 extends BaseController {
         FXMLUtils.loadFXML("/MenuTechniqueAv2.fxml", scene);
     }
 
-
+    /**
+     * Méthode d'initialisation.
+     */
     @FXML
     private void initialize(){
         if(FXMLUtils.topHistory().equals("/GrilleDisplay.fxml")){

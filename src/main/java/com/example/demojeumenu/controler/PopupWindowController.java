@@ -9,7 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
-
+/**
+ * Controller du popup window.
+ */
 @Controller
 public class PopupWindowController extends BaseController {
 

@@ -20,12 +20,29 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Objects;
-
+/**
+ * Classe de base pour les contrôleurs.
+ */
 public abstract class BaseController {
+    /**
+     * La scène actuelle.
+     */
     protected static Scene scene;
+    /**
+     * Le nom du fichier de niveau.
+     */
     protected static boolean isJouerButtonEnabled = false; // Change this to false
+    /**
+     * Le nom du fichier de niveau.
+     */
     private boolean EtatParametres = false; // variable pour savoir si on est dans le menu parametres
+    /**
+     * Le nom du fichier de niveau.
+     */
     protected String levelFileName;
+    /**
+     * Le nom du fichier de niveau.
+     */
     public void setScene(Scene scene) {
         BaseController.scene = scene;
         BaseController.scene.setOnKeyPressed(event -> {
@@ -45,6 +62,10 @@ public abstract class BaseController {
             }
         });
     }
+
+    /**
+     * Méthode pour revenir à l'écran d'accueil.
+     */
 
     protected static void ParametreForGame() {
         // Charger le fichier FXML de l'external frame
@@ -90,10 +111,15 @@ public abstract class BaseController {
         popupWindow.showAndWait();
     }
 
+    /**
+     * Méthode pour revenir à l'écran d'accueil.
+     */
     public void param(ActionEvent actionEvent) {
         FXMLUtils.loadFXML("/Parametres.fxml", scene);
     }
-
+    /**
+     * Méthode pour revenir à l'écran d'accueil.
+     */
     @FXML
     protected void reglePopUP() {
         ColorAdjust darkColorAdjust = new ColorAdjust();

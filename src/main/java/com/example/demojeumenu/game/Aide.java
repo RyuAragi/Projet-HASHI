@@ -21,11 +21,9 @@ import java.util.List;
  */
 
 public class Aide implements Serializable {
-
-
     /**
      * Méthode qui permet de détecter si une technique de départ est applicable
-     * @param grille
+     * @param grille la grille de jeu
      * @return vrai si une technique est applicable, faux sinon
      */
     static boolean techniqueDeDepart(GrilleJeu grille){

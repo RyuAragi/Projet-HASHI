@@ -9,7 +9,9 @@ import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
 import java.util.Objects;
-
+/**
+ * Contrôleur pour le premier menu du menu technique débutant.
+ */
 @Controller
 public class MenuTechniqueDeb1 extends BaseController {
 

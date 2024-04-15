@@ -18,10 +18,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+
+/**
+ * Classe permettant de gérer le score du joueur
+ */
 public class Score {
 
+    /**
+     * HashMap contenant les niveaux et les scores des joueurs
+     */
     private final HashMap<String, HashMap<String, Integer>> niveaux;
 
+    /**
+     * HashMap contenant les joueurs et leurs scores
+     */
     private final HashMap<String, Integer> joueurs;
     public Score() throws IOException {
         this.niveaux = new HashMap<String, HashMap<String, Integer>>();
@@ -36,7 +46,10 @@ public class Score {
     public HashMap<String, HashMap<String, Integer>> getNiveaux() {
         return niveaux;
     }
-
+    /**
+     * Getter du HashMap des joueurs
+     * @return HashMap&lt;String, Integer&gt;
+     */
     public HashMap<String, Integer> getJoueurs(String niveau) {
         return getNiveaux().get(niveau);
     }

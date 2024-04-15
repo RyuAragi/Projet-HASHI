@@ -5,7 +5,9 @@ import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
+/**
+ * Controller du troisième menu du menu technique bas.
+ */
 public class MenuTechniqueBas3 extends BaseController {
 
 
