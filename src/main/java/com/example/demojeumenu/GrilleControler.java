@@ -836,7 +836,9 @@ public class GrilleControler extends BaseController {
 
 
     private RectPontPossible creerPontType(GrilleJeu grille, GridPane grillePane, int width, int height, Button boutonSrc, Button boutonDest, Ile ileSrc, Ile ileDest, String dir, boolean hypothese){
-        if(this.typePont == TypePont.CASSANT) return new RectPontCassant(grille, grillePane, width , height, boutonSrc, boutonDest, ileSrc, ileDest, dir, hypothese );
+        if(typePont == TypePont.CASSANT){
+            return new RectPontCassant(grille, grillePane, width , height, boutonSrc, boutonDest, ileSrc, ileDest, dir, hypothese );
+        }
         else return new RectPontPossible(grille, grillePane, width , height, boutonSrc, boutonDest, ileSrc, ileDest, dir, hypothese );
     }
 
@@ -1079,6 +1081,9 @@ public class GrilleControler extends BaseController {
                 System.out.println("Chargement de la grille depuis un fichier de sauvegarde");
                 this.grille = grille.charger_sauvegarde(loadedFile.substring(0, loadedFile.length()-4)+".ser");
                 chargeGrille();
+            }
+            else {
+                grille.creer_sauvegarde("/niveau/"+loadedFile);
             }
             System.out.println("Grille: " + this.grille);
 

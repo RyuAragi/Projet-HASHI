@@ -2,6 +2,7 @@ package com.example.demojeumenu.game;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
+import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -27,18 +28,38 @@ public class RectPontCassant extends RectPontPossible{
      */
     public RectPontCassant(GrilleJeu grille, GridPane grillePane, int width, int height, Button boutonSrc, Button boutonDest, Ile ileSrc, Ile ileDest, String dir, boolean hypothese) {
         super(grille, grillePane, width, height, boutonSrc, boutonDest, ileSrc, ileDest, dir, hypothese);
-        avantDestruction = new Timeline(new KeyFrame(new Duration(10), event -> {
-            FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(3), this);
+        avantDestruction = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+            ParallelTransition parallelTransition = new ParallelTransition();
+
+            FadeTransition fadeTransition1 = new FadeTransition(Duration.seconds(3), this.getLine1());
             fadeTransition1.setFromValue(1.0);
             fadeTransition1.setToValue(0.0);
-            fadeTransition1.setOnFinished(event1 -> {
-                this.removeFromGridPane(grillePane);
-                grille.poserPont(ileSrc,ileDest,hypothese);
-                if(getLine2()!=null){
-                    grille.poserPont(ileSrc,ileDest,hypothese);
+
+            if(this.getLine2()!=null) {
+                FadeTransition fadeTransition2 = new FadeTransition(Duration.seconds(3), this.getLine2());
+                fadeTransition2.setFromValue(1.0);
+                fadeTransition2.setToValue(0.0);
+                parallelTransition.getChildren().addAll(fadeTransition1, fadeTransition2);
+            }
+            else{
+                parallelTransition.getChildren().addAll(fadeTransition1);
+            }
+
+            parallelTransition.setOnFinished(event1 -> {
+                if(this.ileSrc.ileComplete()){
+                    this.boutonSrc.setStyle("-fx-background-color: transparent");
+                }
+                if(this.ileDest.ileComplete()){
+                    this.boutonDest.setStyle("-fx-background-color: transparent");
+                }
+                removeFromGridPane(this.grillePane);
+                this.grille.poserPont(this.ileSrc, this.ileDest, this.estHypothese());
+                if(getLine2() == null){
+                    this.grille.poserPont(this.ileSrc, this.ileDest, this.estHypothese());
                 }
             });
-            fadeTransition1.play();
+
+            parallelTransition.play();
         }));
 
         avantDestruction.play();

@@ -76,7 +76,6 @@ public class GrilleJeu implements Serializable{
 
         //fonction de verification si l'arborecence est créée
 
-
         GrilleControler.stopChrono();
         // Créer une instance de MenuTailleGrille
         MenuTailleGrille menu = new MenuTailleGrille();

@@ -99,7 +99,7 @@ public class MenuTailleGrille extends BaseController {
             }
 
             System.out.println(FXMLUtils.topHistory());
-            if(FXMLUtils.topHistory().equals("MenuTailleGrilleCassant.fxml")){
+            if(FXMLUtils.topHistory().equals("/MenuTailleGrilleCassant.fxml")){
                 FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, levelFileName, GrilleControler.TypePont.CASSANT, chargement);
             }
             else {

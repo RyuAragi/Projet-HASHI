@@ -25,12 +25,12 @@ public class RectPontPossible extends Rectangle {
     /**
      * [LignePont] Référence vers la 1e ligne symbolisant un pont simple
      */
-    private LignePont line1;
+    protected LignePont line1;
 
     /**
      * [LignePont] Référence vers la deuxième ligne qui, accompagnée de la première, forme un pont double.
      */
-    private LignePont line2;
+    protected LignePont line2;
 
     /**
      * [String] Chaine de caractère représentant la direction du pont parmi N, S, E et O.
@@ -40,32 +40,32 @@ public class RectPontPossible extends Rectangle {
     /**
      * [Ile] Ile source du pont
      */
-    private final Ile ileSrc;
+    protected final Ile ileSrc;
 
     /**
      * [Ile] Ile destination du pont
      */
-    private final Ile ileDest;
+    protected final Ile ileDest;
 
     /**
      * [Bouton] Bouton de l'ile source dans le grillePane
      */
-    private final Button boutonSrc;
+    protected final Button boutonSrc;
 
     /**
      * [Bouton] Bouton de l'ile destination dans le grillePane
      */
-    private final Button boutonDest;
+    protected final Button boutonDest;
 
     /**
      * [GrilleJeu] Référence vers la grille du backend.
      */
-    private final GrilleJeu grille;
+    protected final GrilleJeu grille;
 
     /**
      * [GridPane] Référence vers la grillePane c'est-à-dire la grille du frontend.
      */
-    private final GridPane grillePane;
+    protected final GridPane grillePane;
 
     /**
      * [Boolean] Booléen vérifiant s'il s'agit d'un pont hypothèse ou pas.
