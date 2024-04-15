@@ -20,57 +20,57 @@ public class RectPontPossible extends Rectangle {
     /**
      * [Boolean] Indicateur de présence de la souris sur le rectangle
      */
-    public boolean mouseOn;
+    private boolean mouseOn;
 
     /**
      * [LignePont] Référence vers la 1e ligne symbolisant un pont simple
      */
-    public LignePont line1;
+    protected LignePont line1;
 
     /**
      * [LignePont] Référence vers la deuxième ligne qui, accompagnée de la première, forme un pont double.
      */
-    public LignePont line2;
+    protected LignePont line2;
 
     /**
      * [String] Chaine de caractère représentant la direction du pont parmi N, S, E et O.
      */
-    public String dir;
+    private final String dir;
 
     /**
      * [Ile] Ile source du pont
      */
-    public Ile ileSrc;
+    protected final Ile ileSrc;
 
     /**
      * [Ile] Ile destination du pont
      */
-    public Ile ileDest;
+    protected final Ile ileDest;
 
     /**
      * [Bouton] Bouton de l'ile source dans le grillePane
      */
-    public Button boutonSrc;
+    protected final Button boutonSrc;
 
     /**
      * [Bouton] Bouton de l'ile destination dans le grillePane
      */
-    public Button boutonDest;
+    protected final Button boutonDest;
 
     /**
      * [GrilleJeu] Référence vers la grille du backend.
      */
-    public GrilleJeu grille;
+    protected final GrilleJeu grille;
 
     /**
      * [GridPane] Référence vers la grillePane c'est-à-dire la grille du frontend.
      */
-    public GridPane grillePane;
+    protected final GridPane grillePane;
 
     /**
      * [Boolean] Booléen vérifiant s'il s'agit d'un pont hypothèse ou pas.
      */
-    public boolean hypothese;
+    private boolean hypothese;
 
 
     /**
@@ -110,8 +110,56 @@ public class RectPontPossible extends Rectangle {
     }
 
 
+    public Button getBoutonSrc() {
+        return boutonSrc;
+    }
+
+    public Button getBoutonDest() {
+        return boutonDest;
+    }
+
+    public Ile getIleSrc() {
+        return ileSrc;
+    }
+
+    public Ile getIleDest() {
+        return ileDest;
+    }
+
+    public LignePont getLine1() {
+        return line1;
+    }
+
+    public LignePont getLine2() {
+        return line2;
+    }
+
+    public String getDir() {
+        return dir;
+    }
+
+     public void setHypothese(Boolean hypo){
+        this.hypothese = hypo;
+     }
+
+    public boolean estHypothese() {
+        return hypothese;
+    }
+
     public boolean estDoublePont(){
         return (line1!=null && line2!=null);
+    }
+
+    public void setLine2(LignePont ligne){
+        this.line2 = ligne;
+    }
+
+    public GrilleJeu getGrille() {
+        return grille;
+    }
+
+    public GridPane getGrillePane() {
+        return grillePane;
     }
 
     /**

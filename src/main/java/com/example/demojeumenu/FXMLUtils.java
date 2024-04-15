@@ -68,7 +68,7 @@ public class FXMLUtils {
         }
     }
 
-    public static void loadFXML(String fxml, Scene scene, String levelFileName,boolean chargement) {
+    public static void loadFXML(String fxml, Scene scene, String levelFileName, GrilleControler.TypePont typePont, boolean chargement) {
         try {
             FXMLLoader loader = new FXMLLoader(FXMLUtils.class.getResource(fxml));
             Parent root = loader.load();
@@ -76,7 +76,7 @@ public class FXMLUtils {
             Object controller = loader.getController();
 
             if (controller instanceof GrilleControler) {
-                ((GrilleControler) controller).initData(levelFileName,chargement);
+                ((GrilleControler) controller).initData(levelFileName,typePont,chargement);
             }
 
             if (fxmlHistory.isEmpty() || !fxmlHistory.peek().equals(fxml)) {

@@ -132,7 +132,7 @@ public class Score {
 
 /*    public static void main(String args[]) throws IOException {
         Score monScore = new Score();
-        monScore.changer_score(10000, "Facile-1.txt", "Michel");
+        monScore.changer_score(10000, "Cassant-1.txt", "Michel");
     }*/
 }
 

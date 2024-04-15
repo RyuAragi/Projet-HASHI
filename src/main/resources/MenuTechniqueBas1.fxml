@@ -7,7 +7,7 @@
 <StackPane prefHeight="839.0" prefWidth="1267.0" styleClass="background" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demojeumenu.controler.MenuTechniqueBas1">
     <fx:include source="Logo.fxml" />
     <VBox alignment="BASELINE_CENTER">
-        <Button styleClass="titre" text="TECHNIQUE BASIQUE" />
+        <Button styleClass="titre" text="TECHNIQUES BASIQUES" />
     </VBox>
     <GridPane>
         <columnConstraints>
@@ -31,7 +31,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
-            <Text id="text" stroke="BLACK" text="1. Îles avec 3 dans le coin, 5 sur le côté et 7 au milieu :" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Text id="text" stroke="BLACK" text="1. Île avec 3 dans le coin, 5 sur le côté et 7 au milieu :" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <ImageView id="grilleImageView" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                 <image>
                     <Image url="@images/fleche.png" />

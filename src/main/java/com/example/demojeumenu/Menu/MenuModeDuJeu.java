@@ -20,4 +20,9 @@ public class MenuModeDuJeu extends BaseController {
     private void btn1() {
         FXMLUtils.loadFXML("/MenuNiveau.fxml", scene);
     }
+
+
+    @FXML
+    private void btn2(){FXMLUtils.loadFXML("/MenuTailleGrilleCassant.fxml", scene);}
+
 }

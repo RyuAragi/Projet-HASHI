@@ -42,9 +42,14 @@ public class PopupWindowControllerLB extends BaseController {
 
     @FXML
     private TableColumn<com.example.demojeumenu.controler.LeaderboardData, String> timeColumn;
+
     public Label usernameLabel1;
     public Label usernameLabel2;
     public Label usernameLabel3;
+
+    private static String chrono;
+
+    private static int score;
 
     @FXML
     private Button continueButton;
@@ -125,7 +130,13 @@ public class PopupWindowControllerLB extends BaseController {
         return leaderboardDataList;
     }
 
+    public static void setChrono(String time){
+        chrono = time;
+    }
 
+    public static void setScore(int scr){
+        score = scr;
+    }
 
     @FXML
     public void initialize(){
@@ -136,14 +147,14 @@ public class PopupWindowControllerLB extends BaseController {
         playerColumn.setCellValueFactory(new PropertyValueFactory<>("player"));
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-
         scoreTable.setItems(data);
 
+        usernameLabel2.setText(String.valueOf(score));
+        usernameLabel3.setText(chrono);
         usernameLabel.setText(GlobalVariables.getUserInput());
         SoundUtils.addClickSound(continueButton, this::backButton);
-        usernameLabel3.setText(GrilleJeu.chronoTime);
         back_button.setOnAction(event -> {
-            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, GrilleControler.loadedFile, false);
+            FXMLUtils.loadFXML("/GrilleDisplay.fxml", scene, GrilleControler.loadedFile, GrilleControler.typePont,false);
             Stage stage = (Stage) continueButton.getScene().getWindow();
             stage.close();
         });

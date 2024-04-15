@@ -10,6 +10,7 @@ import com.example.demojeumenu.GrilleControler;
 import com.example.demojeumenu.Menu.MenuTailleGrille;
 import com.example.demojeumenu.Sauvegarde;
 import com.example.demojeumenu.controler.GlobalVariables;
+import com.example.demojeumenu.controler.PopupWindowControllerLB;
 import com.example.demojeumenu.undoRedo.UndoRedo;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -40,15 +41,25 @@ public class GrilleJeu implements Serializable{
     private int nbLigne;
     //Le nombre de colonne de la grille
     private int nbColonne;
-    public static String chronoTime;
+    public String chronoTime;
+
+    private int minute;
+
+    private int seconde;
+
+    private boolean aide1Seen;
+
+    private boolean aide2Seen;
+
+    private boolean aide3Seen;
 
 
     //Le score du joueur
     private double score ;
     //Le nombre de pont total de posés
-    private double nbPontTotal;
+    private static int nbCheck;
     //Le nombre total d'aide utilisé
-    private double nbAide;
+    private static int nbAide;
 
     // Objet undo redo permettant d'effectuer les actions undo/redo
     UndoRedo undoRedo;
@@ -61,30 +72,58 @@ public class GrilleJeu implements Serializable{
      * @param reader le chemin vers le fichier de la grille
      */
     public GrilleJeu(InputStreamReader reader){
-        this.nbPontTotal = 0;
+        nbCheck = 0;
+        nbAide = 0;
         this.listPontPose = new ArrayList<>();
         this.undoRedo = new UndoRedo();
         this.erreur = false;
-        charge(reader);
+        this.charge(reader);
     }
+
+    /**
+     * Méthode d'incrémentation du chrono et change l'affichage de celui-ci
+     */
+    public void incrementeChrono() {
+        seconde += 1;
+        if (seconde == 60) {
+            seconde = 0;
+            minute += 1;
+        }
+    }
+
+
+    /**
+     * Méthode d'initialisation du chrono
+     */
+    public void initChrono() {
+        seconde = 0;
+        minute = 0;
+    }
+
+    /**
+     * Méthode de récupération du temps du chrono
+     */
+    public String getChronoTime() {
+        return String.format("%02d:%02d", this.minute, this.seconde);
+    }
+
 
 
     /**
      * Méthode permettant de vérifier que la grille est complétée
      */
     public void actionsFinGrille(){
-
         //fonction de verification si l'arborecence est créée
-
-
         GrilleControler.stopChrono();
+
+        chronoTime = getChronoTime();
+        int playerScore = calculatePlayerScore(); // replace this with your score calculation logic
+        PopupWindowControllerLB.setChrono(chronoTime);
+        PopupWindowControllerLB.setScore(playerScore);
+
         // Créer une instance de MenuTailleGrille
         MenuTailleGrille menu = new MenuTailleGrille();
         // Appeler la méthode leaderboard
-        chronoTime = GrilleControler.getChronoTime();
-        System.out.println(chronoTime);
-
-        int playerScore = calculatePlayerScore(); // replace this with your score calculation logic
         // Save the score to the leaderboard
         String leaderboardPath = "JacobHashi/Sauvegarde/Leaderboard.json";
 
@@ -134,8 +173,32 @@ public class GrilleJeu implements Serializable{
         }
     }
 
-    private int calculatePlayerScore() {
-        return 100;
+    /**
+     * Méthode de calcul du score du joueur en fonction du nombre de check, help demandés et du temps mis.
+     * @return [Integer] le nombre de points attribués au joueur.
+     */
+    public int calculatePlayerScore() {
+        int pt = 100;
+        pt += (int) (500-(((float)nbCheck)/(nbCheck+1))*300);
+        pt += (int) (nbAide/(Math.exp(nbAide))*300);
+        pt += (int) (300+(minute*60.0+seconde)/Math.exp(getFactorial(minute+1)));
+        if(pt<100){
+            return 100;
+        }
+        return pt;
+    }
+
+    /**
+     * Méthode de calcul du factoriel d'un nombre passé en paramètre.
+     * @param f Nombre passé en paramètre dont on doit calculer le factoriel
+     * @return [Integer] Résultat de la factoriel
+     */
+    public int getFactorial(int f) {
+        int result = 1;
+        for (int i = 1; i <= f; i++) {
+            result = result * i;
+        }
+        return result;
     }
 
     /**
@@ -183,6 +246,37 @@ public class GrilleJeu implements Serializable{
             bufferedReader.close();
         }catch(IOException e){
             e.printStackTrace();
+        }
+    }
+
+    public void incrementCheck(){
+        nbCheck+=1;
+    }
+
+    public void incrementAide1(){
+        aide2Seen=false;
+        aide3Seen=false;
+        if(!aide1Seen){
+            nbAide+=1;
+            aide1Seen=true;
+        }
+    }
+
+    public void incrementAide2(){
+        aide1Seen=false;
+        aide3Seen=false;
+        if(!aide2Seen){
+            nbAide+=2;
+            aide2Seen=true;
+        }
+    }
+
+    public void incrementAide3(){
+        aide1Seen=false;
+        aide2Seen=false;
+        if(!aide3Seen){
+            nbAide+=3;
+            aide3Seen=true;
         }
     }
 
@@ -372,7 +466,6 @@ public class GrilleJeu implements Serializable{
             }else{
                 ajoutePont("S",(IleJoueur)i1, "N", (IleJoueur)i2, estHypothese);
             }
-            nbPontTotal += 1;
         }
 
         if(verifMatrice()){
@@ -400,6 +493,9 @@ public class GrilleJeu implements Serializable{
      * @return renvoie le pont créé
      */
     public Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2,Boolean estHypothese){
+        aide3Seen=false;
+        aide2Seen=false;
+        aide1Seen=false;
         if(j1.getValPontDir(dir1) == j1.getMaxPont() || j2.getValPontDir(dir2) == j2.getMaxPont()){
             for(Pont p: j1.getListePonts(dir1) ){
                 if (p.estHypothese() == estHypothese){
@@ -891,6 +987,7 @@ public class GrilleJeu implements Serializable{
     }
 
     public ArrayList<List<Pont>> getPontsIncorrects(){
+        nbCheck+=1;
         ArrayList<List<Pont>> pontsIncorrects = new ArrayList<>();
         for (int i = 0; i < getNbLigne(); i++) {
             for (int j = 0; j < getNbColonne(); j++) {
@@ -920,7 +1017,7 @@ public class GrilleJeu implements Serializable{
 
  /*
      public static void main(String[] args) {
-         GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Facile-5.txt");
+         GrilleJeu testJeu = new GrilleJeu("../niveaux/facile/Cassant-5.txt");
          testJeu.afficher_mat_out();
  
          testJeu.poserPont(testJeu.getIleGrilleJoueur(0,0), testJeu.getIleGrilleJoueur(0,2));

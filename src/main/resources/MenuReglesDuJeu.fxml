@@ -10,12 +10,12 @@
 
 
     <VBox alignment="CENTER">
-        <Button onAction="#btn1" styleClass="custom-button" text="Technique de début" />
-        <Button onAction="#btn2" styleClass="custom-button" text="Technique basique" />
-        <Button onAction="#btn3" styleClass="custom-button" text="Technique d'isolation" />
-        <Button onAction="#btn4" styleClass="custom-button" text="Technique avancées" />
+        <Button onAction="#btn1" styleClass="custom-button" text="Techniques de début" />
+        <Button onAction="#btn2" styleClass="custom-button" text="Techniques basiques" />
+        <Button onAction="#btn3" styleClass="custom-button" text="Techniques d'isolations" />
+        <Button onAction="#btn4" styleClass="custom-button" text="Techniques avancées" />
 
         <Button onAction="#retour" prefHeight="25.0" prefWidth="66.0" styleClass="custom-button" text="Retour" />
-    </VBox>
+        <Button onAction="#showRules" styleClass="info_button" />    </VBox>
     <Button onAction="#param" styleClass="param2" BorderPane.alignment="BOTTOM_RIGHT" StackPane.alignment="BOTTOM_RIGHT" />
 </StackPane>
