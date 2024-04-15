@@ -136,14 +136,23 @@ public class LignePont extends Line {
     }
 
 
+    /**
+     * Méthode de changement de couleur de la ligne pour la couleur rouge.
+     */
     public void toRed(){
         this.setStroke(Color.RED);
     }
 
+    /**
+     * Méthode de changement de couleur de la ligne pour la couleur noire.
+     */
     public void toBlack(){
         this.setStroke(Color.BLACK);
     }
 
+    /**
+     * Méthode de changement de couleur de la ligne pour la couleur grise.
+     */
     public void toGrey(){
         this.setStroke(Color.valueOf("#A8A8A8"));
     }
