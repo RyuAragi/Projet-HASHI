@@ -2,9 +2,11 @@ package com.example.demojeumenu.utils;
 
 import com.example.demojeumenu.FXMLUtils;
 import com.example.demojeumenu.JsonApp;
+import com.example.demojeumenu.Menu.MenuInfoController;
 import com.example.demojeumenu.controler.GlobalVariables;
 import com.example.demojeumenu.controler.PopupWindowController;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -90,6 +92,42 @@ public abstract class BaseController {
 
     public void param(ActionEvent actionEvent) {
         FXMLUtils.loadFXML("/Parametres.fxml", scene);
+    }
+
+    @FXML
+    protected void reglePopUP() {
+        ColorAdjust darkColorAdjust = new ColorAdjust();
+        darkColorAdjust.setBrightness(-0.5);
+        scene.getRoot().setEffect(darkColorAdjust);
+        // Charger le fichier FXML de l'external frame
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Regledejeu.fxml"));
+        Parent root;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Créer la scène de l'external frame
+        Scene sceneInfo = new Scene(root);
+        sceneInfo.setFill(Color.TRANSPARENT);
+        sceneInfo.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/css/styles.css")).toExternalForm());
+        sceneInfo.getRoot().setEffect(new DropShadow());
+
+        // Créer une nouvelle fenêtre pour l'external frame
+        Stage externalFrame = new Stage();
+        externalFrame.setResizable(false);
+        externalFrame.setWidth(800);
+        externalFrame.setHeight(700);
+        externalFrame.setAlwaysOnTop(true);
+        externalFrame.initStyle(StageStyle.TRANSPARENT);
+        externalFrame.initOwner(scene.getWindow());
+        MenuInfoController.setStage(externalFrame);
+
+        externalFrame.setOnHidden(event -> scene.getRoot().setEffect(null));
+
+        externalFrame.setScene(sceneInfo);
+        externalFrame.show();
     }
 
 }

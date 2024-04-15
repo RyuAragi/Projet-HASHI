@@ -9,6 +9,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class MenuReglesDuJeu extends BaseController {
 
+    @FXML
+    private void showRules() {
+        reglePopUP();
+    }
+
 
 
     @FXML
