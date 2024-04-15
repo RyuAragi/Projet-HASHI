@@ -42,7 +42,7 @@ import java.util.*;
 @Controller
 public class GrilleControler extends BaseController {
 
-    public static enum TypePont{ CLASSIQUE, CASSANT, REVERSE }
+    public enum TypePont{ CLASSIQUE, CASSANT, REVERSE }
 
     public static TypePont typePont;
 
@@ -302,6 +302,12 @@ public class GrilleControler extends BaseController {
                     }
                 }
                 for (RectPontPossible rect:rectToRemove) {
+                    if(rect.getIleSrc().ileComplete()){
+                        rect.getBoutonSrc().setStyle("-fx-background-color: transparent");
+                    }
+                    if(rect.getIleDest().ileComplete()){
+                        rect.getBoutonDest().setStyle("-fx-background-color: transparent");
+                    }
                     rect.removeFromGridPane(grillePane);
                 }
 
