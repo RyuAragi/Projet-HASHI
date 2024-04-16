@@ -8,7 +8,11 @@ package com.example.demojeumenu.game;
 
 import java.io.Serializable;
 import java.util.*;
-
+/**
+ * Cette classe représente une ile dans la grille du joueur
+ * Elle hérite de la classe Ile
+ * @see Ile
+ */
 public class IleJoueur extends Ile implements Serializable {
 
     //Représente le nombre max de pont pouvant être connecté sur un côté de l'ile

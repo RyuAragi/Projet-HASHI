@@ -9,8 +9,13 @@ import java.io.Serializable;
  */
 
 public class Case implements Serializable {
-
+    /**
+     * Les coordonnées x et y de la case
+     */
     private final int x;
+    /**
+     * Les coordonnées y de la case
+     */
     private final int y;
 
     /**
@@ -23,7 +28,14 @@ public class Case implements Serializable {
         y = cY;
     }
 
-
+    /**
+     * Renvoie la coordonnée x
+     * @return la coordonnée x
+     */
     public int getX(){return x;}
+    /**
+     * Renvoie la coordonnée y
+     * @return la coordonnée y
+     */
     public int getY(){return y;}
 }

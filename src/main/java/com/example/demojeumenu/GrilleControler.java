@@ -1081,7 +1081,9 @@ public class GrilleControler extends BaseController {
     /**
      * Méthode d'initialisation des données de la grille
      * @param levelFileName Nom du fichier du niveau
-     * @param chargement booleen utilisé lorsque une grille sera chargée ou pas.
+     * @param chargement booleen utilisé lorsqu'une grille sera chargée ou pas.
+     * @param type Type de pont à utiliser
+     *
      */
     public void initData(String levelFileName, TypePont type, boolean chargement) {
         GlobalVariables.setInGame(true);

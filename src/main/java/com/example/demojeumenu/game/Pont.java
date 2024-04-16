@@ -7,7 +7,9 @@
 package com.example.demojeumenu.game;
 
 import java.io.Serializable;
-
+/**
+ * Cette classe représente un pont
+ */
 public class Pont implements Serializable {
     private boolean estHypothese;
 

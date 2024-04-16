@@ -7,7 +7,11 @@
 package com.example.demojeumenu.game;
 
 import java.util.ArrayList;
-
+/**
+ * Cette classe représente une ile abstraite
+ * @author Coupé Xavier
+ * @version 0.1
+ */
 public abstract class Ile extends Case {
 
     //La valeur de l'île (le nombre de pont qu'il faut relier)

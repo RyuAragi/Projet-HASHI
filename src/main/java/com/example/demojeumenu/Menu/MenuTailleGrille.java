@@ -32,9 +32,11 @@ import java.util.Objects;
 public class MenuTailleGrille extends BaseController {
 
 
-    // Attributs pour la scène et le nom du fichier de niveau.
+    /**
+     *Attributs pour la scène et le nom du fichier de niveau.
+     */
     public static String level_info;
-    // Méthode pour afficher le leaderboard.
+
 
     /**
      * Méthode pour afficher le leaderboard.
@@ -88,6 +90,10 @@ public class MenuTailleGrille extends BaseController {
     }
 
 
+    /**
+     * Méthode pour jouer une grille de taille x X x
+     * @param event [ActionEvent] Evenement récupéré pour connaitre l'identifiant du bouton cliqué.
+     */
     @FXML
     private void jouerGrille15x15(ActionEvent event) {
         Button button = (Button) event.getSource();
@@ -119,21 +125,30 @@ public class MenuTailleGrille extends BaseController {
     }
 
 
-    // Méthodes pour naviguer vers d'autres menus de taille de grille.
-
+    /**
+     Méthodes pour naviguer vers d'autres menus de taille de grille.
+     */
     @FXML
     private void btnS() {
         FXMLUtils.loadFXML("/MenuTailleGrilleClassique2.fxml", scene);
     }
+    /**
+     Méthodes pour naviguer vers d'autres menus de taille de grille.
+     */
     @FXML
     private void btn2() {
         FXMLUtils.loadFXML("/MenuTailleGrilleMoyen2.fxml", scene);
     }
+    /**
+     Méthodes pour naviguer vers d'autres menus de taille de grille.
+     */
     @FXML
     private void btn3() {
         FXMLUtils.loadFXML("/MenuTailleGrilleDif2.fxml", scene);
     }
-    // Méthode pour retourner en arrière.
+   /**
+    Méthode pour retourner en arrière.
+    */
     @FXML
     private void retour() {
         FXMLUtils.goBack(scene);

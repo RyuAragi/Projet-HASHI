@@ -30,8 +30,9 @@ public class PopupWindowControllerLBGrille extends BaseController {
     public static void setStage(Stage st){
         stage = st;
     }
-    // Méthode pour revenir à l'écran d'accueil.
-
+    /**
+     * Méthode d'action du menu principal.
+     */
     @FXML
     private void btnHome() {
         stage.close();

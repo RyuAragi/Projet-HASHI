@@ -8,7 +8,11 @@ package com.example.demojeumenu.game;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Cette classe représente une ile dans la grille solution
+ * Elle hérite de la classe Ile
+ * @see Ile
+ */
 public class IleSolution extends Ile implements Serializable {
 
     //Enregistre le nombre de pont en fonction de la direction (N => Nord, S => Sud, E => Est, O => Ouest)

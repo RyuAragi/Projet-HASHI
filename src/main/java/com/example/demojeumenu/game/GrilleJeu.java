@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Cette classe représente une grille de jeu de hashi
+ */
 public class GrilleJeu implements Serializable{
 
     //Représente la grille sur laquelle joue le joueur
@@ -248,11 +250,16 @@ public class GrilleJeu implements Serializable{
             e.printStackTrace();
         }
     }
-
+    /**
+     * Méthode qui permet d'ecrementer le nombre de check
+     */
     public void incrementCheck(){
         nbCheck+=1;
     }
 
+    /**
+     * Méthode qui permet d'incrementer le nombre d'aide
+     */
     public void incrementAide1(){
         aide2Seen=false;
         aide3Seen=false;
@@ -262,6 +269,9 @@ public class GrilleJeu implements Serializable{
         }
     }
 
+    /**
+     * Méthode qui permet d'incrementer le nombre d'aide
+     */
     public void incrementAide2(){
         aide1Seen=false;
         aide3Seen=false;
@@ -271,6 +281,9 @@ public class GrilleJeu implements Serializable{
         }
     }
 
+    /**
+     * Méthode qui permet d'incrementer le nombre d'aide
+     */
     public void incrementAide3(){
         aide1Seen=false;
         aide2Seen=false;
@@ -365,7 +378,7 @@ public class GrilleJeu implements Serializable{
     }
 
     /**
-     * permet de smettre à jour la liste de pont chaque fois qu'un pont est retiré
+     * permet de mettre à jour la liste de pont chaque fois qu'un pont est retiré
      * @param p le pont a supprimer
      */
     public void supprimePont(Pont p){
@@ -373,7 +386,10 @@ public class GrilleJeu implements Serializable{
             listPontPose.remove(p);
         }
     }
-
+    /**
+     * * Méthode qui supprime une liste de ponts
+     * @param lp la liste de ponts à supprimer
+     */
     public void supprimePont(List<Pont> lp){
         for (Pont p: lp) {
             supprimePont(p);
@@ -986,6 +1002,10 @@ public class GrilleJeu implements Serializable{
         }
     }
 
+    /**
+     * Méthode qui permet de retourner la liste des ponts incorrects
+     * @return la liste des ponts incorrects
+     */
     public ArrayList<List<Pont>> getPontsIncorrects(){
         nbCheck+=1;
         ArrayList<List<Pont>> pontsIncorrects = new ArrayList<>();

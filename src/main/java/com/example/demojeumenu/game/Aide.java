@@ -12,15 +12,15 @@ import java.util.List;
 
 
 /**
- * 
- * Voir si le code peut être factorisé
- * 
- * 
- * 
- * 
+ * Classe qui permet de détecter si une technique est applicable
  */
 
 public class Aide implements Serializable {
+    /**
+     * Constructeur de la classe Aide
+     */
+    public Aide() {
+    }
     /**
      * Méthode qui permet de détecter si une technique de départ est applicable
      * @param grille la grille de jeu

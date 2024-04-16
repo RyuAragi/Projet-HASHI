@@ -42,6 +42,7 @@ public abstract class BaseController {
     protected String levelFileName;
     /**
      * Le nom du fichier de niveau.
+     * @param scene La scène actuelle.
      */
     public void setScene(Scene scene) {
         BaseController.scene = scene;
@@ -113,6 +114,7 @@ public abstract class BaseController {
 
     /**
      * Méthode pour revenir à l'écran d'accueil.
+     * @param actionEvent [ActionEvent] Evenement récupéré pour connaitre l'identifiant du bouton cliqué.
      */
     public void param(ActionEvent actionEvent) {
         FXMLUtils.loadFXML("/Parametres.fxml", scene);

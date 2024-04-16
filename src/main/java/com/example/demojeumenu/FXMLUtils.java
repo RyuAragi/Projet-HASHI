@@ -68,6 +68,16 @@ public class FXMLUtils {
         }
     }
 
+    /**
+     * Charge le fichier FXML
+     *
+     * @param fxml nom du fichier FXML
+     * @param scene scène
+     * @param levelFileName nom du fichier de niveau
+     * @param typePont type de pont
+     * @param chargement chargement
+     */
+
     public static void loadFXML(String fxml, Scene scene, String levelFileName, GrilleControler.TypePont typePont, boolean chargement) {
         try {
             FXMLLoader loader = new FXMLLoader(FXMLUtils.class.getResource(fxml));
@@ -89,7 +99,10 @@ public class FXMLUtils {
         }
     }
 
-
+    /**
+     * Retourne le fichier FXML en cours
+     * @return nom du fichier FXML
+     */
     public static String topHistory(){
         return fxmlHistory.peek();
     }
