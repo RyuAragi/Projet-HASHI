@@ -7,20 +7,32 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
-//je pense que c'est à supprimer vue qu'on a fait qu'un leaderboard
+
+/**
+ * Controller du popup window.
+ * plus utilisé deprecated
+ */
 @Controller
 public class PopupWindowControllerLBGrille extends BaseController {
 
     @FXML
     private Button continueButton;// Bouton pour continuer.
+    /**
+     *  Recupère la fenêtre de l'application.
+     */
     private static Stage stage;
     // Méthode pour définir la fenêtre de l'application.
 
+    /**
+     * Recupère la fenêtre de l'application.
+     * @param st [Stage] La fenêtre de l'application.
+     */
     public static void setStage(Stage st){
         stage = st;
     }
-    // Méthode pour revenir à l'écran d'accueil.
-
+    /**
+     * Méthode d'action du menu principal.
+     */
     @FXML
     private void btnHome() {
         stage.close();

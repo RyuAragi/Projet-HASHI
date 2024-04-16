@@ -23,48 +23,99 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Cette classe représente une grille de jeu de hashi
+ */
 public class GrilleJeu implements Serializable{
 
-    //Représente la grille sur laquelle joue le joueur
+    /**
+     * Représente la grille sur laquelle joue le joueur
+     */
     private Case[][] joueur;
 
-    //Représente la solution de la grille
+    /**
+     * Représente la solution de la grille
+     */
     private Case[][] solution;
 
 
-    //Représente un boolean qui vaut vrai si une erreur a été commise dans la grille
+    /**
+     * Représente un boolean qui vaut vrai si une erreur a été commise dans la grille
+     */
     private Boolean erreur;
-    //Représente l'indice de la première erreur rencontrée
+
+    /**
+     * Représente l'indice de la première erreur rencontrée
+     */
     private int premiereErreur;
-    //Le nombre de ligne de la grille
+
+    /**
+     * Le nombre de ligne de la grille
+     */
     private int nbLigne;
-    //Le nombre de colonne de la grille
+
+    /**
+     * Le nombre de colonne de la grille
+     */
     private int nbColonne;
+
+    /**
+     * Temps à afficher
+     */
     public String chronoTime;
 
+    /**
+     * Variable pour les minutes
+     */
     private int minute;
 
+    /**
+     * Variable pour les secondes
+     */
     private int seconde;
 
+    /**
+     * Boolean pour savoir a quel niveau d'aide on est situé
+     * -> Ici au niveau 1
+     */
     private boolean aide1Seen;
 
+    /**
+     * Boolean pour savoir a quel niveau d'aide on est situé
+     * -> Ici au niveau 2
+     */
     private boolean aide2Seen;
 
+    /**
+     * Boolean pour savoir a quel niveau d'aide on est situé
+     * -> Ici au niveau 3
+     */
     private boolean aide3Seen;
 
 
-    //Le score du joueur
+    /**
+     * Le score du joueur
+     */
     private double score ;
-    //Le nombre de pont total de posés
+
+    /**
+     * Le nombre de pont total de posés
+     */
     private static int nbCheck;
-    //Le nombre total d'aide utilisé
+
+    /**
+     * Le nombre total d'aide utilisés
+     */
     private static int nbAide;
 
-    // Objet undo redo permettant d'effectuer les actions undo/redo
-    UndoRedo undoRedo;
+    /**
+     * Objet undo redo permettant d'effectuer les actions undo/redo
+     */
+    private UndoRedo undoRedo;
 
-    /** Mettre une seule liste on ne peut pas savoir l'avant dernier pont posé avec cette méthode */
+    /**
+     * Mettre une seule liste on ne peut pas savoir l'avant dernier pont posé avec cette méthode
+     */
     private final List<Pont> listPontPose;
 
     /**
@@ -102,6 +153,7 @@ public class GrilleJeu implements Serializable{
 
     /**
      * Méthode de récupération du temps du chrono
+     * @return [String] le temps du chrono
      */
     public String getChronoTime() {
         return String.format("%02d:%02d", this.minute, this.seconde);
@@ -134,39 +186,40 @@ public class GrilleJeu implements Serializable{
         menu.leaderboard();
     }
 
+    /**
+     * Methode permettant de changer le score du joueur dans le fichier du leaderboard
+     * @param playerScore score a changer
+     * @param leaderboardPath path du fichier
+     * @param level le niveau en question
+     * @param userInput Nom du joueur
+     */
     private void changer_score(int playerScore, String leaderboardPath, String level, String userInput) {
         // Assuming the leaderboard is a JSON file
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(leaderboardPath);
 
         try {
-            // Read the existing leaderboard
             Map<String, JsonNode> leaderboard = objectMapper.readValue(file, new TypeReference<Map<String, JsonNode>>() {});
 
-            // Create a new JSON object to represent the player's data
             ObjectNode playerData = objectMapper.createObjectNode();
             playerData.put("name", userInput);
             playerData.put("score", playerScore);
             playerData.put("time", chronoTime);
 
-            // Get the specific level data
             JsonNode levelData = leaderboard.get(level);
             if (levelData == null) {
                 levelData = objectMapper.createObjectNode();
             }
 
-            // Get the user's data
             JsonNode userData = ((ObjectNode) levelData).get(userInput);
             if (userData == null) {
                 userData = objectMapper.createArrayNode();
             }
 
-            // Add the new score to the user's data
             ((ArrayNode) userData).add(playerData);
             ((ObjectNode) levelData).set(userInput, userData);
             leaderboard.put(level, levelData);
 
-            // Write the updated leaderboard back to the file
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, leaderboard);
         } catch (IOException e) {
             e.printStackTrace();
@@ -249,10 +302,16 @@ public class GrilleJeu implements Serializable{
         }
     }
 
+    /**
+     * Methode permettant d'incrementer le nombre de check
+     */
     public void incrementCheck(){
         nbCheck+=1;
     }
 
+    /**
+     * Methode permettant d'incrementer le nombre d'aide et modifie les booleans d'affichage
+     */
     public void incrementAide1(){
         aide2Seen=false;
         aide3Seen=false;
@@ -262,6 +321,9 @@ public class GrilleJeu implements Serializable{
         }
     }
 
+    /**
+     * Methode permettant d'incrementer le nombre d'aide et modifie les booleans d'affichage
+     */
     public void incrementAide2(){
         aide1Seen=false;
         aide3Seen=false;
@@ -271,6 +333,9 @@ public class GrilleJeu implements Serializable{
         }
     }
 
+    /**
+     * Methode permettant d'incrementer le nombre d'aide et modifie les booleans d'affichage
+     */
     public void incrementAide3(){
         aide1Seen=false;
         aide2Seen=false;
@@ -298,7 +363,7 @@ public class GrilleJeu implements Serializable{
     }
 
     /**
-     *
+     * Renvoie la grille du joueur
      * @param x la coordonnée x de la grille du joueur
      * @param y la coordonnée y de la grille du joueur
      * @param val La valeur a affecté
@@ -319,7 +384,7 @@ public class GrilleJeu implements Serializable{
 
 
     /**
-     *
+     * Renvoie la grille de solution
      * @param x la coordonnée x de la grille solution
      * @param y la coordonnée y de la grille solution
      * @param val La valeur a affecté
@@ -365,7 +430,7 @@ public class GrilleJeu implements Serializable{
     }
 
     /**
-     * permet de smettre à jour la liste de pont chaque fois qu'un pont est retiré
+     * permet de mettre à jour la liste de pont chaque fois qu'un pont est retiré
      * @param p le pont a supprimer
      */
     public void supprimePont(Pont p){
@@ -374,6 +439,10 @@ public class GrilleJeu implements Serializable{
         }
     }
 
+    /**
+     * Methode permettant de supprimer la totalité de la liste de ponts
+     * @param lp Liste des ponts
+     */
     public void supprimePont(List<Pont> lp){
         for (Pont p: lp) {
             supprimePont(p);
@@ -410,6 +479,11 @@ public class GrilleJeu implements Serializable{
         }
     }
 
+    /**
+     * Methode permettant de copier la matrice de case dans une autre matrice
+     * @param src Matrice source
+     * @param dst Matrice destination
+     */
     private void copieGrille(Case[][] src, Case[][] dst){
         int i = 0;
         int j = 0;
@@ -490,6 +564,7 @@ public class GrilleJeu implements Serializable{
      * @param dir2 La direction souhaitée du joueur2
      * @param j1 l'ile du joueur 1
      * @param j2 l'ile du joueur 2
+     * @param estHypothese vrai si l'ile doit etre hypothese , false sinon
      * @return renvoie le pont créé
      */
     public Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2,Boolean estHypothese){
@@ -875,7 +950,9 @@ public class GrilleJeu implements Serializable{
         }
     }
 
-
+    /**
+     * Methode permettant de verifier si un pont est posable entre deux iles
+     */
     protected void afficher_mat_out() {
         for(int i = 0; i < nbLigne; i++) {
             for(int j = 0; j < nbColonne; j++) {
@@ -962,6 +1039,7 @@ public class GrilleJeu implements Serializable{
     /**
      * Methode permettant de créer une sauvegarde de la grille en cours
      * @param nom_fichier le path doit être de la forme : {Numero_Niveau}.ser
+     * @return la grille chargée
      */
     public GrilleJeu charger_sauvegarde(String nom_fichier) {
         try {
@@ -985,7 +1063,9 @@ public class GrilleJeu implements Serializable{
             return null;
         }
     }
-
+    /**
+     * Methode permettant de créer une sauvegarde de la grille en cours
+     */
     public ArrayList<List<Pont>> getPontsIncorrects(){
         nbCheck+=1;
         ArrayList<List<Pont>> pontsIncorrects = new ArrayList<>();
@@ -1011,6 +1091,10 @@ public class GrilleJeu implements Serializable{
         return pontsIncorrects;
     }
 
+    /**
+     * Getter de undoRedo
+     * @return UndoRedo
+     */
     public UndoRedo getUndoRedo() {
         return this.undoRedo;
     }

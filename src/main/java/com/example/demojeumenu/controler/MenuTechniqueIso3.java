@@ -5,17 +5,32 @@ import com.example.demojeumenu.utils.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
+/**
+ * Controller du deuxième menu du menu technique iso.
+ */
 public class MenuTechniqueIso3 extends BaseController {
 
+    /**
+     * Bouton retour au menu précedent
+     */
     @FXML
     public Button bouton_retour;
 
+    /**
+     * Bouton pour aller au menu suivant
+     */
     @FXML
     public Button bouton_suivant;
 
+    /**
+     *  Stage permettant de recuperer la fenêtre de l'application.
+     */
     public static Stage stage = null;
 
+    /**
+     * Setter du stage
+     * @param st nouveau stage
+     */
     public static void setStage(Stage st){
         stage = st;
     }
@@ -43,7 +58,9 @@ public class MenuTechniqueIso3 extends BaseController {
         FXMLUtils.loadFXML("/MenuTechniqueIso4.fxml", scene);
     }
 
-
+    /**
+     * Initialisation du menu
+     */
     @FXML
     private void initialize(){
         if(FXMLUtils.topHistory().equals("/GrilleDisplay.fxml")){

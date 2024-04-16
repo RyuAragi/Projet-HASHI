@@ -21,17 +21,30 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ * Classe utilitaire pour la gestion des fichiers JSON.
+ */
 
 public class JsonApp extends BaseController {
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = Logger.getLogger(JsonApp.class.getName());
+    /**
+     * Scene.
+     */
     private static final HashMap<String, Boolean> shownPopups = new HashMap<>();
 
-
+    /**
+     *  Constructeur privé pour empêcher l'instanciation de la classe utilitaire.
+     */
     private JsonApp() {
         throw new IllegalStateException("Classe utilitaire");
     }
-
+    /**
+     * Méthode permettant de vérifier si le fichier JSON existe.
+     * @param username le nom d'utilisateur.
+     */
     public static void checkJsonFileExists(String username) {
         InputStream resourceStream = JsonApp.class.getResourceAsStream("/json/" + username + ".json");
         if (resourceStream == null) {
@@ -54,6 +67,11 @@ public class JsonApp extends BaseController {
             }
         }
     }
+
+    /**
+     * Méthode permettant d'afficher la fenêtre popup.
+     * @param username le nom d'utilisateur.
+     */
 
     private static void showPopupWindow(String username) {
         // Load the FXML file for the external frame
@@ -105,7 +123,10 @@ public class JsonApp extends BaseController {
         // Show the popup window
         popupWindow.showAndWait();
     }
-
+    /**
+     * Méthode permettant de supprimer la fenêtre popup.
+     * @param username le nom d'utilisateur.
+     */
     public static void removeShownPopup(String username) {
         shownPopups.remove(username);
     }

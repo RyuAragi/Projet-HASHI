@@ -18,11 +18,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+
+/**
+ * Classe permettant de gérer le score du joueur
+ */
 public class Score {
 
+    /**
+     * HashMap contenant les niveaux et les scores des joueurs
+     */
     private final HashMap<String, HashMap<String, Integer>> niveaux;
 
+    /**
+     * HashMap contenant les joueurs et leurs scores
+     */
     private final HashMap<String, Integer> joueurs;
+    /**
+     * Constructeur de la classe
+     * @throws IOException Exception
+     */
     public Score() throws IOException {
         this.niveaux = new HashMap<String, HashMap<String, Integer>>();
         this.joueurs = new HashMap<String, Integer>();
@@ -36,7 +50,11 @@ public class Score {
     public HashMap<String, HashMap<String, Integer>> getNiveaux() {
         return niveaux;
     }
-
+    /**
+     * Getter du HashMap des joueurs
+     * @param niveau Niveau du joueur
+     * @return HashMap&lt;String, Integer&gt;
+     */
     public HashMap<String, Integer> getJoueurs(String niveau) {
         return getNiveaux().get(niveau);
     }
@@ -89,6 +107,7 @@ public class Score {
      * La methode ajoute pour chaque niveau le nom du joueur en clé ainsi qu'un score de -1.
      * Elle est utilisable dans le cas ou le joueur n'est pas renseigné, c'est-à-dire que c'est un nouveau joueur.
      * @param nom_joueur Nom du joueur à ajouter
+     * @throws IOException Exception
      */
     public void ajouter_joueur(String nom_joueur) throws IOException{
         JsonNode node = getNode();
@@ -108,6 +127,9 @@ public class Score {
     /**
      * Methode permettant de changer le score d'un joueur du niveau
      * @param score Score du joueur à actualiser
+     * @param niveau Niveau du joueur
+     * @param nom_joueur Nom du joueur
+     * @throws IOException Exception
      */
     public void changer_score(int score, String niveau, String nom_joueur) throws IOException {
         JsonNode node = getNode();
@@ -125,6 +147,7 @@ public class Score {
      * Methode permettant de verifier si un joueur existe ou non dans le json
      * @param nom nom du joueur
      * @return boolean
+     * @throws IOException Exception
      */
     public boolean joueur_existe(String nom) throws IOException {
         return getJoueurs("Facile-1").containsKey(nom);

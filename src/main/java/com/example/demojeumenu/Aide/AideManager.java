@@ -12,12 +12,30 @@ import com.example.demojeumenu.Technique.*;
 import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
 
-public class AideManager implements Aide{
-    private final List<TechniqueInter> listTechniqueDetecte ;
-    private TechniqueInter techniqueCourante;
-    private Integer precision;
-    static private AideManager instance = null;
+/**
+ * Classe qui permet de gérer l'aide à la résolution
+ */
 
+public class AideManager implements Aide{
+    /**
+     * Liste des techniques détectées
+     */
+    private final List<TechniqueInter> listTechniqueDetecte ;
+    /**
+     * Technique courante
+     */
+    private TechniqueInter techniqueCourante;
+    /**
+     * Précision de la technique
+     */
+    private Integer precision;
+    /**
+     * Instance de l'aide manager
+     */
+    static private AideManager instance = null;
+    /**
+     * Constructeur de l'aide manager
+     */
     private AideManager(){
         listTechniqueDetecte = new ArrayList<>();
         precision = 0;
@@ -52,7 +70,7 @@ public class AideManager implements Aide{
 
     /**
      * Méthode qui permet de détecter si une technique de départ est applicable
-     * @param grille
+     * @param grille la grille de jeu
      * @return la technique applicable ,null si il en existe pas
      */
     @Override
@@ -101,11 +119,16 @@ public class AideManager implements Aide{
     public Integer getPrecision(){
         return precision;
     }
-
+    /**
+     * Incrémente la précision de l'aide
+     */
     public void decrementePrecision(){
         this.precision--;
     }
-
+    /**
+     * Renvoie la technique courante
+     * @return la technique courante
+     */
     public TechniqueInter getTechnique(){
         return techniqueCourante;
     }

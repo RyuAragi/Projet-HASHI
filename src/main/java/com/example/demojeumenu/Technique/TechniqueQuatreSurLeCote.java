@@ -9,7 +9,9 @@ import java.util.List;
 
 import com.example.demojeumenu.game.GrilleJeu;
 import javafx.stage.Stage;
-
+/**
+ * Classe TechniqueQuatreSurLeCote, qui hérite de Technique
+ */
 public class TechniqueQuatreSurLeCote extends Technique{
     static private TechniqueInter technique = null;
 

@@ -48,9 +48,26 @@ public class GrilleControler extends BaseController {
 
     /**
      * Enumérateur des types de ponts possibles dans les différents modes de jeu
+     * CLASSIQUE : Ponts normaux
+     * CASSANT : Ponts qui se cassent si ils sont faux
+     * REVERSE : Ponts qui se cassent si ils sont vrais
      */
-    public enum TypePont{ CLASSIQUE, CASSANT, REVERSE }
+    public enum TypePont{
+        /**
+         * Normal bridges.
+         */
+        CLASSIQUE,
 
+        /**
+         * Bridges that break if they are false.
+         */
+        CASSANT,
+
+        /**
+         * Bridges that break if they are true.
+         */
+        REVERSE
+    }
     /**
      * Type de pont du mode de jeu actuel
      */
@@ -1081,7 +1098,9 @@ public class GrilleControler extends BaseController {
     /**
      * Méthode d'initialisation des données de la grille
      * @param levelFileName Nom du fichier du niveau
-     * @param chargement booleen utilisé lorsque une grille sera chargée ou pas.
+     * @param chargement booleen utilisé lorsqu'une grille sera chargée ou pas.
+     * @param type Type de pont à utiliser
+     *
      */
     public void initData(String levelFileName, TypePont type, boolean chargement) {
         GlobalVariables.setInGame(true);

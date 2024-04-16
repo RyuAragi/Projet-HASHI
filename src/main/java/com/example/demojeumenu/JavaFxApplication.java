@@ -16,9 +16,18 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.Objects;
 
-public class JavaFxApplication extends Application {
 
+/**
+ * Classe de lancement de l'application
+ */
+public class JavaFxApplication extends Application {
+    /**
+     * Contexte de l'application
+     */
     private ConfigurableApplicationContext applicationContext;
+    /**
+     * Méthode de lancement de l'application
+     */
     @Override
     public void init() throws Exception {
         String[] args = getParameters().getRaw().toArray(new String[0]);
@@ -28,6 +37,10 @@ public class JavaFxApplication extends Application {
                 .run(args);
     }
 
+    /**
+     * Méthode de lancement de l'application
+     * @param primaryStage la fenêtre principale de l'application
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/MenuPrincipal.fxml"));
@@ -70,7 +83,9 @@ public class JavaFxApplication extends Application {
 
         primaryStage.show();
     }
-
+    /**
+     * Méthode d'arrêt de l'application
+     */
     @Override
     public void stop() {
         this.applicationContext.close();

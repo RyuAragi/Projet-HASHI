@@ -7,7 +7,11 @@
 package com.example.demojeumenu.game;
 
 import java.util.ArrayList;
-
+/**
+ * Cette classe représente une ile abstraite
+ * @author Coupé Xavier
+ * @version 0.1
+ */
 public abstract class Ile extends Case {
 
     //La valeur de l'île (le nombre de pont qu'il faut relier)
@@ -25,11 +29,15 @@ public abstract class Ile extends Case {
         valIle = valIle_;
     }
 
+    /**
+     * Getter de la valeur de l'ile
+     * @return int
+     */
     public int getValIle(){
         return valIle;
     }
 
-    /*
+    /**
      * Méthode qui compte la somme des voisins
      * @return la somme des voisins d'un noeud
      */
@@ -42,6 +50,11 @@ public abstract class Ile extends Case {
      */
     public abstract int getValPontDir(String dir);
 
+    /**
+     * Methode permettant d'avoir l'ile au nord de celle-ci
+     * @param grille Grille du jeu
+     * @return Ile
+     */
     public Ile getIleNord(GrilleJeu grille){
         int i=super.getX()-1;
         if(i<0) return null;
@@ -55,6 +68,11 @@ public abstract class Ile extends Case {
         return null;
     }
 
+    /**
+     * Methode permettant d'avoir l'ile au sud de celle-ci
+     * @param grille Grille du jeu
+     * @return Ile
+     */
     public Ile getIleSud(GrilleJeu grille){
         int i=super.getX()+1;
         if(i==grille.getNbLigne()) return null;
@@ -68,6 +86,11 @@ public abstract class Ile extends Case {
         return null;
     }
 
+    /**
+     * Methode permettant d'avoir l'ile à l'ouest de celle-ci
+     * @param grille Grille du jeu
+     * @return Ile
+     */
     public Ile getIleOuest(GrilleJeu grille){
         int i=super.getY()-1;
         if(i<0) return null;
@@ -81,6 +104,11 @@ public abstract class Ile extends Case {
         return null;
     }
 
+    /**
+     * Methode permettant d'avoir l'ile à l'est de celle-ci
+     * @param grille Grille du jeu
+     * @return Ile
+     */
     public Ile getIleEst(GrilleJeu grille){
         int i=super.getY()+1;
         if(i==grille.getNbColonne()) return null;
@@ -94,6 +122,10 @@ public abstract class Ile extends Case {
         return null;
     }
 
+    /**
+     * Methode permettant de savoir si une ile est complete
+     * @return boolean
+     */
     public boolean ileComplete(){
         return getValIle() == getSommeVoisins();
     }

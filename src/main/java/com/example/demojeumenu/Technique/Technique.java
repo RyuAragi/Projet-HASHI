@@ -7,9 +7,13 @@
 package com.example.demojeumenu.Technique;
 
 import com.example.demojeumenu.game.Ile;
-
+/**
+ * Classe abstraite qui représente une technique
+ */
 abstract public class Technique implements TechniqueInter{
-
+    /**
+     * L'ile visée par la technique
+     */
     protected Ile courante ;
 
 

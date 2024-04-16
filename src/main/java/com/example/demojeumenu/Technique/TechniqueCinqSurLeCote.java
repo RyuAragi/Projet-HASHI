@@ -7,7 +7,9 @@ import com.example.demojeumenu.game.GrilleJeu;
 import com.example.demojeumenu.game.Ile;
 import com.example.demojeumenu.game.IleJoueur;
 import javafx.stage.Stage;
-
+/**
+ * Classe TechniqueCinqSurLeCote, qui hérite de Technique
+ */
 public class TechniqueCinqSurLeCote extends Technique{
     static private TechniqueInter technique = null;
 

@@ -12,7 +12,9 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 import com.example.demojeumenu.GrilleControler;
-
+/**
+ * Controller du menu des paramètres pour le jeu.
+ */
 @Controller
 public class ParametresForGame extends Parametres {
 
