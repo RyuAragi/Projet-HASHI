@@ -12,27 +12,26 @@ import javafx.stage.Stage;
  */
 public class MenuTechniqueAv2 extends BaseController {
 
-
     /**
-     * Bouton de retour.
-    */
+     * Bouton retour au menu précedent
+     */
     @FXML
     public Button bouton_retour;
 
     /**
-     * Bouton suivant.
+     * Bouton pour aller au menu suivant
      */
     @FXML
     public Button bouton_suivant;
 
     /**
-     * Stage.
+     *  Stage permettant de recuperer la fenêtre de l'application.
      */
     public static Stage stage = null;
 
     /**
-     * Méthode permettant de définir la scène.
-     * @param st la scène à définir.
+     * Setter du stage
+     * @param st nouveau stage
      */
     public static void setStage(Stage st){
         stage = st;
@@ -42,6 +41,7 @@ public class MenuTechniqueAv2 extends BaseController {
     /**
      * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
      */
+
     @FXML
     private void retour() {
         System.out.println("retour");
@@ -56,14 +56,14 @@ public class MenuTechniqueAv2 extends BaseController {
     /**
      * Méthode d'action du bouton retour. Permet d'acceder au menu suivant.
      */
+
     @FXML
     private void suivant() {
         FXMLUtils.loadFXML("/MenuTechniqueAv3.fxml", scene);
     }
 
-
     /**
-     * Méthode d'action qui permet d'afficher la grille.
+     * Initialisation du menu
      */
     @FXML
     private void initialize(){

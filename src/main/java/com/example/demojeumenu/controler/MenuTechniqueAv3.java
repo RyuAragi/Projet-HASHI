@@ -27,6 +27,9 @@ public class MenuTechniqueAv3 extends BaseController {
      * Stage.
      */
 
+    /**
+     *  Stage permettant de recuperer la fenêtre de l'application.
+     */
     public static Stage stage = null;
 
     /**
@@ -34,6 +37,10 @@ public class MenuTechniqueAv3 extends BaseController {
      * @param st la scène à définir.
      */
 
+    /**
+     * Setter du stage
+     * @param st nouveau stage
+     */
     public static void setStage(Stage st){
         stage = st;
     }
@@ -41,7 +48,9 @@ public class MenuTechniqueAv3 extends BaseController {
     /**
      * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
      */
-
+    /**
+     * Bouton retour au menu précedent
+     */
     @FXML
     private void retour() {
         System.out.println("retour");
@@ -57,6 +66,9 @@ public class MenuTechniqueAv3 extends BaseController {
      * Méthode d'action du bouton retour. Permet d'acceder au menu suivant.
      */
 
+    /**
+     * Bouton pour aller au menu suivant
+     */
     @FXML
     private void suivant() {
         FXMLUtils.loadFXML("/MenuTechniqueAv4.fxml", scene);
@@ -67,6 +79,9 @@ public class MenuTechniqueAv3 extends BaseController {
      * Méthode d'initialisation.
      */
 
+    /**
+     * Initialisation du menu
+     */
     @FXML
     private void initialize(){
         if(FXMLUtils.topHistory().equals("/GrilleDisplay.fxml")){

@@ -7,38 +7,35 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
- * Controler du menu technique bas 1.
+ * Controler du menu technique basique 1.
  */
 public class MenuTechniqueBas1 extends BaseController {
 
     /**
-     * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
+     * Bouton retour au menu précedent
      */
     @FXML
     public Button bouton_retour;
 
-
     /**
-     * Bouton suivant.
+     * Bouton pour aller au menu suivant
      */
     @FXML
     public Button bouton_suivant;
 
     /**
-     * Stage.
+     *  Stage permettant de recuperer la fenêtre de l'application.
      */
     public static Stage stage = null;
+
     /**
-     * Méthode permettant de définir la scène.
-     * @param st la scène à définir.
+     * Setter du stage
+     * @param st nouveau stage
      */
     public static void setStage(Stage st){
         stage = st;
     }
 
-    /**
-     * Méthode d'action du bouton retour. Permet de retourner au menu précédant.
-     */
     @FXML
     private void retour() {
         System.out.println("retour");
@@ -60,7 +57,7 @@ public class MenuTechniqueBas1 extends BaseController {
     }
 
     /**
-     * Méthode initialize qui permet de cacher le bouton suivant si on est sur la grille.
+     * Initialisation du menu
      */
     @FXML
     private void initialize(){
