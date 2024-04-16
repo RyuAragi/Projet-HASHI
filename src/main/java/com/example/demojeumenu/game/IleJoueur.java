@@ -17,6 +17,12 @@ public class IleJoueur extends Ile implements Serializable {
     private final HashMap<String, List<Pont>> pontRelie;
 
 
+    /**
+     * Constructeur de la classe
+     * @param cX Coordonnée X
+     * @param cY Coordonnée Y
+     * @param valIle_ Valeur de l'ile
+     */
     public IleJoueur(int cX, int cY, int valIle_){
         super(cX, cY, valIle_);
         pontRelie = new HashMap<>();
@@ -47,6 +53,11 @@ public class IleJoueur extends Ile implements Serializable {
         return pontRelie.get(dir).size();
     }
 
+    /**
+     * Methode permettant d'avoir le pont dans une direction donné
+     * @param dir la direction
+     * @return List<Pont>
+     */
     public List<Pont> getPontDir(String dir){
         return pontRelie.get(dir);
     }
@@ -77,6 +88,10 @@ public class IleJoueur extends Ile implements Serializable {
         pontRelie.get(dir).remove(p);
     }
 
+    /**
+     * Methode permettant de reinitialiser la liste des ponts pour une direction donnée
+     * @param dir la direction
+     */
     public void reinitPont(String dir){
         pontRelie.remove(dir);
         pontRelie.put(dir, new ArrayList<Pont>());
@@ -91,6 +106,7 @@ public class IleJoueur extends Ile implements Serializable {
     public void ajoutePontList(String dir, Pont p){
         pontRelie.get(dir).add(p);
     }
+
     /**
      * Ajoute un pont dans la direction souhaitée
      * @param dir La direction souhaitée
@@ -111,9 +127,9 @@ public class IleJoueur extends Ile implements Serializable {
     /**
      * Methode permettant d'obtenir la direction qui contient le pont passé en paramètre.
      *
-     * @param p
+     * @param p le pont
      * @return La direction
-     * @throws NoSuchElementException
+     * @throws NoSuchElementException Dans le cas ou il n'y a plus d'elements
      */
     public String getPontDirection(Pont p) throws NoSuchElementException{
         for(Map.Entry<String, List<Pont>> elem : this.pontRelie.entrySet()) {

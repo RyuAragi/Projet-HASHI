@@ -14,6 +14,16 @@ public class IleSolution extends Ile implements Serializable {
     //Enregistre le nombre de pont en fonction de la direction (N => Nord, S => Sud, E => Est, O => Ouest)
     private final HashMap<String,Integer> pontRelie;
 
+    /**
+     * Constructeur de la classe
+     * @param cX Coordonnée X
+     * @param cY Coordonnée Y
+     * @param valIle_ Valeur de l'ile
+     * @param nbPontsN_ Nombre de ponts au Nord
+     * @param nbPontsS_ Nombre de ponts au Sud
+     * @param nbPontsE_ Nombre de ponts à l'Est
+     * @param nbPontsO_ Nombre de ponts à l'Ouest
+     */
     public IleSolution(int cX, int cY, int valIle_, int nbPontsN_, int nbPontsS_, int nbPontsE_, int nbPontsO_){
         super(cX,cY,valIle_);
 
