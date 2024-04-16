@@ -15,7 +15,11 @@ import java.util.Map;
  */
 public class IleSolution extends Ile implements Serializable {
 
-    //Enregistre le nombre de pont en fonction de la direction (N => Nord, S => Sud, E => Est, O => Ouest)
+
+    /**
+     * Stock les ponts posés en fonction de la direction
+     * Enregistre le nombre de pont en fonction de la direction (N => Nord, S => Sud, E => Est, O => Ouest)
+     */
     private final HashMap<String,Integer> pontRelie;
 
     /**

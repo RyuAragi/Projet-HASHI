@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Cette classe représente une grille de jeu de hashi
+ */
 public class GrilleJeu implements Serializable{
 
     /**
@@ -151,6 +153,7 @@ public class GrilleJeu implements Serializable{
 
     /**
      * Méthode de récupération du temps du chrono
+     * @return [String] le temps du chrono
      */
     public String getChronoTime() {
         return String.format("%02d:%02d", this.minute, this.seconde);
@@ -360,7 +363,7 @@ public class GrilleJeu implements Serializable{
     }
 
     /**
-     *
+     * Renvoie la grille du joueur
      * @param x la coordonnée x de la grille du joueur
      * @param y la coordonnée y de la grille du joueur
      * @param val La valeur a affecté
@@ -381,7 +384,7 @@ public class GrilleJeu implements Serializable{
 
 
     /**
-     *
+     * Renvoie la grille de solution
      * @param x la coordonnée x de la grille solution
      * @param y la coordonnée y de la grille solution
      * @param val La valeur a affecté
@@ -561,6 +564,7 @@ public class GrilleJeu implements Serializable{
      * @param dir2 La direction souhaitée du joueur2
      * @param j1 l'ile du joueur 1
      * @param j2 l'ile du joueur 2
+     * @param estHypothese vrai si l'ile doit etre hypothese , false sinon
      * @return renvoie le pont créé
      */
     public Pont ajoutePont(String dir1, IleJoueur j1, String dir2, IleJoueur j2,Boolean estHypothese){
@@ -946,7 +950,9 @@ public class GrilleJeu implements Serializable{
         }
     }
 
-
+    /**
+     * Methode permettant de verifier si un pont est posable entre deux iles
+     */
     protected void afficher_mat_out() {
         for(int i = 0; i < nbLigne; i++) {
             for(int j = 0; j < nbColonne; j++) {
@@ -1033,6 +1039,7 @@ public class GrilleJeu implements Serializable{
     /**
      * Methode permettant de créer une sauvegarde de la grille en cours
      * @param nom_fichier le path doit être de la forme : {Numero_Niveau}.ser
+     * @return la grille chargée
      */
     public GrilleJeu charger_sauvegarde(String nom_fichier) {
         try {
@@ -1056,7 +1063,9 @@ public class GrilleJeu implements Serializable{
             return null;
         }
     }
-
+    /**
+     * Methode permettant de créer une sauvegarde de la grille en cours
+     */
     public ArrayList<List<Pont>> getPontsIncorrects(){
         nbCheck+=1;
         ArrayList<List<Pont>> pontsIncorrects = new ArrayList<>();

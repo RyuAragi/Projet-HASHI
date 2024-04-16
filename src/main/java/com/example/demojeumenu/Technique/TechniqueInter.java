@@ -48,10 +48,13 @@ public interface TechniqueInter {
 
     /**
      * Revnoie le nom du fichier FXML associée à la technique 
-     * @return
+     * @return le nom du fichier FXML
      */
     public abstract String getFichierFXML();
 
-
+    /**
+     * Renvoie le stage de la technique
+     * @param st de la technique
+     */
     public void setStage(Stage st);
 }

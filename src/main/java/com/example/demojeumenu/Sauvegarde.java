@@ -66,6 +66,8 @@ public class Sauvegarde {
      *                      |→ Difficile-1.ser
      *                      |→ ...
      *                      |→ Difficile-10.ser
+     *
+     * @throws IOException Exception
      */
     public void creer_arborescence() throws IOException {
         File directory = new File(path);
@@ -102,6 +104,7 @@ public class Sauvegarde {
 
     /**
      * Methode permettant de créer le fichier de leaderboard
+     * @throws IOException Exception
      */
     public void creer_fichier_leaderboard() throws IOException {
 

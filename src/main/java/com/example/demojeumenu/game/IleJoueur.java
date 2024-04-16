@@ -15,9 +15,14 @@ import java.util.*;
  */
 public class IleJoueur extends Ile implements Serializable {
 
-    //Représente le nombre max de pont pouvant être connecté sur un côté de l'ile
+    /**
+     * Représente le nombre max de pont pouvant être connecté sur un côté de l'ile
+     * @see IleJoueur#ajoutePontList(String, Pont)
+     */
     final int NB_PONT_MAX = 2;
-    //Stock les ponts posés en fonction de la direction
+    /**
+     *Stock les ponts posés en fonction de la direction
+     */
     private final HashMap<String, List<Pont>> pontRelie;
 
 

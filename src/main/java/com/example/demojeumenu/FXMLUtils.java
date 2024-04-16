@@ -186,7 +186,10 @@ public class FXMLUtils {
         }
         return prefWidth;
     }
-
+    /**
+     * Initialise une zone de texte
+     * @param zoneTexte zone de texte
+     */
     public static void initializeTextField(TextField zoneTexte) {
         // Liaison bidirectionnelle entre la propriété userInput de GlobalVariables et la propriété text de la zoneTexte
         zoneTexte.textProperty().bindBidirectional(GlobalVariables.userInputProperty());

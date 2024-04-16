@@ -11,15 +11,27 @@ import java.io.Serializable;
  * Cette classe représente un pont
  */
 public class Pont implements Serializable {
+    /**
+     * Booléen pour savoir si le pont est une hypothèse
+     */
     private boolean estHypothese;
 
     private enum VertiHori{
         VERTICALE,HORIZONTAL
     }
-
+    /**
+     * Enumération pour les ponts verticaux et horizontaux
+     */
     private final VertiHori estVertiHori;
 
+
+    /**
+     * Les iles source et destination du pont
+     */
     private final IleJoueur src;
+    /**
+     * Les iles source et destination du pont
+     */
     private final IleJoueur dst;
 
     /**
