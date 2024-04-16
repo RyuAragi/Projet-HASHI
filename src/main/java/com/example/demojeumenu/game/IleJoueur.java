@@ -58,9 +58,9 @@ public class IleJoueur extends Ile implements Serializable {
     }
 
     /**
-     * Methode permettant d'avoir le pont dans une direction donné
-     * @param dir la direction
-     * @return List<Pont>
+     * Method to get the bridge in a given direction
+     * @param dir the direction
+     * @return a list of bridges in the given direction
      */
     public List<Pont> getPontDir(String dir){
         return pontRelie.get(dir);
